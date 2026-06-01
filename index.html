@@ -62,8 +62,23 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .stat{background:var(--panel-2);border:1px solid var(--border);border-radius:5px;
   padding:.2rem .5rem;font-size:.8rem;min-width:48px;text-align:center}
 .stat b{display:block;color:var(--muted);font-size:.65rem;text-transform:uppercase}
+.card-head .collapse-ind{color:var(--muted);font-size:.8rem;transition:transform .15s}
+.unit-card.collapsed .collapse-ind{transform:rotate(-90deg)}
+.card-type{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.model-line{font-size:.78rem;color:var(--muted);margin:.1rem 0 .5rem}
+.defence-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
 .invuln-row{display:inline-block;background:rgba(212,161,58,.15);border:1px solid var(--accent-2);
-  color:var(--accent-2);border-radius:5px;padding:.15rem .5rem;font-size:.78rem;margin-bottom:.5rem}
+  color:var(--accent-2);border-radius:5px;padding:.15rem .5rem;font-size:.78rem}
+.invuln-row.fnp-only,.fnp-row{background:rgba(76,175,106,.12);border:1px solid var(--inherited);color:var(--inherited)}
+.fnp-row{display:inline-block;border-radius:5px;padding:.15rem .5rem;font-size:.78rem}
+.prof-name{color:var(--accent-2);font-weight:600;font-size:.72rem;margin-right:.3rem}
+.wpn-name small{color:var(--muted)}
+.enh-box{background:rgba(212,161,58,.1);border:1px solid var(--accent-2);border-radius:6px;
+  padding:.4rem .6rem;margin:.5rem 0;font-size:.8rem}
+.enh-box .enh-name{color:var(--accent-2);font-weight:700;cursor:pointer}
+.kw-line{margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border);
+  font-size:.68rem;color:var(--muted);letter-spacing:.03em}
+.sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
 .wpn-table{width:100%;border-collapse:collapse;font-size:.78rem;margin:.3rem 0}
 .wpn-table th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);padding:.2rem .3rem}
 .wpn-table td{padding:.2rem .3rem;border-bottom:1px solid var(--border)}
@@ -288,57 +303,114 @@ function updateConfigPoints(){
       `<span style="color:var(--muted);font-size:.8rem">no points limit set</span>`);
 }
 
-/* ---- Units tab (Stage 2 basic; full render in Stage 3) ---- */
+/* ---- Units tab (full unit cards) ---- */
 function renderUnits(){
   const el = document.getElementById('units-tab');
   if(!armyList.length){ el.innerHTML = `<div class="empty">No units yet. Add some in the <b>Builder</b> tab.</div>`; return; }
-  el.innerHTML = armyList.map(inst => renderSoloUnitCard(inst)).join('');
+  // sort cards alphabetically by unit name
+  const sorted = armyList.slice().sort((a,b)=>units[a.unitId].name.localeCompare(units[b.unitId].name));
+  el.innerHTML = sorted.map(inst => renderSoloUnitCard(inst)).join('');
 }
+
 function renderSoloUnitCard(inst){
   const u = units[inst.unitId]; if(!u) return '';
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
+  const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
   return `<div class="unit-card ${collapsed}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
-      <h3>${u.name}</h3><span class="pts">${calculateInstancePoints(inst)} pts</span>
+      <span class="collapse-ind">▼</span>
+      <div style="flex:1">
+        <h3>${u.name}</h3>
+        <div class="card-type">${(u.type||[]).join(' · ')}</div>
+      </div>
+      <span class="pts">${calculateInstancePoints(inst)} pts</span>
     </div>
     <div class="card-body">
+      ${u.modelBreakdown?`<div class="model-line">${modelCountLabel(inst,u)}${u.modelBreakdown}</div>`:''}
       ${renderStatGrid(u)}
-      ${u.invulnerableSave?`<div class="invuln-row">Invulnerable Save ${u.invulnerableSave}</div>`:''}
-      ${renderWeapons(u)}
-      ${renderAbilities(u)}
+      ${renderDefence(u)}
+      ${enh?`<div class="enh-box"><span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${enh.name}</span> — ${enh.type}</div>`:''}
+      ${renderWeapons(u, inst)}
+      ${renderAbilities(u, enh)}
+      <div class="kw-line">${(u.keywords||[]).join(', ')}</div>
     </div></div>`;
 }
-function renderStatGrid(u){
-  const s = u.stats||{};
-  const cells = [['M',s.m],['T',s.t],['SV',s.sv],['W',s.w],['LD',s.ld],['OC',s.oc]];
-  return `<div class="stat-grid">` + cells.map(([k,v])=>`<div class="stat"><b>${k}</b>${v??'-'}</div>`).join('') + `</div>`;
+
+function modelCountLabel(inst,u){
+  if(!u.maxModels) return '';
+  return `<b style="color:var(--text)">${inst.modelCount} models</b> · `;
 }
-function renderWeapons(u){
+
+function renderStatGrid(u){
+  const order = [['M','m'],['T','t'],['SV','sv'],['W','w'],['LD','ld'],['OC','oc']];
+  const row = s => `<div class="stat-grid">` +
+    order.map(([k,p])=>`<div class="stat"><b>${k}</b>${s[p]??'-'}</div>`).join('') + `</div>`;
+  if(u.modelProfiles && u.modelProfiles.length > 1){
+    return u.modelProfiles.map(mp=>`<div class="prof-name">${mp.name}</div>${row(mp.stats)}`).join('');
+  }
+  return row(u.stats||{});
+}
+
+function renderDefence(u){
+  const parts = [];
+  if(u.invulnerableSave){
+    const cls = (u.weapons && !u.invulnerableSource) ? '' : '';
+    parts.push(`<span class="invuln-row" ${u.invulnerableSource?`onclick="showModal('${u.invulnerableSource}')"`:''}>Invulnerable Save ${u.invulnerableSave}</span>`);
+  }
+  const fnp = (u.coreAbilities||[]).find(id=>id.startsWith('feel-no-pain'));
+  if(fnp){
+    const a = abilities[fnp];
+    parts.push(`<span class="fnp-row" onclick="showModal('${fnp}')">${a?a.name:'Feel No Pain'}</span>`);
+  }
+  return parts.length ? `<div class="defence-row">${parts.join('')}</div>` : '';
+}
+
+function renderWeapons(u, inst){
   let out = '';
   for(const [cat,label] of [['ranged','Ranged Weapons'],['melee','Melee Weapons']]){
     const list = (u.weapons&&u.weapons[cat])||[]; if(!list.length) continue;
     out += `<div class="wpn-cat">${label}</div><table class="wpn-table"><tr>
-      <th>Weapon</th><th>${cat==='ranged'?'Rng':'Rng'}</th><th>A</th><th>${cat==='ranged'?'BS':'WS'}</th><th>S</th><th>AP</th><th>D</th></tr>`;
-    out += list.map(w=>`<tr><td>${w.name}${renderWeaponBadges(w)}</td>
-      <td>${cat==='ranged'?(w.range||'-'):'Melee'}</td><td>${w.a}</td>
-      <td>${cat==='ranged'?(w.bs||'-'):(w.ws||'-')}</td><td>${w.s}</td><td>${w.ap}</td><td>${w.d}</td></tr>`).join('');
+      <th>Weapon</th><th>Rng</th><th>A</th><th>${cat==='ranged'?'BS':'WS'}</th><th>S</th><th>AP</th><th>D</th></tr>`;
+    out += list.map(w=>{
+      const cnt = (w.count && w.count > 1) ? ` <small>×${w.count}</small>` : '';
+      const model = w.model ? ` <small>(${w.model})</small>` : '';
+      return `<tr><td class="wpn-name">${w.name}${cnt}${model}${renderWeaponBadges(w)}</td>
+        <td>${cat==='ranged'?(w.range||'-'):'Melee'}</td><td>${w.a}</td>
+        <td>${cat==='ranged'?(w.bs||'-'):(w.ws||'-')}</td><td>${w.s}</td><td>${w.ap}</td><td>${w.d}</td></tr>`;
+    }).join('');
     out += `</table>`;
   }
   return out;
 }
+
 function renderWeaponBadges(w){
-  if(!w.abilities||!w.abilities.length) return '';
-  return ` <span class="badges">` + w.abilities.map(id=>{
-    const a = abilities[id]; return `<span class="wab" onclick="event.stopPropagation();showModal('${id}')">${a?a.name:id}</span>`;
+  const all = [];
+  (w.abilities||[]).forEach(id=>all.push({id, cls:''}));
+  (w.inheritedAbilities||[]).forEach(x=>{ const id = typeof x==='string'?x:x.id; all.push({id, cls:'inherited', display:(typeof x==='object'?x.display:null)}); });
+  if(!all.length) return '';
+  return ` <span class="badges">` + all.map(b=>{
+    const a = abilities[b.id];
+    const label = b.display || (a?a.name:b.id);
+    return `<span class="wab ${b.cls}" onclick="event.stopPropagation();showModal('${b.id}')">${label}</span>`;
   }).join('') + `</span>`;
 }
-function renderAbilities(u){
+
+function renderAbilities(u, enh){
   const chip = (id,cls)=>{ const a=abilities[id]; return `<span class="ab ${cls}" onclick="showModal('${id}')">${a?a.name:id}</span>`; };
-  let out = '<div class="badges">';
-  (u.coreAbilities||[]).forEach(id=>out+=chip(id,'core'));
-  (u.abilities||[]).forEach(id=>out+=chip(id,''));
-  (u.wargear||[]).forEach(id=>out+=chip(id,'wg'));
-  return out + '</div>';
+  let out = '';
+  if((u.coreAbilities||[]).length){
+    out += `<div class="sec-label">Core</div><div class="badges">` +
+      u.coreAbilities.map(id=>chip(id,'core')).join('') + `</div>`;
+  }
+  if((u.abilities||[]).length){
+    out += `<div class="sec-label">Abilities</div><div class="badges">` +
+      u.abilities.map(id=>chip(id,'')).join('') + `</div>`;
+  }
+  if((u.wargear||[]).length){
+    out += `<div class="sec-label">Wargear</div><div class="badges">` +
+      u.wargear.map(id=>chip(id,'wg')).join('') + `</div>`;
+  }
+  return out;
 }
 
 /* ---- Builder tab (Stage 2 basic; full render in Stage 4) ---- */
