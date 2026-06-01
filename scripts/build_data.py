@@ -13,6 +13,9 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 REF  = os.path.join(ROOT, 'chaos-daemons-reference.md')
 UNIT_DIR = os.path.join(ROOT, 'data', 'units')
 os.makedirs(UNIT_DIR, exist_ok=True)
+for _f in os.listdir(UNIT_DIR):          # start clean so dropped units don't linger
+    if _f.endswith('.json'):
+        os.remove(os.path.join(UNIT_DIR, _f))
 
 def norm(s):
     """Normalise curly quotes etc. to plain ASCII-ish for matching."""
@@ -34,7 +37,7 @@ BASE_RULES = {
     'sustained hits': ('Weapon Ability', 'Each <strong>Critical Hit</strong> scores a number of additional hits as denoted by the value (X).'),
     'devastating wounds': ('Weapon Ability', 'Each <strong>Critical Wound</strong> inflicts mortal wounds equal to the weapon’s Damage, instead of the normal damage.'),
     'precision': ('Weapon Ability', 'Attacks targeting a unit with an attached Character can be allocated to that Character model.'),
-    'torrent': ('Weapon Ability', 'Attacks made with this weapon automatically hit their target.'),
+    'torrent': ('Weapon Ability', 'Weapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target.'),
     'ignores cover': ('Weapon Ability', 'The target cannot have the Benefit of Cover against this weapon’s attacks.'),
     'rapid fire': ('Weapon Ability', 'When targeting a unit within half range, increase the Attacks characteristic by the value (X).'),
     'assault': ('Weapon Ability', 'This weapon can be shot even if the bearer’s unit Advanced this turn.'),
@@ -209,6 +212,8 @@ def parse_points():
     return pts
 
 POINTS = parse_points()
+# Manual overrides: Tranceweaver's value was truncated in the source upload.
+POINTS['tranceweaver'] = [(1, 60)]
 
 # ── Main datasheet parse ─────────────────────────────────────────────────────
 text = norm(open(REF, encoding='utf-8').read())
@@ -287,7 +292,8 @@ for b in blocks[1:]:
             if dm > 0:
                 unit['pointsPerModel'] = dp // dm
     else:
-        unit['points'] = 0   # TBD: not in points file
+        # No points entry -> Forgeworld / extra unit; ignored per user decision.
+        continue
 
     # weapons
     weapons = {'ranged': [], 'melee': []}

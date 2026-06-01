@@ -74,11 +74,6 @@
     "type": "Ability",
     "description": "While this model is leading a unit, each time a model in that unit makes an attack, add 1 to the Wound roll."
   },
-  "bounding-assault": {
-    "name": "Bounding Assault",
-    "type": "Ability",
-    "description": "Each time this unit ends a Charge move, until the end of the turn, Pox Rider plagueswords equipped by models in this unit have the [LANCE] ability."
-  },
   "bounding-leaps": {
     "name": "Bounding Leaps",
     "type": "Ability",
@@ -104,11 +99,6 @@
     "type": "Ability",
     "description": "While this model is leading a unit, ranged weapons equipped by models in that unit have the [SUSTAINED HITS 1] ability."
   },
-  "chaos-icon": {
-    "name": "Chaos Icon",
-    "type": "Wargear",
-    "description": "Each time the bearer's unit takes a Leadership test for the Dark Pacts ability, you can re-roll that test."
-  },
   "collar-of-khorne": {
     "name": "Collar of Khorne",
     "type": "Wargear",
@@ -120,11 +110,6 @@
     "description": "Each time a ranged attack is allocated to a model, if that model is not fully visible to every model in the attacking unit because of this FORTIFICATION, that model has the Benefit of Cover against that attack."
   },
   "cutting-down-the-foe": {
-    "name": "Cutting Down the Foe",
-    "type": "Ability",
-    "description": "Each time this unit is selected to fight, you can select one enemy unit within Engagement Range of it and roll one D6, adding 2 to the result if that unit is an INFANTRY unit: on a 2-3, that enemy unit suffers D3 mortal wounds; on a 4-5, that enemy unit suffers 3 mortal wounds; on a 6+, that enemy unit suffers D3+3 mortal wounds."
-  },
-  "cutting-down-the-foe-2": {
     "name": "Cutting Down the Foe",
     "type": "Ability",
     "description": "Each time a model in this unit makes a melee attack, if this unit made a Charge move this turn, improve the Strength and Damage characteristics of that attack by 1."
@@ -189,11 +174,6 @@
     "type": "Ability",
     "description": "While this model is within 3\" of one or more friendly Legiones Daemonica Infantry units, this model has the Lone Operative ability."
   },
-  "dark-pacts": {
-    "name": "Dark Pacts",
-    "type": "Faction Rule",
-    "description": "This unit can invoke <strong>Dark Pacts</strong> as described in Codex: Chaos Space Marines."
-  },
   "dazzling-acrobatics": {
     "name": "Dazzling Acrobatics",
     "type": "Ability",
@@ -211,11 +191,6 @@
   },
   "deadly-demise-d6": {
     "name": "Deadly Demise D6",
-    "type": "Core Ability",
-    "description": "When destroyed, roll one D6 (per the value); on a 6 each unit within 6\" suffers mortal wounds."
-  },
-  "deadly-demise-d6-2": {
-    "name": "Deadly Demise D6+2",
     "type": "Core Ability",
     "description": "When destroyed, roll one D6 (per the value); on a 6 each unit within 6\" suffers mortal wounds."
   },
@@ -268,26 +243,6 @@
     "name": "Eldritch Flames (Psychic)",
     "type": "Ability",
     "description": "In your Shooting phase, after this model has shot, select one enemy unit that was hit by one or more of those attacks. Until the end of the phase, that unit cannot have the Benefit of Cover."
-  },
-  "emissary-of-the-blood-god-aura": {
-    "name": "Emissary of the Blood God (Aura)",
-    "type": "Ability",
-    "description": "While a friendly Khorne Legiones Daemonica unit is within 6\" of this model, you can re-roll Battle-shock tests taken for that unit."
-  },
-  "emissary-of-the-great-mutator-aura": {
-    "name": "Emissary of the Great Mutator (Aura)",
-    "type": "Ability",
-    "description": "While a friendly Tzeentch Legiones Daemonica unit is within 6\" of this model, you can re-roll Battle-shock tests taken for that unit."
-  },
-  "emissary-of-the-plague-god-aura": {
-    "name": "Emissary of the Plague God (Aura)",
-    "type": "Ability",
-    "description": "While a friendly Nurgle Legiones Daemonica unit is within 6\" of this model, you can re-roll Battle-shock tests taken for that unit."
-  },
-  "emissary-of-the-prince-of-excess-aura": {
-    "name": "Emissary of the Prince of Excess (Aura)",
-    "type": "Ability",
-    "description": "While a friendly Slaanesh Legiones Daemonica unit is within 6\" of this model, you can re-roll Battle-shock tests taken for that unit."
   },
   "exploding-horrors": {
     "name": "Exploding Horrors",
@@ -343,11 +298,6 @@
     "name": "Fortification",
     "type": "Ability",
     "description": "While an enemy unit is only within Engagement Range of one or more Fortifications from your army:"
-  },
-  "grandfathers-blessing": {
-    "name": "GRANDFATHER'S BLESSING",
-    "type": "Ability",
-    "description": "If a model from your army with the Leader ability can be attached to a Beasts of Nurgle unit, it can be attached to this unit instead."
   },
   "greater-daemon-of-khorne-aura": {
     "name": "Greater Daemon of Khorne (Aura)",
@@ -409,11 +359,6 @@
     "type": "Ability",
     "description": "Each time a model in this model's unit is destroyed, if that model has not fought this phase, do not remove it from play. The destroyed model can fight after the attacking unit has finished making its attacks, and is then removed from play."
   },
-  "hysterical-frenzy-psychic-2": {
-    "name": "Hysterical Frenzy (Psychic)",
-    "type": "Ability",
-    "description": "Once per Fight phase, just after an enemy unit selects a Slaanesh Legiones Daemonica unit from your army as a target, one friendly Psyker that is within 6\" of that SLAANESH unit and has this ability can use it. If it does, until the end of the phase, each time a model in that SLAANESH unit is destroyed, roll one D6: on a 4+, do not remove it from play. That model can fight after the attacking model's unit has finished making its attacks, and is then removed from play."
-  },
   "ignores-cover": {
     "name": "Ignores cover",
     "type": "Weapon Ability",
@@ -428,11 +373,6 @@
     "name": "Infected Outbreak",
     "type": "Ability",
     "description": "If you control an objective marker at the end of your Command phase and this unit is within range of that objective marker, that objective marker remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn."
-  },
-  "infernal-engines-of-torment": {
-    "name": "Infernal Engines of Torment",
-    "type": "Ability",
-    "description": "In the Fight phase, after this model has finished making its attacks, if one or more enemy units were destroyed as a result of those attacks, every enemy unit within 6\" of this model must take a Battle-shock test."
   },
   "infiltrators": {
     "name": "Infiltrators",
@@ -464,11 +404,6 @@
     "type": "Core Ability",
     "description": "During the Declare Battle Formations step, this Character can be attached to a unit it can lead."
   },
-  "lethal-caress": {
-    "name": "Lethal Caress",
-    "type": "Ability",
-    "description": "While this model is leading a unit, improve the Armour Penetration characteristic of melee weapons equipped by models in that unit by 1."
-  },
   "lethal-hits": {
     "name": "Lethal hits",
     "type": "Weapon Ability",
@@ -495,11 +430,6 @@
     "description": "This model cannot be your Warlord and cannot be given Enhancements."
   },
   "master-of-magicks-psychic": {
-    "name": "Master of Magicks (Psychic)",
-    "type": "Ability",
-    "description": "In your Shooting phase, select one of the following abilities: [IGNORES COVER]; [LETHAL HITS]; [sustainded hits D3]. Until the end of the phase, this model's ranged weapon has that ability."
-  },
-  "master-of-magicks-psychic-2": {
     "name": "Master of Magicks (Psychic)",
     "type": "Ability",
     "description": "In your Shooting phase, select one of the following abilities: [IGNORES COVER]; [LETHAL HITS]; [SUSTAINED HITS D3]. Until the end of the phase, this model's Bolt of Change has that ability."
@@ -569,11 +499,6 @@
     "type": "Weapon Ability",
     "description": "This weapon can be shot while the bearer is within Engagement Range of enemy units."
   },
-  "pouncing-leap": {
-    "name": "Pouncing Leap",
-    "type": "Ability",
-    "description": "You can target this unit with the Heroic Intervention Stratagem for 0CP, and can do so even if you have already used that Stratagem on a different unit this phase."
-  },
   "poxbringer": {
     "name": "Poxbringer",
     "type": "Ability",
@@ -588,11 +513,6 @@
     "name": "Prey of the Blood God",
     "type": "Ability",
     "description": "At the start of the first battle round, select one enemy unit to be this model's prey. Each time a model in this model's unit makes a melee attack that targets its prey, you can re-roll the Wound roll. Each time this model's prey is destroyed, select one new enemy unit to be this model's prey."
-  },
-  "prey-on-the-weak": {
-    "name": "Prey on the Weak",
-    "type": "Ability",
-    "description": "Each time this model makes an attack that targets an enemy unit that is Battle-shocked, add 1 to the Wound roll."
   },
   "prince-of-darkness-aura": {
     "name": "Prince of Darkness (Aura)",
@@ -653,11 +573,6 @@
     "name": "Scuttling Walker",
     "type": "Ability",
     "description": "Each time this model makes a Normal or Advance move, it can move over friendly Monster and Vehicle models and terrain features that are 4\" or less in height as if they were not there."
-  },
-  "scythed-impact": {
-    "name": "Scythed Impact",
-    "type": "Ability",
-    "description": "Each time this unit makes a Charge move, until the end of the phase, melee weapons equipped by models in this unit have the [ANTI-INFANTRY 4+] ability."
   },
   "seed-the-garden-of-nurgle": {
     "name": "Seed the Garden of Nurgle",
@@ -787,22 +702,12 @@
   "torrent": {
     "name": "Torrent",
     "type": "Weapon Ability",
-    "description": "Attacks made with this weapon automatically hit their target."
+    "description": "Weapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target."
   },
   "tranceweaver": {
     "name": "Tranceweaver",
     "type": "Ability",
     "description": "Each time a model in this unit makes an attack, re-roll a Hit roll of 1. If the target of that attack is within range of an objective marker, you can re-roll the Hit roll instead."
-  },
-  "twin-linked": {
-    "name": "Twin-linked",
-    "type": "Weapon Ability",
-    "description": "You can re-roll the Wound roll for attacks made with this weapon."
-  },
-  "unholy-bloodshed": {
-    "name": "Unholy Bloodshed",
-    "type": "Ability",
-    "description": "Once per battle, when this unit makes a Dark Pact, until the end of the phase, weapons equipped by models in this unit have the [DEVASTATING WOUNDS] ability."
   },
   "unholy-speed": {
     "name": "Unholy Speed",
@@ -818,11 +723,6 @@
     "name": "Virulent Blessing (Psychic)",
     "type": "Ability",
     "description": "At the start of the Fight phase, you can select one enemy unit within 24\" and visible to this model. Until the end of the phase, each time an attack made by a Nurgle Legiones Daemonica model is allocated to a model in that unit, add 1 to the Damage characteristic of that attack."
-  },
-  "warp-strike": {
-    "name": "Warp Strike",
-    "type": "Ability",
-    "description": "At the end of the Fight phase, if this unit destroyed one or more enemy units this phase and is not within Engagement Range of one or more enemy units, you can remove this unit from the battlefield and place it into Strategic Reserves."
   },
   "wreathed-in-shadows-aura-psychic": {
     "name": "Wreathed in Shadows (Aura, Psychic)",
