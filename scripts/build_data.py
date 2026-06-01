@@ -218,6 +218,18 @@ POINTS['tranceweaver'] = [(1, 60)]
 # ── Main datasheet parse ─────────────────────────────────────────────────────
 text = norm(open(REF, encoding='utf-8').read())
 ds = text.split('## UNIT DATASHEETS', 1)[1]
+
+# map each datasheet name -> the most recent "### CATEGORY" header above it
+CATEGORY = {}
+_cur_cat = ''
+for _line in ds.splitlines():
+    hm = re.match(r'### (.+)', _line)
+    if hm:
+        _cur_cat = hm.group(1).strip().upper()
+    um = re.match(r'#### (.+)', _line)
+    if um:
+        CATEGORY[um.group(1).strip()] = _cur_cat
+
 blocks = re.split(r'\n#### ', ds)
 
 units = {}
@@ -251,6 +263,7 @@ for b in blocks[1:]:
     unit['type'] = [t.title() for t in type_labels] or ['Infantry']
     unit['isLeader'] = False
     unit['isEpicHero'] = any(k.lower() == 'epic hero' for k in raw_kws)
+    unit['isBattleline'] = CATEGORY.get(name) == 'BATTLELINE'
 
     # stats
     stm = re.search(r'\|\s*Name\s*\|.*?\n\|[-| ]+\|\n((?:\|.*\n?)+)', b)

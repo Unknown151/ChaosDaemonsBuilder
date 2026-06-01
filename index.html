@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chaos Daemons — Army Builder</title>
+<style>
+:root{
+  --bg:#15110f; --panel:#221a16; --panel-2:#2c211b; --border:#3d2d24;
+  --text:#ece3da; --muted:#a89384; --accent:#b8232a; --accent-2:#d4a13a;
+  --core:#3f7fb8; --wg:#d4a13a; --inherited:#4caf6a; --strat:#e0b53a;
+}
+[data-theme="light"]{
+  --bg:#efe7df; --panel:#fff; --panel-2:#f4ece4; --border:#d8c8ba;
+  --text:#241a14; --muted:#6d5c4e; --accent:#9c1d23; --accent-2:#a87a16;
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  background:var(--bg);color:var(--text);line-height:1.45}
+header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--panel),var(--panel-2));
+  border-bottom:2px solid var(--accent);padding:.6rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
+header h1{font-size:1.15rem;margin:0;letter-spacing:.04em;color:var(--accent-2);text-transform:uppercase;flex:1}
+.tabs{display:flex;gap:.4rem}
+.tab-btn{background:var(--panel-2);color:var(--muted);border:1px solid var(--border);
+  padding:.45rem .9rem;border-radius:6px;cursor:pointer;font-weight:600}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.icon-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  width:38px;height:38px;border-radius:6px;cursor:pointer;font-size:1.1rem}
+main{max-width:1100px;margin:0 auto;padding:1rem}
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+#loading{text-align:center;padding:4rem 1rem;color:var(--muted)}
+
+/* detachment selector */
+.det-bar{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.8rem;margin-bottom:1rem}
+.det-grid{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
+.det-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  padding:.35rem .7rem;border-radius:999px;cursor:pointer;font-size:.85rem}
+.det-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
+.det-rule{font-size:.85rem;color:var(--muted)}
+.det-rule strong{color:var(--accent-2)}
+
+/* points */
+.points-bar{display:flex;align-items:center;gap:.8rem;background:var(--panel);
+  border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;margin-bottom:1rem}
+.points-total{font-size:1.3rem;font-weight:700}
+.points-total.ok{color:var(--inherited)} .points-total.warn{color:var(--strat)} .points-total.over{color:var(--accent)}
+.bar-track{flex:1;height:8px;background:var(--panel-2);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;background:var(--accent-2);width:0}
+
+/* cards */
+.unit-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;
+  margin-bottom:.8rem;overflow:hidden}
+.unit-card.attached{border-color:var(--accent-2)}
+.card-head{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;cursor:pointer;
+  background:var(--panel-2)}
+.card-head h3{margin:0;font-size:1rem;flex:1}
+.card-head .pts{color:var(--accent-2);font-weight:700;font-size:.85rem}
+.card-body{padding:.7rem .8rem}
+.unit-card.collapsed .card-body{display:none}
+.stat-grid{display:flex;flex-wrap:wrap;gap:.4rem;margin:.3rem 0 .6rem}
+.stat{background:var(--panel-2);border:1px solid var(--border);border-radius:5px;
+  padding:.2rem .5rem;font-size:.8rem;min-width:48px;text-align:center}
+.stat b{display:block;color:var(--muted);font-size:.65rem;text-transform:uppercase}
+.invuln-row{display:inline-block;background:rgba(212,161,58,.15);border:1px solid var(--accent-2);
+  color:var(--accent-2);border-radius:5px;padding:.15rem .5rem;font-size:.78rem;margin-bottom:.5rem}
+.wpn-table{width:100%;border-collapse:collapse;font-size:.78rem;margin:.3rem 0}
+.wpn-table th{text-align:left;color:var(--muted);font-weight:600;border-bottom:1px solid var(--border);padding:.2rem .3rem}
+.wpn-table td{padding:.2rem .3rem;border-bottom:1px solid var(--border)}
+.wpn-cat{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--accent-2);margin-top:.5rem}
+.badges{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
+.ab,.wab{font-size:.7rem;padding:.12rem .45rem;border-radius:4px;cursor:pointer;
+  background:var(--panel-2);border:1px solid var(--border)}
+.ab.core{border-color:var(--core);color:var(--core)}
+.ab.wg{border-color:var(--wg);color:var(--wg)}
+.wab{border-color:var(--accent-2);color:var(--accent-2)}
+
+/* modal */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;
+  align-items:center;justify-content:center;z-index:50;padding:1rem}
+.modal-overlay.open{display:flex}
+.modal{background:var(--panel);border:1px solid var(--accent-2);border-radius:10px;
+  max-width:520px;width:100%;max-height:80vh;overflow:auto;padding:1.2rem}
+.modal h2{margin:.1rem 0;color:var(--accent-2)}
+.modal .sub{color:var(--muted);font-size:.8rem;margin-bottom:.8rem}
+.modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.3rem;line-height:1}
+.empty{color:var(--muted);text-align:center;padding:2rem}
+</style>
+</head>
+<body>
+<header>
+  <h1>Chaos Daemons</h1>
+  <nav class="tabs">
+    <button class="tab-btn active" data-tab="units">Units</button>
+    <button class="tab-btn" data-tab="config">Builder</button>
+  </nav>
+  <button class="icon-btn" id="theme-btn" title="Toggle theme">◐</button>
+</header>
+
+<main>
+  <div id="loading">Loading Chaos Daemons data…</div>
+
+  <section id="units-tab" class="tab-panel active"></section>
+
+  <section id="config-tab" class="tab-panel">
+    <div class="det-bar" id="det-bar"></div>
+    <div class="points-bar" id="points-bar"></div>
+    <div id="config-list"></div>
+  </section>
+</main>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal">
+    <span class="close" onclick="closeModal()">×</span>
+    <h2 id="modal-title"></h2>
+    <div class="sub" id="modal-sub"></div>
+    <div id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+/* ===================================================================== *
+ *  Chaos Daemons Army Builder — Stage 2 shell (data load + scaffolding) *
+ * ===================================================================== */
+const LS = 'chaos-daemons-';
+
+/* ---- Loaded data ---- */
+let abilities = {}, enhancements = {}, detachments = {}, units = {}, defaultArmy = {};
+
+/* ---- Army state ---- */
+let armyList = [];
+let nextInstanceId = 1;
+let selectedDetachment = 'blood-legion';
+let pointsLimit = 0;
+
+/* ---- UI state ---- */
+let stratagemState = {};
+let characterState = {}, bodyguardState = {};
+let expandedCards = {}, configExpandedCards = {};
+
+/* ---- Constants (built at load) ---- */
+let ALL_UNIT_IDS = [];
+let UNIT_GROUPS = {};
+const DETACHMENTS = {}; // filled from detachments.json
+
+/* ===================== Data loading ===================== */
+async function loadData(){
+  const j = async p => (await fetch(p)).json();
+  const [ab, enh, det, army, manifest] = await Promise.all([
+    j('data/abilities.json'), j('data/enhancements.json'), j('data/detachments.json'),
+    j('data/army.json'), j('data/units-manifest.json'),
+  ]);
+  abilities = ab; enhancements = enh; detachments = det; defaultArmy = army;
+  Object.assign(DETACHMENTS, det);
+  ALL_UNIT_IDS = manifest;
+
+  const unitObjs = await Promise.all(ALL_UNIT_IDS.map(id => j(`data/units/${id}.json`)));
+  unitObjs.forEach(u => { units[u.id] = u; });
+
+  buildUnitGroups();
+  initStratagemState();
+  restoreState();
+  document.getElementById('loading').style.display = 'none';
+  renderApp();
+}
+
+function buildUnitGroups(){
+  const groups = { 'Characters':[], 'Battleline':[], 'Infantry':[], 'Vehicles & Mounted':[], 'Other':[] };
+  ALL_UNIT_IDS.forEach(id => {
+    const u = units[id]; if(!u) return;
+    const k = u.keywords.map(x=>x.toUpperCase());
+    if(k.includes('CHARACTER')) groups['Characters'].push(id);
+    else if(u.isBattleline) groups['Battleline'].push(id);
+    else if(k.includes('VEHICLE')||k.includes('MOUNTED')||k.includes('MONSTER')||k.includes('CAVALRY')) groups['Vehicles & Mounted'].push(id);
+    else if(k.includes('INFANTRY')) groups['Infantry'].push(id);
+    else groups['Other'].push(id);
+  });
+  Object.keys(groups).forEach(g=>{ if(!groups[g].length) delete groups[g];
+    else groups[g].sort((a,b)=>units[a].name.localeCompare(units[b].name)); });
+  UNIT_GROUPS = groups;
+}
+
+function initStratagemState(){
+  stratagemState = {};
+  Object.values(detachments).forEach(d => d.stratagems.forEach(s => { stratagemState[s.id] = false; }));
+}
+
+/* ===================== Persistence ===================== */
+function saveState(){
+  localStorage.setItem(LS+'detachment', selectedDetachment);
+  localStorage.setItem(LS+'army', JSON.stringify({ armyList, nextInstanceId, pointsLimit }));
+}
+function restoreState(){
+  selectedDetachment = localStorage.getItem(LS+'detachment') || defaultArmy.detachment || 'blood-legion';
+  const saved = localStorage.getItem(LS+'army');
+  if(saved){
+    try{ const s = JSON.parse(saved); armyList = s.armyList||[]; nextInstanceId = s.nextInstanceId||1; pointsLimit = s.pointsLimit||0; }
+    catch(e){ loadDefaultArmy(); }
+  } else loadDefaultArmy();
+  const theme = localStorage.getItem(LS+'theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', theme);
+}
+function loadDefaultArmy(){
+  armyList = []; nextInstanceId = 1;
+  pointsLimit = defaultArmy.pointsLimit || 0;
+  selectedDetachment = defaultArmy.detachment || 'blood-legion';
+  (defaultArmy.units||[]).forEach(u => addInstance(u.unitId, false));
+}
+
+/* ===================== Army instance helpers ===================== */
+function addInstance(unitId, save=true){
+  const u = units[unitId]; if(!u) return;
+  armyList.push(normalizeInstance({ instanceId:'inst-'+(nextInstanceId++), unitId }));
+  if(save){ saveState(); renderApp(); }
+}
+function removeInstance(instanceId){
+  armyList = armyList.filter(i => i.instanceId !== instanceId);
+  saveState(); renderApp();
+}
+function normalizeInstance(inst){
+  const u = units[inst.unitId] || {};
+  return Object.assign({
+    instanceId: inst.instanceId, unitId: inst.unitId,
+    modelCount: u.models || u.baseModels || 1,
+    weapons: {}, leaderId: null, leaderWargear: [],
+    enhancementId: null, selectedWargear: [],
+  }, inst);
+}
+
+/* ===================== Points ===================== */
+function calculateInstancePoints(inst){
+  const u = units[inst.unitId]; if(!u) return 0;
+  let pts = u.points || 0;
+  if(u.maxModels && inst.modelCount > u.baseModels){
+    if(u.pointsPerModel) pts += (inst.modelCount - u.baseModels) * u.pointsPerModel;
+    else pts *= Math.ceil(inst.modelCount / u.baseModels);
+  }
+  if(inst.enhancementId && enhancements[inst.enhancementId]) pts += enhancements[inst.enhancementId].points;
+  if(inst.leaderId && units[inst.leaderId]) pts += units[inst.leaderId].points || 0;
+  return pts;
+}
+function totalPoints(){ return armyList.reduce((s,i)=>s+calculateInstancePoints(i),0); }
+
+/* ===================== Rendering pipeline ===================== */
+function renderApp(){
+  loadDetachment();
+  renderDetachmentSelector();
+  renderUnits();
+  renderConfigurationTab();
+}
+function loadDetachment(){
+  if(!detachments[selectedDetachment]) selectedDetachment = Object.keys(detachments)[0];
+}
+function selectDetachment(id){
+  selectedDetachment = id;
+  // clear enhancements that don't belong to the new detachment
+  armyList.forEach(i => { if(i.enhancementId && enhancements[i.enhancementId] &&
+    enhancements[i.enhancementId].detachment !== id) i.enhancementId = null; });
+  initStratagemState();
+  saveState(); renderApp();
+}
+
+/* ---- Detachment selector ---- */
+function renderDetachmentSelector(){
+  const d = detachments[selectedDetachment];
+  const bar = document.getElementById('det-bar');
+  bar.innerHTML =
+    `<div class="det-grid">` +
+    Object.values(detachments).map(x =>
+      `<button class="det-btn ${x.id===selectedDetachment?'active':''}" onclick="selectDetachment('${x.id}')">${x.name}</button>`
+    ).join('') + `</div>` +
+    `<div class="det-rule"><strong>${d.ruleName}:</strong> ${d.ruleDescription}` +
+    ` <span class="wab" onclick="showModal('${d.ruleId}')">Details</span></div>`;
+}
+
+/* ---- Points bar ---- */
+function updateConfigPoints(){
+  const bar = document.getElementById('points-bar');
+  const tot = totalPoints();
+  let cls = 'ok', pct = 0;
+  if(pointsLimit > 0){
+    pct = Math.min(100, tot/pointsLimit*100);
+    cls = tot > pointsLimit ? 'over' : (tot > pointsLimit*0.95 ? 'warn' : 'ok');
+  } else cls = '';
+  bar.innerHTML =
+    `<span class="points-total ${cls}">${tot}${pointsLimit?` / ${pointsLimit}`:''} pts</span>` +
+    (pointsLimit?`<div class="bar-track"><div class="bar-fill" style="width:${pct}%"></div></div>`:
+      `<span style="color:var(--muted);font-size:.8rem">no points limit set</span>`);
+}
+
+/* ---- Units tab (Stage 2 basic; full render in Stage 3) ---- */
+function renderUnits(){
+  const el = document.getElementById('units-tab');
+  if(!armyList.length){ el.innerHTML = `<div class="empty">No units yet. Add some in the <b>Builder</b> tab.</div>`; return; }
+  el.innerHTML = armyList.map(inst => renderSoloUnitCard(inst)).join('');
+}
+function renderSoloUnitCard(inst){
+  const u = units[inst.unitId]; if(!u) return '';
+  const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
+  return `<div class="unit-card ${collapsed}">
+    <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
+      <h3>${u.name}</h3><span class="pts">${calculateInstancePoints(inst)} pts</span>
+    </div>
+    <div class="card-body">
+      ${renderStatGrid(u)}
+      ${u.invulnerableSave?`<div class="invuln-row">Invulnerable Save ${u.invulnerableSave}</div>`:''}
+      ${renderWeapons(u)}
+      ${renderAbilities(u)}
+    </div></div>`;
+}
+function renderStatGrid(u){
+  const s = u.stats||{};
+  const cells = [['M',s.m],['T',s.t],['SV',s.sv],['W',s.w],['LD',s.ld],['OC',s.oc]];
+  return `<div class="stat-grid">` + cells.map(([k,v])=>`<div class="stat"><b>${k}</b>${v??'-'}</div>`).join('') + `</div>`;
+}
+function renderWeapons(u){
+  let out = '';
+  for(const [cat,label] of [['ranged','Ranged Weapons'],['melee','Melee Weapons']]){
+    const list = (u.weapons&&u.weapons[cat])||[]; if(!list.length) continue;
+    out += `<div class="wpn-cat">${label}</div><table class="wpn-table"><tr>
+      <th>Weapon</th><th>${cat==='ranged'?'Rng':'Rng'}</th><th>A</th><th>${cat==='ranged'?'BS':'WS'}</th><th>S</th><th>AP</th><th>D</th></tr>`;
+    out += list.map(w=>`<tr><td>${w.name}${renderWeaponBadges(w)}</td>
+      <td>${cat==='ranged'?(w.range||'-'):'Melee'}</td><td>${w.a}</td>
+      <td>${cat==='ranged'?(w.bs||'-'):(w.ws||'-')}</td><td>${w.s}</td><td>${w.ap}</td><td>${w.d}</td></tr>`).join('');
+    out += `</table>`;
+  }
+  return out;
+}
+function renderWeaponBadges(w){
+  if(!w.abilities||!w.abilities.length) return '';
+  return ` <span class="badges">` + w.abilities.map(id=>{
+    const a = abilities[id]; return `<span class="wab" onclick="event.stopPropagation();showModal('${id}')">${a?a.name:id}</span>`;
+  }).join('') + `</span>`;
+}
+function renderAbilities(u){
+  const chip = (id,cls)=>{ const a=abilities[id]; return `<span class="ab ${cls}" onclick="showModal('${id}')">${a?a.name:id}</span>`; };
+  let out = '<div class="badges">';
+  (u.coreAbilities||[]).forEach(id=>out+=chip(id,'core'));
+  (u.abilities||[]).forEach(id=>out+=chip(id,''));
+  (u.wargear||[]).forEach(id=>out+=chip(id,'wg'));
+  return out + '</div>';
+}
+
+/* ---- Builder tab (Stage 2 basic; full render in Stage 4) ---- */
+function renderConfigurationTab(){
+  renderDetachmentSelector();
+  updateConfigPoints();
+  const el = document.getElementById('config-list');
+  let html = `<div style="margin-bottom:.8rem"><button class="tab-btn" onclick="openAddUnit()">+ Add Unit</button></div>`;
+  if(!armyList.length){ html += `<div class="empty">Empty list.</div>`; }
+  else html += armyList.map(inst=>{
+    const u = units[inst.unitId];
+    return `<div class="unit-card"><div class="card-head">
+      <h3>${u.name}</h3><span class="pts">${calculateInstancePoints(inst)} pts</span>
+      <button class="icon-btn" onclick="removeInstance('${inst.instanceId}')" title="Remove">✕</button>
+    </div></div>`;
+  }).join('');
+  el.innerHTML = html;
+}
+function openAddUnit(){
+  // Stage 2: quick picker via modal listing groups
+  let body = '';
+  for(const [grp,ids] of Object.entries(UNIT_GROUPS)){
+    body += `<div class="wpn-cat">${grp}</div>`;
+    body += ids.map(id=>`<div class="det-btn" style="display:inline-block;margin:.15rem" onclick="addInstance('${id}');closeModal()">${units[id].name} <small>(${units[id].points})</small></div>`).join('');
+  }
+  showModalRaw('Add Unit', `${selectedDetachment}`, body);
+}
+
+/* ===================== Modal ===================== */
+function showModal(id){
+  let entry = abilities[id] || enhancements[id];
+  if(!entry){ const d = Object.values(detachments).find(x=>x.ruleId===id);
+    if(d) entry = { name:d.ruleName, type:d.ruleType, description:d.ruleDescription }; }
+  if(!entry) return;
+  showModalRaw(entry.name, entry.type||'', entry.description||'');
+}
+function showModalRaw(title, sub, body){
+  document.getElementById('modal-title').innerHTML = title;
+  document.getElementById('modal-sub').innerHTML = sub;
+  document.getElementById('modal-body').innerHTML = body;
+  document.getElementById('modal-overlay').classList.add('open');
+}
+function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); }
+
+/* ===================== UI wiring ===================== */
+function toggleCard(id){ expandedCards[id] = !expandedCards[id]; renderUnits(); }
+document.querySelectorAll('.tab-btn[data-tab]').forEach(b=>b.onclick=()=>{
+  document.querySelectorAll('.tab-btn[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
+  document.getElementById('units-tab').classList.toggle('active', b.dataset.tab==='units');
+  document.getElementById('config-tab').classList.toggle('active', b.dataset.tab==='config');
+});
+document.getElementById('theme-btn').onclick=()=>{
+  const cur = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
+  document.documentElement.setAttribute('data-theme',cur);
+  localStorage.setItem(LS+'theme',cur);
+};
+document.getElementById('modal-overlay').onclick=e=>{ if(e.target.id==='modal-overlay') closeModal(); };
+
+loadData().catch(e=>{ document.getElementById('loading').textContent='Failed to load data: '+e.message; console.error(e); });
+</script>
+</body>
+</html>

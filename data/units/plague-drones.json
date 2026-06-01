@@ -15,6 +15,7 @@
   ],
   "isLeader": false,
   "isEpicHero": false,
+  "isBattleline": false,
   "stats": {
     "m": "10\"",
     "t": 8,
