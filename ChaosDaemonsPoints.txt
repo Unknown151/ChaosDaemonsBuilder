@@ -1,0 +1,116 @@
+Beasts of Nurgle
+1 model 65 pts
+2 models 130 pts
+Be’lakor
+1 model 375 pts
+Bloodcrushers
+3 models 110 pts
+6 models 220 pts
+Bloodletters
+10 models 110 pts
+Bloodmaster
+1 model 65 pts
+Bloodthirster
+1 model 305 pts
+Blue Horrors
+10 models 125 pts
+Burning Chariot
+1 model 115 pts
+Changecaster
+1 model 60 pts
+Contorted Epitome
+1 model 100 pts
+Daemon Prince of Chaos
+1 model 190 pts
+Daemon Prince of Chaos with Wings
+1 model 180 pts
+Daemonettes
+10 models 100 pts
+Epidemius
+1 model 80 pts
+Exalted Flamer
+1 model 65 pts
+Fateskimmer
+1 model 95 pts
+Feculent Gnarlmaw
+1 model 100 pts
+Fiends
+3 models 95 pts
+6 models 190 pts
+Flamers
+3 models 65 pts
+6 models 130 pts
+Flesh Hounds
+5 models 75 pts
+10 models 150 pts
+Fluxmaster
+1 model 60 pts
+Great Unclean One
+1 model 250 pts
+Hellflayers
+1 model 80 pts
+2 models 160 pts
+Horticulous Slimux
+1 model 120 pts
+Infernal Enrapturess
+1 model 60 pts
+Kairos Fateweaver
+1 model 295 pts
+Karanak
+1 model 75 pts
+Keeper of Secrets
+1 model 240 pts
+Lord of Change
+1 model 285 pts
+Nurglings
+3 models 40 pts
+6 models 70 pts
+Pink Horrors
+10 models 140 pts
+Plague Drones
+3 models 110 pts
+6 models 220 pts
+Plaguebearers
+10 models 110 pts
+Poxbringer
+1 model 55 pts
+Rendmaster on Blood Throne
+1 model 165 pts
+Rotigus
+1 model 265 pts
+Screamers
+3 models 80 pts
+6 models 160 pts
+Seekers
+5 models 80 pts
+10 models 160 pts
+Shalaxi Helbane
+1 model 340 pts
+Skarbrand
+1 model 305 pts
+Skull Altar
+1 model 105 pts
+Skull Cannon
+1 model 95 pts
+Skullmaster
+1 model 100 pts
+Skulltaker
+1 model 85 pts
+Sloppity Bilepiper
+1 model 55 pts
+Soul Grinder
+1 model 180 pts
+Spoilpox Scrivener
+1 model 60 pts
+Syll’esske
+1 model 120 pts
+The Blue Scribes
+1 model 75 pts
+The Changeling
+1 model 90 pts
+The Masque of Slaanesh
+1 model 95 pts
+Tormentbringer
+1 model 140 pts
+Tranceweaver
+1 model 
