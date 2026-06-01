@@ -37,7 +37,7 @@
         "name": "Lashes of torment",
         "range": "12",
         "a": "6",
-        "bs": "-",
+        "bs": "3+",
         "s": "4",
         "ap": "-1",
         "d": "2",
@@ -54,7 +54,7 @@
       {
         "name": "Lashes of torment",
         "a": "6",
-        "ws": "-",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "2",
@@ -68,7 +68,7 @@
       {
         "name": "Seeker tongues",
         "a": "4",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "0",
         "d": "1",
@@ -82,7 +82,7 @@
       {
         "name": "Slashing claws",
         "a": "8",
-        "ws": "-",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -104,5 +104,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

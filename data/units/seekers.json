@@ -45,7 +45,7 @@
       {
         "name": "Lashing tongue",
         "a": "2",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "0",
         "d": "1",
@@ -59,7 +59,7 @@
       {
         "name": "Slashing claws",
         "a": "3",
-        "ws": "-",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -84,5 +84,6 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

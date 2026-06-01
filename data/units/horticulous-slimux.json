@@ -36,7 +36,7 @@
       {
         "name": "Acidic maw",
         "a": "2",
-        "ws": "-",
+        "ws": "3+",
         "s": "7",
         "ap": "-4",
         "d": "3",
@@ -50,7 +50,7 @@
       {
         "name": "Lopping shears",
         "a": "4",
-        "ws": "-",
+        "ws": "3+",
         "s": "6",
         "ap": "-2",
         "d": "3",
@@ -73,5 +73,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

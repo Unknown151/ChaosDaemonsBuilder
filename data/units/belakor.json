@@ -38,7 +38,7 @@
         "name": "Betraying Shades - witchfire",
         "range": "18",
         "a": "9",
-        "bs": "-",
+        "bs": "2+",
         "s": "5",
         "ap": "-2",
         "d": "1",
@@ -54,7 +54,7 @@
         "name": "Betraying Shades - focused witchfire",
         "range": "18",
         "a": "12",
-        "bs": "-",
+        "bs": "2+",
         "s": "6",
         "ap": "-3",
         "d": "1",
@@ -72,7 +72,7 @@
       {
         "name": "The Blade of Shadows - strike",
         "a": "7",
-        "ws": "-",
+        "ws": "2+",
         "s": "14",
         "ap": "-4",
         "d": "D6+1",
@@ -85,7 +85,7 @@
       {
         "name": "The Blade of Shadows - sweep",
         "a": "14",
-        "ws": "-",
+        "ws": "2+",
         "s": "8",
         "ap": "-3",
         "d": "1",
@@ -113,5 +113,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

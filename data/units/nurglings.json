@@ -46,7 +46,7 @@
       {
         "name": "Diseased claws and teeth",
         "a": "4",
-        "ws": "-",
+        "ws": "5+",
         "s": "2",
         "ap": "0",
         "d": "1",
@@ -68,5 +68,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

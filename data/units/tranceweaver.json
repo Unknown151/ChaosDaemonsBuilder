@@ -37,7 +37,7 @@
       {
         "name": "Ravaging claws",
         "a": "6",
-        "ws": "-",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -61,5 +61,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

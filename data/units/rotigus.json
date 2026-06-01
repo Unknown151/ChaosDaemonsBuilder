@@ -54,7 +54,7 @@
       {
         "name": "Gnarlrod - strike",
         "a": "7",
-        "ws": "-",
+        "ws": "3+",
         "s": "10",
         "ap": "-3",
         "d": "3",
@@ -68,7 +68,7 @@
       {
         "name": "Gnarlrod - sweep",
         "a": "14",
-        "ws": "-",
+        "ws": "3+",
         "s": "8",
         "ap": "-1",
         "d": "1",
@@ -94,5 +94,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

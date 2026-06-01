@@ -37,7 +37,7 @@
         "name": "Lash of Slaanesh",
         "range": "12",
         "a": "6",
-        "bs": "-",
+        "bs": "2+",
         "s": "6",
         "ap": "-1",
         "d": "2",
@@ -51,7 +51,7 @@
         "name": "Pavane of Slaanesh - witchfire",
         "range": "18",
         "a": "D6",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-1",
         "d": "D3",
@@ -66,7 +66,7 @@
         "name": "Pavane of Slaanesh - focused witchfire",
         "range": "18",
         "a": "D6",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-2",
         "d": "D3",
@@ -84,7 +84,7 @@
       {
         "name": "Snapping claws",
         "a": "4",
-        "ws": "-",
+        "ws": "2+",
         "s": "6",
         "ap": "-2",
         "d": "3",
@@ -98,7 +98,7 @@
       {
         "name": "Soulpiercer",
         "a": "6",
-        "ws": "-",
+        "ws": "2+",
         "s": "12",
         "ap": "-3",
         "d": "D6+2",
@@ -122,5 +122,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

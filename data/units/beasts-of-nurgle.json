@@ -45,7 +45,7 @@
       {
         "name": "Putrid appendages",
         "a": "6",
-        "ws": "-",
+        "ws": "4+",
         "s": "6",
         "ap": "-1",
         "d": "2",
@@ -68,5 +68,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

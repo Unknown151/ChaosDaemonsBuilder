@@ -37,7 +37,7 @@
       {
         "name": "Sharp quills",
         "a": "4",
-        "ws": "-",
+        "ws": "4+",
         "s": "2",
         "ap": "0",
         "d": "1",
@@ -60,5 +60,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

@@ -45,7 +45,7 @@
       {
         "name": "Barbed tail and dissecting claws",
         "a": "5",
-        "ws": "-",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -66,5 +66,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

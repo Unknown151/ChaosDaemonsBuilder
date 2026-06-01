@@ -37,7 +37,7 @@
         "name": "Arcane Fireball - witchfire",
         "range": "18",
         "a": "3",
-        "bs": "-",
+        "bs": "3+",
         "s": "5",
         "ap": "-1",
         "d": "D3",
@@ -51,7 +51,7 @@
         "name": "Arcane Fireball - focused witchfire",
         "range": "18",
         "a": "3",
-        "bs": "-",
+        "bs": "3+",
         "s": "6",
         "ap": "-2",
         "d": "D3",
@@ -68,7 +68,7 @@
       {
         "name": "Herald combat weapon",
         "a": "3",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -91,5 +91,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

@@ -71,7 +71,7 @@
       {
         "name": "The Trickster's Staff",
         "a": "3",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "-1",
         "d": "D3",
@@ -95,5 +95,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

@@ -46,7 +46,7 @@
         "name": "Death's heads",
         "range": "12",
         "a": "D3",
-        "bs": "-",
+        "bs": "4+",
         "s": "4",
         "ap": "0",
         "d": "1",
@@ -62,7 +62,7 @@
       {
         "name": "Foul mouthparts",
         "a": "2",
-        "ws": "-",
+        "ws": "4+",
         "s": "5",
         "ap": "-1",
         "d": "2",
@@ -76,7 +76,7 @@
       {
         "name": "Plaguesword",
         "a": "2",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -100,5 +100,6 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

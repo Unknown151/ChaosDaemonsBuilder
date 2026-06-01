@@ -63,7 +63,7 @@
       {
         "name": "Flamer mouths",
         "a": "3",
-        "ws": "-",
+        "ws": "4+",
         "s": "4",
         "ap": "0",
         "d": "1",
@@ -82,5 +82,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

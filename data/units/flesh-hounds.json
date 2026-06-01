@@ -61,7 +61,7 @@
       {
         "name": "Gore-drenched fangs",
         "a": "3",
-        "ws": "-",
+        "ws": "3+",
         "s": "5",
         "ap": "-1",
         "d": "1",
@@ -82,5 +82,6 @@
     "collar-of-khorne"
   ],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

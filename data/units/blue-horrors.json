@@ -37,7 +37,7 @@
         "name": "Coruscating Blue Flames",
         "range": "18",
         "a": "2",
-        "bs": "-",
+        "bs": "5+",
         "s": "3",
         "ap": "-1",
         "d": "1",
@@ -52,7 +52,7 @@
         "name": "Coruscating Yellow Flames",
         "range": "18",
         "a": "2",
-        "bs": "-",
+        "bs": "5+",
         "s": "2",
         "ap": "-1",
         "d": "1",
@@ -68,7 +68,7 @@
       {
         "name": "Blue claws",
         "a": "1",
-        "ws": "-",
+        "ws": "5+",
         "s": "3",
         "ap": "0",
         "d": "1",
@@ -79,7 +79,7 @@
       {
         "name": "Yellow claws",
         "a": "2",
-        "ws": "-",
+        "ws": "5+",
         "s": "2",
         "ap": "0",
         "d": "1",
@@ -101,5 +101,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

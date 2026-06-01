@@ -34,7 +34,7 @@
         "name": "Harvester cannon",
         "range": "36",
         "a": "3",
-        "bs": "-",
+        "bs": "3+",
         "s": "10",
         "ap": "-1",
         "d": "3",
@@ -61,7 +61,7 @@
         "name": "Phlegm bombardment",
         "range": "36",
         "a": "D6+1",
-        "bs": "-",
+        "bs": "3+",
         "s": "7",
         "ap": "-1",
         "d": "2",
@@ -77,7 +77,7 @@
         "name": "Scream of despair",
         "range": "24",
         "a": "6",
-        "bs": "-",
+        "bs": "3+",
         "s": "9",
         "ap": "-2",
         "d": "2",
@@ -92,7 +92,7 @@
         "name": "Warp gaze",
         "range": "48",
         "a": "D3",
-        "bs": "-",
+        "bs": "3+",
         "s": "12",
         "ap": "-2",
         "d": "D6+2",
@@ -107,7 +107,7 @@
       {
         "name": "Iron claw",
         "a": "5",
-        "ws": "-",
+        "ws": "3+",
         "s": "16",
         "ap": "-3",
         "d": "D6+2",
@@ -118,7 +118,7 @@
       {
         "name": "Warpclaw",
         "a": "6",
-        "ws": "-",
+        "ws": "3+",
         "s": "8",
         "ap": "-1",
         "d": "2",
@@ -131,7 +131,7 @@
       {
         "name": "Warpsword",
         "a": "3",
-        "ws": "-",
+        "ws": "3+",
         "s": "8",
         "ap": "-2",
         "d": "D6",
@@ -154,5 +154,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

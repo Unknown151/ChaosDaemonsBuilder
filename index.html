@@ -105,6 +105,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .wpn-stats .ws b{display:block;color:var(--muted);font-size:.6rem;font-weight:600;
   letter-spacing:.05em;text-transform:uppercase;margin-bottom:.15rem}
 .wpn-stats .ws span{font-size:.95rem}
+.skill-note{font-size:.68rem;color:var(--muted);font-style:italic;margin:.1rem 0 .3rem}
 .badges{display:flex;flex-wrap:wrap;gap:.3rem;margin-top:.4rem}
 .ab,.wab{font-size:.7rem;padding:.12rem .45rem;border-radius:4px;cursor:pointer;
   background:var(--panel-2);border:1px solid var(--border)}
@@ -389,6 +390,7 @@ function renderSoloUnitCard(inst){
       ${renderDefence(u)}
       ${enh?`<div class="enh-box"><span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${enh.name}</span> — ${enh.type}</div>`:''}
       ${renderWeapons(u, inst)}
+      ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
       ${renderAbilities(u, enh)}
       <div class="kw-line">${(u.keywords||[]).join(', ')}</div>
     </div></div>`;

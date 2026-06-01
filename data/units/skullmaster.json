@@ -36,7 +36,7 @@
       {
         "name": "Blade of blood",
         "a": "5",
-        "ws": "-",
+        "ws": "2+",
         "s": "6",
         "ap": "-2",
         "d": "3",
@@ -47,7 +47,7 @@
       {
         "name": "Juggernaut's bladed horn",
         "a": "4",
-        "ws": "-",
+        "ws": "4+",
         "s": "6",
         "ap": "-1",
         "d": "1",
@@ -71,5 +71,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

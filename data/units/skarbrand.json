@@ -52,7 +52,7 @@
       {
         "name": "Slaughter and Carnage - strike",
         "a": "8",
-        "ws": "-",
+        "ws": "2+",
         "s": "16",
         "ap": "-4",
         "d": "6",
@@ -63,7 +63,7 @@
       {
         "name": "Slaughter and Carnage - sweep",
         "a": "16",
-        "ws": "-",
+        "ws": "2+",
         "s": "8",
         "ap": "-2",
         "d": "2",
@@ -85,5 +85,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

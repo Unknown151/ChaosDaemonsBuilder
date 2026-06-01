@@ -36,7 +36,7 @@
       {
         "name": "Blade of blood",
         "a": "5",
-        "ws": "-",
+        "ws": "2+",
         "s": "6",
         "ap": "-2",
         "d": "3",
@@ -57,5 +57,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

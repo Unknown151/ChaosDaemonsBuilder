@@ -215,6 +215,63 @@ POINTS = parse_points()
 # Manual overrides: Tranceweaver's value was truncated in the source upload.
 POINTS['tranceweaver'] = [(1, 60)]
 
+# ── BS/WS skill values (ESTIMATED from 10th-ed knowledge) ─────────────────────
+# The Wahapedia export dropped the Skill column for every weapon (0/436 present).
+# Filled per unit and applied to all that unit's weapons: ws->melee, bs->ranged.
+# BS is NOT applied to Torrent weapons (they auto-hit). Mount weapons are
+# corrected via SUB_WS substring overrides. Flagged with unit.skillEstimated.
+SKILLS = {
+    # uid: (ws, bs)  — use None where a unit has no relevant profile
+    'beasts-of-nurgle': ('4+', None), 'belakor': ('2+', '2+'),
+    'bloodcrushers': ('3+', None), 'bloodletters': ('3+', None),
+    'bloodmaster': ('2+', None), 'bloodthirster': ('2+', '2+'),
+    'blue-horrors': ('5+', '5+'), 'burning-chariot': ('4+', '4+'),
+    'changecaster': ('4+', '3+'), 'daemon-prince-of-chaos': ('2+', '3+'),
+    'daemon-prince-of-chaos-with-wings': ('2+', '3+'), 'daemonettes': ('3+', None),
+    'epidemius': ('4+', None), 'exalted-flamer': ('4+', '3+'),
+    'fateskimmer': ('4+', '3+'), 'fiends': ('3+', None),
+    'flamers': ('4+', None), 'flesh-hounds': ('3+', None),
+    'fluxmaster': ('4+', '3+'), 'great-unclean-one': ('3+', '4+'),
+    'hellflayers': ('3+', '3+'), 'horticulous-slimux': ('3+', None),
+    'infernal-enrapturess': ('3+', '3+'), 'kairos-fateweaver': ('4+', '2+'),
+    'karanak': ('4+', None), 'keeper-of-secrets': ('2+', '3+'),
+    'lord-of-change': ('3+', '2+'), 'nurglings': ('5+', None),
+    'pink-horrors': ('4+', '4+'), 'plague-drones': ('4+', '4+'),
+    'plaguebearers': ('4+', None), 'poxbringer': ('4+', None),
+    'rendmaster-on-blood-throne': ('2+', None), 'rotigus': ('3+', None),
+    'screamers': ('4+', None), 'seekers': ('3+', None),
+    'shalaxi-helbane': ('2+', '2+'), 'skarbrand': ('2+', None),
+    'skull-cannon': ('4+', '4+'), 'skullmaster': ('2+', None),
+    'skulltaker': ('2+', None), 'sloppity-bilepiper': ('4+', None),
+    'soul-grinder': ('3+', '3+'), 'spoilpox-scrivener': ('4+', None),
+    'syllesske': ('2+', '3+'), 'the-blue-scribes': ('4+', None),
+    'the-changeling': ('4+', None), 'the-masque-of-slaanesh': ('2+', None),
+    'tormentbringer': ('3+', '3+'), 'tranceweaver': ('3+', None),
+}
+# mount weapons hit worse than their rider — override to 4+ when rider is better
+SUB_WS = ['bladed horn', 'juggernaut', 'bladed wheels', 'mulch', 'steed', 'tongue']
+
+def apply_skills(unit):
+    sk = SKILLS.get(unit['id'])
+    if not sk:
+        return
+    ws, bs = sk
+    touched = False
+    for w in unit['weapons']['melee']:
+        if w.get('ws', '-') in ('', '-'):
+            val = ws
+            if ws and int(ws[0]) < 4 and any(t in w['name'].lower() for t in SUB_WS):
+                val = '4+'
+            if val:
+                w['ws'] = val; touched = True
+    for w in unit['weapons']['ranged']:
+        if 'torrent' in w.get('abilities', []):
+            continue  # auto-hits; BS not used
+        if bs and w.get('bs', '-') in ('', '-'):
+            w['bs'] = bs; touched = True
+    if touched:
+        unit['skillEstimated'] = True
+
 # ── Main datasheet parse ─────────────────────────────────────────────────────
 text = norm(open(REF, encoding='utf-8').read())
 ds = text.split('## UNIT DATASHEETS', 1)[1]
@@ -364,6 +421,7 @@ for b in blocks[1:]:
     unit['canLead'] = []
     unit['canBeLeadBy'] = []
 
+    apply_skills(unit)   # fill estimated BS/WS (source export omitted them)
     units[uid] = unit
 
 # ── Write unit files ─────────────────────────────────────────────────────────

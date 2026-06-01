@@ -38,7 +38,7 @@
         "name": "Infernal Gateway - witchfire",
         "range": "24",
         "a": "D6+3",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-2",
         "d": "D3",
@@ -54,7 +54,7 @@
         "name": "Infernal Gateway - focused witchfire",
         "range": "24",
         "a": "D3+6",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-2",
         "d": "3",
@@ -72,7 +72,7 @@
       {
         "name": "Staff of Tomorrow",
         "a": "5",
-        "ws": "-",
+        "ws": "4+",
         "s": "8",
         "ap": "-2",
         "d": "2D3",
@@ -96,5 +96,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

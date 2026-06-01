@@ -35,7 +35,7 @@
       {
         "name": "Hellblade",
         "a": "2",
-        "ws": "-",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -57,5 +57,6 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }

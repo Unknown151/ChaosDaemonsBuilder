@@ -38,7 +38,7 @@
         "name": "Rod of sorcery",
         "range": "18",
         "a": "6",
-        "bs": "-",
+        "bs": "2+",
         "s": "8",
         "ap": "-1",
         "d": "2",
@@ -52,7 +52,7 @@
         "name": "Bolt of Change - witchfire",
         "range": "18",
         "a": "9",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-1",
         "d": "1",
@@ -66,7 +66,7 @@
         "name": "Bolt of Change - focused witchfire",
         "range": "18",
         "a": "9",
-        "bs": "-",
+        "bs": "2+",
         "s": "9",
         "ap": "-2",
         "d": "3",
@@ -82,7 +82,7 @@
       {
         "name": "Baleful sword",
         "a": "3",
-        "ws": "-",
+        "ws": "3+",
         "s": "7",
         "ap": "-2",
         "d": "3",
@@ -95,7 +95,7 @@
       {
         "name": "Staff of Tzeentch",
         "a": "5",
-        "ws": "-",
+        "ws": "3+",
         "s": "6",
         "ap": "-1",
         "d": "3",
@@ -119,5 +119,6 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "skillEstimated": true
 }
