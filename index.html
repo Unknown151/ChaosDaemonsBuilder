@@ -100,6 +100,37 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .modal .sub{color:var(--muted);font-size:.8rem;margin-bottom:.8rem}
 .modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.3rem;line-height:1}
 .empty{color:var(--muted);text-align:center;padding:2rem}
+
+/* builder controls */
+.config-label{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:.6rem 0 .3rem}
+.stepper{display:inline-flex;align-items:center;gap:.6rem;background:var(--panel-2);
+  border:1px solid var(--border);border-radius:6px;padding:.2rem .4rem}
+.stepper button{width:28px;height:28px;border:none;border-radius:4px;background:var(--accent);
+  color:#fff;font-size:1.1rem;cursor:pointer;line-height:1}
+.stepper button:disabled{background:var(--border);cursor:default;opacity:.5}
+.stepper .val{min-width:2.4rem;text-align:center;font-weight:600}
+.enh-option-list{display:flex;flex-direction:column;gap:.4rem}
+.enh-option{background:var(--panel-2);border:1px solid var(--border);border-radius:6px;
+  padding:.5rem .6rem;cursor:pointer}
+.enh-option:hover{border-color:var(--accent-2)}
+.enh-option.active{border-color:var(--accent-2);background:rgba(212,161,58,.12)}
+.enh-option.disabled{opacity:.4;cursor:not-allowed}
+.enh-option .eo-head{display:flex;justify-content:space-between;gap:.5rem}
+.enh-option .eo-name{font-weight:700;color:var(--accent-2)}
+.enh-option .eo-restr{font-size:.72rem;color:var(--muted);font-style:italic}
+.wargear-exclusive-option,.wargear-choice{display:block;padding:.3rem .5rem;border:1px solid var(--border);
+  border-radius:5px;margin-bottom:.3rem;cursor:pointer;font-size:.85rem}
+.wargear-exclusive-option.selected,.wargear-choice.checked{border-color:var(--accent-2);background:rgba(212,161,58,.1)}
+.cfg-actions{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-bottom:.9rem}
+.btn{background:var(--accent);color:#fff;border:none;padding:.45rem .9rem;border-radius:6px;cursor:pointer;font-weight:600}
+.btn.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border)}
+.limit-input{width:5.5rem;background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  border-radius:5px;padding:.3rem .4rem}
+.config-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:.8rem;padding:.7rem .8rem}
+.config-card .cc-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem}
+.config-card .cc-head h3{margin:0;font-size:1rem;flex:1}
+.picker-search{width:100%;padding:.5rem;margin-bottom:.6rem;background:var(--panel-2);
+  border:1px solid var(--border);color:var(--text);border-radius:6px}
 </style>
 </head>
 <body>
@@ -246,9 +277,13 @@ function normalizeInstance(inst){
 function calculateInstancePoints(inst){
   const u = units[inst.unitId]; if(!u) return 0;
   let pts = u.points || 0;
-  if(u.maxModels && inst.modelCount > u.baseModels){
-    if(u.pointsPerModel) pts += (inst.modelCount - u.baseModels) * u.pointsPerModel;
-    else pts *= Math.ceil(inst.modelCount / u.baseModels);
+  if(u.modelBrackets && u.modelBrackets.length){
+    // priced by bracket — use the highest bracket whose size is <= modelCount
+    let b = u.modelBrackets[0];
+    for(const br of u.modelBrackets) if(inst.modelCount >= br.models) b = br;
+    pts = b.points;
+  } else if(u.maxModels && inst.modelCount > u.baseModels){
+    pts *= Math.ceil(inst.modelCount / u.baseModels);
   }
   if(inst.enhancementId && enhancements[inst.enhancementId]) pts += enhancements[inst.enhancementId].points;
   if(inst.leaderId && units[inst.leaderId]) pts += units[inst.leaderId].points || 0;
@@ -372,7 +407,10 @@ function renderWeapons(u, inst){
     out += `<div class="wpn-cat">${label}</div><table class="wpn-table"><tr>
       <th>Weapon</th><th>Rng</th><th>A</th><th>${cat==='ranged'?'BS':'WS'}</th><th>S</th><th>AP</th><th>D</th></tr>`;
     out += list.map(w=>{
-      const cnt = (w.count && w.count > 1) ? ` <small>×${w.count}</small>` : '';
+      // weapons carried by "all models" scale with the instance's model count
+      let c = w.count;
+      if(inst && u.baseModels && w.count === u.baseModels) c = inst.modelCount;
+      const cnt = (c && c > 1) ? ` <small>×${c}</small>` : '';
       const model = w.model ? ` <small>(${w.model})</small>` : '';
       return `<tr><td class="wpn-name">${w.name}${cnt}${model}${renderWeaponBadges(w)}</td>
         <td>${cat==='ranged'?(w.range||'-'):'Melee'}</td><td>${w.a}</td>
@@ -413,31 +451,188 @@ function renderAbilities(u, enh){
   return out;
 }
 
-/* ---- Builder tab (Stage 2 basic; full render in Stage 4) ---- */
+/* ---- Builder tab (full per-instance configuration) ---- */
 function renderConfigurationTab(){
   renderDetachmentSelector();
   updateConfigPoints();
   const el = document.getElementById('config-list');
-  let html = `<div style="margin-bottom:.8rem"><button class="tab-btn" onclick="openAddUnit()">+ Add Unit</button></div>`;
-  if(!armyList.length){ html += `<div class="empty">Empty list.</div>`; }
-  else html += armyList.map(inst=>{
-    const u = units[inst.unitId];
-    return `<div class="unit-card"><div class="card-head">
-      <h3>${u.name}</h3><span class="pts">${calculateInstancePoints(inst)} pts</span>
-      <button class="icon-btn" onclick="removeInstance('${inst.instanceId}')" title="Remove">✕</button>
-    </div></div>`;
-  }).join('');
+  let html = `<div class="cfg-actions">
+    <button class="btn" onclick="openAddUnit()">+ Add Unit</button>
+    <label class="config-label" style="margin:0">Points limit
+      <input class="limit-input" type="number" min="0" step="5" value="${pointsLimit}"
+        onchange="setPointsLimit(this.value)"></label>
+  </div>`;
+  if(!armyList.length){ html += `<div class="empty">Empty list — add a unit to begin.</div>`; }
+  else html += armyList.map(renderArmyInstance).join('');
   el.innerHTML = html;
 }
-function openAddUnit(){
-  // Stage 2: quick picker via modal listing groups
+
+function renderArmyInstance(inst){
+  const u = units[inst.unitId]; if(!u) return '';
   let body = '';
-  for(const [grp,ids] of Object.entries(UNIT_GROUPS)){
-    body += `<div class="wpn-cat">${grp}</div>`;
-    body += ids.map(id=>`<div class="det-btn" style="display:inline-block;margin:.15rem" onclick="addInstance('${id}');closeModal()">${units[id].name} <small>(${units[id].points})</small></div>`).join('');
+
+  // model count adjuster
+  if(u.maxModels && u.maxModels > u.baseModels){
+    body += `<div class="config-label">Models</div>
+      <div class="stepper">
+        <button onclick="changeModelCount('${inst.instanceId}',-1)" ${inst.modelCount<=u.baseModels?'disabled':''}>−</button>
+        <span class="val">${inst.modelCount}</span>
+        <button onclick="changeModelCount('${inst.instanceId}',1)" ${inst.modelCount>=u.maxModels?'disabled':''}>+</button>
+        <span class="config-label" style="margin:0">/ ${u.maxModels} max</span>
+      </div>`;
   }
-  showModalRaw('Add Unit', `${selectedDetachment}`, body);
+
+  // enhancement selector — eligible non-Epic-Hero characters/leaders
+  if(isEnhancementEligible(u)) body += renderInstanceEnhancementSelector(inst, inst.unitId);
+
+  // optional wargear (checkbox up to max)
+  if((u.wargearChoices||[]).length) body += renderWargearChoices(inst, u);
+  // exclusive wargear (radio)
+  if((u.wargearExclusiveChoices||[]).length) body += renderWargearExclusive(inst, u);
+  // display-only wargear options text
+  if((u.wargearOptions||[]).length)
+    body += `<div class="config-label">Options</div>` +
+      u.wargearOptions.map(o=>`<div style="font-size:.82rem;color:var(--muted)">${o}</div>`).join('');
+
+  return `<div class="config-card">
+    <div class="cc-head">
+      <h3>${u.name}</h3>
+      <span class="pts">${calculateInstancePoints(inst)} pts</span>
+      <button class="icon-btn" onclick="removeInstance('${inst.instanceId}')" title="Remove unit">✕</button>
+    </div>
+    ${body || '<div class="config-label" style="margin:0">No options</div>'}
+  </div>`;
 }
+
+function isEnhancementEligible(u){
+  if(u.isEpicHero) return false;
+  const k = u.keywords.map(x=>x.toUpperCase());
+  return u.isLeader || k.includes('CHARACTER');
+}
+
+/* enhancement filter + selector */
+function getUsedEnhancements(exceptInstanceId){
+  return armyList.filter(i=>i.instanceId!==exceptInstanceId && i.enhancementId).map(i=>i.enhancementId);
+}
+const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
+function enhancementAllowedFor(enh, u){
+  if(enh.detachment !== selectedDetachment) return false;
+  const k = u.keywords.map(x=>x.toUpperCase());
+  const restr = (enh.restriction||'').toUpperCase();
+  // god-keyword restriction (derived from restriction text)
+  for(const g of GOD_KEYWORDS){ if(restr.includes(g) && !k.includes(g)) return false; }
+  if(/\bMONSTER\b/.test(restr) && !k.includes('MONSTER')) return false;
+  // structured restrictedTo
+  if(enh.restrictedTo && !enh.restrictedTo.includes(u.id)) return false;
+  // weapon restriction
+  if(enh.restrictedToWeapon){
+    const wn = enh.restrictedToWeapon.toLowerCase();
+    const all = [].concat(u.weapons.ranged||[], u.weapons.melee||[]);
+    if(!all.some(w=>w.name.toLowerCase()===wn)) return false;
+  }
+  return true;
+}
+function renderInstanceEnhancementSelector(inst, characterId){
+  const u = units[characterId];
+  const used = getUsedEnhancements(inst.instanceId);
+  const atMax = used.length >= 3;
+  const options = Object.entries(enhancements)
+    .filter(([id,e])=>enhancementAllowedFor(e,u))
+    .filter(([id,e])=>!used.includes(id));   // hide ones taken elsewhere
+  let html = `<div class="config-label">Enhancement</div><div class="enh-option-list">`;
+  const noneActive = !inst.enhancementId ? 'active' : '';
+  html += `<div class="enh-option ${noneActive}" onclick="setEnhancement('${inst.instanceId}',null)">
+    <div class="eo-head"><span class="eo-name" style="color:var(--muted)">None</span></div></div>`;
+  options.forEach(([id,e])=>{
+    const active = inst.enhancementId===id ? 'active' : '';
+    const disabled = (atMax && inst.enhancementId!==id) ? 'disabled' : '';
+    const click = disabled ? '' : `onclick="setEnhancement('${inst.instanceId}','${id}')"`;
+    html += `<div class="enh-option ${active} ${disabled}" ${click}>
+      <div class="eo-head"><span class="eo-name">${e.name}</span><span class="pts">${e.points} pts</span></div>
+      ${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
+      <div style="font-size:.78rem;color:var(--muted)">${stripTags(e.description).slice(0,120)}…
+        <span class="wab" onclick="event.stopPropagation();showModal('${id}')">details</span></div>
+    </div>`;
+  });
+  html += `</div>`;
+  if(atMax) html += `<div class="config-label" style="color:var(--accent)">Max 3 enhancements per army reached.</div>`;
+  return html;
+}
+function stripTags(s){ return (s||'').replace(/<[^>]+>/g,''); }
+
+function renderWargearChoices(inst, u){
+  const max = u.wargearMax || u.wargearChoices.length;
+  let html = `<div class="config-label">Wargear (choose up to ${max})</div>`;
+  u.wargearChoices.forEach(id=>{
+    const a = abilities[id]; const checked = inst.selectedWargear.includes(id);
+    html += `<label class="wargear-choice ${checked?'checked':''}">
+      <input type="checkbox" ${checked?'checked':''} onchange="toggleWargear('${inst.instanceId}','${id}',${max})"> ${a?a.name:id}</label>`;
+  });
+  return html;
+}
+function renderWargearExclusive(inst, u){
+  let html = `<div class="config-label">Wargear (choose one)</div>`;
+  u.wargearExclusiveChoices.forEach(id=>{
+    const a = abilities[id]; const sel = inst.selectedWargear.includes(id);
+    html += `<div class="wargear-exclusive-option ${sel?'selected':''}" onclick="selectExclusiveWargear('${inst.instanceId}','${id}')">${a?a.name:id}</div>`;
+  });
+  return html;
+}
+
+/* ---- builder mutations ---- */
+function changeModelCount(id, delta){
+  const inst = armyList.find(i=>i.instanceId===id); const u = units[inst.unitId];
+  if(u.modelBrackets && u.modelBrackets.length){
+    // snap to the previous / next legal bracket size
+    const sizes = u.modelBrackets.map(b=>b.models);
+    let idx = sizes.indexOf(inst.modelCount);
+    if(idx < 0){ idx = sizes.findIndex(s=>s>=inst.modelCount); if(idx<0) idx = sizes.length-1; }
+    idx = Math.max(0, Math.min(sizes.length-1, idx+delta));
+    inst.modelCount = sizes[idx];
+  } else {
+    inst.modelCount = Math.max(u.baseModels, Math.min(u.maxModels||u.baseModels, inst.modelCount+delta));
+  }
+  saveState(); renderApp();
+}
+function setEnhancement(id, enhId){
+  const inst = armyList.find(i=>i.instanceId===id);
+  inst.enhancementId = (inst.enhancementId===enhId) ? null : enhId;
+  saveState(); renderApp();
+}
+function setPointsLimit(v){ pointsLimit = parseInt(v,10)||0; saveState(); renderConfigurationTab(); }
+function toggleWargear(id, wid, max){
+  const inst = armyList.find(i=>i.instanceId===id);
+  const i = inst.selectedWargear.indexOf(wid);
+  if(i>=0) inst.selectedWargear.splice(i,1);
+  else { if(inst.selectedWargear.length>=max) inst.selectedWargear.shift(); inst.selectedWargear.push(wid); }
+  saveState(); renderApp();
+}
+function selectExclusiveWargear(id, wid){
+  const inst = armyList.find(i=>i.instanceId===id); const u = units[inst.unitId];
+  inst.selectedWargear = inst.selectedWargear.filter(w=>!u.wargearExclusiveChoices.includes(w));
+  inst.selectedWargear.push(wid);
+  saveState(); renderApp();
+}
+
+/* ---- add-unit picker ---- */
+function openAddUnit(){
+  let body = `<input class="picker-search" placeholder="Filter units…" oninput="filterPicker(this.value)">
+    <div id="picker-groups">${pickerGroupsHtml('')}</div>`;
+  showModalRaw('Add Unit', detachments[selectedDetachment].name, body);
+}
+function pickerGroupsHtml(q){
+  q = q.toLowerCase();
+  let html = '';
+  for(const [grp,ids] of Object.entries(UNIT_GROUPS)){
+    const matches = ids.filter(id=>units[id].name.toLowerCase().includes(q));
+    if(!matches.length) continue;
+    html += `<div class="wpn-cat">${grp}</div>`;
+    html += matches.map(id=>`<div class="det-btn" style="display:inline-block;margin:.15rem"
+      onclick="addInstance('${id}');closeModal()">${units[id].name} <small>(${units[id].points})</small></div>`).join('');
+  }
+  return html || `<div class="empty">No matches</div>`;
+}
+function filterPicker(q){ document.getElementById('picker-groups').innerHTML = pickerGroupsHtml(q); }
 
 /* ===================== Modal ===================== */
 function showModal(id){

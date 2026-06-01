@@ -29,7 +29,16 @@
   "baseModels": 5,
   "maxModels": 10,
   "points": 75,
-  "pointsPerModel": 15,
+  "modelBrackets": [
+    {
+      "models": 5,
+      "points": 75
+    },
+    {
+      "models": 10,
+      "points": 150
+    }
+  ],
   "weapons": {
     "ranged": [
       {

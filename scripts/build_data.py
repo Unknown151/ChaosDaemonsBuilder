@@ -300,10 +300,9 @@ for b in blocks[1:]:
         unit['models'] = pb[0][0]
         if len(pb) > 1:
             unit['maxModels'] = pb[-1][0]
-            dm = pb[-1][0] - pb[0][0]
-            dp = pb[-1][1] - pb[0][1]
-            if dm > 0:
-                unit['pointsPerModel'] = dp // dm
+            # explicit pricing brackets — these units are priced per bracket
+            # size (e.g. 3 or 6 models), not linearly per model.
+            unit['modelBrackets'] = [{'models': m, 'points': p} for m, p in pb]
     else:
         # No points entry -> Forgeworld / extra unit; ignored per user decision.
         continue
