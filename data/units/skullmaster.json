@@ -1,0 +1,74 @@
+{
+  "id": "skullmaster",
+  "name": "Skullmaster",
+  "keywords": [
+    "KHORNE",
+    "DAEMON",
+    "CHAOS",
+    "MOUNTED",
+    "SKULLMASTER",
+    "CHARACTER",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Mounted",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "10\"",
+    "t": 7,
+    "sv": "3+",
+    "w": 6,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Skullmaster",
+  "models": 1,
+  "baseModels": 1,
+  "points": 100,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Blade of blood",
+        "a": "5",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Juggernaut's bladed horn",
+        "a": "4",
+        "ws": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "extra-attacks",
+          "lance"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "skullmasters-fury",
+    "devastating-charge"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

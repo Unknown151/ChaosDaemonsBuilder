@@ -1,0 +1,78 @@
+{
+  "id": "spoilpox-scrivener",
+  "name": "Spoilpox Scrivener",
+  "keywords": [
+    "DAEMON",
+    "CHAOS",
+    "CHARACTER",
+    "INFANTRY",
+    "NURGLE",
+    "SPOILPOX SCRIVENER",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Character",
+    "Infantry"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "5\"",
+    "t": 5,
+    "sv": "7+",
+    "w": 5,
+    "ld": "6+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Spoilpox Scrivener",
+  "models": 1,
+  "baseModels": 1,
+  "points": 60,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Disgusting sneezes",
+        "range": "6",
+        "a": "D6",
+        "bs": "-",
+        "s": "3",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Plaguesword and distended maw",
+        "a": "6",
+        "ws": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "keep-counting",
+    "meet-your-quota"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

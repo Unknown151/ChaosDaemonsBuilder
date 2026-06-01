@@ -1,0 +1,76 @@
+{
+  "id": "flesh-hounds",
+  "name": "Flesh Hounds",
+  "keywords": [
+    "SHADOW LEGION",
+    "BEAST",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "FLESH HOUNDS"
+  ],
+  "type": [
+    "Beast"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 2,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Gore Hound; 4-9 Flesh Hounds",
+  "models": 5,
+  "baseModels": 5,
+  "maxModels": 10,
+  "points": 75,
+  "pointsPerModel": 15,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Burning roar",
+        "range": "12",
+        "a": "D6",
+        "bs": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 5
+      }
+    ],
+    "melee": [
+      {
+        "name": "Gore-drenched fangs",
+        "a": "3",
+        "ws": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 5
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "hunters-from-the-warp"
+  ],
+  "wargear": [
+    "collar-of-khorne"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

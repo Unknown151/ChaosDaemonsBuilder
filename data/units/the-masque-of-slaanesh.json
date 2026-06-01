@@ -1,0 +1,64 @@
+{
+  "id": "the-masque-of-slaanesh",
+  "name": "The Masque Of Slaanesh",
+  "keywords": [
+    "INFANTRY",
+    "THE MASQUE OF SLAANESH",
+    "FLY",
+    "EPIC HERO",
+    "CHARACTER",
+    "CHAOS",
+    "SLAANESH",
+    "DAEMON"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "9\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 The Masque of Slaanesh - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 95,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Serrated claws",
+        "a": "6",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "fights-first",
+    "lone-operative"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "the-eternal-dance",
+    "dazzling-acrobatics"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

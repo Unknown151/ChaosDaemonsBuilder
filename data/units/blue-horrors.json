@@ -1,0 +1,104 @@
+{
+  "id": "blue-horrors",
+  "name": "Blue Horrors",
+  "keywords": [
+    "DAEMON",
+    "BRIMSTONE",
+    "CHAOS",
+    "BATTLELINE",
+    "SHADOW LEGION",
+    "INFANTRY",
+    "BLUE",
+    "TZEENTCH",
+    "HORRORS"
+  ],
+  "type": [
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "6\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 1,
+    "ld": "8+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "10 Blue Horrors",
+  "models": 10,
+  "baseModels": 10,
+  "points": 125,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Coruscating Blue Flames",
+        "range": "18",
+        "a": "2",
+        "bs": "-",
+        "s": "3",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Coruscating Yellow Flames",
+        "range": "18",
+        "a": "2",
+        "bs": "-",
+        "s": "2",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ],
+    "melee": [
+      {
+        "name": "Blue claws",
+        "a": "1",
+        "ws": "-",
+        "s": "3",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Yellow claws",
+        "a": "2",
+        "ws": "-",
+        "s": "2",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "infiltrators"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "split",
+    "sullen-malevolence-aura",
+    "exploding-horrors"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

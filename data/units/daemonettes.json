@@ -1,0 +1,63 @@
+{
+  "id": "daemonettes",
+  "name": "Daemonettes",
+  "keywords": [
+    "SHADOW LEGION",
+    "DAEMONETTES",
+    "SLAANESH",
+    "DAEMON",
+    "CHAOS",
+    "BATTLELINE",
+    "INFANTRY"
+  ],
+  "type": [
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 1,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Alluress; 9 Daemonettes",
+  "models": 10,
+  "baseModels": 10,
+  "points": 100,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Slashing claws",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "fights-first"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "horrifying-beauty"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,88 @@
+{
+  "id": "skarbrand",
+  "name": "Skarbrand",
+  "keywords": [
+    "EPIC HERO",
+    "SKARBRAND",
+    "CHARACTER",
+    "MONSTER",
+    "KHORNE",
+    "CHAOS",
+    "DAEMON"
+  ],
+  "type": [
+    "Character",
+    "Monster"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "10\"",
+    "t": 11,
+    "sv": "3+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Skarbrand - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 305,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Bellow of endless fury",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "8",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Slaughter and Carnage - strike",
+        "a": "8",
+        "ws": "-",
+        "s": "16",
+        "ap": "-4",
+        "d": "6",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Slaughter and Carnage - sweep",
+        "a": "16",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "greater-daemon-of-khorne-aura",
+    "rage-embodied-aura",
+    "murderlust"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,62 @@
+{
+  "id": "screamers",
+  "name": "Screamers",
+  "keywords": [
+    "SCREAMERS",
+    "TZEENTCH",
+    "DAEMON",
+    "BEAST",
+    "FLY",
+    "CHAOS",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Beast"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "14\"",
+    "t": 4,
+    "sv": "6+",
+    "w": 3,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "3-6 Screamers",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 80,
+  "pointsPerModel": 26,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Lamprey bite",
+        "a": "3",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "anti-monster-4",
+          "anti-vehicle-4"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "slashing-dive"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

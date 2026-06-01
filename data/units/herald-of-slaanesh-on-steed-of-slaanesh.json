@@ -1,0 +1,78 @@
+{
+  "id": "herald-of-slaanesh-on-steed-of-slaanesh",
+  "name": "Herald Of Slaanesh On Steed Of Slaanesh",
+  "keywords": [
+    "SHADOW LEGION",
+    "HERALD OF SLAANESH",
+    "SLAANESH",
+    "DAEMON",
+    "CHAOS",
+    "PSYKER",
+    "CHARACTER",
+    "MOUNTED"
+  ],
+  "type": [
+    "Character",
+    "Mounted"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "14\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Herald of Slaanesh on Steed of Slaanesh",
+  "models": 1,
+  "baseModels": 1,
+  "points": 0,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Lashing tongue",
+        "a": "2",
+        "ws": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "extra-attacks",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Ravaging claws",
+        "a": "6",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader",
+    "scouts-9"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "lethal-caress",
+    "symphony-of-pain-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

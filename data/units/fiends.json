@@ -1,0 +1,60 @@
+{
+  "id": "fiends",
+  "name": "Fiends",
+  "keywords": [
+    "DAEMON",
+    "CHAOS",
+    "BEAST",
+    "SHADOW LEGION",
+    "FIENDS",
+    "SLAANESH"
+  ],
+  "type": [
+    "Beast"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 5,
+    "sv": "7+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Blissbringer; 2-5 Fiends",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 95,
+  "pointsPerModel": 31,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Barbed tail and dissecting claws",
+        "a": "5",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "soporific-musk"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

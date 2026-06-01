@@ -1,0 +1,157 @@
+{
+  "id": "soul-grinder",
+  "name": "Soul Grinder",
+  "keywords": [
+    "SOUL GRINDER",
+    "DAEMON",
+    "CHAOS",
+    "WALKER",
+    "SHADOW LEGION",
+    "VEHICLE"
+  ],
+  "type": [
+    "Vehicle"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "8\"",
+    "t": 11,
+    "sv": "3+",
+    "w": 14,
+    "ld": "7+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Soul Grinder",
+  "models": 1,
+  "baseModels": 1,
+  "points": 180,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Harvester cannon",
+        "range": "36",
+        "a": "3",
+        "bs": "-",
+        "s": "10",
+        "ap": "-1",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Torrent of burning blood",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Phlegm bombardment",
+        "range": "36",
+        "a": "D6+1",
+        "bs": "-",
+        "s": "7",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "blast",
+          "indirect-fire",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Scream of despair",
+        "range": "24",
+        "a": "6",
+        "bs": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "devastating-wounds",
+          "sustained-hits-1"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Warp gaze",
+        "range": "48",
+        "a": "D3",
+        "bs": "-",
+        "s": "12",
+        "ap": "-2",
+        "d": "D6+2",
+        "abilities": [
+          "blast"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Iron claw",
+        "a": "5",
+        "ws": "-",
+        "s": "16",
+        "ap": "-3",
+        "d": "D6+2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Warpclaw",
+        "a": "6",
+        "ws": "-",
+        "s": "8",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Warpsword",
+        "a": "3",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "D6",
+        "abilities": [
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d3",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "scuttling-walker",
+    "daemonic-allegiance-2"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

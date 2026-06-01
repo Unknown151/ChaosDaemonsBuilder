@@ -1,0 +1,94 @@
+{
+  "id": "plague-drones",
+  "name": "Plague Drones",
+  "keywords": [
+    "PLAGUE DRONES",
+    "MOUNTED",
+    "FLY",
+    "CHAOS",
+    "DAEMON",
+    "SHADOW LEGION",
+    "NURGLE"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "10\"",
+    "t": 8,
+    "sv": "6+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Plaguebringer; 2-5 Plague Drones",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 110,
+  "pointsPerModel": 36,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Death's heads",
+        "range": "12",
+        "a": "D3",
+        "bs": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "blast",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ],
+    "melee": [
+      {
+        "name": "Foul mouthparts",
+        "a": "2",
+        "ws": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "extra-attacks",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      },
+      {
+        "name": "Plaguesword",
+        "a": "2",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "deaths-heads"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

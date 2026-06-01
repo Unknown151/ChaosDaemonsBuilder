@@ -1,0 +1,94 @@
+{
+  "id": "exalted-flamer",
+  "name": "Exalted Flamer",
+  "keywords": [
+    "FLY",
+    "INFANTRY",
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON",
+    "TZEENTCH",
+    "EXALTED FLAMER",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 6,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Exalted Flamer",
+  "models": 1,
+  "baseModels": 1,
+  "points": 65,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Fire of Tzeentch - blue fire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "9",
+        "ap": "-3",
+        "d": "3",
+        "abilities": [
+          "ignores-cover",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Fire of Tzeentch - pink fire",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Flamer mouths",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "blazing-warpfire-psychic",
+    "flames-of-change-psychic",
+    "manifestation-of-destruction"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

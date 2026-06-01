@@ -1,0 +1,135 @@
+{
+  "id": "great-unclean-one",
+  "name": "Great Unclean One",
+  "keywords": [
+    "NURGLE",
+    "SHADOW LEGION",
+    "MONSTER",
+    "CHARACTER",
+    "PSYKER",
+    "CHAOS",
+    "DAEMON",
+    "GREAT UNCLEAN ONE"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "7\"",
+    "t": 12,
+    "sv": "5+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Great Unclean One",
+  "models": 1,
+  "baseModels": 1,
+  "points": 250,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Plague flail",
+        "range": "6",
+        "a": "D6+1",
+        "bs": "-",
+        "s": "7",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Putrid vomit",
+        "range": "12",
+        "a": "D6+3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Bileblade",
+        "a": "3",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "extra-attacks",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Bilesword - strike",
+        "a": "6",
+        "ws": "-",
+        "s": "10",
+        "ap": "-2",
+        "d": "D6+1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Bilesword - sweep",
+        "a": "12",
+        "ws": "-",
+        "s": "7",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Doomsday bell",
+        "a": "6",
+        "ws": "-",
+        "s": "7",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "lethal-hits",
+          "reverberating-summons"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike",
+    "feel-no-pain-6"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "greater-daemon-of-nurgle-aura",
+    "daemon-lord-of-nurgle-aura",
+    "nurgles-rot-psychic",
+    "reverberating-summons-2"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

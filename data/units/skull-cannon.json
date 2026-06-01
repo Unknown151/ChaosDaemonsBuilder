@@ -1,0 +1,84 @@
+{
+  "id": "skull-cannon",
+  "name": "Skull Cannon",
+  "keywords": [
+    "KHORNE",
+    "SKULL CANNON",
+    "SHADOW LEGION",
+    "MOUNTED",
+    "CHAOS",
+    "DAEMON"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "8\"",
+    "t": 9,
+    "sv": "4+",
+    "w": 9,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Skull Cannon",
+  "models": 1,
+  "baseModels": 1,
+  "points": 95,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Skull cannon",
+        "range": "48",
+        "a": "D6+2",
+        "bs": "-",
+        "s": "9",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "blast"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Attendants' hellblades",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Biting maw",
+        "a": "2",
+        "ws": "-",
+        "s": "6",
+        "ap": "0",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "skulls-of-the-fallen"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

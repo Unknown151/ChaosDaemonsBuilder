@@ -1,0 +1,81 @@
+{
+  "id": "karanak",
+  "name": "Karanak",
+  "keywords": [
+    "KARANAK",
+    "KHORNE",
+    "DAEMON",
+    "CHAOS",
+    "EPIC HERO",
+    "BEAST",
+    "CHARACTER"
+  ],
+  "type": [
+    "Beast",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": true,
+  "stats": {
+    "m": "12\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Karanak - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 75,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Scalding roar",
+        "range": "12",
+        "a": "D6+3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Soul-rending fangs",
+        "a": "6",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "anti-character-3",
+          "precision"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "pack-leader",
+    "prey-of-the-blood-god"
+  ],
+  "wargear": [
+    "brass-collar-of-bloody-vengeance"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,174 @@
+{
+  "argath-the-king-of-blades": {
+    "name": "A'rgath, the King of Blades",
+    "type": "Enhancement (20 pts)",
+    "points": 20,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "avatar-of-perfection": {
+    "name": "Avatar of Perfection",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "legion-of-excess",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "brazenmaw": {
+    "name": "Brazenmaw",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "blood-legion",
+    "description": "This daemon's maw and throat are forged from burning brass, transforming its war cries into a deafening clarion that calls the Blood Legion to war. Legiones Daemonica Khorne model only. Add 2 to Charge rolls made for the bearer's unit.",
+    "restriction": "Legiones Daemonica Khorne model only"
+  },
+  "cankerblight": {
+    "name": "Cankerblight",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "plague-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "dreaming-crown": {
+    "name": "Dreaming Crown",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "legion-of-excess",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "droning-shroud": {
+    "name": "Droning Shroud",
+    "type": "Enhancement (35 pts)",
+    "points": 35,
+    "detachment": "plague-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "fade-to-darkness": {
+    "name": "Fade to Darkness",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "shadow-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "false-majesty": {
+    "name": "False Majesty",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "legion-of-excess",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "font-of-spores": {
+    "name": "Font of Spores",
+    "type": "Enhancement (20 pts)",
+    "points": 20,
+    "detachment": "plague-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "furys-cage": {
+    "name": "Fury's Cage",
+    "type": "Enhancement (20 pts)",
+    "points": 20,
+    "detachment": "blood-legion",
+    "description": "The Bloodthirster bound within this weapon offers the wielder immense power but seeks every way to turn its towering wrath upon its jailer. Legiones Daemonica Khorne Monster model only. Each time the bearer is selected to fight, it can use this Enhancement. If it does, the bearer suffers D3+1 mortal wounds, and until the end of the phase, each time it makes an attack, you can re-roll the Hit roll and you can re-roll the Wound roll.",
+    "restriction": "Legiones Daemonica Khorne Monster model only"
+  },
+  "gateway-unto-damnation": {
+    "name": "Gateway Unto Damnation",
+    "type": "Enhancement (10 pts)",
+    "points": 10,
+    "detachment": "blood-legion",
+    "description": "Concealed within this daemon's form is a portal into the depths of Khorne's realm. Anointed with gore and thrown wide by the daemon's corporeal demise, it expands like a bloody singularity to drag everything in reach into the screaming maelstrom of the Warp. Legiones Daemonica Khorne Monster model only. The bearer's Deadly Demise ability inflicts mortal wounds on a D6 roll of 2+ instead of on a 6. In addition, if the bearer has destroyed one or more enemy units this battle, the bearer has the Deadly Demise D3+3 ability, instead of any other Deadly Demise ability on its datasheet",
+    "restriction": "Legiones Daemonica Khorne Monster model only"
+  },
+  "improbable-shield": {
+    "name": "Improbable Shield",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "scintillating-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "inescapable-eye": {
+    "name": "Inescapable Eye",
+    "type": "Enhancement (10 pts)",
+    "points": 10,
+    "detachment": "scintillating-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "infernal-puppeteer": {
+    "name": "Infernal Puppeteer",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "scintillating-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "leaping-shadows": {
+    "name": "Leaping Shadows",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "shadow-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "maggot-maws": {
+    "name": "Maggot Maws",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "plague-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "malice-made-manifest": {
+    "name": "Malice Made Manifest",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "shadow-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "mantle-of-gloom": {
+    "name": "Mantle of Gloom",
+    "type": "Enhancement (20 pts)",
+    "points": 20,
+    "detachment": "shadow-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "neverblade": {
+    "name": "Neverblade",
+    "type": "Enhancement (20 pts)",
+    "points": 20,
+    "detachment": "scintillating-legion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "slaughterthirst": {
+    "name": "Slaughterthirst",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "blood-legion",
+    "description": "<strong>[AURA]</strong> This servant of Khorne is a walking nexus of bloodthirst, its mere presence whetting the keen edges of daemonic blades and appetites alike for slaughter. Legiones Daemonica Khorne model only. While a friendly Legiones Daemonica Khorne unit (excluding Monsters) is within 6\" of the bearer, weapons equipped by models in that unit have the [LANCE] ability.",
+    "restriction": "Legiones Daemonica Khorne model only"
+  },
+  "soul-glutton": {
+    "name": "Soul Glutton",
+    "type": "Enhancement (10 pts)",
+    "points": 10,
+    "detachment": "legion-of-excess",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "soulstealer": {
+    "name": "Soulstealer",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "the-endless-gift": {
+    "name": "The Endless Gift",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  },
+  "the-everstave": {
+    "name": "The Everstave",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>"
+  }
+}

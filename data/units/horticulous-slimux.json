@@ -1,0 +1,76 @@
+{
+  "id": "horticulous-slimux",
+  "name": "Horticulous Slimux",
+  "keywords": [
+    "HORTICULOUS SLIMUX",
+    "MOUNTED",
+    "CHARACTER",
+    "EPIC HERO",
+    "CHAOS",
+    "DAEMON",
+    "NURGLE"
+  ],
+  "type": [
+    "Mounted",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": true,
+  "stats": {
+    "m": "6\"",
+    "t": 10,
+    "sv": "3+",
+    "w": 10,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Horticulous Slimux - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 120,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Acidic maw",
+        "a": "2",
+        "ws": "-",
+        "s": "7",
+        "ap": "-4",
+        "d": "3",
+        "abilities": [
+          "devastating-wounds",
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Lopping shears",
+        "a": "4",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "beast-handler",
+    "seed-the-garden-of-nurgle"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

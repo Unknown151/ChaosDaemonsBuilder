@@ -1,0 +1,22 @@
+{
+  "name": "Blood Legion Patrol",
+  "detachment": "blood-legion",
+  "pointsLimit": 1000,
+  "units": [
+    {
+      "unitId": "bloodthirster"
+    },
+    {
+      "unitId": "bloodmaster"
+    },
+    {
+      "unitId": "bloodletters"
+    },
+    {
+      "unitId": "bloodcrushers"
+    },
+    {
+      "unitId": "flesh-hounds"
+    }
+  ]
+}

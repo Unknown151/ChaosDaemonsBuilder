@@ -1,0 +1,78 @@
+{
+  "id": "seekers",
+  "name": "Seekers",
+  "keywords": [
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "SEEKERS",
+    "SHADOW LEGION",
+    "MOUNTED"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "14\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 2,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Heartseeker; 4-9 Seekers",
+  "models": 5,
+  "baseModels": 5,
+  "maxModels": 10,
+  "points": 80,
+  "pointsPerModel": 16,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Lashing tongue",
+        "a": "2",
+        "ws": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "extra-attacks",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 5
+      },
+      {
+        "name": "Slashing claws",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 5
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "scouts-9"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "unholy-speed"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,107 @@
+{
+  "id": "zarakynel",
+  "name": "Zarakynel",
+  "keywords": [
+    "MONSTER",
+    "EPIC HERO",
+    "PSYKER",
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "CHARACTER",
+    "ZARAKYNEL"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "14\"",
+    "t": 10,
+    "sv": "5+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Zarakynel - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 0,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Phantasmagoria - focused witchfire",
+        "range": "18",
+        "a": "9",
+        "bs": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "hazardous",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Phantasmagoria - witchfire",
+        "range": "18",
+        "a": "6",
+        "bs": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Snapping claws",
+        "a": "4",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [
+          "devastating-wounds",
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Souleater blade",
+        "a": "6",
+        "ws": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "emissary-of-the-prince-of-excess-aura",
+    "mesmerising-form"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,60 @@
+{
+  "id": "bloodmaster",
+  "name": "Bloodmaster",
+  "keywords": [
+    "KHORNE",
+    "BLOODMASTER",
+    "SHADOW LEGION",
+    "CHAOS",
+    "DAEMON",
+    "CHARACTER",
+    "INFANTRY"
+  ],
+  "type": [
+    "Character",
+    "Infantry"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "8\"",
+    "t": 4,
+    "sv": "5+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Bloodmaster",
+  "models": 1,
+  "baseModels": 1,
+  "points": 65,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Blade of blood",
+        "a": "5",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "bloodmaster",
+    "a-gory-path"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

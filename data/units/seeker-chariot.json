@@ -1,0 +1,90 @@
+{
+  "id": "seeker-chariot",
+  "name": "Seeker Chariot",
+  "keywords": [
+    "SHADOW LEGION",
+    "SLAANESH",
+    "MOUNTED",
+    "CHAOS",
+    "DAEMON",
+    "SEEKER CHARIOT"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "14\"",
+    "t": 6,
+    "sv": "5+",
+    "w": 7,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1-2 Seeker Chariots",
+  "models": 1,
+  "baseModels": 1,
+  "maxModels": 2,
+  "points": 0,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Lashes of torment",
+        "range": "6",
+        "a": "6",
+        "bs": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "anti-infantry-3",
+          "assault",
+          "pistol"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Seeker tongues",
+        "a": "4",
+        "ws": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "extra-attacks",
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Slashing claws",
+        "a": "9",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "scythed-impact"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

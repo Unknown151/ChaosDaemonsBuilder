@@ -1,0 +1,60 @@
+{
+  "id": "possessed",
+  "name": "Possessed",
+  "keywords": [
+    "CHAOS",
+    "INFANTRY",
+    "DAEMON",
+    "POSSESSED",
+    "UNDIVIDED",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Infantry",
+    "Infantry",
+    "Infantry",
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 6,
+    "sv": "3+",
+    "w": 3,
+    "ld": "6+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Possessed Champion; 4-9 Possessed",
+  "models": 5,
+  "baseModels": 5,
+  "maxModels": 10,
+  "points": 0,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Hideous mutations",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 5
+      }
+    ]
+  },
+  "coreAbilities": [],
+  "abilities": [
+    "dark-pacts",
+    "unholy-bloodshed"
+  ],
+  "wargear": [
+    "chaos-icon"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

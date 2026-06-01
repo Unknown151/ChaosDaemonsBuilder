@@ -1,0 +1,89 @@
+{
+  "id": "daemon-prince-of-chaos",
+  "name": "Daemon Prince of Chaos",
+  "keywords": [
+    "DAEMON",
+    "CHAOS",
+    "CHARACTER",
+    "MONSTER",
+    "SHADOW LEGION",
+    "DAEMON PRINCE OF CHAOS"
+  ],
+  "type": [
+    "Character",
+    "Monster"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "8\"",
+    "t": 10,
+    "sv": "2+",
+    "w": 10,
+    "ld": "6+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Daemon Prince of Chaos",
+  "models": 1,
+  "baseModels": 1,
+  "points": 190,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Infernal cannon",
+        "range": "24",
+        "a": "3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Hellforged weapons - strike",
+        "a": "6",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Hellforged weapons - sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "6",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d3",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "daemonic-lord",
+    "prince-of-darkness-aura",
+    "unholy-vigour",
+    "daemonic-allegiance",
+    "daemon-prince-of-khorne",
+    "daemon-prince-of-tzeentch",
+    "daemon-prince-of-nurgle",
+    "daemon-prince-of-slaanesh"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

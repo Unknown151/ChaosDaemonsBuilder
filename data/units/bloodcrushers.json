@@ -1,0 +1,75 @@
+{
+  "id": "bloodcrushers",
+  "name": "Bloodcrushers",
+  "keywords": [
+    "SHADOW LEGION",
+    "BLOODCRUSHERS",
+    "KHORNE",
+    "DAEMON",
+    "CHAOS",
+    "MOUNTED"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "10\"",
+    "t": 7,
+    "sv": "3+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Bloodhunter; 2-5 Bloodcrushers",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 110,
+  "pointsPerModel": 36,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Hellblade",
+        "a": "2",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 3
+      },
+      {
+        "name": "Juggernaut's bladed horn",
+        "a": "4",
+        "ws": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "extra-attacks",
+          "lance"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "brass-stampede"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

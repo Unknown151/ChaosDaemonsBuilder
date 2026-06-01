@@ -1,0 +1,62 @@
+{
+  "id": "beasts-of-nurgle",
+  "name": "Beasts Of Nurgle",
+  "keywords": [
+    "DAEMON",
+    "NURGLE",
+    "BEASTS OF NURGLE",
+    "SHADOW LEGION",
+    "CHAOS",
+    "BEAST"
+  ],
+  "type": [
+    "Beast"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "6\"",
+    "t": 9,
+    "sv": "6+",
+    "w": 7,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1-2 Beasts of Nurgle",
+  "models": 1,
+  "baseModels": 1,
+  "maxModels": 2,
+  "points": 65,
+  "pointsPerModel": 65,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Putrid appendages",
+        "a": "6",
+        "ws": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-1",
+    "deep-strike",
+    "scouts-6"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "grotesque-regeneration"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

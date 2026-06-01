@@ -1,0 +1,92 @@
+{
+  "id": "infernal-enrapturess",
+  "name": "Infernal Enrapturess",
+  "keywords": [
+    "INFERNAL ENRAPTURESS",
+    "INFANTRY",
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 3,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Infernal Enrapturess",
+  "models": 1,
+  "baseModels": 1,
+  "points": 60,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Heartstring lyre - cacophonous melody",
+        "range": "18",
+        "a": "6",
+        "bs": "-",
+        "s": "6",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "assault"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Heartstring lyre - euphonic blast",
+        "range": "24",
+        "a": "1",
+        "bs": "-",
+        "s": "12",
+        "ap": "-3",
+        "d": "D6+1",
+        "abilities": [
+          "assault"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Ravaging claws",
+        "a": "5",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "fights-first",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "harmonic-alignment",
+    "discordant-disruption-aura"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

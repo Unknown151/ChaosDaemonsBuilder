@@ -1,0 +1,104 @@
+{
+  "id": "burning-chariot",
+  "name": "Burning Chariot",
+  "keywords": [
+    "MOUNTED",
+    "FLY",
+    "TZEENTCH",
+    "CHAOS",
+    "DAEMON",
+    "BURNING CHARIOT",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 8,
+    "sv": "7+",
+    "w": 9,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Burning Chariot",
+  "models": 1,
+  "baseModels": 1,
+  "points": 115,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Fire of Tzeentch - blue fire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "9",
+        "ap": "-3",
+        "d": "3",
+        "abilities": [
+          "ignores-cover",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Fire of Tzeentch - pink fire",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Flamer mouths",
+        "a": "6",
+        "ws": "-",
+        "s": "5",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Screamer bites",
+        "a": "6",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "anti-monster-4",
+          "anti-vehicle-4",
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "eldritch-flames-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

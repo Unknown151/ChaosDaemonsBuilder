@@ -1,0 +1,137 @@
+{
+  "id": "bloodthirster",
+  "name": "Bloodthirster",
+  "keywords": [
+    "SHADOW LEGION",
+    "BLOODTHIRSTER",
+    "DAEMON",
+    "CHAOS",
+    "FLY",
+    "CHARACTER",
+    "MONSTER",
+    "KHORNE"
+  ],
+  "type": [
+    "Character",
+    "Monster"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 11,
+    "sv": "3+",
+    "w": 18,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Bloodthirster",
+  "models": 1,
+  "baseModels": 1,
+  "points": 305,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Bloodflail",
+        "range": "12",
+        "a": "1",
+        "bs": "-",
+        "s": "16",
+        "ap": "-3",
+        "d": "D6+1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Hellfire breath",
+        "range": "12",
+        "a": "D6",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Lash of Khorne",
+        "range": "12",
+        "a": "6",
+        "bs": "-",
+        "s": "8",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Axe of Khorne - strike",
+        "a": "8",
+        "ws": "-",
+        "s": "14",
+        "ap": "-4",
+        "d": "D3+1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Axe of Khorne - sweep",
+        "a": "16",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Great axe of Khorne - strike",
+        "a": "7",
+        "ws": "-",
+        "s": "16",
+        "ap": "-4",
+        "d": "D6+2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Great axe of Khorne - sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "10",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "daemon-lord-of-khorne-aura",
+    "relentless-carnage",
+    "greater-daemon-of-khorne-aura"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,64 @@
+{
+  "id": "tranceweaver",
+  "name": "Tranceweaver",
+  "keywords": [
+    "SLAANESH",
+    "TRANCEWEAVER",
+    "SHADOW LEGION",
+    "DAEMON",
+    "INFANTRY",
+    "CHARACTER",
+    "PSYKER",
+    "CHAOS"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 3,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Tranceweaver",
+  "models": 1,
+  "baseModels": 1,
+  "points": 0,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Ravaging claws",
+        "a": "6",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "fights-first",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "tranceweaver",
+    "symphony-of-pain-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

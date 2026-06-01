@@ -1,0 +1,89 @@
+{
+  "id": "daemon-prince-of-chaos-with-wings",
+  "name": "Daemon Prince Of Chaos With Wings",
+  "keywords": [
+    "MONSTER",
+    "CHARACTER",
+    "FLY",
+    "CHAOS",
+    "DAEMON",
+    "DAEMON PRINCE OF CHAOS WITH WINGS",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 9,
+    "sv": "2+",
+    "w": 10,
+    "ld": "6+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Daemon Prince of Chaos with Wings",
+  "models": 1,
+  "baseModels": 1,
+  "points": 180,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Infernal cannon",
+        "range": "24",
+        "a": "3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Hellforged weapons - strike",
+        "a": "6",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Hellforged weapons - sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "6",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d3",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "malefic-destruction",
+    "harbinger-of-death",
+    "daemonic-allegiance",
+    "daemon-prince-of-khorne",
+    "daemon-prince-of-tzeentch",
+    "daemon-prince-of-nurgle",
+    "daemon-prince-of-slaanesh"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

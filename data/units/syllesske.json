@@ -1,0 +1,124 @@
+{
+  "id": "syllesske",
+  "name": "Syll'esske",
+  "keywords": [
+    "SYLL'ESSKE",
+    "MONSTER",
+    "CHARACTER",
+    "PSYKER",
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "EPIC HERO"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": true,
+  "stats": {
+    "m": "9\"",
+    "t": 6,
+    "sv": "6+",
+    "w": 9,
+    "ld": "6+",
+    "oc": 2
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Syll'Esske - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 120,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Cacophonic choir - witchfire",
+        "range": "12",
+        "a": "D6",
+        "bs": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "ignores-cover",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Cacophonic choir - focused witchfire",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "psychic",
+          "hazardous",
+          "ignores-cover",
+          "devastating-wounds",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Scourging whip",
+        "range": "9",
+        "a": "6",
+        "bs": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "assault"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Axe of Dominion",
+        "a": "6",
+        "ws": "-",
+        "s": "7",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Scourging whip",
+        "a": "6",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "prince-of-slaanesh",
+    "delightful-agonies"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

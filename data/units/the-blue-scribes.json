@@ -1,0 +1,63 @@
+{
+  "id": "the-blue-scribes",
+  "name": "The Blue Scribes",
+  "keywords": [
+    "THE BLUE SCRIBES",
+    "TZEENTCH",
+    "DAEMON",
+    "FLY",
+    "EPIC HERO",
+    "CHARACTER",
+    "MOUNTED",
+    "CHAOS"
+  ],
+  "type": [
+    "Character",
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "12\"",
+    "t": 4,
+    "sv": "6+",
+    "w": 6,
+    "ld": "8+",
+    "oc": 2
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 The Blue Scribes - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 75,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Sharp quills",
+        "a": "4",
+        "ws": "-",
+        "s": "2",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "anti-psyker-2"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "lone-operative"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "ptarixs-sorcerous-syphon-aura",
+    "xiratps-sorcerous-barrages-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

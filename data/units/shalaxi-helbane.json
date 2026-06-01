@@ -1,0 +1,125 @@
+{
+  "id": "shalaxi-helbane",
+  "name": "Shalaxi Helbane",
+  "keywords": [
+    "MONSTER",
+    "CHARACTER",
+    "EPIC HERO",
+    "PSYKER",
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "SHALAXI HELBANE"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "14\"",
+    "t": 10,
+    "sv": "3+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Shalaxi Helbane - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 340,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Lash of Slaanesh",
+        "range": "12",
+        "a": "6",
+        "bs": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "assault"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Pavane of Slaanesh - witchfire",
+        "range": "18",
+        "a": "D6",
+        "bs": "-",
+        "s": "9",
+        "ap": "-1",
+        "d": "D3",
+        "abilities": [
+          "devastating-wounds",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Pavane of Slaanesh - focused witchfire",
+        "range": "18",
+        "a": "D6",
+        "bs": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "D3",
+        "abilities": [
+          "hazardous",
+          "devastating-wounds",
+          "psychic",
+          "sustained-hits-3"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Snapping claws",
+        "a": "4",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [
+          "devastating-wounds",
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Soulpiercer",
+        "a": "6",
+        "ws": "-",
+        "s": "12",
+        "ap": "-3",
+        "d": "D6+2",
+        "abilities": [
+          "precision"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "greater-daemon-of-slaanesh-aura",
+    "no-prey-can-evade",
+    "monarch-of-the-hunt"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

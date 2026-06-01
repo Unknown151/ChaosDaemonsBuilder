@@ -1,0 +1,97 @@
+{
+  "id": "rotigus",
+  "name": "Rotigus",
+  "keywords": [
+    "MONSTER",
+    "CHAOS",
+    "DAEMON",
+    "ROTIGUS",
+    "CHARACTER",
+    "PSYKER",
+    "EPIC HERO",
+    "NURGLE"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "7\"",
+    "t": 12,
+    "sv": "5+",
+    "w": 22,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Rotigus - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 265,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Streams of brackish filth",
+        "range": "12",
+        "a": "2D6",
+        "bs": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Gnarlrod - strike",
+        "a": "7",
+        "ws": "-",
+        "s": "10",
+        "ap": "-3",
+        "d": "3",
+        "abilities": [
+          "lethal-hits",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Gnarlrod - sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "8",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike",
+    "feel-no-pain-6"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "greater-daemon-of-nurgle-aura",
+    "virulent-blessing-psychic",
+    "deluge-of-nurgle-aura"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,63 @@
+{
+  "id": "skulltaker",
+  "name": "Skulltaker",
+  "keywords": [
+    "EPIC HERO",
+    "SKULLTAKER",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "INFANTRY",
+    "CHARACTER"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": true,
+  "stats": {
+    "m": "8\"",
+    "t": 4,
+    "sv": "4+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Skulltaker - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 85,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "The Slayer Sword",
+        "a": "6",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [
+          "devastating-wounds",
+          "precision"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "lord-of-decapitations",
+    "skulls-for-khorne"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

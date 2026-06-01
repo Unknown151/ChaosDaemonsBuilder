@@ -1,0 +1,62 @@
+{
+  "id": "plaguebearers",
+  "name": "Plaguebearers",
+  "keywords": [
+    "CHAOS",
+    "DAEMON",
+    "NURGLE",
+    "PLAGUEBEARERS",
+    "SHADOW LEGION",
+    "INFANTRY",
+    "BATTLELINE"
+  ],
+  "type": [
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "5\"",
+    "t": 5,
+    "sv": "7+",
+    "w": 2,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Plagueridden; 9 Plaguebearers",
+  "models": 10,
+  "baseModels": 10,
+  "points": 110,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Plaguesword",
+        "a": "2",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "infected-outbreak"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

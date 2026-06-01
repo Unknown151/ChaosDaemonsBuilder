@@ -1,0 +1,62 @@
+{
+  "id": "epidemius",
+  "name": "Epidemius",
+  "keywords": [
+    "CHARACTER",
+    "INFANTRY",
+    "EPIC HERO",
+    "CHAOS",
+    "EPIDEMIUS",
+    "NURGLE",
+    "DAEMON"
+  ],
+  "type": [
+    "Character",
+    "Infantry"
+  ],
+  "isLeader": true,
+  "isEpicHero": true,
+  "stats": {
+    "m": "5\"",
+    "t": 5,
+    "sv": "6+",
+    "w": 8,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Epidemius - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 80,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Balesword and Nurgling attendants",
+        "a": "D6+3",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "blessed-by-the-plague-god",
+    "tally-of-pestilence"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

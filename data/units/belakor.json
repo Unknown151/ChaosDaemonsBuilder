@@ -1,0 +1,116 @@
+{
+  "id": "belakor",
+  "name": "Be'lakor",
+  "keywords": [
+    "FLY",
+    "SHADOW LEGION",
+    "PSYKER",
+    "CHAOS",
+    "EPIC HERO",
+    "DAEMON",
+    "BE'LAKOR",
+    "MONSTER",
+    "CHARACTER"
+  ],
+  "type": [
+    "Monster",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "12\"",
+    "t": 11,
+    "sv": "3+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Be'lakor - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 375,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Betraying Shades - witchfire",
+        "range": "18",
+        "a": "9",
+        "bs": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "ignores-cover",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Betraying Shades - focused witchfire",
+        "range": "18",
+        "a": "12",
+        "bs": "-",
+        "s": "6",
+        "ap": "-3",
+        "d": "1",
+        "abilities": [
+          "devastating-wounds",
+          "hazardous",
+          "ignores-cover",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "The Blade of Shadows - strike",
+        "a": "7",
+        "ws": "-",
+        "s": "14",
+        "ap": "-4",
+        "d": "D6+1",
+        "abilities": [
+          "devastating-wounds"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "The Blade of Shadows - sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "8",
+        "ap": "-3",
+        "d": "1",
+        "abilities": [
+          "sustained-hits-1"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike",
+    "stealth"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "the-dark-master-aura",
+    "shadow-form",
+    "supreme-commander",
+    "wreathed-in-shadows-aura-psychic",
+    "pall-of-despair-aura-psychic",
+    "shadow-lord-aura-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

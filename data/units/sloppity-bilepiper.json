@@ -1,0 +1,62 @@
+{
+  "id": "sloppity-bilepiper",
+  "name": "Sloppity Bilepiper",
+  "keywords": [
+    "CHARACTER",
+    "INFANTRY",
+    "SHADOW LEGION",
+    "SLOPPITY BILEPIPER",
+    "NURGLE",
+    "DAEMON",
+    "CHAOS"
+  ],
+  "type": [
+    "Character",
+    "Infantry"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "5\"",
+    "t": 5,
+    "sv": "7+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Sloppity Bilepiper",
+  "models": 1,
+  "baseModels": 1,
+  "points": 55,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Marotter",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "jolly-gutpipes",
+    "disease-of-mirth-aura"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

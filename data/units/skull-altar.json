@@ -1,0 +1,45 @@
+{
+  "id": "skull-altar",
+  "name": "Skull Altar",
+  "keywords": [
+    "KHORNE",
+    "SKULL ALTAR",
+    "FORTIFICATION",
+    "SHADOW LEGION",
+    "CHAOS",
+    "DAEMON"
+  ],
+  "type": [
+    "Fortification"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "-",
+    "t": 12,
+    "sv": "3+",
+    "w": 10,
+    "ld": "7+",
+    "oc": 0
+  },
+  "modelBreakdown": "1 Skull Altar",
+  "models": 1,
+  "baseModels": 1,
+  "points": 105,
+  "weapons": {
+    "ranged": [],
+    "melee": []
+  },
+  "coreAbilities": [
+    "infiltrators"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "shadow-of-khorne-aura",
+    "cover",
+    "fortification"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

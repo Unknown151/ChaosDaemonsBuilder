@@ -1,0 +1,45 @@
+{
+  "id": "feculent-gnarlmaw",
+  "name": "Feculent Gnarlmaw",
+  "keywords": [
+    "FORTIFICATION",
+    "SHADOW LEGION",
+    "CHAOS",
+    "DAEMON",
+    "FECULENT GNARLMAW",
+    "NURGLE"
+  ],
+  "type": [
+    "Fortification"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "-",
+    "t": 9,
+    "sv": "4+",
+    "w": 9,
+    "ld": "7+",
+    "oc": 0
+  },
+  "modelBreakdown": "1 Feculent Gnarlmaw",
+  "models": 1,
+  "baseModels": 1,
+  "points": 100,
+  "weapons": {
+    "ranged": [],
+    "melee": []
+  },
+  "coreAbilities": [
+    "infiltrators"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "shroud-of-flies-aura",
+    "diseased-cover",
+    "fortification"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

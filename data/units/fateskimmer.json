@@ -1,0 +1,110 @@
+{
+  "id": "fateskimmer",
+  "name": "Fateskimmer",
+  "keywords": [
+    "TZEENTCH",
+    "FATESKIMMER",
+    "SHADOW LEGION",
+    "PSYKER",
+    "MOUNTED",
+    "FLY",
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON"
+  ],
+  "type": [
+    "Mounted",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 7,
+    "sv": "6+",
+    "w": 9,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Fateskimmer",
+  "models": 1,
+  "baseModels": 1,
+  "points": 95,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Arcane Fireball - witchfire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "D3",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Arcane Fireball - focused witchfire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "D3",
+        "abilities": [
+          "devastating-wounds",
+          "hazardous",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Herald combat weapon",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Screamer bites",
+        "a": "6",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "anti-monster-4",
+          "anti-vehicle-4",
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "fateskimmer",
+    "rider-of-the-immaterial-winds"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

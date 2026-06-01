@@ -1,0 +1,99 @@
+{
+  "id": "kairos-fateweaver",
+  "name": "Kairos Fateweaver",
+  "keywords": [
+    "FLY",
+    "PSYKER",
+    "CHAOS",
+    "TZEENTCH",
+    "DAEMON",
+    "KAIROS FATEWEAVER",
+    "CHARACTER",
+    "EPIC HERO",
+    "MONSTER"
+  ],
+  "type": [
+    "Character",
+    "Monster"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "12\"",
+    "t": 10,
+    "sv": "6+",
+    "w": 20,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Kairos Fateweaver - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 295,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Infernal Gateway - witchfire",
+        "range": "24",
+        "a": "D6+3",
+        "bs": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "D3",
+        "abilities": [
+          "blast",
+          "indirect-fire",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Infernal Gateway - focused witchfire",
+        "range": "24",
+        "a": "D3+6",
+        "bs": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [
+          "blast",
+          "indirect-fire",
+          "hazardous",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Staff of Tomorrow",
+        "a": "5",
+        "ws": "-",
+        "s": "8",
+        "ap": "-2",
+        "d": "2D3",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "greater-daemon-of-tzeentch-aura",
+    "one-head-looks-forward",
+    "one-head-looks-back-aura"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

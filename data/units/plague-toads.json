@@ -1,0 +1,74 @@
+{
+  "id": "plague-toads",
+  "name": "Plague Toads",
+  "keywords": [
+    "CHAOS",
+    "BEAST",
+    "NURGLE",
+    "SHADOW LEGION",
+    "PLAGUE TOADS",
+    "DAEMON"
+  ],
+  "type": [
+    "Beast"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "7\"",
+    "t": 8,
+    "sv": "6+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 2
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "3 Plague Toads",
+  "models": 3,
+  "baseModels": 3,
+  "points": 0,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Grasping tongue",
+        "range": "9",
+        "a": "D3",
+        "bs": "-",
+        "s": "5",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ],
+    "melee": [
+      {
+        "name": "Yawning maw",
+        "a": "3",
+        "ws": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "2",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "pouncing-leap",
+    "grandfathers-blessing"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

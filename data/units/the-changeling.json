@@ -1,0 +1,98 @@
+{
+  "id": "the-changeling",
+  "name": "The Changeling",
+  "keywords": [
+    "INFANTRY",
+    "CHARACTER",
+    "EPIC HERO",
+    "PSYKER",
+    "DAEMON",
+    "TZEENTCH",
+    "THE CHANGELING",
+    "CHAOS"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "6\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 The Changeling - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 90,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Infernal Flames - witchfire",
+        "range": "12",
+        "a": "D6",
+        "bs": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Infernal Flames - focused witchfire",
+        "range": "12",
+        "a": "D6+3",
+        "bs": "-",
+        "s": "6",
+        "ap": "-1",
+        "d": "D3",
+        "abilities": [
+          "ignores-cover",
+          "hazardous",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "The Trickster's Staff",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "D3",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "lone-operative",
+    "stealth"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "formless-horror",
+    "mischief-and-confusion"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,76 @@
+{
+  "id": "flamers",
+  "name": "Flamers",
+  "keywords": [
+    "DAEMON",
+    "TZEENTCH",
+    "FLAMERS",
+    "INFANTRY",
+    "FLY",
+    "CHAOS",
+    "SHADOW LEGION"
+  ],
+  "type": [
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "9\"",
+    "t": 4,
+    "sv": "7+",
+    "w": 3,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Pyrocaster; 2-5 Flamers",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 65,
+  "pointsPerModel": 21,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Flickering Flames",
+        "range": "12",
+        "a": "D6",
+        "bs": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "psychic",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ],
+    "melee": [
+      {
+        "name": "Flamer mouths",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "bounding-leaps"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

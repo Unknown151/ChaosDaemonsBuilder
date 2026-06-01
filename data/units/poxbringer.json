@@ -1,0 +1,64 @@
+{
+  "id": "poxbringer",
+  "name": "Poxbringer",
+  "keywords": [
+    "CHAOS",
+    "INFANTRY",
+    "SHADOW LEGION",
+    "CHARACTER",
+    "POXBRINGER",
+    "NURGLE",
+    "PSYKER",
+    "DAEMON"
+  ],
+  "type": [
+    "Infantry",
+    "Character"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "5\"",
+    "t": 5,
+    "sv": "7+",
+    "w": 5,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "1 Poxbringer",
+  "models": 1,
+  "baseModels": 1,
+  "points": 55,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Foul balesword",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "feel-no-pain-5",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "poxbringer",
+    "feculent-despair-aura-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

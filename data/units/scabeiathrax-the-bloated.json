@@ -1,0 +1,93 @@
+{
+  "id": "scabeiathrax-the-bloated",
+  "name": "Scabeiathrax The Bloated",
+  "keywords": [
+    "SCABEIATHRAX THE BLOATED",
+    "NURGLE",
+    "DAEMON",
+    "CHAOS",
+    "PSYKER",
+    "EPIC HERO",
+    "CHARACTER",
+    "MONSTER"
+  ],
+  "type": [
+    "Character",
+    "Monster"
+  ],
+  "isLeader": false,
+  "isEpicHero": true,
+  "stats": {
+    "m": "7\"",
+    "t": 12,
+    "sv": "5+",
+    "w": 22,
+    "ld": "6+",
+    "oc": 5
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Scabeiathrax the Bloated - EPIC HERO",
+  "models": 1,
+  "baseModels": 1,
+  "points": 0,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Putrid vomit",
+        "range": "6",
+        "a": "D6+3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "1",
+        "abilities": [
+          "ignores-cover",
+          "torrent"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Blade of decay - Strike",
+        "a": "7",
+        "ws": "-",
+        "s": "9",
+        "ap": "-2",
+        "d": "D6",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Blade of decay - Sweep",
+        "a": "14",
+        "ws": "-",
+        "s": "7",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deadly-demise-d6",
+    "deep-strike",
+    "feel-no-pain-6"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "emissary-of-the-plague-god-aura",
+    "nurgles-rot-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

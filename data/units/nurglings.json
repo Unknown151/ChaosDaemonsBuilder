@@ -1,0 +1,62 @@
+{
+  "id": "nurglings",
+  "name": "Nurglings",
+  "keywords": [
+    "SHADOW LEGION",
+    "NURGLINGS",
+    "NURGLE",
+    "DAEMON",
+    "SWARM",
+    "BATTLELINE",
+    "CHAOS"
+  ],
+  "type": [
+    "Swarm"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "5\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 4,
+    "ld": "8+",
+    "oc": 0
+  },
+  "invulnerableSave": "5+",
+  "modelBreakdown": "3-6 Nurgling Swarms",
+  "models": 3,
+  "baseModels": 3,
+  "maxModels": 6,
+  "points": 40,
+  "pointsPerModel": 10,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Diseased claws and teeth",
+        "a": "4",
+        "ws": "-",
+        "s": "2",
+        "ap": "0",
+        "d": "1",
+        "abilities": [
+          "lethal-hits"
+        ],
+        "inheritedAbilities": [],
+        "count": 3
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "infiltrators"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "mischief-makers"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

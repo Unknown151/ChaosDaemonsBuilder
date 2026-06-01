@@ -1,0 +1,72 @@
+{
+  "id": "rendmaster-on-blood-throne",
+  "name": "Rendmaster On Blood Throne",
+  "keywords": [
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON",
+    "RENDMASTER ON BLOOD THRONE",
+    "KHORNE",
+    "SHADOW LEGION",
+    "MOUNTED"
+  ],
+  "type": [
+    "Character",
+    "Mounted"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "8\"",
+    "t": 9,
+    "sv": "4+",
+    "w": 9,
+    "ld": "7+",
+    "oc": 3
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Rendmaster on Blood Throne",
+  "models": 1,
+  "baseModels": 1,
+  "points": 165,
+  "weapons": {
+    "ranged": [],
+    "melee": [
+      {
+        "name": "Attendants' hellblades",
+        "a": "4",
+        "ws": "-",
+        "s": "5",
+        "ap": "-2",
+        "d": "2",
+        "abilities": [
+          "extra-attacks"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Blade of blood",
+        "a": "5",
+        "ws": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "3",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "blood-throne",
+    "champion-slayer"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}

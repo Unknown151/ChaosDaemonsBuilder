@@ -1,0 +1,158 @@
+{
+  "id": "pink-horrors",
+  "name": "Pink Horrors",
+  "keywords": [
+    "SHADOW LEGION",
+    "HORRORS",
+    "TZEENTCH",
+    "DAEMON",
+    "CHAOS",
+    "BATTLELINE",
+    "INFANTRY",
+    "BLUE",
+    "PINK",
+    "BRIMSTONE"
+  ],
+  "type": [
+    "Infantry"
+  ],
+  "isLeader": false,
+  "isEpicHero": false,
+  "stats": {
+    "m": "6\"",
+    "t": 3,
+    "sv": "7+",
+    "w": 1,
+    "ld": "7+",
+    "oc": 2
+  },
+  "modelProfiles": [
+    {
+      "name": "PINK HORROR",
+      "count": 1,
+      "stats": {
+        "m": "6\"",
+        "t": 3,
+        "sv": "7+",
+        "w": 1,
+        "ld": "7+",
+        "oc": 2
+      }
+    },
+    {
+      "name": "BLUE HORROR/BRIMSTONE HORROR",
+      "count": 1,
+      "stats": {
+        "m": "6\"",
+        "t": 3,
+        "sv": "7+",
+        "w": 1,
+        "ld": "8+",
+        "oc": 1
+      }
+    }
+  ],
+  "invulnerableSave": "4+",
+  "modelBreakdown": "10 Pink Horrors",
+  "models": 10,
+  "baseModels": 10,
+  "points": 140,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Coruscating Pink Flames",
+        "range": "18",
+        "a": "2",
+        "bs": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Coruscating Blue Flames",
+        "range": "18",
+        "a": "2",
+        "bs": "-",
+        "s": "3",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Coruscating Yellow Flames",
+        "range": "18",
+        "a": "2",
+        "bs": "-",
+        "s": "2",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "pistol",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ],
+    "melee": [
+      {
+        "name": "Pink claws",
+        "a": "1",
+        "ws": "-",
+        "s": "3",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Blue claws",
+        "a": "1",
+        "ws": "-",
+        "s": "3",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 10
+      },
+      {
+        "name": "Yellow claws",
+        "a": "2",
+        "ws": "-",
+        "s": "2",
+        "ap": "0",
+        "d": "1",
+        "abilities": [],
+        "inheritedAbilities": [],
+        "count": 10
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "split-2"
+  ],
+  "wargear": [
+    "daemonic-icon",
+    "instrument-of-chaos",
+    "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two"
+  ],
+  "canLead": [],
+  "canBeLeadBy": []
+}

@@ -1,0 +1,95 @@
+{
+  "id": "fluxmaster",
+  "name": "Fluxmaster",
+  "keywords": [
+    "TZEENTCH",
+    "FLUXMASTER",
+    "SHADOW LEGION",
+    "PSYKER",
+    "FLY",
+    "CHAOS",
+    "DAEMON",
+    "CHARACTER",
+    "MOUNTED"
+  ],
+  "type": [
+    "Character",
+    "Mounted"
+  ],
+  "isLeader": true,
+  "isEpicHero": false,
+  "stats": {
+    "m": "12\"",
+    "t": 4,
+    "sv": "6+",
+    "w": 4,
+    "ld": "7+",
+    "oc": 1
+  },
+  "invulnerableSave": "4+",
+  "modelBreakdown": "1 Fluxmaster",
+  "models": 1,
+  "baseModels": 1,
+  "points": 60,
+  "weapons": {
+    "ranged": [
+      {
+        "name": "Arcane Fireball - witchfire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "5",
+        "ap": "-1",
+        "d": "D3",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      },
+      {
+        "name": "Arcane Fireball - focused witchfire",
+        "range": "18",
+        "a": "3",
+        "bs": "-",
+        "s": "6",
+        "ap": "-2",
+        "d": "D3",
+        "abilities": [
+          "devastating-wounds",
+          "hazardous",
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ],
+    "melee": [
+      {
+        "name": "Herald combat weapon",
+        "a": "3",
+        "ws": "-",
+        "s": "4",
+        "ap": "-1",
+        "d": "1",
+        "abilities": [
+          "psychic"
+        ],
+        "inheritedAbilities": [],
+        "count": 1
+      }
+    ]
+  },
+  "coreAbilities": [
+    "deep-strike",
+    "leader"
+  ],
+  "abilities": [
+    "the-shadow-of-chaos",
+    "fluxmaster",
+    "altered-reality-psychic"
+  ],
+  "wargear": [],
+  "canLead": [],
+  "canBeLeadBy": []
+}
