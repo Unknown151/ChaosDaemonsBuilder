@@ -220,6 +220,24 @@ POINTS = parse_points()
 # Manual overrides: Tranceweaver's value was truncated in the source upload.
 POINTS['tranceweaver'] = [(1, 60)]
 
+# ── Authoritative per-unit overrides (data/overrides.json) ────────────────────
+# Hand-maintained corrections from official datasheets the user provides.
+# Deep-merged over the parsed unit; "verified": true clears the BS/WS estimate flag.
+_ov_path = os.path.join(ROOT, 'data', 'overrides.json')
+OVERRIDES = json.load(open(_ov_path, encoding='utf-8')) if os.path.exists(_ov_path) else {}
+
+def apply_override(unit):
+    ov = OVERRIDES.get(unit['id'])
+    if not ov:
+        return
+    for k, v in ov.items():
+        if k == 'verified':
+            if v:
+                unit.pop('skillEstimated', None)
+                unit['verified'] = True
+        else:
+            unit[k] = v
+
 # ── BS/WS skill values (ESTIMATED from 10th-ed knowledge) ─────────────────────
 # The Wahapedia export dropped the Skill column for every weapon (0/436 present).
 # Filled per unit and applied to all that unit's weapons: ws->melee, bs->ranged.
@@ -427,6 +445,7 @@ for b in blocks[1:]:
     unit['canBeLeadBy'] = []
 
     apply_skills(unit)   # fill estimated BS/WS (source export omitted them)
+    apply_override(unit) # authoritative corrections from official datasheets
     units[uid] = unit
 
 # ── Write unit files ─────────────────────────────────────────────────────────

@@ -1,0 +1,11 @@
+{
+  "bloodcrushers": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "BLOODCRUSHERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "wargearOptions": [
+      "1 Bloodcrusher that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
+      "1 Bloodcrusher that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+    ]
+  }
+}

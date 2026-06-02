@@ -2,12 +2,11 @@
   "id": "bloodcrushers",
   "name": "Bloodcrushers",
   "keywords": [
-    "SHADOW LEGION",
-    "BLOODCRUSHERS",
-    "KHORNE",
-    "DAEMON",
+    "MOUNTED",
     "CHAOS",
-    "MOUNTED"
+    "DAEMON",
+    "KHORNE",
+    "BLOODCRUSHERS"
   ],
   "type": [
     "Mounted"
@@ -81,5 +80,12 @@
   ],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Bloodcrusher that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
+    "1 Bloodcrusher that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+  ]
 }

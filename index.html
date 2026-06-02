@@ -93,6 +93,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .enh-box .enh-name{color:var(--accent-2);font-weight:700;cursor:pointer}
 .kw-line{margin-top:.6rem;padding-top:.5rem;border-top:1px solid var(--border);
   font-size:.68rem;color:var(--muted);letter-spacing:.03em}
+.kw-line b{color:var(--muted)}
+.wgo{font-size:.8rem;color:var(--muted);margin:.15rem 0}
 .sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
 /* weapon sections (banded, label-over-value stat grid) */
 .wpn-section{margin:.6rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -477,7 +479,8 @@ function renderSoloUnitCard(inst){
       ${renderWeapons(u, inst)}
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
       ${renderAbilities(u, enh)}
-      <div class="kw-line">${(u.keywords||[]).join(', ')}</div>
+      ${(u.wargearOptions||[]).length?`<div class="sec-label">Wargear Options</div>`+u.wargearOptions.map(o=>`<div class="wgo">• ${o}</div>`).join(''):''}
+      <div class="kw-line"><b>Keywords:</b> ${(u.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
 
