@@ -149,9 +149,44 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .btn.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border)}
 .limit-input{width:5.5rem;background:var(--panel-2);border:1px solid var(--border);color:var(--text);
   border-radius:5px;padding:.3rem .4rem}
-.config-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:.8rem;padding:.7rem .8rem}
-.config-card .cc-head{display:flex;align-items:center;gap:.6rem;margin-bottom:.3rem}
-.config-card .cc-head h3{margin:0;font-size:1rem;flex:1}
+.config-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.config-card .cc-head{display:flex;align-items:center;gap:.6rem;padding:.6rem .7rem;cursor:pointer}
+.config-card .cc-title{flex:1;min-width:0}
+.config-card .cc-head h3{margin:0;font-size:1.1rem;font-weight:800;color:var(--accent-2)}
+.cc-loadout{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.1rem}
+.pts-badge{border:1px solid var(--accent-2);color:var(--accent-2);font-weight:700;font-size:.8rem;
+  border-radius:6px;padding:.2rem .5rem;white-space:nowrap}
+.cc-kebab,.cc-chevron{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
+  width:34px;height:34px;border-radius:6px;cursor:pointer;font-size:1rem;line-height:1;flex:none}
+.cc-chevron{transition:transform .15s}
+.config-card.collapsed .cc-chevron{transform:rotate(180deg)}
+.config-card.collapsed .cc-body{display:none}
+.cc-body{padding:0 .7rem .7rem}
+.cc-menu{position:relative}
+.cc-menu-pop{position:absolute;right:0;top:38px;z-index:10;background:var(--panel);border:1px solid var(--border);
+  border-radius:8px;min-width:160px;box-shadow:0 8px 24px rgba(0,0,0,.4);overflow:hidden}
+.cc-menu-pop button{display:block;width:100%;text-align:left;background:none;border:none;color:var(--text);
+  padding:.55rem .8rem;cursor:pointer;font-size:.85rem}
+.cc-menu-pop button:hover{background:var(--panel-2)}
+.cc-menu-pop button.danger{color:var(--accent)}
+
+.models-row{display:flex;align-items:center;gap:.6rem;margin:.5rem 0 .2rem}
+.models-row .config-label{margin:0}
+.stepper.sm button{width:26px;height:26px;font-size:1rem}
+.stepper.sm .val{min-width:1.8rem}
+
+.wgrp-label{font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin:.7rem 0 .25rem}
+.wrow{display:flex;align-items:center;gap:.5rem;padding:.35rem 0;border-top:1px solid var(--border)}
+.wrow:first-of-type{border-top:none}
+.wchk{flex:none;display:flex;align-items:center}
+.wchk input{width:18px;height:18px;accent-color:var(--accent-2);cursor:pointer}
+.wrow-name{flex:1;min-width:0;color:var(--accent-2);font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.wrow.off .wrow-name{color:var(--muted);text-decoration:line-through}
+.wrow-ctrl{display:flex;align-items:center;gap:.4rem;flex:none}
+.wexpand{background:var(--panel-2);border:1px solid var(--border);color:var(--muted);width:30px;height:30px;
+  border-radius:6px;cursor:pointer;transition:transform .15s}
+.wexpand.open{transform:rotate(180deg);color:var(--accent-2)}
+.wdetail{padding:.4rem .2rem .5rem 2rem;border-top:1px dashed var(--border)}
 .picker-search{width:100%;padding:.5rem;margin-bottom:.6rem;background:var(--panel-2);
   border:1px solid var(--border);color:var(--text);border-radius:6px}
 </style>
@@ -206,6 +241,7 @@ let pointsLimit = 0;
 let stratagemState = {};
 let characterState = {}, bodyguardState = {};
 let expandedCards = {}, configExpandedCards = {};
+let weaponDetailOpen = {}, menuOpenId = null;
 
 /* ---- Constants (built at load) ---- */
 let ALL_UNIT_IDS = [];
@@ -501,40 +537,134 @@ function renderConfigurationTab(){
 
 function renderArmyInstance(inst){
   const u = units[inst.unitId]; if(!u) return '';
+  const collapsed = configExpandedCards[inst.instanceId] === false ? 'collapsed' : '';
   let body = '';
 
   // model count adjuster
   if(u.maxModels && u.maxModels > u.baseModels){
-    body += `<div class="config-label">Models</div>
-      <div class="stepper">
-        <button onclick="changeModelCount('${inst.instanceId}',-1)" ${inst.modelCount<=u.baseModels?'disabled':''}>−</button>
+    body += `<div class="models-row"><span class="config-label">Models:</span>
+      <div class="stepper sm">
+        <button onclick="event.stopPropagation();changeModelCount('${inst.instanceId}',-1)" ${inst.modelCount<=u.baseModels?'disabled':''}>−</button>
         <span class="val">${inst.modelCount}</span>
-        <button onclick="changeModelCount('${inst.instanceId}',1)" ${inst.modelCount>=u.maxModels?'disabled':''}>+</button>
-        <span class="config-label" style="margin:0">/ ${u.maxModels} max</span>
-      </div>`;
+        <button onclick="event.stopPropagation();changeModelCount('${inst.instanceId}',1)" ${inst.modelCount>=u.maxModels?'disabled':''}>+</button>
+      </div></div>`;
   }
+
+  // weapon loadout (equip toggle + count + expandable profile)
+  body += renderLoadout(inst, u);
 
   // enhancement selector — eligible non-Epic-Hero characters/leaders
   if(isEnhancementEligible(u)) body += renderInstanceEnhancementSelector(inst, inst.unitId);
 
-  // optional wargear (checkbox up to max)
+  // wargear choices
   if((u.wargearChoices||[]).length) body += renderWargearChoices(inst, u);
-  // exclusive wargear (radio)
   if((u.wargearExclusiveChoices||[]).length) body += renderWargearExclusive(inst, u);
-  // display-only wargear options text
   if((u.wargearOptions||[]).length)
     body += `<div class="config-label">Options</div>` +
       u.wargearOptions.map(o=>`<div style="font-size:.82rem;color:var(--muted)">${o}</div>`).join('');
 
-  return `<div class="config-card">
-    <div class="cc-head">
-      <h3>${u.name}</h3>
-      <span class="pts">${calculateInstancePoints(inst)} pts</span>
-      <button class="icon-btn" onclick="removeInstance('${inst.instanceId}')" title="Remove unit">✕</button>
+  const menu = menuOpenId===inst.instanceId ? `<div class="cc-menu-pop">
+      <button class="danger" onclick="event.stopPropagation();removeInstance('${inst.instanceId}')">Remove unit</button>
+    </div>` : '';
+
+  return `<div class="config-card ${collapsed}">
+    <div class="cc-head" onclick="toggleConfigCard('${inst.instanceId}')">
+      <div class="cc-title">
+        <h3>${u.name}</h3>
+        <div class="cc-loadout">${loadoutSummary(inst, u)}</div>
+      </div>
+      <span class="pts-badge">${calculateInstancePoints(inst)} pts</span>
+      <div class="cc-menu"><button class="cc-kebab" onclick="event.stopPropagation();toggleInstanceMenu('${inst.instanceId}')" title="Options">⋮</button>${menu}</div>
+      <button class="cc-chevron" onclick="event.stopPropagation();toggleConfigCard('${inst.instanceId}')">▾</button>
     </div>
-    ${body || '<div class="config-label" style="margin:0">No options</div>'}
+    <div class="cc-body">${body}</div>
   </div>`;
 }
+
+/* ---- weapon loadout ---- */
+function weaponDefaultCount(u, inst, w){
+  return (u.baseModels && w.count === u.baseModels) ? inst.modelCount : (w.count || 1);
+}
+function weaponState(inst, u, w){
+  const st = inst.weapons[w.name] || {};
+  return {
+    equipped: st.equipped !== false,
+    count: (st.count != null) ? st.count : weaponDefaultCount(u, inst, w),
+  };
+}
+function loadoutSummary(inst, u){
+  const parts = [];
+  ['ranged','melee'].forEach(cat=>(u.weapons[cat]||[]).forEach(w=>{
+    const s = weaponState(inst, u, w);
+    if(s.equipped) parts.push(`${s.count}× ${w.name}`);
+  }));
+  return parts.join(', ') || '—';
+}
+function renderLoadout(inst, u){
+  let out = '';
+  for(const [cat,label] of [['ranged','Ranged Weapons'],['melee','Melee Weapons']]){
+    const list = (u.weapons&&u.weapons[cat])||[]; if(!list.length) continue;
+    out += `<div class="wgrp-label">${label}</div>`;
+    list.forEach(w=>{
+      const s = weaponState(inst, u, w);
+      const key = inst.instanceId+'|'+w.name;
+      const open = weaponDetailOpen[key];
+      out += `<div class="wrow ${s.equipped?'':'off'}">
+        <label class="wchk"><input type="checkbox" ${s.equipped?'checked':''}
+          onchange="toggleWeaponEquip('${inst.instanceId}','${esc(w.name)}')"></label>
+        <span class="wrow-name" title="${w.name}">${w.name}</span>
+        <div class="wrow-ctrl">
+          <div class="stepper sm">
+            <button onclick="changeWeaponCount('${inst.instanceId}','${esc(w.name)}',-1)" ${s.count<=0?'disabled':''}>−</button>
+            <span class="val">${s.count}</span>
+            <button onclick="changeWeaponCount('${inst.instanceId}','${esc(w.name)}',1)">+</button>
+          </div>
+          <button class="wexpand ${open?'open':''}" onclick="toggleWeaponDetail('${inst.instanceId}','${esc(w.name)}')" title="Weapon profile">▾</button>
+        </div>
+      </div>`;
+      if(open) out += `<div class="wdetail">${weaponDetailHtml(cat, w)}</div>`;
+    });
+  }
+  return out;
+}
+function weaponDetailHtml(cat, w){
+  const cols = cat==='ranged'
+    ? [['RNG',w.range||'-'],['A',w.a],['BS',w.bs||'-'],['S',w.s],['AP',w.ap],['D',w.d]]
+    : [['A',w.a],['WS',w.ws||'-'],['S',w.s],['AP',w.ap],['D',w.d]];
+  return `<div class="wpn-stats">` +
+    cols.map(([k,v])=>`<div class="ws"><b>${k}</b><span>${v}</span></div>`).join('') +
+    `</div>` + (w.abilities&&w.abilities.length ? renderWeaponBadges(w) : '');
+}
+function esc(s){ return String(s).replace(/'/g,"\\'"); }
+
+/* ---- loadout mutations ---- */
+function ensureWeapon(inst, u, name){
+  if(!inst.weapons[name]){
+    const w = [].concat(u.weapons.ranged||[], u.weapons.melee||[]).find(x=>x.name===name);
+    inst.weapons[name] = { equipped:true, count: w?weaponDefaultCount(u,inst,w):1 };
+  }
+  return inst.weapons[name];
+}
+function toggleWeaponEquip(id, name){
+  const inst = armyList.find(i=>i.instanceId===id); const u = units[inst.unitId];
+  const st = ensureWeapon(inst, u, name); st.equipped = !st.equipped;
+  saveState(); renderApp();
+}
+function changeWeaponCount(id, name, delta){
+  const inst = armyList.find(i=>i.instanceId===id); const u = units[inst.unitId];
+  const st = ensureWeapon(inst, u, name);
+  st.count = Math.max(0, st.count + delta);
+  saveState(); renderApp();
+}
+function toggleWeaponDetail(id, name){
+  const key = id+'|'+name; weaponDetailOpen[key] = !weaponDetailOpen[key];
+  renderConfigurationTab();
+}
+function toggleConfigCard(id){
+  configExpandedCards[id] = configExpandedCards[id] === false ? true : false;
+  menuOpenId = null; renderConfigurationTab();
+}
+function toggleInstanceMenu(id){ menuOpenId = menuOpenId===id ? null : id; renderConfigurationTab(); }
 
 function isEnhancementEligible(u){
   if(u.isEpicHero) return false;
@@ -695,6 +825,7 @@ document.getElementById('theme-btn').onclick=()=>{
   localStorage.setItem(LS+'theme',cur);
 };
 document.getElementById('modal-overlay').onclick=e=>{ if(e.target.id==='modal-overlay') closeModal(); };
+document.addEventListener('click',()=>{ if(menuOpenId){ menuOpenId=null; renderConfigurationTab(); } });
 
 loadData().catch(e=>{ document.getElementById('loading').textContent='Failed to load data: '+e.message; console.error(e); });
 </script>
