@@ -76,6 +76,19 @@ for i in range(1, len(parts) - 1, 2):
     if restr:
         enh[eid]['restriction'] = restr
 
+# ── short abbreviations (shown on compact chips) ──────────────────────────────
+ABBR = {  # curated for the focus detachment
+    'slaughterthirst': 'Slt', 'furys-cage': 'FuC',
+    'brazenmaw': 'Brz', 'gateway-unto-damnation': 'GuD',
+}
+SMALL = {'of', 'the', 'unto', 'and', 'a', 'to'}
+def auto_abbr(name):
+    words = [w for w in re.split(r"[\s,]+", name) if w and w.lower() not in SMALL]
+    initials = ''.join(w[0] for w in words).upper()
+    return initials[:4] if len(initials) >= 2 else name[:3].upper()
+for eid, e in enh.items():
+    e['abbr'] = ABBR.get(eid) or auto_abbr(e['name'])
+
 with open(os.path.join(ROOT, 'data', 'enhancements.json'), 'w', encoding='utf-8') as f:
     json.dump(dict(sorted(enh.items())), f, ensure_ascii=False, indent=2)
 
