@@ -327,10 +327,13 @@ for b in blocks[1:]:
     if uid in seen:      # skip the duplicate Karanak (keep first/fuller one)
         continue
     seen.add(uid)
-    # dedup keywords preserving order, uppercase for display per schema
+    # dedup keywords preserving order, uppercase for display per schema.
+    # Drop 'SHADOW LEGION' — a detachment name wrongly injected by the export.
     kw_seen = set(); keywords = []
     for k in raw_kws:
         ku = k.upper()
+        if ku == 'SHADOW LEGION':
+            continue
         if ku not in kw_seen:
             kw_seen.add(ku); keywords.append(ku)
 
