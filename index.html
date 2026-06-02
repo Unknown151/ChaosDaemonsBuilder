@@ -539,12 +539,14 @@ function renderDefence(u){
 function renderWeapons(u, inst){
   let out = '';
   for(const [cat,label] of [['ranged','Ranged Weapons'],['melee','Melee Weapons']]){
-    const list = (u.weapons&&u.weapons[cat])||[]; if(!list.length) continue;
+    let list = (u.weapons&&u.weapons[cat])||[];
+    // honour the instance loadout — only show equipped weapons
+    if(inst) list = list.filter(w => weaponState(inst, u, w).equipped);
+    if(!list.length) continue;
     out += `<div class="wpn-section"><div class="wpn-header ${cat}">${label}</div>`;
     out += list.map(w=>{
-      // weapons carried by "all models" scale with the instance's model count
-      let c = w.count;
-      if(inst && u.baseModels && w.count === u.baseModels) c = inst.modelCount;
+      const c = inst ? weaponState(inst, u, w).count
+                     : (u.baseModels && w.count === u.baseModels ? u.models : w.count);
       const cnt = (c && c > 1) ? ` <small>×${c}</small>` : '';
       const model = w.model ? ` <small>(${w.model})</small>` : '';
       const torrent = (w.abilities||[]).includes('torrent');
