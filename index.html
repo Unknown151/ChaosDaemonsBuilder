@@ -141,20 +141,15 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .stepper button:disabled{background:var(--border);cursor:default;opacity:.5}
 .stepper .val{min-width:2.4rem;text-align:center;font-weight:600}
 .enh-chips{display:flex;flex-wrap:wrap;gap:.4rem}
-.enh-chip{display:inline-flex;align-items:center;gap:.4rem;background:var(--panel-2);
-  border:1px solid var(--border);border-radius:999px;padding:.25rem .65rem;cursor:pointer;color:var(--text)}
+.enh-chip{display:inline-flex;align-items:center;gap:.5rem;background:var(--panel-2);
+  border:1px solid var(--border);border-radius:6px;padding:.3rem .6rem;cursor:pointer;color:var(--text);text-align:left}
 .enh-chip:hover{border-color:var(--accent-2)}
-.enh-chip.active{background:var(--accent-2);border-color:var(--accent-2);color:#1a120a}
-.enh-chip.active .ec-pts{color:#1a120a;opacity:.8}
-.enh-chip.disabled{opacity:.4;cursor:not-allowed}
-.ec-abbr{font-weight:700;font-size:.82rem;letter-spacing:.02em}
-.ec-pts{font-size:.72rem;color:var(--muted)}
-.enh-detail{margin-top:.5rem;background:var(--panel-2);border:1px solid var(--accent-2);
-  border-radius:8px;padding:.55rem .7rem}
-.enh-detail .ed-head{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline}
-.enh-detail .ed-name{font-weight:700;color:var(--accent-2)}
-.enh-detail .ed-desc{font-size:.82rem;color:var(--text);margin-top:.3rem}
-.eo-restr{font-size:.72rem;color:var(--muted);font-style:italic;margin-top:.15rem}
+.enh-chip.active{border-color:var(--accent-2);background:rgba(212,161,58,.14)}
+.enh-chip.active .ec-short{color:var(--accent-2)}
+.ec-short{font-size:.82rem}
+.ec-pts{font-size:.72rem;color:var(--accent-2);font-weight:700;white-space:nowrap}
+.ed-desc{font-size:.86rem;color:var(--text);margin-top:.3rem}
+.eo-restr{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:.15rem}
 .wargear-exclusive-option,.wargear-choice{display:block;padding:.3rem .5rem;border:1px solid var(--border);
   border-radius:5px;margin-bottom:.3rem;cursor:pointer;font-size:.85rem}
 .wargear-exclusive-option.selected,.wargear-choice.checked{border-color:var(--accent-2);background:rgba(212,161,58,.1)}
@@ -760,22 +755,30 @@ function renderInstanceEnhancementSelector(inst, characterId){
   let html = `<div class="config-label">Enhancement</div><div class="enh-chips">`;
   options.forEach(([id,e])=>{
     const active = inst.enhancementId===id ? 'active' : '';
-    const disabled = (atMax && inst.enhancementId!==id) ? 'disabled' : '';
-    const click = disabled ? '' : `onclick="setEnhancement('${inst.instanceId}','${id}')"`;
-    html += `<button class="enh-chip ${active} ${disabled}" ${click} title="${e.name}">
-      <span class="ec-abbr">${e.abbr}</span><span class="ec-pts">${e.points}</span></button>`;
+    html += `<button class="enh-chip ${active}" onclick="openEnhancement('${inst.instanceId}','${id}')" title="${e.name}">
+      <span class="ec-short">${e.short}</span><span class="ec-pts">${e.points} pts</span></button>`;
   });
   html += `</div>`;
-  // expanded description of the selected enhancement
-  const sel = inst.enhancementId ? enhancements[inst.enhancementId] : null;
-  if(sel){
-    html += `<div class="enh-detail">
-      <div class="ed-head"><span class="ed-name">${sel.name}</span><span class="pts">${sel.points} pts</span></div>
-      ${sel.restriction?`<div class="eo-restr">${sel.restriction}</div>`:''}
-      <div class="ed-desc">${sel.description}</div></div>`;
-  }
   if(atMax && !inst.enhancementId) html += `<div class="config-label" style="color:var(--accent)">Max 3 enhancements per army reached.</div>`;
   return html;
+}
+
+/* enhancement popup — full description + equip/remove */
+function openEnhancement(instanceId, enhId){
+  const inst = armyList.find(i=>i.instanceId===instanceId);
+  const e = enhancements[enhId]; if(!inst || !e) return;
+  const equipped = inst.enhancementId === enhId;
+  const atMax = getUsedEnhancements(instanceId).length >= 3 && !equipped;
+  const btn = atMax
+    ? `<button class="btn ghost" disabled>Max 3 enhancements reached</button>`
+    : `<button class="btn ${equipped?'ghost':''}" onclick="setEnhancement('${instanceId}','${enhId}');openEnhancement('${instanceId}','${enhId}')">${equipped?'✓ Equipped — remove':'Equip'}</button>`;
+  showModalRaw(
+    `${e.name} <span style="color:var(--accent-2);font-size:.85rem">${e.points} pts</span>`,
+    e.type,
+    `${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
+     <div class="ed-desc">${e.description}</div>
+     <div style="margin-top:1rem">${btn}</div>`
+  );
 }
 function stripTags(s){ return (s||'').replace(/<[^>]+>/g,''); }
 
