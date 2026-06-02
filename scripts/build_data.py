@@ -71,6 +71,9 @@ FACTION_RULES = {
 
 abilities = {}   # id -> {name,type,description}
 
+# Abilities to drop from every unit (redundant: army rule / universal keyword).
+EXCLUDE_ABILITY_NAMES = {'the shadow of chaos', 'daemonic allegiance'}
+
 def base_key(disp):
     """Strip trailing parameters to find the base rule keyword."""
     d = re.sub(r'\b(d?\d+\+?|d\d+(\+\d+)?|\d+)\b.*$', '', disp.lower()).strip()
@@ -79,7 +82,7 @@ def base_key(disp):
 
 def add_ability(disp, kind='Weapon Ability'):
     disp = norm(disp).strip()
-    if not disp:
+    if not disp or disp.lower() in EXCLUDE_ABILITY_NAMES:
         return None
     aid = slug(disp)
     if aid in abilities:
@@ -103,6 +106,8 @@ def add_ability(disp, kind='Weapon Ability'):
 
 def add_named_ability(name, desc, kind='Ability'):
     name = norm(name).strip()
+    if name.lower() in EXCLUDE_ABILITY_NAMES:
+        return None
     aid = slug(name)
     desc = norm(desc).strip()
     if aid in abilities:
@@ -385,7 +390,7 @@ for b in blocks[1:]:
                 core_ids.append(aid)
                 if c.lower().startswith('leader'):
                     unit['isLeader'] = True
-    unit['coreAbilities'] = core_ids
+    unit['coreAbilities'] = [a for a in core_ids if a]
 
     # faction
     fac_ids = []
@@ -414,8 +419,8 @@ for b in blocks[1:]:
         aid = add_named_ability(nm, desc, 'Wargear' if in_wargear else 'Ability')
         (wargear_ids if in_wargear else unit_ab_ids).append(aid)
 
-    unit['abilities'] = fac_ids + unit_ab_ids
-    unit['wargear'] = wargear_ids
+    unit['abilities'] = [a for a in fac_ids + unit_ab_ids if a]
+    unit['wargear'] = [a for a in wargear_ids if a]
 
     # leader/attachment placeholders (Stage 5 refinement)
     unit['canLead'] = []

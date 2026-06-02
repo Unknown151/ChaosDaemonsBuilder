@@ -154,16 +154,6 @@
     "type": "Ability",
     "description": "If this model has the TZEENTCH keyword, add 3 to the Attacks characteristic of this model's infernal cannon."
   },
-  "daemonic-allegiance": {
-    "name": "DAEMONIC ALLEGIANCE",
-    "type": "Ability",
-    "description": "When you select this model to include in your army, you must select one of the following keywords for it to gain:"
-  },
-  "daemonic-allegiance-2": {
-    "name": "DAEMONIC ALLEGIANCE",
-    "type": "Ability",
-    "description": "When you select this model to include in your army, you must select one of the keywords below. Until the end of the battle, this model has that keyword and the additional wargear stated for that keyword below:"
-  },
   "daemonic-icon": {
     "name": "Daemonic Icon",
     "type": "Wargear",
@@ -688,11 +678,6 @@
     "name": "The Eternal Dance",
     "type": "Ability",
     "description": "At the start of the Fight phase, select one enemy unit within 6\" of this model. Until the end of the phase:"
-  },
-  "the-shadow-of-chaos": {
-    "name": "The Shadow of Chaos",
-    "type": "Faction Rule",
-    "description": "See the army rule <strong>The Shadow of Chaos</strong> — Daemonic Manifestation and Daemonic Terror."
   },
   "tormentbringer-aura": {
     "name": "Tormentbringer (Aura)",
