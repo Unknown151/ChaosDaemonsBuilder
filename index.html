@@ -199,6 +199,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .pick-row:hover{background:var(--panel-2)}
 .pick-name{font-size:.95rem}
 .pick-pts{color:var(--accent-2);font-weight:700;font-size:.85rem;white-space:nowrap}
+.pick-divider{display:flex;align-items:center;gap:.6rem;margin:1.3rem 0 .2rem;
+  font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pick-divider::before,.pick-divider::after{content:"";flex:1;height:1px;background:var(--accent)}
 </style>
 </head>
 <body>
@@ -811,14 +814,27 @@ function openAddUnit(){
 }
 function pickerGroupsHtml(q){
   q = q.toLowerCase();
-  let html = '';
-  for(const [grp,ids] of Object.entries(UNIT_GROUPS)){
-    const matches = ids.filter(id=>units[id].name.toLowerCase().includes(q));
-    if(!matches.length) continue;
-    html += `<div class="pick-cat">${grp}</div>`;
-    html += matches.map(id=>`<div class="pick-row" onclick="addInstance('${id}');closeModal()">
+  const row = id=>`<div class="pick-row" onclick="addInstance('${id}');closeModal()">
       <span class="pick-name">${units[id].name}</span>
-      <span class="pick-pts">${units[id].points} pts</span></div>`).join('');
+      <span class="pick-pts">${units[id].points} pts</span></div>`;
+  const groupsFor = keep => {
+    let html = '';
+    for(const [grp,ids] of Object.entries(UNIT_GROUPS)){
+      const matches = ids.filter(id=>keep(id) && units[id].name.toLowerCase().includes(q));
+      if(!matches.length) continue;
+      html += `<div class="pick-cat">${grp}</div>` + matches.map(row).join('');
+    }
+    return html;
+  };
+  const god = (detachments[selectedDetachment]||{}).god;
+  let html;
+  if(god){
+    const inGod = id => units[id].keywords.map(x=>x.toUpperCase()).includes(god);
+    html = groupsFor(inGod);
+    const other = groupsFor(id=>!inGod(id));
+    if(other) html += `<div class="pick-divider">Other Daemons</div>` + other;
+  } else {
+    html = groupsFor(()=>true);
   }
   return html || `<div class="empty">No matches</div>`;
 }
