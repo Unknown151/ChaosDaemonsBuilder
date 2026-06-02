@@ -38,7 +38,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
   padding:.35rem .7rem;border-radius:999px;cursor:pointer;font-size:.85rem}
 .det-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .det-rule{font-size:.85rem;color:var(--muted)}
-.det-rule strong{color:var(--accent-2)}
+.rule-part{margin-top:.45rem}
+.rule-part:first-child{margin-top:0}
+.rule-part strong{color:var(--accent-2)}
 
 /* points */
 .points-bar{display:flex;align-items:center;gap:.8rem;background:var(--panel);
@@ -384,12 +386,18 @@ function renderDetachmentSelector(){
   const d = detachments[selectedDetachment];
   const bar = document.getElementById('det-bar');
   bar.innerHTML =
+    `<div class="config-label">Detachment</div>` +
     `<div class="det-grid">` +
     Object.values(detachments).map(x =>
       `<button class="det-btn ${x.id===selectedDetachment?'active':''}" onclick="selectDetachment('${x.id}')">${x.name}</button>`
     ).join('') + `</div>` +
-    `<div class="det-rule"><strong>${d.ruleName}:</strong> ${d.ruleDescription}` +
-    ` <span class="wab" onclick="showModal('${d.ruleId}')">Details</span></div>`;
+    `<div class="det-rule">${renderRuleParts(d)}</div>`;
+}
+
+function renderRuleParts(d){
+  const parts = d.ruleParts && d.ruleParts.length ? d.ruleParts
+    : [{name:d.ruleName, text:d.ruleDescription}];
+  return parts.map(p=>`<div class="rule-part"><strong>${p.name}:</strong> ${p.text}</div>`).join('');
 }
 
 /* ---- Points bar ---- */
@@ -812,7 +820,7 @@ function filterPicker(q){ document.getElementById('picker-groups').innerHTML = p
 function showModal(id){
   let entry = abilities[id] || enhancements[id];
   if(!entry){ const d = Object.values(detachments).find(x=>x.ruleId===id);
-    if(d) entry = { name:d.ruleName, type:d.ruleType, description:d.ruleDescription }; }
+    if(d) entry = { name:d.name, type:'Detachment Rule', description:renderRuleParts(d) }; }
   if(!entry) return;
   showModalRaw(entry.name, entry.type||'', entry.description||'');
 }

@@ -23,19 +23,23 @@ GOD = {
     'shadow-legion': None,
 }
 
-# Rule text the Wahapedia export dropped — appended to the detachment rule.
-RULE_ADDENDA = {
-    'blood-legion': (
-        'In addition, each time an enemy unit (excluding AIRCRAFT) ends a Normal '
-        'or Advance move within 6" of one or more LEGIONES DAEMONICA KHORNE units '
-        'from your army, one of those LEGIONES DAEMONICA KHORNE units can make a '
-        'Surge move towards that enemy unit. To do so, roll one D6: models in your '
-        'unit move a number of inches up to this result, but your unit must end '
-        'that move as close as possible to that enemy unit. When doing so, those '
-        'models can be moved within Engagement Range of that enemy unit. A unit '
-        'cannot make a Surge move while it is within Engagement Range of one or '
-        'more enemy units.'
-    ),
+# Rule text the Wahapedia export dropped, plus named sub-rule splits.
+SURGE_TEXT = (
+    'Each time an enemy unit (excluding AIRCRAFT) ends a Normal or Advance move '
+    'within 6" of one or more LEGIONES DAEMONICA KHORNE units from your army, one '
+    'of those LEGIONES DAEMONICA KHORNE units can make a Surge move towards that '
+    'enemy unit. To do so, roll one D6: models in your unit move a number of inches '
+    'up to this result, but your unit must end that move as close as possible to '
+    'that enemy unit. When doing so, those models can be moved within Engagement '
+    'Range of that enemy unit. A unit cannot make a Surge move while it is within '
+    'Engagement Range of one or more enemy units.'
+)
+# detachment id -> function(parsed_rule_text) -> list of {name, text}
+RULE_PARTS = {
+    'blood-legion': lambda parsed: [
+        {'name': 'Blood Tainted', 'text': parsed},
+        {'name': 'Murdercall', 'text': SURGE_TEXT},
+    ],
 }
 
 text = norm(open(os.path.join(ROOT, 'chaos-daemons-reference.md'), encoding='utf-8').read())
@@ -49,8 +53,8 @@ for b in blocks[1:]:
     rule_m = re.search(r'\*\*Detachment Rule:\s*([^*]+)\*\*\s*(.*?)(?=\n\*\*Stratagems:\*\*|\Z)', b, re.S)
     rule_name = rule_m.group(1).strip() if rule_m else ''
     rule_text = re.sub(r'\s*\n\s*', ' ', rule_m.group(2).strip()) if rule_m else ''
-    if did in RULE_ADDENDA:
-        rule_text = (rule_text + ' ' + RULE_ADDENDA[did]).strip()
+    rule_parts = RULE_PARTS[did](rule_text) if did in RULE_PARTS \
+        else [{'name': rule_name, 'text': rule_text}]
 
     strat_part = b.split('**Stratagems:**', 1)[1] if '**Stratagems:**' in b else ''
     strat_blocks = re.split(r'\n\*\*([A-Z][^*]+?)\*\*\s*\((\d+CP)\)\s*[-–—]\s*(.*)', strat_part)
@@ -82,7 +86,8 @@ for b in blocks[1:]:
         'ruleId': slug(rule_name) or did + '-rule',
         'ruleName': rule_name,
         'ruleType': f'Detachment Rule - {rule_name}',
-        'ruleDescription': rule_text,
+        'ruleParts': rule_parts,
+        'ruleDescription': ' '.join(f"{p['name']}: {p['text']}" for p in rule_parts),
         'stratagems': stratagems,
     }
 
