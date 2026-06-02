@@ -927,7 +927,12 @@ function showModalRaw(title, sub, body){
 function closeModal(){ document.getElementById('modal-overlay').classList.remove('open'); }
 
 /* ===================== UI wiring ===================== */
-function toggleCard(id){ expandedCards[id] = !expandedCards[id]; renderUnits(); }
+function toggleCard(id){
+  const willOpen = !expandedCards[id];
+  expandedCards = {};              // accordion: collapse all others
+  if(willOpen) expandedCards[id] = true;
+  renderUnits();
+}
 document.querySelectorAll('.tab-btn[data-tab]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tab-btn[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
   document.getElementById('units-tab').classList.toggle('active', b.dataset.tab==='units');
