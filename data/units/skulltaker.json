@@ -2,13 +2,13 @@
   "id": "skulltaker",
   "name": "Skulltaker",
   "keywords": [
+    "INFANTRY",
+    "CHARACTER",
     "EPIC HERO",
-    "SKULLTAKER",
     "CHAOS",
     "DAEMON",
     "KHORNE",
-    "INFANTRY",
-    "CHARACTER"
+    "SKULLTAKER"
   ],
   "type": [
     "Infantry",
@@ -62,5 +62,19 @@
     "bloodletters"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, melee weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+    "grantsAbilities": [
+      {
+        "id": "devastating-wounds",
+        "display": "Devastating Wounds",
+        "abilityAppliesTo": "melee"
+      }
+    ],
+    "appliesTo": "melee"
+  }
 }
