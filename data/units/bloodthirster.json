@@ -2,13 +2,13 @@
   "id": "bloodthirster",
   "name": "Bloodthirster",
   "keywords": [
-    "BLOODTHIRSTER",
-    "DAEMON",
-    "CHAOS",
-    "FLY",
-    "CHARACTER",
     "MONSTER",
-    "KHORNE"
+    "CHARACTER",
+    "FLY",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "BLOODTHIRSTER"
   ],
   "type": [
     "Character",
@@ -133,5 +133,13 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-6",
+  "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+  "wargearOptions": [
+    "This model's great axe of Khorne can be replaced with 1 axe of Khorne and one of the following: 1 bloodflail; 1 lash of Khorne."
+  ]
 }

@@ -56,6 +56,16 @@
       "Biting maw": { "ws": "4+" }
     }
   },
+  "bloodthirster": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "FLY", "CHAOS", "DAEMON", "KHORNE", "BLOODTHIRSTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-6",
+    "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+    "wargearOptions": [
+      "This model's great axe of Khorne can be replaced with 1 axe of Khorne and one of the following: 1 bloodflail; 1 lash of Khorne."
+    ]
+  },
   "belakor": {
     "verified": true,
     "keywords": ["MONSTER", "CHARACTER", "FLY", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "BE'LAKOR"],
