@@ -2,14 +2,14 @@
   "id": "belakor",
   "name": "Be'lakor",
   "keywords": [
+    "MONSTER",
+    "CHARACTER",
     "FLY",
+    "EPIC HERO",
     "PSYKER",
     "CHAOS",
-    "EPIC HERO",
     "DAEMON",
-    "BE'LAKOR",
-    "MONSTER",
-    "CHARACTER"
+    "BE'LAKOR"
   ],
   "type": [
     "Monster",
@@ -104,13 +104,26 @@
   "abilities": [
     "the-dark-master-aura",
     "shadow-form",
-    "supreme-commander",
-    "wreathed-in-shadows-aura-psychic",
-    "pall-of-despair-aura-psychic",
-    "shadow-lord-aura-psychic"
+    "supreme-commander"
   ],
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-6",
+  "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+  "abilityGroups": [
+    {
+      "label": "Shadow Form Abilities",
+      "select": 1,
+      "options": [
+        "wreathed-in-shadows-aura-psychic",
+        "pall-of-despair-aura-psychic",
+        "shadow-lord-aura-psychic"
+      ]
+    }
+  ]
 }

@@ -98,6 +98,14 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .led-by{font-size:.8rem;color:var(--muted);margin-top:.5rem}
 .led-by b{color:var(--accent-2)}
 .sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
+.ability-group{display:flex;flex-wrap:wrap;gap:.4rem}
+.ag-chip{background:var(--panel-2);border:1px solid var(--border);border-radius:6px;
+  padding:.3rem .6rem;cursor:pointer;color:var(--text);font-size:.82rem;text-align:left}
+.ag-chip:hover{border-color:var(--accent-2)}
+.ag-chip.active{border-color:var(--accent-2);background:rgba(212,161,58,.14);color:var(--accent-2);font-weight:600}
+.ag-detail{margin-top:.4rem;background:var(--panel-2);border:1px solid var(--accent-2);
+  border-radius:8px;padding:.5rem .7rem;font-size:.84rem}
+.damaged-note{font-size:.78rem;color:var(--accent);margin:.3rem 0 .5rem}
 /* weapon sections (banded, label-over-value stat grid) */
 .wpn-section{margin:.6rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
 .wpn-header{display:flex;align-items:center;gap:.5rem;padding:.45rem .7rem;font-size:.72rem;
@@ -363,7 +371,7 @@ function normalizeInstance(inst){
     instanceId: inst.instanceId, unitId: inst.unitId,
     modelCount: u.models || u.baseModels || 1,
     weapons: {}, leaderId: null, leaderWargear: [],
-    enhancementId: null, selectedWargear: [],
+    enhancementId: null, selectedWargear: [], abilityChoices: {},
   }, inst);
 }
 
@@ -477,10 +485,11 @@ function renderSoloUnitCard(inst){
       <div class="model-line">Models: <b style="color:var(--text)">${inst.modelCount}</b></div>
       ${renderStatGrid(u)}
       ${renderDefence(u)}
+      ${u.damagedProfile?`<div class="damaged-note"><b>Damaged (${u.damagedProfile} wounds):</b> ${u.damagedText||''}</div>`:''}
       ${enh?`<div class="enh-box"><span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${enh.name}</span> — ${enh.type}</div>`:''}
       ${renderWeapons(u, inst)}
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
-      ${renderAbilities(u, enh)}
+      ${renderAbilities(u, enh, inst)}
       ${(u.wargearOptions||[]).length?`<div class="sec-label">Wargear Options</div>`+u.wargearOptions.map(o=>`<div class="wgo">• ${o}</div>`).join(''):''}
       ${ledByLine(u)}
       <div class="kw-line"><b>Keywords:</b> ${(u.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
@@ -564,7 +573,7 @@ function renderWeaponBadges(w){
   }).join('') + `</span>`;
 }
 
-function renderAbilities(u, enh){
+function renderAbilities(u, enh, inst){
   const chip = (id,cls)=>{ const a=abilities[id]; return `<span class="ab ${cls}" onclick="showModal('${id}')">${a?a.name:id}</span>`; };
   let out = '';
   if((u.coreAbilities||[]).length){
@@ -579,7 +588,22 @@ function renderAbilities(u, enh){
     out += `<div class="sec-label">Wargear</div><div class="badges">` +
       u.wargear.map(id=>chip(id,'wg')).join('') + `</div>`;
   }
+  (u.abilityGroups||[]).forEach((g,gi)=>{
+    const chosen = inst && inst.abilityChoices ? inst.abilityChoices[gi] : null;
+    out += `<div class="sec-label">${g.label}</div><div class="ability-group">`;
+    out += g.options.map(id=>{
+      const a = abilities[id]; const active = chosen===id?'active':'';
+      return `<button class="ag-chip ${active}" onclick="selectAbilityChoice('${inst.instanceId}',${gi},'${id}')">${a?a.name:id}</button>`;
+    }).join('') + `</div>`;
+    if(chosen && abilities[chosen]) out += `<div class="ag-detail">${abilities[chosen].description}</div>`;
+  });
   return out;
+}
+function selectAbilityChoice(instId, gi, id){
+  const inst = armyList.find(i=>i.instanceId===instId); if(!inst) return;
+  if(!inst.abilityChoices) inst.abilityChoices = {};
+  inst.abilityChoices[gi] = inst.abilityChoices[gi]===id ? null : id;
+  saveState(); renderUnits();
 }
 
 /* ---- Builder tab (full per-instance configuration) ---- */
