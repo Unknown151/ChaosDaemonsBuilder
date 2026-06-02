@@ -37,6 +37,15 @@
     "canLead": ["flesh-hounds"]
   },
   "flesh-hounds": { "canBeLeadBy": ["karanak"] },
+  "rendmaster-on-blood-throne": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "CHAOS", "DAEMON", "KHORNE", "RENDMASTER ON BLOOD THRONE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Attendants' hellblades": { "ws": "3+" },
+      "Blade of blood": { "ws": "2+" }
+    }
+  },
   "belakor": {
     "verified": true,
     "keywords": ["MONSTER", "CHARACTER", "FLY", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "BE'LAKOR"],

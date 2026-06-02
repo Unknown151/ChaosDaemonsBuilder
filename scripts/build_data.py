@@ -235,6 +235,14 @@ def apply_override(unit):
             if v:
                 unit.pop('skillEstimated', None)
                 unit['verified'] = True
+        elif k == 'weaponSkills':
+            # per-weapon BS/WS fixes for multi-weapon units (e.g. chariots)
+            allw = unit['weapons']['ranged'] + unit['weapons']['melee']
+            for w in allw:
+                fix = v.get(w['name'])
+                if fix:
+                    if 'ws' in fix: w['ws'] = fix['ws']
+                    if 'bs' in fix: w['bs'] = fix['bs']
         else:
             unit[k] = v
 

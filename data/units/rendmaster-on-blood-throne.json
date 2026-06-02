@@ -2,12 +2,12 @@
   "id": "rendmaster-on-blood-throne",
   "name": "Rendmaster On Blood Throne",
   "keywords": [
+    "MOUNTED",
     "CHARACTER",
     "CHAOS",
     "DAEMON",
-    "RENDMASTER ON BLOOD THRONE",
     "KHORNE",
-    "MOUNTED"
+    "RENDMASTER ON BLOOD THRONE"
   ],
   "type": [
     "Character",
@@ -35,7 +35,7 @@
       {
         "name": "Attendants' hellblades",
         "a": "4",
-        "ws": "2+",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -68,5 +68,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }
