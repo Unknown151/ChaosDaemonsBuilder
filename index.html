@@ -149,7 +149,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .btn.ghost{background:var(--panel-2);color:var(--text);border:1px solid var(--border)}
 .limit-input{width:5.5rem;background:var(--panel-2);border:1px solid var(--border);color:var(--text);
   border-radius:5px;padding:.3rem .4rem}
-.config-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:.8rem;overflow:hidden}
+.config-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;margin-bottom:.8rem;position:relative}
+.config-card.menu-open{z-index:30}
 .config-card .cc-head{display:flex;align-items:center;gap:.6rem;padding:.6rem .7rem;cursor:pointer}
 .config-card .cc-title{flex:1;min-width:0}
 .config-card .cc-head h3{margin:0;font-size:1.1rem;font-weight:800;color:var(--accent-2)}
@@ -320,7 +321,16 @@ function addInstance(unitId, save=true){
 }
 function removeInstance(instanceId){
   armyList = armyList.filter(i => i.instanceId !== instanceId);
-  saveState(); renderApp();
+  menuOpenId = null; saveState(); renderApp();
+}
+function duplicateInstance(instanceId){
+  const idx = armyList.findIndex(i => i.instanceId === instanceId);
+  if(idx < 0) return;
+  const copy = JSON.parse(JSON.stringify(armyList[idx]));
+  copy.instanceId = 'inst-' + (nextInstanceId++);
+  copy.enhancementId = null;   // enhancements are once-per-army — don't clone
+  armyList.splice(idx + 1, 0, copy);
+  menuOpenId = null; saveState(); renderApp();
 }
 function normalizeInstance(inst){
   const u = units[inst.unitId] || {};
@@ -563,11 +573,13 @@ function renderArmyInstance(inst){
     body += `<div class="config-label">Options</div>` +
       u.wargearOptions.map(o=>`<div style="font-size:.82rem;color:var(--muted)">${o}</div>`).join('');
 
-  const menu = menuOpenId===inst.instanceId ? `<div class="cc-menu-pop">
+  const menuOpen = menuOpenId===inst.instanceId;
+  const menu = menuOpen ? `<div class="cc-menu-pop">
+      <button onclick="event.stopPropagation();duplicateInstance('${inst.instanceId}')">Duplicate unit</button>
       <button class="danger" onclick="event.stopPropagation();removeInstance('${inst.instanceId}')">Remove unit</button>
     </div>` : '';
 
-  return `<div class="config-card ${collapsed}">
+  return `<div class="config-card ${collapsed} ${menuOpen?'menu-open':''}">
     <div class="cc-head" onclick="toggleConfigCard('${inst.instanceId}')">
       <div class="cc-title">
         <h3>${u.name}</h3>
