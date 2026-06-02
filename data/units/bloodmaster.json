@@ -54,7 +54,9 @@
     "a-gory-path"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "bloodletters"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

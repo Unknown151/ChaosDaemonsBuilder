@@ -2,12 +2,12 @@
   "id": "bloodletters",
   "name": "Bloodletters",
   "keywords": [
-    "BLOODLETTERS",
-    "DAEMON",
-    "CHAOS",
-    "BATTLELINE",
     "INFANTRY",
-    "KHORNE"
+    "BATTLELINE",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "BLOODLETTERS"
   ],
   "type": [
     "Infantry"
@@ -55,6 +55,16 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": [],
-  "skillEstimated": true
+  "canBeLeadBy": [
+    "bloodmaster",
+    "skulltaker"
+  ],
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Bloodletter that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
+    "1 Bloodletter that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+  ]
 }

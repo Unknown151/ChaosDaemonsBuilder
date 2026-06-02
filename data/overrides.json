@@ -7,5 +7,17 @@
       "1 Bloodcrusher that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
       "1 Bloodcrusher that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
     ]
-  }
+  },
+  "bloodletters": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "KHORNE", "BLOODLETTERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "wargearOptions": [
+      "1 Bloodletter that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
+      "1 Bloodletter that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+    ],
+    "canBeLeadBy": ["bloodmaster", "skulltaker"]
+  },
+  "bloodmaster": { "canLead": ["bloodletters"] },
+  "skulltaker": { "canLead": ["bloodletters"] }
 }

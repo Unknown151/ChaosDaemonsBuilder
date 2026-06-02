@@ -58,7 +58,9 @@
     "skulls-for-khorne"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "bloodletters"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

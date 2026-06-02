@@ -95,6 +95,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
   font-size:.68rem;color:var(--muted);letter-spacing:.03em}
 .kw-line b{color:var(--muted)}
 .wgo{font-size:.8rem;color:var(--muted);margin:.15rem 0}
+.led-by{font-size:.8rem;color:var(--muted);margin-top:.5rem}
+.led-by b{color:var(--accent-2)}
 .sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
 /* weapon sections (banded, label-over-value stat grid) */
 .wpn-section{margin:.6rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -480,10 +482,19 @@ function renderSoloUnitCard(inst){
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
       ${renderAbilities(u, enh)}
       ${(u.wargearOptions||[]).length?`<div class="sec-label">Wargear Options</div>`+u.wargearOptions.map(o=>`<div class="wgo">• ${o}</div>`).join(''):''}
+      ${ledByLine(u)}
       <div class="kw-line"><b>Keywords:</b> ${(u.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
 
+function ledByLine(u){
+  const names = arr => arr.map(id=>units[id]?units[id].name:id).join(', ');
+  if((u.canBeLeadBy||[]).length)
+    return `<div class="led-by"><b>Led by:</b> ${names(u.canBeLeadBy)}</div>`;
+  if((u.canLead||[]).length)
+    return `<div class="led-by"><b>Can lead:</b> ${names(u.canLead)}</div>`;
+  return '';
+}
 function roleEyebrow(u){
   let role = '';
   if(u.isEpicHero) role = 'Epic Hero';
