@@ -33,6 +33,12 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 
 /* detachment selector */
 .det-bar{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.8rem;margin-bottom:1rem}
+.det-head{display:flex;align-items:center;gap:.6rem;cursor:pointer}
+.det-current{flex:1;color:var(--accent-2);font-weight:700;font-size:.95rem}
+.det-chevron{color:var(--muted);transition:transform .15s}
+.det-bar.collapsed .det-chevron{transform:rotate(-90deg)}
+.det-bar.collapsed .det-body{display:none}
+.det-body{margin-top:.7rem}
 .det-grid{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
 .det-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
   padding:.35rem .7rem;border-radius:999px;cursor:pointer;font-size:.85rem}
@@ -255,6 +261,7 @@ let stratagemState = {};
 let characterState = {}, bodyguardState = {};
 let expandedCards = {}, configExpandedCards = {};
 let weaponDetailOpen = {}, menuOpenId = null;
+let detExpanded = true;
 
 /* ---- Constants (built at load) ---- */
 let ALL_UNIT_IDS = [];
@@ -317,6 +324,7 @@ function restoreState(){
   } else loadDefaultArmy();
   const theme = localStorage.getItem(LS+'theme') || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
+  detExpanded = localStorage.getItem(LS+'det-expanded') !== '0';
 }
 function loadDefaultArmy(){
   armyList = []; nextInstanceId = 1;
@@ -395,15 +403,27 @@ function selectDetachment(id){
 function renderDetachmentSelector(){
   const d = detachments[selectedDetachment];
   const bar = document.getElementById('det-bar');
+  bar.classList.toggle('collapsed', !detExpanded);
   bar.innerHTML =
-    `<div class="config-label">Detachment</div>` +
-    `<div class="det-grid">` +
-    Object.values(detachments).map(x =>
-      `<button class="det-btn ${x.id===selectedDetachment?'active':''}" onclick="selectDetachment('${x.id}')">${x.name}</button>`
-    ).join('') + `</div>` +
-    `<div class="det-rule">${renderRuleParts(d)}</div>`;
+    `<div class="det-head" onclick="toggleDetachment()">
+      <span class="config-label" style="margin:0">Detachment</span>
+      <span class="det-current">${d.name}</span>
+      <span class="det-chevron">▾</span>
+    </div>
+    <div class="det-body">
+      <div class="det-grid">` +
+      Object.values(detachments).map(x =>
+        `<button class="det-btn ${x.id===selectedDetachment?'active':''}" onclick="event.stopPropagation();selectDetachment('${x.id}')">${x.name}</button>`
+      ).join('') + `</div>` +
+      `<div class="det-rule">${renderRuleParts(d)}</div>
+    </div>`;
 }
 
+function toggleDetachment(){
+  detExpanded = !detExpanded;
+  localStorage.setItem(LS+'det-expanded', detExpanded ? '1' : '0');
+  renderDetachmentSelector();
+}
 function renderRuleParts(d){
   const parts = d.ruleParts && d.ruleParts.length ? d.ruleParts
     : [{name:d.ruleName, text:d.ruleDescription}];
