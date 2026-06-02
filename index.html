@@ -490,7 +490,6 @@ function renderSoloUnitCard(inst){
       ${renderWeapons(u, inst)}
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
       ${renderAbilities(u, enh, inst)}
-      ${(u.wargearOptions||[]).length?`<div class="sec-label">Wargear Options</div>`+u.wargearOptions.map(o=>`<div class="wgo">• ${o}</div>`).join(''):''}
       ${ledByLine(u)}
       <div class="kw-line"><b>Keywords:</b> ${(u.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
@@ -587,10 +586,7 @@ function renderAbilities(u, enh, inst){
     out += `<div class="sec-label">Abilities</div><div class="badges">` +
       u.abilities.map(id=>chip(id,'')).join('') + `</div>`;
   }
-  if((u.wargear||[]).length){
-    out += `<div class="sec-label">Wargear</div><div class="badges">` +
-      u.wargear.map(id=>chip(id,'wg')).join('') + `</div>`;
-  }
+  // Wargear is configured/shown in the Builder tab, not here.
   (u.abilityGroups||[]).forEach((g,gi)=>{
     const chosen = inst && inst.abilityChoices ? inst.abilityChoices[gi] : null;
     out += `<div class="sec-label">${g.label}</div><div class="ability-group">`;
