@@ -30,6 +30,13 @@
       "appliesTo": "melee"
     }
   },
+  "karanak": {
+    "verified": true,
+    "keywords": ["BEAST", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "KARANAK"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["flesh-hounds"]
+  },
+  "flesh-hounds": { "canBeLeadBy": ["karanak"] },
   "belakor": {
     "verified": true,
     "keywords": ["MONSTER", "CHARACTER", "FLY", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "BE'LAKOR"],

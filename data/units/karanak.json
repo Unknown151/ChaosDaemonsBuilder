@@ -2,13 +2,13 @@
   "id": "karanak",
   "name": "Karanak",
   "keywords": [
-    "KARANAK",
-    "KHORNE",
-    "DAEMON",
-    "CHAOS",
-    "EPIC HERO",
     "BEAST",
-    "CHARACTER"
+    "CHARACTER",
+    "EPIC HERO",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "KARANAK"
   ],
   "type": [
     "Beast",
@@ -52,7 +52,7 @@
       {
         "name": "Soul-rending fangs",
         "a": "6",
-        "ws": "4+",
+        "ws": "2+",
         "s": "6",
         "ap": "-2",
         "d": "2",
@@ -76,7 +76,12 @@
   "wargear": [
     "brass-collar-of-bloody-vengeance"
   ],
-  "canLead": [],
+  "canLead": [
+    "flesh-hounds"
+  ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

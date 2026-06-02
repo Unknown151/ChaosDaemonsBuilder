@@ -80,6 +80,8 @@
     "collar-of-khorne"
   ],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "karanak"
+  ],
   "skillEstimated": true
 }

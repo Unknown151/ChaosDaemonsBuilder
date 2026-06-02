@@ -547,8 +547,9 @@ function renderWeapons(u, inst){
       if(inst && u.baseModels && w.count === u.baseModels) c = inst.modelCount;
       const cnt = (c && c > 1) ? ` <small>×${c}</small>` : '';
       const model = w.model ? ` <small>(${w.model})</small>` : '';
+      const torrent = (w.abilities||[]).includes('torrent');
       const cols = cat==='ranged'
-        ? [['RNG',w.range||'-'],['A',w.a],['BS',w.bs||'-'],['S',w.s],['AP',w.ap],['D',w.d]]
+        ? [['RNG',w.range||'-'],['A',w.a],['BS',torrent?'N/A':(w.bs||'-')],['S',w.s],['AP',w.ap],['D',w.d]]
         : [['A',w.a],['WS',w.ws||'-'],['S',w.s],['AP',w.ap],['D',w.d]];
       return `<div class="wpn-entry">
         <div class="wpn-name">${w.name}${cnt}${model}${renderWeaponBadges(w)}</div>
@@ -717,8 +718,9 @@ function renderLoadout(inst, u){
   return out;
 }
 function weaponDetailHtml(cat, w){
+  const torrent = (w.abilities||[]).includes('torrent');
   const cols = cat==='ranged'
-    ? [['RNG',w.range||'-'],['A',w.a],['BS',w.bs||'-'],['S',w.s],['AP',w.ap],['D',w.d]]
+    ? [['RNG',w.range||'-'],['A',w.a],['BS',torrent?'N/A':(w.bs||'-')],['S',w.s],['AP',w.ap],['D',w.d]]
     : [['A',w.a],['WS',w.ws||'-'],['S',w.s],['AP',w.ap],['D',w.d]];
   return `<div class="wpn-stats">` +
     cols.map(([k,v])=>`<div class="ws"><b>${k}</b><span>${v}</span></div>`).join('') +

@@ -257,7 +257,7 @@ SKILLS = {
     'fluxmaster': ('4+', '3+'), 'great-unclean-one': ('3+', '4+'),
     'hellflayers': ('3+', '3+'), 'horticulous-slimux': ('3+', None),
     'infernal-enrapturess': ('3+', '3+'), 'kairos-fateweaver': ('4+', '2+'),
-    'karanak': ('4+', None), 'keeper-of-secrets': ('2+', '3+'),
+    'karanak': ('2+', None), 'keeper-of-secrets': ('2+', '3+'),
     'lord-of-change': ('3+', '2+'), 'nurglings': ('5+', None),
     'pink-horrors': ('4+', '4+'), 'plague-drones': ('4+', '4+'),
     'plaguebearers': ('4+', None), 'poxbringer': ('4+', None),
