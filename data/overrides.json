@@ -46,6 +46,16 @@
       "Blade of blood": { "ws": "2+" }
     }
   },
+  "skull-cannon": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "SKULL CANNON"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Skull cannon": { "bs": "3+" },
+      "Attendants' hellblades": { "ws": "3+" },
+      "Biting maw": { "ws": "4+" }
+    }
+  },
   "belakor": {
     "verified": true,
     "keywords": ["MONSTER", "CHARACTER", "FLY", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "BE'LAKOR"],

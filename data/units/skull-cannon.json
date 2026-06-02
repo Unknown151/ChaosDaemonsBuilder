@@ -2,11 +2,11 @@
   "id": "skull-cannon",
   "name": "Skull Cannon",
   "keywords": [
-    "KHORNE",
-    "SKULL CANNON",
     "MOUNTED",
     "CHAOS",
-    "DAEMON"
+    "DAEMON",
+    "KHORNE",
+    "SKULL CANNON"
   ],
   "type": [
     "Mounted"
@@ -33,7 +33,7 @@
         "name": "Skull cannon",
         "range": "48",
         "a": "D6+2",
-        "bs": "4+",
+        "bs": "3+",
         "s": "9",
         "ap": "-1",
         "d": "2",
@@ -48,7 +48,7 @@
       {
         "name": "Attendants' hellblades",
         "a": "4",
-        "ws": "4+",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -80,5 +80,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }
