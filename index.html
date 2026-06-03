@@ -98,13 +98,15 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .led-by{font-size:.8rem;color:var(--muted);margin-top:.5rem}
 .led-by b{color:var(--accent-2)}
 .sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
-.ability-group{display:flex;flex-wrap:wrap;gap:.4rem}
-.ag-chip{background:var(--panel-2);border:1px solid var(--border);border-radius:6px;
-  padding:.3rem .6rem;cursor:pointer;color:var(--text);font-size:.82rem;text-align:left}
-.ag-chip:hover{border-color:var(--accent-2)}
-.ag-chip.active{border-color:var(--accent-2);background:rgba(212,161,58,.14);color:var(--accent-2);font-weight:600}
-.ag-detail{margin-top:.4rem;background:var(--panel-2);border:1px solid var(--accent-2);
-  border-radius:8px;padding:.5rem .7rem;font-size:.84rem}
+.ag-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
+.ag-tile{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;
+  padding:.6rem;cursor:pointer;color:var(--text);text-align:left;display:flex;flex-direction:column;
+  gap:.35rem;min-height:92px}
+.ag-tile:hover{border-color:var(--accent-2)}
+.ag-tile.active{border-color:var(--accent-2);background:rgba(212,161,58,.14)}
+.agt-name{font-weight:700;color:var(--accent-2);font-size:.84rem;line-height:1.15}
+.agt-short{font-size:.74rem;color:var(--muted);line-height:1.3}
+@media(max-width:480px){.ag-tiles{grid-template-columns:1fr}}
 .damaged-note{font-size:.78rem;color:var(--accent);margin:.3rem 0 .5rem}
 /* weapon sections (banded, label-over-value stat grid) */
 .wpn-section{margin:.6rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -589,20 +591,26 @@ function renderAbilities(u, enh, inst){
   // Wargear is configured/shown in the Builder tab, not here.
   (u.abilityGroups||[]).forEach((g,gi)=>{
     const chosen = inst && inst.abilityChoices ? inst.abilityChoices[gi] : null;
-    out += `<div class="sec-label">${g.label}</div><div class="ability-group">`;
-    out += g.options.map(id=>{
-      const a = abilities[id]; const active = chosen===id?'active':'';
-      return `<button class="ag-chip ${active}" onclick="selectAbilityChoice('${inst.instanceId}',${gi},'${id}')">${a?a.name:id}</button>`;
+    out += `<div class="sec-label">${g.label}</div><div class="ag-tiles">`;
+    out += g.options.map(opt=>{
+      const id = typeof opt==='string' ? opt : opt.id;
+      const short = (typeof opt==='object' && opt.short) ? opt.short : '';
+      const a = abilities[id];
+      const name = a ? a.name.replace(/\s*\(.*?\)\s*$/,'') : id;
+      const active = chosen===id ? 'active' : '';
+      return `<button class="ag-tile ${active}" onclick="selectAbilityChoice('${inst.instanceId}',${gi},'${id}')">
+        <span class="agt-name">${name}</span>
+        <span class="agt-short">${short}</span></button>`;
     }).join('') + `</div>`;
-    if(chosen && abilities[chosen]) out += `<div class="ag-detail">${abilities[chosen].description}</div>`;
   });
   return out;
 }
 function selectAbilityChoice(instId, gi, id){
   const inst = armyList.find(i=>i.instanceId===instId); if(!inst) return;
   if(!inst.abilityChoices) inst.abilityChoices = {};
-  inst.abilityChoices[gi] = inst.abilityChoices[gi]===id ? null : id;
+  inst.abilityChoices[gi] = id;       // select (one per group)
   saveState(); renderUnits();
+  showModal(id);                      // full description popup
 }
 
 /* ---- Builder tab (full per-instance configuration) ---- */

@@ -77,7 +77,11 @@
       {
         "label": "Shadow Form Abilities",
         "select": 1,
-        "options": ["wreathed-in-shadows-aura-psychic", "pall-of-despair-aura-psychic", "shadow-lord-aura-psychic"]
+        "options": [
+          { "id": "wreathed-in-shadows-aura-psychic", "short": "Nearby units only shot from within 18\"" },
+          { "id": "pall-of-despair-aura-psychic", "short": "Enemies within 9\" Battle-shock; self-heal D3" },
+          { "id": "shadow-lord-aura-psychic", "short": "Nearby friends re-roll Hit rolls of 1" }
+        ]
       }
     ]
   }
