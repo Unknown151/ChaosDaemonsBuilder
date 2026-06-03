@@ -149,6 +149,13 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 
 /* builder controls */
 .config-label{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:.6rem 0 .3rem}
+.leader-select{width:100%;background:var(--panel-2);border:1px solid var(--border);color:var(--accent-2);
+  border-radius:6px;padding:.5rem;font-size:.9rem;font-weight:600;cursor:pointer}
+.leader-bonus-box{margin-top:.5rem;background:rgba(76,175,106,.1);border:1px solid var(--inherited);
+  border-left-width:4px;border-radius:6px;padding:.45rem .6rem}
+.lb-label{font-size:.66rem;letter-spacing:.07em;text-transform:uppercase;color:var(--inherited);font-weight:700}
+.lb-body{font-size:.88rem;margin-top:.15rem}
+.lb-grant{color:var(--inherited);font-weight:700}
 .stepper{display:inline-flex;align-items:center;gap:.6rem;background:var(--panel-2);
   border:1px solid var(--border);border-radius:6px;padding:.2rem .4rem}
 .stepper button{width:28px;height:28px;border:none;border-radius:4px;background:var(--accent);
@@ -652,8 +659,15 @@ function renderArmyInstance(inst){
   // weapon loadout (equip toggle + count + expandable profile)
   body += renderLoadout(inst, u);
 
-  // enhancement selector — eligible non-Epic-Hero characters/leaders
-  if(isEnhancementEligible(u)) body += renderInstanceEnhancementSelector(inst, inst.unitId);
+  // leader assignment (units that can be led) + the leader's enhancement;
+  // otherwise the unit's own enhancement if it's an eligible character
+  if((u.canBeLeadBy||[]).length){
+    body += renderLeaderSelector(inst, u);
+    if(inst.leaderId && units[inst.leaderId] && isEnhancementEligible(units[inst.leaderId]))
+      body += renderInstanceEnhancementSelector(inst, inst.leaderId);
+  } else if(isEnhancementEligible(u)){
+    body += renderInstanceEnhancementSelector(inst, inst.unitId);
+  }
 
   // wargear choices
   if((u.wargearChoices||[]).length) body += renderWargearChoices(inst, u);
@@ -767,6 +781,40 @@ function toggleConfigCard(id){
   menuOpenId = null; renderConfigurationTab();
 }
 function toggleInstanceMenu(id){ menuOpenId = menuOpenId===id ? null : id; renderConfigurationTab(); }
+
+/* ---- leader assignment ---- */
+function renderLeaderSelector(inst, u){
+  let html = `<div class="config-label">Assigned Leader</div>`;
+  html += `<select class="leader-select" onchange="setLeader('${inst.instanceId}',this.value)">`;
+  html += `<option value="">No leader</option>`;
+  (u.canBeLeadBy||[]).forEach(lid=>{
+    const l = units[lid]; if(!l) return;
+    html += `<option value="${lid}" ${inst.leaderId===lid?'selected':''}>${l.name} (+${l.points} pts)</option>`;
+  });
+  html += `</select>`;
+  if(inst.leaderId && units[inst.leaderId]) html += renderLeaderBonus(units[inst.leaderId]);
+  return html;
+}
+function renderLeaderBonus(leader){
+  const lb = leader.leaderBonus;
+  let inner;
+  if(lb && (lb.grantsAbilities||[]).length){
+    inner = lb.grantsAbilities.map(g=>{
+      const disp = typeof g==='string' ? (abilities[g]?abilities[g].name:g) : (g.display||g.id);
+      const ap = (typeof g==='object' && g.abilityAppliesTo) ? ` (${g.abilityAppliesTo})` : '';
+      return `<span class="lb-grant">${disp}${ap}</span>`;
+    }).join(', ');
+  } else if(lb && lb.short){ inner = lb.short; }
+  else if(lb && lb.text){ inner = lb.text; }
+  else { inner = `<span style="color:var(--muted)">${leader.name} — see datasheet for leading bonus.</span>`; }
+  return `<div class="leader-bonus-box"><div class="lb-label">Leader Bonus</div><div class="lb-body">${inner}</div></div>`;
+}
+function setLeader(instId, lid){
+  const inst = armyList.find(i=>i.instanceId===instId); if(!inst) return;
+  inst.leaderId = lid || null;
+  inst.enhancementId = null;   // enhancement belongs to the leader — reset on change
+  saveState(); renderApp();
+}
 
 function isEnhancementEligible(u){
   if(u.isEpicHero) return false;
