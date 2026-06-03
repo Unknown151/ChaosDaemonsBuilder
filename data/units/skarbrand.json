@@ -2,13 +2,13 @@
   "id": "skarbrand",
   "name": "Skarbrand",
   "keywords": [
-    "EPIC HERO",
-    "SKARBRAND",
-    "CHARACTER",
     "MONSTER",
-    "KHORNE",
+    "CHARACTER",
+    "EPIC HERO",
     "CHAOS",
-    "DAEMON"
+    "DAEMON",
+    "KHORNE",
+    "SKARBRAND"
   ],
   "type": [
     "Character",
@@ -85,5 +85,10 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, add 2 to the Attacks characteristic of this model's Slaughter and Carnage."
 }

@@ -41,6 +41,13 @@
     }
   },
   "flesh-hounds": { "canBeLeadBy": ["karanak"] },
+  "skarbrand": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKARBRAND"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, add 2 to the Attacks characteristic of this model's Slaughter and Carnage."
+  },
   "daemon-prince-of-chaos-with-wings": {
     "verified": true,
     "factionKeywords": ["LEGIONES DAEMONICA"],
