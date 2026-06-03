@@ -60,6 +60,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .unit-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;
   margin-bottom:.8rem;overflow:hidden}
 .unit-card.attached{border-color:var(--accent-2)}
+.unit-card{scroll-margin-top:64px}
 .card-head{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem .9rem;cursor:pointer;
   background:var(--panel-2)}
 .card-head h3{margin:.1rem 0 0;font-size:1.5rem;font-weight:800;flex:1;letter-spacing:.01em;line-height:1.1}
@@ -477,7 +478,7 @@ function renderSoloUnitCard(inst){
   const u = units[inst.unitId]; if(!u) return '';
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
-  return `<div class="unit-card ${collapsed}">
+  return `<div class="unit-card ${collapsed}" id="uc-${inst.instanceId}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
       <span class="collapse-ind">▼</span>
       <div style="flex:1">
@@ -942,6 +943,10 @@ function toggleCard(id){
   expandedCards = {};              // accordion: collapse all others
   if(willOpen) expandedCards[id] = true;
   renderUnits();
+  if(willOpen){
+    const el = document.getElementById('uc-'+id);
+    if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+  }
 }
 document.querySelectorAll('.tab-btn[data-tab]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tab-btn[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
