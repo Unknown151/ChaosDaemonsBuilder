@@ -135,6 +135,11 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .ab.core{border-color:var(--core);color:var(--core)}
 .ab.wg{border-color:var(--wg);color:var(--wg)}
 .wab{border-color:var(--accent-2);color:var(--accent-2)}
+.wab.inherited{border-color:var(--inherited);color:var(--inherited);border-style:dashed}
+.card-section{border:1px solid var(--border);border-radius:8px;padding:.6rem .7rem;margin:.6rem 0;background:rgba(0,0,0,.14)}
+.card-section .section-label{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);font-weight:700;margin-bottom:.3rem}
+.card-section h4{margin:.1rem 0 .5rem;font-size:1.1rem;font-weight:700}
+.card-section .enh-name{color:var(--accent-2);font-size:.82rem;cursor:pointer}
 
 /* modal */
 .modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;
@@ -478,7 +483,54 @@ function renderUnits(){
   if(!armyList.length){ el.innerHTML = `<div class="empty">No units yet. Add some in the <b>Builder</b> tab.</div>`; return; }
   // sort cards alphabetically by unit name
   const sorted = armyList.slice().sort((a,b)=>units[a.unitId].name.localeCompare(units[b.unitId].name));
-  el.innerHTML = sorted.map(inst => renderSoloUnitCard(inst)).join('');
+  el.innerHTML = sorted.map(inst =>
+    (inst.leaderId && units[inst.leaderId]) ? renderLedUnitCard(inst) : renderSoloUnitCard(inst)
+  ).join('');
+}
+
+function renderLedUnitCard(inst){
+  const bg = units[inst.unitId], leader = units[inst.leaderId];
+  if(!bg || !leader) return renderSoloUnitCard(inst);
+  const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
+  const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
+
+  // bodyguard copy with the leader's granted abilities injected as inherited
+  const displayBg = JSON.parse(JSON.stringify(bg));
+  const lb = leader.leaderBonus;
+  if(lb && (lb.grantsAbilities||[]).length){
+    ['ranged','melee'].forEach(cat=>{
+      (displayBg.weapons[cat]||[]).forEach(w=>{
+        lb.grantsAbilities.forEach(g=>{
+          const ap = (typeof g==='object' && g.abilityAppliesTo) ? g.abilityAppliesTo : (lb.appliesTo||null);
+          if(!ap || ap===cat){ (w.inheritedAbilities=w.inheritedAbilities||[]).push(g); }
+        });
+      });
+    });
+  }
+
+  const section = (label, u, opts={}) => `<div class="card-section">
+      <div class="section-label">${label}</div>
+      <h4>${u.name}${opts.enh?` <span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${opts.enh.name}</span>`:''}</h4>
+      ${renderStatGrid(u)}
+      ${renderDefence(u)}
+      ${renderWeapons(u, opts.inst||null)}
+      ${renderAbilities(u, null, opts.inst||null)}
+    </div>`;
+
+  return `<div class="unit-card attached ${collapsed}" id="uc-${inst.instanceId}">
+    <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
+      <span class="collapse-ind">▼</span>
+      <div style="flex:1">
+        <div class="role-eyebrow">— Led Unit</div>
+        <h3>${bg.name} <span style="color:var(--muted);font-weight:600;font-size:1rem">+ ${leader.name}</span></h3>
+      </div>
+      <span class="pts">${calculateInstancePoints(inst)} pts</span>
+    </div>
+    <div class="card-body">
+      ${section('Leader', leader, {enh})}
+      ${section('Bodyguard', displayBg, {inst})}
+      <div class="kw-line"><b>Keywords:</b> ${(bg.keywords||[]).join(', ')}${(bg.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${bg.factionKeywords.join(', ')}`:''}</div>
+    </div></div>`;
 }
 
 function renderSoloUnitCard(inst){
