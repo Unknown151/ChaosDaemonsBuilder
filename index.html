@@ -142,6 +142,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .ab.wg{border-color:var(--wg);color:var(--wg)}
 .wab{border-color:var(--accent-2);color:var(--accent-2)}
 .wab.inherited{border-color:var(--inherited);color:var(--inherited);border-style:dashed}
+.wab.strat-buff{border-color:var(--strat);color:var(--strat);background:rgba(224,181,58,.14)}
 .card-section{border:1px solid var(--border);border-radius:8px;padding:.6rem .7rem;margin:.6rem 0;background:rgba(0,0,0,.14)}
 .card-section .section-label{font-size:.66rem;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);font-weight:700;margin-bottom:.3rem}
 .card-section h4{margin:.1rem 0 .5rem;font-size:1.1rem;font-weight:700}
@@ -541,17 +542,33 @@ function renderLedUnitCard(inst){
 }
 
 function bumpStat(v, d){ const m = String(v).match(/^(\d+)(.*)$/); return m ? (parseInt(m[1],10)+d)+m[2] : v; }
-function applyAllegiance(u, inst){
-  if(!u.allegiance || !inst || !inst.allegiance) return u;
-  const opt = (u.allegiance.options||[]).find(o=>o.id===inst.allegiance);
-  if(!opt) return u;
-  const du = JSON.parse(JSON.stringify(u));
-  if(opt.keyword && !du.keywords.includes(opt.keyword)) du.keywords = [opt.keyword, ...du.keywords];
-  (opt.statMods||[]).forEach(m=>{ du.stats[m.field] = bumpStat(du.stats[m.field], m.delta); });
-  ['ranged','melee'].forEach(cat=>(du.weapons[cat]||[]).forEach(w=>{
-    (opt.weaponMods||[]).forEach(m=>{ if(w.name.toLowerCase().includes(m.match)) w[m.field] = bumpStat(w[m.field], m.delta); });
-  }));
-  if(opt.abilityId) du.abilities = [opt.abilityId, ...(du.abilities||[])];
+// apply per-instance choices (god allegiance + ability-group weapon buffs) to a display copy
+function applyInstanceChoices(u, inst){
+  let du = u;
+  const copy = () => { if(du===u) du = JSON.parse(JSON.stringify(u)); };
+  // daemonic allegiance
+  if(u.allegiance && inst && inst.allegiance){
+    const opt = (u.allegiance.options||[]).find(o=>o.id===inst.allegiance);
+    if(opt){
+      copy();
+      if(opt.keyword && !du.keywords.includes(opt.keyword)) du.keywords = [opt.keyword, ...du.keywords];
+      (opt.statMods||[]).forEach(m=>{ du.stats[m.field] = bumpStat(du.stats[m.field], m.delta); });
+      ['ranged','melee'].forEach(cat=>(du.weapons[cat]||[]).forEach(w=>{
+        (opt.weaponMods||[]).forEach(m=>{ if(w.name.toLowerCase().includes(m.match)) w[m.field] = bumpStat(w[m.field], m.delta); });
+      }));
+      if(opt.abilityId) du.abilities = [opt.abilityId, ...(du.abilities||[])];
+    }
+  }
+  // ability-group weapon buffs (e.g. Harbinger of Death -> chosen keyword on hellforged)
+  (u.abilityGroups||[]).forEach((g,gi)=>{
+    if(!g.buffWeapons) return;
+    const chosen = inst && inst.abilityChoices ? inst.abilityChoices[gi] : null;
+    if(!chosen) return;
+    copy();
+    (du.weapons[g.buffWeapons.category]||[]).forEach(w=>{
+      if(w.name.toLowerCase().includes(g.buffWeapons.match)) (w.buffAbilities = w.buffAbilities||[]).push(chosen);
+    });
+  });
   return du;
 }
 function allegianceNote(u, inst){
@@ -562,7 +579,7 @@ function allegianceNote(u, inst){
 
 function renderSoloUnitCard(inst){
   const u = units[inst.unitId]; if(!u) return '';
-  const du = applyAllegiance(u, inst);
+  const du = applyInstanceChoices(u, inst);
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
   return `<div class="unit-card ${collapsed}" id="uc-${inst.instanceId}">
@@ -662,6 +679,7 @@ function renderWeaponBadges(w){
   const all = [];
   (w.abilities||[]).forEach(id=>all.push({id, cls:''}));
   (w.inheritedAbilities||[]).forEach(x=>{ const id = typeof x==='string'?x:x.id; all.push({id, cls:'inherited', display:(typeof x==='object'?x.display:null)}); });
+  (w.buffAbilities||[]).forEach(id=>all.push({id, cls:'strat-buff'}));
   if(!all.length) return '';
   return ` <span class="badges">` + all.map(b=>{
     const a = abilities[b.id];
@@ -724,7 +742,7 @@ function renderConfigurationTab(){
 
 function renderArmyInstance(inst){
   const u = units[inst.unitId]; if(!u) return '';
-  const du = applyAllegiance(u, inst);   // god-marked stats/weapons for display
+  const du = applyInstanceChoices(u, inst);   // god-marked stats/weapons for display
   const collapsed = configExpandedCards[inst.instanceId] === false ? 'collapsed' : '';
   let body = '';
 

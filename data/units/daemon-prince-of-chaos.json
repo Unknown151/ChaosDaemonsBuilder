@@ -75,14 +75,72 @@
   "abilities": [
     "daemonic-lord",
     "prince-of-darkness-aura",
-    "unholy-vigour",
-    "daemon-prince-of-khorne",
-    "daemon-prince-of-tzeentch",
-    "daemon-prince-of-nurgle",
-    "daemon-prince-of-slaanesh"
+    "unholy-vigour"
   ],
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "allegiance": {
+    "label": "Daemonic Allegiance",
+    "options": [
+      {
+        "id": "khorne",
+        "label": "Khorne",
+        "keyword": "KHORNE",
+        "abilityId": "daemon-prince-of-khorne",
+        "effect": "+2 S to hellforged weapons",
+        "weaponMods": [
+          {
+            "match": "hellforged weapons",
+            "field": "s",
+            "delta": 2
+          }
+        ]
+      },
+      {
+        "id": "tzeentch",
+        "label": "Tzeentch",
+        "keyword": "TZEENTCH",
+        "abilityId": "daemon-prince-of-tzeentch",
+        "effect": "+3 A to infernal cannon",
+        "weaponMods": [
+          {
+            "match": "infernal cannon",
+            "field": "a",
+            "delta": 3
+          }
+        ]
+      },
+      {
+        "id": "nurgle",
+        "label": "Nurgle",
+        "keyword": "NURGLE",
+        "abilityId": "daemon-prince-of-nurgle",
+        "effect": "+1 Toughness",
+        "statMods": [
+          {
+            "field": "t",
+            "delta": 1
+          }
+        ]
+      },
+      {
+        "id": "slaanesh",
+        "label": "Slaanesh",
+        "keyword": "SLAANESH",
+        "abilityId": "daemon-prince-of-slaanesh",
+        "effect": "+2\" Move",
+        "statMods": [
+          {
+            "field": "m",
+            "delta": 2
+          }
+        ]
+      }
+    ]
+  }
 }

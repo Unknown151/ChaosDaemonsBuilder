@@ -142,5 +142,29 @@
         ]
       }
     ]
-  }
+  },
+  "abilityGroups": [
+    {
+      "label": "Harbinger of Death",
+      "select": 1,
+      "buffWeapons": {
+        "match": "hellforged weapons",
+        "category": "melee"
+      },
+      "options": [
+        {
+          "id": "lethal-hits",
+          "short": "Crit hits auto-wound"
+        },
+        {
+          "id": "precision",
+          "short": "Hits can target Characters"
+        },
+        {
+          "id": "sustained-hits-1",
+          "short": "Crit hits score +1 hit"
+        }
+      ]
+    }
+  ]
 }
