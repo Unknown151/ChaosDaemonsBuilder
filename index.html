@@ -285,7 +285,11 @@ const DETACHMENTS = {}; // filled from detachments.json
 
 /* ===================== Data loading ===================== */
 async function loadData(){
-  const j = async p => (await fetch(p)).json();
+  // cache-bust data with the build version so updates always load fresh
+  let ver = '';
+  try { ver = (await (await fetch('data/version.json', {cache:'no-store'})).json()).v; } catch(e){}
+  const bust = ver ? ('?v=' + ver) : '';
+  const j = async p => (await fetch(p + bust, {cache:'no-cache'})).json();
   const [ab, enh, det, army, manifest] = await Promise.all([
     j('data/abilities.json'), j('data/enhancements.json'), j('data/detachments.json'),
     j('data/army.json'), j('data/units-manifest.json'),

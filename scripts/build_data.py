@@ -468,6 +468,11 @@ for uid, u in units.items():
 with open(os.path.join(ROOT, 'data', 'abilities.json'), 'w', encoding='utf-8') as f:
     json.dump(dict(sorted(abilities.items())), f, ensure_ascii=False, indent=2)
 
+# ── Build version stamp (cache-busting) ──────────────────────────────────────
+import time as _time
+with open(os.path.join(ROOT, 'data', 'version.json'), 'w', encoding='utf-8') as f:
+    json.dump({'v': _time.strftime('%Y%m%d%H%M%S')}, f)
+
 # ── Report ───────────────────────────────────────────────────────────────────
 no_pts = [u for u in units if units[u]['points'] == 0]
 print(f'units: {len(units)}')
