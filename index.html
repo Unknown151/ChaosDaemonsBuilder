@@ -111,6 +111,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .agt-name{font-weight:700;color:var(--accent-2);font-size:.84rem;line-height:1.15}
 .agt-short{font-size:.74rem;color:var(--muted);line-height:1.3}
 @media(max-width:480px){.ag-tiles{grid-template-columns:1fr}}
+.allg-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+.allg-note{font-size:.84rem;margin:.3rem 0 .5rem}
+.allg-note b{color:var(--accent-2)}
 .damaged-note{font-size:.78rem;color:var(--accent);margin:.3rem 0 .5rem}
 /* weapon sections (banded, label-over-value stat grid) */
 .wpn-section{margin:.6rem 0;border:1px solid var(--border);border-radius:8px;overflow:hidden}
@@ -393,7 +396,7 @@ function normalizeInstance(inst){
     instanceId: inst.instanceId, unitId: inst.unitId,
     modelCount: u.models || u.baseModels || 1,
     weapons: {}, leaderId: null, leaderWargear: [],
-    enhancementId: null, selectedWargear: [], abilityChoices: {},
+    enhancementId: null, selectedWargear: [], abilityChoices: {}, allegiance: null,
   }, inst);
 }
 
@@ -537,8 +540,29 @@ function renderLedUnitCard(inst){
     </div></div>`;
 }
 
+function bumpStat(v, d){ const m = String(v).match(/^(\d+)(.*)$/); return m ? (parseInt(m[1],10)+d)+m[2] : v; }
+function applyAllegiance(u, inst){
+  if(!u.allegiance || !inst || !inst.allegiance) return u;
+  const opt = (u.allegiance.options||[]).find(o=>o.id===inst.allegiance);
+  if(!opt) return u;
+  const du = JSON.parse(JSON.stringify(u));
+  if(opt.keyword && !du.keywords.includes(opt.keyword)) du.keywords = [opt.keyword, ...du.keywords];
+  (opt.statMods||[]).forEach(m=>{ du.stats[m.field] = bumpStat(du.stats[m.field], m.delta); });
+  ['ranged','melee'].forEach(cat=>(du.weapons[cat]||[]).forEach(w=>{
+    (opt.weaponMods||[]).forEach(m=>{ if(w.name.toLowerCase().includes(m.match)) w[m.field] = bumpStat(w[m.field], m.delta); });
+  }));
+  if(opt.abilityId) du.abilities = [opt.abilityId, ...(du.abilities||[])];
+  return du;
+}
+function allegianceNote(u, inst){
+  if(!u.allegiance || !inst.allegiance) return '';
+  const opt = u.allegiance.options.find(o=>o.id===inst.allegiance); if(!opt) return '';
+  return `<div class="allg-note"><b>${u.allegiance.label}:</b> ${opt.label} <span class="lb-grant">(${opt.effect})</span></div>`;
+}
+
 function renderSoloUnitCard(inst){
   const u = units[inst.unitId]; if(!u) return '';
+  const du = applyAllegiance(u, inst);
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
   return `<div class="unit-card ${collapsed}" id="uc-${inst.instanceId}">
@@ -553,15 +577,16 @@ function renderSoloUnitCard(inst){
     </div>
     <div class="card-body">
       <div class="model-line">Models: <b style="color:var(--text)">${inst.modelCount}</b></div>
-      ${renderStatGrid(u)}
-      ${renderDefence(u)}
+      ${renderStatGrid(du)}
+      ${renderDefence(du)}
       ${u.damagedProfile?`<div class="damaged-note"><b>Damaged (${u.damagedProfile} wounds):</b> ${u.damagedText||''}</div>`:''}
+      ${allegianceNote(u, inst)}
       ${enh?`<div class="enh-box"><span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${enh.name}</span> — ${enh.type}</div>`:''}
-      ${renderWeapons(u, inst)}
+      ${renderWeapons(du, inst)}
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
-      ${renderAbilities(u, enh, inst)}
+      ${renderAbilities(du, enh, inst)}
       ${ledByLine(u)}
-      <div class="kw-line"><b>Keywords:</b> ${(u.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
+      <div class="kw-line"><b>Keywords:</b> ${(du.keywords||[]).join(', ')}${(u.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${u.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
 
@@ -699,6 +724,7 @@ function renderConfigurationTab(){
 
 function renderArmyInstance(inst){
   const u = units[inst.unitId]; if(!u) return '';
+  const du = applyAllegiance(u, inst);   // god-marked stats/weapons for display
   const collapsed = configExpandedCards[inst.instanceId] === false ? 'collapsed' : '';
   let body = '';
 
@@ -712,8 +738,11 @@ function renderArmyInstance(inst){
       </div></div>`;
   }
 
+  // daemonic allegiance (mark of which god) — applies the chosen bonus
+  if(u.allegiance) body += renderAllegianceSelector(inst, u);
+
   // weapon loadout (equip toggle + count + expandable profile)
-  body += renderLoadout(inst, u);
+  body += renderLoadout(inst, du);
 
   // leader assignment (units that can be led) + the leader's enhancement;
   // otherwise the unit's own enhancement if it's an eligible character
@@ -742,7 +771,7 @@ function renderArmyInstance(inst){
     <div class="cc-head" onclick="toggleConfigCard('${inst.instanceId}')">
       <div class="cc-title">
         <h3>${u.name}</h3>
-        <div class="cc-loadout">${loadoutSummary(inst, u)}</div>
+        <div class="cc-loadout">${loadoutSummary(inst, du)}</div>
       </div>
       <span class="pts-badge">${calculateInstancePoints(inst)} pts</span>
       <div class="cc-menu"><button class="cc-kebab" onclick="event.stopPropagation();toggleInstanceMenu('${inst.instanceId}')" title="Options">⋮</button>${menu}</div>
@@ -837,6 +866,22 @@ function toggleConfigCard(id){
   menuOpenId = null; renderConfigurationTab();
 }
 function toggleInstanceMenu(id){ menuOpenId = menuOpenId===id ? null : id; renderConfigurationTab(); }
+
+/* ---- daemonic allegiance (mark of god) ---- */
+function renderAllegianceSelector(inst, u){
+  let html = `<div class="config-label">${u.allegiance.label}</div><div class="allg-tiles">`;
+  html += u.allegiance.options.map(o=>{
+    const active = inst.allegiance===o.id ? 'active' : '';
+    return `<button class="ag-tile ${active}" onclick="setAllegiance('${inst.instanceId}','${o.id}')">
+      <span class="agt-name">${o.label}</span><span class="agt-short">${o.effect}</span></button>`;
+  }).join('') + `</div>`;
+  return html;
+}
+function setAllegiance(instId, id){
+  const inst = armyList.find(i=>i.instanceId===instId); if(!inst) return;
+  inst.allegiance = inst.allegiance===id ? null : id;
+  saveState(); renderApp();
+}
 
 /* ---- leader assignment ---- */
 function renderLeaderSelector(inst, u){
