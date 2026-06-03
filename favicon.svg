@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <radialGradient id="glow" cx="50%" cy="50%" r="55%">
+      <stop offset="0%" stop-color="#3a130f"/>
+      <stop offset="100%" stop-color="#160b09"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f0c558"/>
+      <stop offset="100%" stop-color="#b8862a"/>
+    </linearGradient>
+    <!-- a single arrow pointing east, drawn from the centre -->
+    <g id="arrow">
+      <line x1="4" y1="0" x2="24" y2="0"/>
+      <polyline points="16,-6.5 24.5,0 16,6.5"/>
+    </g>
+  </defs>
+
+  <!-- dark roundel with blood-red ring -->
+  <rect width="64" height="64" rx="13" fill="#140a08"/>
+  <circle cx="32" cy="32" r="29" fill="url(#glow)" stroke="#b8232a" stroke-width="2.5"/>
+
+  <!-- eight-pointed Chaos star: 4 long cardinal arrows + 4 short diagonals -->
+  <g transform="translate(32,32)" stroke="url(#gold)" fill="none"
+     stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <use href="#arrow" transform="rotate(0)"/>
+    <use href="#arrow" transform="rotate(90)"/>
+    <use href="#arrow" transform="rotate(180)"/>
+    <use href="#arrow" transform="rotate(270)"/>
+    <use href="#arrow" transform="rotate(45) scale(0.6)"/>
+    <use href="#arrow" transform="rotate(135) scale(0.6)"/>
+    <use href="#arrow" transform="rotate(225) scale(0.6)"/>
+    <use href="#arrow" transform="rotate(315) scale(0.6)"/>
+  </g>
+
+  <!-- central hub -->
+  <circle cx="32" cy="32" r="4.5" fill="#b8232a" stroke="url(#gold)" stroke-width="2"/>
+</svg>
