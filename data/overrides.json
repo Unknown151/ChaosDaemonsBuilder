@@ -34,7 +34,11 @@
     "verified": true,
     "keywords": ["BEAST", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "KARANAK"],
     "factionKeywords": ["LEGIONES DAEMONICA"],
-    "canLead": ["flesh-hounds"]
+    "canLead": ["flesh-hounds"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit.",
+      "short": "Led unit can re-roll Advance & Charge rolls"
+    }
   },
   "flesh-hounds": { "canBeLeadBy": ["karanak"] },
   "rendmaster-on-blood-throne": {

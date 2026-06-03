@@ -83,5 +83,9 @@
   "verified": true,
   "factionKeywords": [
     "LEGIONES DAEMONICA"
-  ]
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit.",
+    "short": "Led unit can re-roll Advance & Charge rolls"
+  }
 }

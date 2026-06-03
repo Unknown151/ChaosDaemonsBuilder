@@ -529,6 +529,7 @@ function renderLedUnitCard(inst){
     <div class="card-body">
       ${section('Leader', leader, {enh})}
       ${section('Bodyguard', displayBg, {inst})}
+      ${renderLeaderBonus(leader)}
       <div class="kw-line"><b>Keywords:</b> ${(bg.keywords||[]).join(', ')}${(bg.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${bg.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
