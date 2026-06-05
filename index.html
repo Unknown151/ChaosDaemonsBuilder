@@ -251,7 +251,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.6.2</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.6.3</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
@@ -522,6 +522,7 @@ function renderLedUnitCard(inst){
   const section = (label, u, opts={}) => `<div class="card-section">
       <div class="section-label">${label}</div>
       <h4>${u.name}${opts.enh?` <span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${opts.enh.name}</span>`:''}</h4>
+      ${opts.afterName||''}
       ${renderStatGrid(u)}
       ${renderDefence(u)}
       ${renderWeapons(u, opts.inst||null)}
@@ -538,9 +539,8 @@ function renderLedUnitCard(inst){
       <span class="pts">${calculateInstancePoints(inst)} pts</span>
     </div>
     <div class="card-body">
-      ${section('Leader', leader, {enh})}
+      ${section('Leader', leader, {enh, afterName: renderLeaderBonus(leader)})}
       ${section('Bodyguard', displayBg, {inst})}
-      ${renderLeaderBonus(leader)}
       <div class="kw-line"><b>Keywords:</b> ${(bg.keywords||[]).join(', ')}${(bg.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${bg.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
