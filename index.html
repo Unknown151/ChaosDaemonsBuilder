@@ -92,6 +92,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
   color:var(--accent-2);border-radius:5px;padding:.15rem .5rem;font-size:.78rem}
 .invuln-row.fnp-only,.fnp-row{background:rgba(76,175,106,.12);border:1px solid var(--inherited);color:var(--inherited)}
 .fnp-row{display:inline-block;border-radius:5px;padding:.15rem .5rem;font-size:.78rem}
+.def-core{display:inline-block;border-radius:5px;padding:.15rem .5rem;font-size:.78rem;cursor:pointer;
+  background:rgba(63,127,184,.14);border:1px solid var(--core);color:var(--core)}
 .prof-name{color:var(--accent-2);font-weight:600;font-size:.72rem;margin-right:.3rem}
 .wpn-name small{color:var(--muted)}
 .enh-box{background:rgba(212,161,58,.1);border:1px solid var(--accent-2);border-radius:6px;
@@ -249,7 +251,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.6.1</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.6.2</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
@@ -646,8 +648,16 @@ function renderDefence(u){
     const a = abilities[fnp];
     parts.push(`<span class="fnp-row" onclick="showModal('${fnp}')">${a?a.name:'Feel No Pain'}</span>`);
   }
+  ['stealth','lone-operative'].forEach(id=>{
+    if((u.coreAbilities||[]).includes(id)){
+      const a = abilities[id];
+      parts.push(`<span class="def-core" onclick="showModal('${id}')">${a?a.name:id}</span>`);
+    }
+  });
   return parts.length ? `<div class="defence-row">${parts.join('')}</div>` : '';
 }
+// abilities surfaced in the defence row — don't repeat them in Core badges
+const DEFENCE_ABILITIES = ['stealth','lone-operative'];
 
 function renderWeapons(u, inst){
   let out = '';
@@ -693,9 +703,11 @@ function renderWeaponBadges(w){
 function renderAbilities(u, enh, inst){
   const chip = (id,cls)=>{ const a=abilities[id]; return `<span class="ab ${cls}" onclick="showModal('${id}')">${a?a.name:id}</span>`; };
   let out = '';
-  if((u.coreAbilities||[]).length){
+  const coreBadges = (u.coreAbilities||[]).filter(id=>
+    !DEFENCE_ABILITIES.includes(id) && !id.startsWith('feel-no-pain'));
+  if(coreBadges.length){
     out += `<div class="sec-label">Core</div><div class="badges">` +
-      u.coreAbilities.map(id=>chip(id,'core')).join('') + `</div>`;
+      coreBadges.map(id=>chip(id,'core')).join('') + `</div>`;
   }
   if((u.abilities||[]).length){
     out += `<div class="sec-label">Abilities</div><div class="badges">` +
