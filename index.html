@@ -175,6 +175,21 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .modal .close{float:right;cursor:pointer;color:var(--muted);font-size:1.3rem;line-height:1}
 .empty{color:var(--muted);text-align:center;padding:2rem}
 
+/* stratagems tab */
+.strat-group{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-2);
+  font-weight:700;margin:1.1rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--accent)}
+.strat-group:first-child{margin-top:0}
+.strat-card{background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--accent);
+  border-radius:8px;padding:.6rem .75rem;margin-bottom:.7rem}
+.strat-head{display:flex;align-items:center;gap:.6rem}
+.strat-name{flex:1;font-weight:800;font-size:1rem}
+.strat-cp{background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;border-radius:5px;padding:.15rem .5rem;white-space:nowrap}
+.strat-cat{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:.15rem 0 .45rem}
+.strat-row{display:flex;gap:.5rem;font-size:.84rem;margin:.25rem 0}
+.strat-row b{flex:none;width:5.2rem;color:var(--accent-2);font-size:.66rem;text-transform:uppercase;
+  letter-spacing:.05em;padding-top:.15rem}
+.strat-row span{flex:1}
+
 /* builder controls */
 .config-label{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:.6rem 0 .3rem}
 .leader-select{width:100%;background:var(--panel-2);border:1px solid var(--border);color:var(--accent-2);
@@ -263,10 +278,11 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.7.1</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.8</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
+    <button class="tab-btn" data-tab="strat">Stratagems</button>
   </nav>
   <button class="icon-btn" id="theme-btn" title="Toggle theme">◐</button>
 </header>
@@ -281,6 +297,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
     <div class="points-bar" id="points-bar"></div>
     <div id="config-list"></div>
   </section>
+
+  <section id="strat-tab" class="tab-panel"></section>
 </main>
 
 <div class="modal-overlay" id="modal-overlay">
@@ -300,6 +318,7 @@ const LS = 'chaos-daemons-';
 
 /* ---- Loaded data ---- */
 let abilities = {}, enhancements = {}, detachments = {}, units = {}, defaultArmy = {};
+let coreStratagems = [];
 
 /* ---- Army state ---- */
 let armyList = [];
@@ -326,11 +345,12 @@ async function loadData(){
   try { ver = (await (await fetch('data/version.json', {cache:'no-store'})).json()).v; } catch(e){}
   const bust = ver ? ('?v=' + ver) : '';
   const j = async p => (await fetch(p + bust, {cache:'no-cache'})).json();
-  const [ab, enh, det, army, manifest] = await Promise.all([
+  const [ab, enh, det, army, manifest, core] = await Promise.all([
     j('data/abilities.json'), j('data/enhancements.json'), j('data/detachments.json'),
-    j('data/army.json'), j('data/units-manifest.json'),
+    j('data/army.json'), j('data/units-manifest.json'), j('data/core-stratagems.json'),
   ]);
   abilities = ab; enhancements = enh; detachments = det; defaultArmy = army;
+  coreStratagems = core.stratagems || [];
   Object.assign(DETACHMENTS, det);
   ALL_UNIT_IDS = manifest;
 
@@ -441,6 +461,31 @@ function renderApp(){
   renderDetachmentSelector();
   renderUnits();
   renderConfigurationTab();
+  renderStratagems();
+}
+
+/* ---- Stratagems tab ---- */
+function renderStratagems(){
+  const el = document.getElementById('strat-tab'); if(!el) return;
+  const d = detachments[selectedDetachment];
+  let html = `<div class="strat-group">${d.name} — Stratagems</div>`;
+  html += (d.stratagems||[]).map(s=>stratCard(s)).join('');
+  if(coreStratagems.length){
+    html += `<div class="strat-group">Core Stratagems <span class="skill-note">≈ from knowledge — verify</span></div>`;
+    html += coreStratagems.map(s=>stratCard(s)).join('');
+  }
+  el.innerHTML = html;
+}
+function stratCard(s){
+  const fld = (label,v)=> v ? `<div class="strat-row"><b>${label}</b><span>${v}</span></div>` : '';
+  return `<div class="strat-card">
+    <div class="strat-head">
+      <span class="strat-name">${s.name}</span>
+      <span class="strat-cp">${s.cp}</span>
+    </div>
+    <div class="strat-cat">${s.category||''}</div>
+    ${fld('When',s.when)}${fld('Target',s.target)}${fld('Effect',s.effect)}${fld('Restrictions',s.restrictions)}
+  </div>`;
 }
 function loadDetachment(){
   if(!detachments[selectedDetachment]) selectedDetachment = Object.keys(detachments)[0];
@@ -1152,10 +1197,10 @@ function toggleCard(id){
     if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
   }
 }
+const TAB_PANELS = { units:'units-tab', config:'config-tab', strat:'strat-tab' };
 document.querySelectorAll('.tab-btn[data-tab]').forEach(b=>b.onclick=()=>{
   document.querySelectorAll('.tab-btn[data-tab]').forEach(x=>x.classList.toggle('active',x===b));
-  document.getElementById('units-tab').classList.toggle('active', b.dataset.tab==='units');
-  document.getElementById('config-tab').classList.toggle('active', b.dataset.tab==='config');
+  Object.entries(TAB_PANELS).forEach(([k,id])=>document.getElementById(id).classList.toggle('active', k===b.dataset.tab));
 });
 document.getElementById('theme-btn').onclick=()=>{
   const cur = document.documentElement.getAttribute('data-theme')==='dark'?'light':'dark';
