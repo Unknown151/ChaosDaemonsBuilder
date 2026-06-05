@@ -91,9 +91,28 @@ for b in blocks[1:]:
         'stratagems': stratagems,
     }
 
+# ── short blurbs for stratagem tiles ─────────────────────────────────────────
+STRAT_SHORT = {  # curated for the focus detachment
+    'sheathed-in-brass': 'Your Khorne unit gains Save 3+',
+    'fools-flight': 'Charge an enemy that Fell Back',
+    'wrath-undeniable': 'Slain models fight on (4+)',
+    'gore-hungry-onslaught': 'Move through terrain',
+    'skulls-beget-blood': '6D6 at 8": each 4+ deals 1 MW',
+    'blood-begets-skulls': 'Can charge after Advancing',
+}
+def strat_short(s):
+    if s['id'] in STRAT_SHORT:
+        return STRAT_SHORT[s['id']]
+    t = re.sub(r'\s+', ' ', s.get('effect', '')).strip()
+    t = re.split(r'(?<=[.])\s', t)[0]
+    t = re.sub(r'^Until the end of the (phase|turn),?\s*', '', t, flags=re.I)
+    return (t[:62].rsplit(' ', 1)[0] + '…') if len(t) > 64 else t
+for _d in dets.values():
+    for _s in _d['stratagems']:
+        _s['short'] = strat_short(_s)
+
 with open(os.path.join(ROOT, 'data', 'detachments.json'), 'w', encoding='utf-8') as f:
     json.dump(dets, f, ensure_ascii=False, indent=2)
-
 # unit manifest (browser can't list a directory)
 ids = sorted(os.path.basename(p)[:-5] for p in glob.glob(os.path.join(ROOT, 'data', 'units', '*.json')))
 with open(os.path.join(ROOT, 'data', 'units-manifest.json'), 'w', encoding='utf-8') as f:

@@ -178,19 +178,25 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .empty{color:var(--muted);text-align:center;padding:2rem}
 
 /* stratagems tab */
+.strat-legend{display:flex;align-items:center;gap:.4rem;flex-wrap:wrap;font-size:.74rem;color:var(--muted);margin-bottom:.6rem}
+.strat-legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.strat-legend .dot.det{background:var(--accent-2)} .strat-legend .dot.core{background:var(--core)}
 .strat-group{font-size:.78rem;letter-spacing:.06em;text-transform:uppercase;color:var(--accent-2);
   font-weight:700;margin:1.1rem 0 .5rem;padding-bottom:.3rem;border-bottom:1px solid var(--accent)}
-.strat-group:first-child{margin-top:0}
-.strat-card{background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--accent);
-  border-radius:8px;padding:.6rem .75rem;margin-bottom:.7rem}
-.strat-head{display:flex;align-items:center;gap:.6rem}
-.strat-name{flex:1;font-weight:800;font-size:1rem}
-.strat-cp{background:var(--accent);color:#fff;font-weight:700;font-size:.78rem;border-radius:5px;padding:.15rem .5rem;white-space:nowrap}
-.strat-cat{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);margin:.15rem 0 .45rem}
-.strat-row{display:flex;gap:.5rem;font-size:.84rem;margin:.25rem 0}
-.strat-row b{flex:none;width:5.2rem;color:var(--accent-2);font-size:.66rem;text-transform:uppercase;
+.strat-tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+.strat-tile{background:var(--panel);border:1px solid var(--border);border-left:4px solid var(--accent-2);
+  border-radius:8px;padding:.5rem .6rem;cursor:pointer;display:flex;flex-direction:column;gap:.25rem;min-height:74px}
+.strat-tile.core{border-left-color:var(--core)}
+.strat-tile:hover{border-color:var(--accent-2)}
+.st-head{display:flex;align-items:flex-start;gap:.4rem}
+.st-name{flex:1;font-weight:700;font-size:.86rem;line-height:1.15}
+.st-short{font-size:.74rem;color:var(--muted);line-height:1.3}
+.strat-cp{background:var(--accent);color:#fff;font-weight:700;font-size:.72rem;border-radius:5px;padding:.1rem .4rem;white-space:nowrap}
+.strat-row{display:flex;gap:.5rem;font-size:.86rem;margin:.3rem 0}
+.strat-row b{flex:none;width:5rem;color:var(--accent-2);font-size:.64rem;text-transform:uppercase;
   letter-spacing:.05em;padding-top:.15rem}
 .strat-row span{flex:1}
+@media(max-width:480px){.strat-tiles{grid-template-columns:1fr}}
 
 /* builder controls */
 .config-label{font-size:.72rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted);margin:.6rem 0 .3rem}
@@ -280,7 +286,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.8.1</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.9</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -468,28 +474,57 @@ function renderApp(){
   renderStratagems();
 }
 
-/* ---- Stratagems tab ---- */
+/* ---- Stratagems tab (grouped by phase, tiles + tap-for-detail) ---- */
+const STRAT_PHASES = ['Command','Movement','Shooting','Charge','Fight'];
+const CORE_STRAT_PHASES = {
+  'command-re-roll': STRAT_PHASES.slice(),
+  'counter-offensive': ['Fight'], 'epic-challenge': ['Fight'],
+  'fire-overwatch': ['Movement','Charge'], 'go-to-ground': ['Shooting'],
+  'grenade': ['Shooting'], 'heroic-intervention': ['Charge'],
+  'insane-bravery': ['Command'], 'rapid-ingress': ['Movement'],
+  'smokescreen': ['Shooting'], 'tank-shock': ['Charge'],
+};
+function stratPhases(s){
+  if(CORE_STRAT_PHASES[s.id]) return CORE_STRAT_PHASES[s.id];
+  if(Array.isArray(s.phases) && s.phases.length) return s.phases;
+  const w = (s.when||'').toLowerCase();
+  if(w.includes('any phase')) return STRAT_PHASES.slice();
+  // require "<phase> phase" so "Charge roll" etc. don't false-match
+  const ph = STRAT_PHASES.filter(p=>w.includes(p.toLowerCase()+' phase'));
+  if(w.includes('battle-shock') && !ph.includes('Command')) ph.push('Command');
+  return ph.length ? ph : ['Other'];
+}
+function allStratagems(){
+  return [ ...((detachments[selectedDetachment]||{}).stratagems||[]), ...coreStratagems ];
+}
 function renderStratagems(){
   const el = document.getElementById('strat-tab'); if(!el) return;
-  const d = detachments[selectedDetachment];
-  let html = `<div class="strat-group">${d.name} — Stratagems</div>`;
-  html += (d.stratagems||[]).map(s=>stratCard(s)).join('');
-  if(coreStratagems.length){
-    html += `<div class="strat-group">Core Stratagems <span class="skill-note">≈ from knowledge — verify</span></div>`;
-    html += coreStratagems.map(s=>stratCard(s)).join('');
-  }
+  const all = allStratagems();
+  const groups = {}; [...STRAT_PHASES,'Other'].forEach(p=>groups[p]=[]);
+  all.forEach(s=>stratPhases(s).forEach(p=>(groups[p]=groups[p]||[]).push(s)));
+  let html = `<div class="strat-legend"><span class="dot det"></span>Detachment &nbsp; <span class="dot core"></span>Core <span class="skill-note">≈ Core from knowledge — verify</span></div>`;
+  [...STRAT_PHASES,'Other'].forEach(p=>{
+    if(!groups[p].length) return;
+    html += `<div class="strat-group">${p==='Other'?'Other / Any Phase':p+' Phase'}</div><div class="strat-tiles">`;
+    html += groups[p].map(s=>stratTile(s)).join('');
+    html += `</div>`;
+  });
   el.innerHTML = html;
 }
-function stratCard(s){
-  const fld = (label,v)=> v ? `<div class="strat-row"><b>${label}</b><span>${v}</span></div>` : '';
-  return `<div class="strat-card">
-    <div class="strat-head">
-      <span class="strat-name">${s.name}</span>
-      <span class="strat-cp">${s.cp}</span>
-    </div>
-    <div class="strat-cat">${s.category||''}</div>
-    ${fld('When',s.when)}${fld('Target',s.target)}${fld('Effect',s.effect)}${fld('Restrictions',s.restrictions)}
+function stratTile(s){
+  return `<div class="strat-tile ${s.core?'core':''}" onclick="openStratagem('${s.id}')">
+    <div class="st-head"><span class="st-name">${s.name}</span><span class="strat-cp">${s.cp}</span></div>
+    <div class="st-short">${s.short||''}</div>
   </div>`;
+}
+function openStratagem(id){
+  const s = allStratagems().find(x=>x.id===id); if(!s) return;
+  const fld = (label,v)=> v ? `<div class="strat-row"><b>${label}</b><span>${v}</span></div>` : '';
+  showModalRaw(
+    `${s.name} <span class="strat-cp">${s.cp}</span>`,
+    s.category || '',
+    `${fld('When',s.when)}${fld('Target',s.target)}${fld('Effect',s.effect)}${fld('Restrictions',s.restrictions)}`
+  );
 }
 function loadDetachment(){
   if(!detachments[selectedDetachment]) selectedDetachment = Object.keys(detachments)[0];
