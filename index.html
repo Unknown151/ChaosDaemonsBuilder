@@ -22,12 +22,14 @@ body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,san
   background:var(--bg);color:var(--text);line-height:1.45}
 header{position:sticky;top:0;z-index:20;background:linear-gradient(180deg,var(--panel),var(--panel-2));
   border-bottom:2px solid var(--accent);padding:.6rem 1rem;display:flex;align-items:center;gap:1rem;flex-wrap:wrap}
-header h1{font-size:1.15rem;margin:0;letter-spacing:.04em;color:var(--accent-2);text-transform:uppercase;flex:1}
+header h1{font-size:clamp(1rem,4.5vw,1.15rem);margin:0;letter-spacing:.04em;color:var(--accent-2);
+  text-transform:uppercase;white-space:nowrap}
 .version{font-size:.62rem;color:var(--muted);font-weight:600;letter-spacing:.05em;vertical-align:middle;
   border:1px solid var(--border);border-radius:4px;padding:.05rem .3rem;text-transform:none}
-.tabs{display:flex;gap:.4rem}
+.header-controls{display:flex;align-items:center;gap:.5rem;margin-left:auto;flex-wrap:wrap;justify-content:flex-end}
+.tabs{display:flex;gap:.4rem;flex-wrap:wrap}
 .tab-btn{background:var(--panel-2);color:var(--muted);border:1px solid var(--border);
-  padding:.45rem .9rem;border-radius:6px;cursor:pointer;font-weight:600}
+  padding:.4rem .8rem;border-radius:6px;cursor:pointer;font-weight:600;white-space:nowrap}
 .tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
 .icon-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
   width:38px;height:38px;border-radius:6px;cursor:pointer;font-size:1.1rem}
@@ -278,13 +280,15 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.8</span></h1>
-  <nav class="tabs">
-    <button class="tab-btn active" data-tab="units">Units</button>
-    <button class="tab-btn" data-tab="config">Builder</button>
-    <button class="tab-btn" data-tab="strat">Stratagems</button>
-  </nav>
-  <button class="icon-btn" id="theme-btn" title="Toggle theme">◐</button>
+  <h1>Chaos Daemons <span class="version">v0.8.1</span></h1>
+  <div class="header-controls">
+    <nav class="tabs">
+      <button class="tab-btn active" data-tab="units">Units</button>
+      <button class="tab-btn" data-tab="config">Builder</button>
+      <button class="tab-btn" data-tab="strat">Stratagems</button>
+    </nav>
+    <button class="icon-btn" id="theme-btn" title="Toggle theme">◐</button>
+  </div>
 </header>
 
 <main>
