@@ -249,7 +249,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.5</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.6</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
@@ -667,10 +667,10 @@ function renderWeapons(u, inst){
         ? [['RNG',w.range||'-'],['A',w.a],['BS',torrent?'N/A':(w.bs||'-')],['S',w.s],['AP',w.ap],['D',w.d]]
         : [['A',w.a],['WS',w.ws||'-'],['S',w.s],['AP',w.ap],['D',w.d]];
       return `<div class="wpn-entry">
-        <div class="wpn-name">${w.name}${cnt}${model}${renderWeaponBadges(w)}</div>
+        <div class="wpn-name">${w.name}${cnt}${model}</div>
         <div class="wpn-stats">` +
         cols.map(([k,v])=>`<div class="ws"><b>${k}</b><span>${v}</span></div>`).join('') +
-        `</div></div>`;
+        `</div>${renderWeaponBadges(w)}</div>`;
     }).join('');
     out += `</div>`;
   }
