@@ -106,6 +106,15 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .led-by{font-size:.8rem;color:var(--muted);margin-top:.5rem}
 .led-by b{color:var(--accent-2)}
 .sec-label{font-size:.7rem;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);margin:.5rem 0 .2rem}
+.ab-tiles{display:flex;flex-direction:column;gap:.4rem}
+.ab-tile{background:var(--panel-2);border:1px solid var(--border);border-left-width:3px;
+  border-radius:7px;padding:.45rem .6rem;cursor:pointer}
+.ab-tile:hover{border-color:var(--accent-2)}
+.ab-tile.core{border-left-color:var(--core)}
+.ab-tile:not(.core){border-left-color:var(--accent-2)}
+.abt-name{display:block;font-weight:700;font-size:.9rem}
+.ab-tile.core .abt-name{color:var(--core)}
+.abt-short{display:block;font-size:.78rem;color:var(--muted);margin-top:.12rem;line-height:1.3}
 .ag-tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:.5rem}
 .ag-tile{background:var(--panel-2);border:1px solid var(--border);border-radius:10px;
   padding:.6rem;cursor:pointer;color:var(--text);text-align:left;display:flex;flex-direction:column;
@@ -251,7 +260,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.6.3</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.7</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
@@ -700,18 +709,22 @@ function renderWeaponBadges(w){
   }).join('') + `</span>`;
 }
 
+function abilityTile(id, accent){
+  const a = abilities[id]; if(!a) return '';
+  return `<div class="ab-tile ${accent}" onclick="showModal('${id}')">
+    <span class="abt-name">${a.name}</span>${a.short?`<span class="abt-short">${a.short}</span>`:''}</div>`;
+}
 function renderAbilities(u, enh, inst){
-  const chip = (id,cls)=>{ const a=abilities[id]; return `<span class="ab ${cls}" onclick="showModal('${id}')">${a?a.name:id}</span>`; };
   let out = '';
   const coreBadges = (u.coreAbilities||[]).filter(id=>
     !DEFENCE_ABILITIES.includes(id) && !id.startsWith('feel-no-pain'));
   if(coreBadges.length){
-    out += `<div class="sec-label">Core</div><div class="badges">` +
-      coreBadges.map(id=>chip(id,'core')).join('') + `</div>`;
+    out += `<div class="sec-label">Core</div><div class="ab-tiles">` +
+      coreBadges.map(id=>abilityTile(id,'core')).join('') + `</div>`;
   }
   if((u.abilities||[]).length){
-    out += `<div class="sec-label">Abilities</div><div class="badges">` +
-      u.abilities.map(id=>chip(id,'')).join('') + `</div>`;
+    out += `<div class="sec-label">Abilities</div><div class="ab-tiles">` +
+      u.abilities.map(id=>abilityTile(id,'')).join('') + `</div>`;
   }
   // Wargear is configured/shown in the Builder tab, not here.
   (u.abilityGroups||[]).forEach((g,gi)=>{

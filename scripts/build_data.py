@@ -465,6 +465,55 @@ for uid, u in units.items():
         json.dump(u, f, ensure_ascii=False, indent=2)
 
 # ── abilities.json ───────────────────────────────────────────────────────────
+# Curated short summaries (overview text on the ability tiles). Anything not
+# listed falls back to an auto-generated first-clause snippet.
+ABILITY_SHORT = {
+    # core
+    'deep-strike': 'Arrive from Reserves, >9" from enemies',
+    'leader': 'Can attach to a Bodyguard unit',
+    'fights-first': 'Fights first in the Fight phase',
+    'scouts-6': 'Pre-battle move up to 6"',
+    'deadly-demise-d6': 'On death, roll D6; 6 → D6 MW to units within 6"',
+    'deadly-demise-d3': 'On death, roll D6; 6 → D3 MW to units within 6"',
+    'deadly-demise-1': 'On death, roll D6; 6 → 1 MW to units within 6"',
+    # Blood Legion / verified units
+    'brass-stampede': 'After a Charge: D6 per model, each 4+ → D3 MW',
+    'bane-of-cowards': 'Enemies that Fall Back nearby take Desperate Escape tests',
+    'lord-of-decapitations': "Led unit's melee gains [Devastating Wounds]",
+    'skulls-for-khorne': 'Re-roll Hit & Wound vs Characters; +1CP on a kill',
+    'pack-leader': 'Led unit can re-roll Advance & Charge',
+    'prey-of-the-blood-god': 'Mark prey: re-roll Wounds against it in melee',
+    'blood-throne': 'Mark a target: friendly Khorne get +1 S/AP/D vs it',
+    'champion-slayer': 'Re-roll Wounds vs Characters/Monsters; heal D6 on a kill',
+    'skulls-of-the-fallen': 'After shooting, a unit hit takes a Battle-shock test',
+    'daemon-lord-of-khorne-aura': 'Aura: nearby Khorne get +1 to melee Hit rolls',
+    'relentless-carnage': 'End of Fight: 8D6, each 4+ → 1 MW to a unit in range',
+    'greater-daemon-of-khorne-aura': 'Aura: nearby Khorne are within your Shadow of Chaos',
+    'rage-embodied-aura': 'Aura: nearby Khorne get +1 Attack to melee weapons',
+    'murderlust': 'Can declare a charge in a turn it Advanced',
+    'malefic-destruction': 'Once per battle: +3 Attacks to hellforged weapons',
+    'harbinger-of-death': 'Each fight, pick a keyword for hellforged weapons',
+    'supreme-commander': 'This model must be your Warlord',
+    'the-dark-master-aura': 'Aura: 6" around is within your Shadow of Chaos',
+    'shadow-form': 'Each battle round, pick one Shadow Form ability',
+    'daemon-prince-of-khorne': 'Khorne: +2 S to hellforged weapons',
+    'daemon-prince-of-tzeentch': 'Tzeentch: +3 Attacks to infernal cannon',
+    'daemon-prince-of-nurgle': 'Nurgle: +1 Toughness',
+    'daemon-prince-of-slaanesh': 'Slaanesh: +2" Move',
+}
+
+def make_short(desc):
+    t = re.sub(r'<[^>]+>', '', norm(desc or '')).strip()
+    if not t or 'not provided' in t.lower():
+        return ''
+    sent = re.split(r'(?<=[.:])\s+', t)[0].rstrip(' .:')
+    if len(sent) > 78:
+        sent = sent[:75].rsplit(' ', 1)[0] + '…'
+    return sent
+
+for _aid, _a in abilities.items():
+    _a['short'] = ABILITY_SHORT.get(_aid) or make_short(_a.get('description'))
+
 with open(os.path.join(ROOT, 'data', 'abilities.json'), 'w', encoding='utf-8') as f:
     json.dump(dict(sorted(abilities.items())), f, ensure_ascii=False, indent=2)
 
