@@ -72,20 +72,23 @@
     "deep-strike"
   ],
   "abilities": [
-    "brass-stampede"
+    "brass-stampede",
+    "instrument-of-chaos",
+    "daemonic-icon"
   ],
-  "wargear": [
-    "daemonic-icon",
-    "instrument-of-chaos"
-  ],
+  "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
   "verified": true,
   "factionKeywords": [
     "LEGIONES DAEMONICA"
   ],
-  "wargearOptions": [
-    "1 Bloodcrusher that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
-    "1 Bloodcrusher that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+  "wargearOptions": [],
+  "statMods": [
+    {
+      "field": "ld",
+      "value": "6+",
+      "source": "daemonic-icon"
+    }
   ]
 }

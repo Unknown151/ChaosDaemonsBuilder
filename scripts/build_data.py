@@ -500,6 +500,8 @@ ABILITY_SHORT = {
     'daemon-prince-of-tzeentch': 'Tzeentch: +3 Attacks to infernal cannon',
     'daemon-prince-of-nurgle': 'Nurgle: +1 Toughness',
     'daemon-prince-of-slaanesh': 'Slaanesh: +2" Move',
+    'daemonic-icon': "Unit's Leadership becomes 6+",
+    'instrument-of-chaos': '+1 to Charge rolls',
 }
 
 def make_short(desc):

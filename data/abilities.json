@@ -189,7 +189,7 @@
     "name": "Daemonic Icon",
     "type": "Wargear",
     "description": "Models in the bearer's unit have a Leadership characteristic of 6+.",
-    "short": "Models in the bearer's unit have a Leadership characteristic of 6+"
+    "short": "Unit's Leadership becomes 6+"
   },
   "daemonic-lord": {
     "name": "Daemonic Lord",
@@ -447,7 +447,7 @@
     "name": "Instrument of Chaos",
     "type": "Wargear",
     "description": "Add 1 to Charge rolls made for the bearer's unit.",
-    "short": "Add 1 to Charge rolls made for the bearer's unit"
+    "short": "+1 to Charge rolls"
   },
   "jolly-gutpipes": {
     "name": "Jolly Gutpipes",

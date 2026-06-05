@@ -82,6 +82,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .stat .sv{font-size:1.25rem;font-weight:700;line-height:1}
 .stat.hl{background:rgba(212,161,58,.14);border-color:var(--accent-2)}
 .stat.hl .sv,.stat.hl b{color:var(--accent-2)}
+.stat.modified{border-color:var(--inherited)}
+.stat.modified .sv{color:var(--inherited)}
+.stat-star{color:var(--inherited);font-size:.65rem;vertical-align:super;margin-left:1px}
 .card-head .collapse-ind{color:var(--muted);font-size:.8rem;transition:transform .15s}
 .unit-card.collapsed .collapse-ind{transform:rotate(-90deg)}
 .role-eyebrow{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:600}
@@ -260,7 +263,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.7</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.7.1</span></h1>
   <nav class="tabs">
     <button class="tab-btn active" data-tab="units">Units</button>
     <button class="tab-btn" data-tab="config">Builder</button>
@@ -638,8 +641,15 @@ function roleEyebrow(u){
 
 function renderStatGrid(u){
   const order = [['M','m'],['T','t'],['SV','sv'],['W','w'],['LD','ld'],['OC','oc']];
-  const row = s => `<div class="stat-grid">` +
-    order.map(([k,p])=>`<div class="stat ${p==='w'?'hl':''}"><b>${k}</b><span class="sv">${s[p]??'-'}</span></div>`).join('') + `</div>`;
+  const mods = {}; (u.statMods||[]).forEach(m=>{ mods[m.field] = m; });
+  const cell = (k,p,val) => {
+    const m = mods[p];
+    const v = m ? m.value : (val ?? '-');
+    const star = m ? `<span class="stat-star">★</span>` : '';
+    const click = m && m.source ? `onclick="event.stopPropagation();showModal('${m.source}')"` : '';
+    return `<div class="stat ${p==='w'?'hl':''} ${m?'modified':''}" ${click}><b>${k}</b><span class="sv">${v}${star}</span></div>`;
+  };
+  const row = s => `<div class="stat-grid">` + order.map(([k,p])=>cell(k,p,s[p])).join('') + `</div>`;
   if(u.modelProfiles && u.modelProfiles.length > 1){
     return u.modelProfiles.map(mp=>`<div class="prof-name">${mp.name}</div>${row(mp.stats)}`).join('');
   }
