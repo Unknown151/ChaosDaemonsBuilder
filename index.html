@@ -74,12 +74,12 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .unit-card.collapsed .card-body{display:none}
 
 /* stat tiles (label over value) */
-.stat-grid{display:flex;flex-wrap:wrap;gap:.5rem;margin:.4rem 0 .8rem}
-.stat{flex:1;min-width:62px;background:var(--panel-2);border:1px solid var(--border);
-  border-radius:8px;padding:.45rem .3rem;text-align:center}
-.stat b{display:block;color:var(--muted);font-size:.62rem;font-weight:600;letter-spacing:.06em;
+.stat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.35rem;margin:.4rem 0 .8rem}
+.stat{min-width:0;background:var(--panel-2);border:1px solid var(--border);
+  border-radius:8px;padding:.45rem .15rem;text-align:center}
+.stat b{display:block;color:var(--muted);font-size:.6rem;font-weight:600;letter-spacing:.04em;
   text-transform:uppercase;margin-bottom:.18rem}
-.stat .sv{font-size:1.35rem;font-weight:700;line-height:1}
+.stat .sv{font-size:1.25rem;font-weight:700;line-height:1}
 .stat.hl{background:rgba(212,161,58,.14);border-color:var(--accent-2)}
 .stat.hl .sv,.stat.hl b{color:var(--accent-2)}
 .card-head .collapse-ind{color:var(--muted);font-size:.8rem;transition:transform .15s}
