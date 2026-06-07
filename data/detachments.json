@@ -102,114 +102,70 @@
     "ruleDescription": "Warp Rifts: Each time a LEGIONES DAEMONICA unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within your army's Shadow of Chaos, and/or if it is set up wholly within 6\" of one or more friendly BLOODTHIRSTER, GREAT UNCLEAN ONE, KAIROS FATEWEAVER, KEEPER OF SECRETS, LORD OF CHANGE, ROTIGUS, SHALAXI HELBANE or SKARBRAND units with which it shares the KHORNE, TZEENTCH, NURGLE or SLAANESH keyword, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 9\".",
     "stratagems": [
       {
-        "id": "incorporeal-terrors",
-        "name": "INCORPOREAL TERRORS",
+        "id": "corrupt-realspace",
+        "name": "Corrupt Realspace",
         "cp": "1CP",
-        "category": "Daemonic Incursion - Battle Tactic",
-        "when": "Your opponent's Shooting phase, just after an enemy unit has selected its targets.",
-        "target": "One LEGIONES DAEMONICA unit from your army that was selected as the target of one or more of the attacking unit's attacks.",
-        "effect": "Until the end of the phase, each time an attack targets your unit, subtract 1 from the Hit roll.",
-        "restrictions": "",
-        "short": "each time an attack targets your unit, subtract 1 from the…"
-      },
-      {
-        "id": "parting-blows",
-        "name": "PARTING BLOWS",
-        "cp": "1CP",
-        "category": "Daemonic Incursion - Strategic Ploy",
-        "when": "Fight phase, just after an enemy unit has selected its targets.",
-        "target": "One LEGIONES DAEMONIcA unit from your army that was selected as the target of one or more of the attacking unit's attacks.",
-        "effect": "Until the end of the phase, each time a model in your unit is destroyed, if that model has not fought this phase, roll one D6: on a 4+, do not remove it from play. That destroyed model can fight after the attacking unit has finished making its attacks, and is then removed from play.",
-        "restrictions": "",
-        "short": "each time a model in your unit is destroyed, if that model…"
-      },
-      {
-        "id": "unreal-speed",
-        "name": "UNREAL SPEED",
-        "cp": "1CP",
-        "category": "Daemonic Incursion - Strategic Ploy",
-        "when": "Your Charge phase.",
-        "target": "One INfANTRY LEGIONES DAEMONIcA unit from your army.",
-        "effect": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced or Fell Back.",
-        "restrictions": "",
-        "short": "your unit is eligible to declare a charge in a turn in which…"
-      },
-      {
-        "id": "insubstantial-entities",
-        "name": "INSUBSTANTIAL ENTITIES",
-        "cp": "1CP",
-        "category": "Daemonic Incursion - Strategic Ploy",
-        "when": "Your Movement phase.",
-        "target": "One LEGIONES DAEMONICA unit from your army that has not been selected to move this phase.",
-        "effect": "The next time your unit is selected to move this phase, models in that unit can move through Walls and closed Hatchways as if they were not there, but when doing so, no model can move more than 6\".",
-        "restrictions": "You can only use this Stratagem once.",
-        "short": "The next time your unit is selected to move this phase,…"
-      },
-      {
-        "id": "draught-of-terror",
-        "name": "DRAUGHT OF TERROR",
-        "cp": "1CP",
-        "category": "Demonic Incursion - Battle Tactic",
-        "when": "Your Shooting phase or the Fight phase.",
-        "target": "One LEGIONES DAEMONICA unit from your army that has not been selected to shoot or fight this phase.",
-        "effect": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in that unit by 1. In addition, until the end of the phase, each time such a weapon targets a unit that is Battle-shocked, you can re-roll the Wound roll.",
-        "restrictions": "",
-        "short": "improve the Armour Penetration characteristic of weapons…"
-      },
-      {
-        "id": "daemonic-invulnerability",
-        "name": "DAEMONIC INVULNERABILITY",
-        "cp": "1CP",
-        "category": "Demonic Incursion - Battle Tactic",
-        "when": "Your opponent's Shooting phase, just after an enemy unit has selected its targets.",
-        "target": "One LEGIONES DAEMONICA unit from your army that was selected as the target of one or more of that enemy unit's attacks.",
-        "effect": "Until the end of the phase, each time an invulnerable saving throw is made for a model in your unit, re-roll a saving throw of 1.",
-        "restrictions": "",
-        "short": "each time an invulnerable saving throw is made for a model in…"
-      },
-      {
-        "id": "the-realm-of-chaos",
-        "name": "THE REALM OF CHAOS",
-        "cp": "1CP",
-        "category": "Demonic Incursion - Battle Tactic",
-        "when": "End of your opponent's turn.",
-        "target": "Up to two LEGIONES DAEMONICA units from your army that are within your army's Shadow of Chaos, or one other LEGIONES DAEMONICA unit from your army.",
-        "effect": "Remove the targeted units from the battlefield and place them into Strategic Reserves. They will arrive back on the battlefield in the Reinforcements step of your next Movement phase using the Deep Strike ability.",
-        "restrictions": "You cannot target units that are within Engagement Range of one or more enemy units with this Stratagem.",
-        "short": "Remove the targeted units from the battlefield and place them…"
+        "category": "Daemonic Incursion – Strategic Ploy",
+        "short": "Corrupt an objective: hold it + 6\" Shadow of Chaos",
+        "when": "Start of any Command phase.",
+        "target": "One LEGIONES DAEMONICA unit from your army that is within range of an objective marker you control.",
+        "effect": "That objective marker is Corrupted and remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn. In addition, while an objective marker is Corrupted and under your control, the area of the battlefield within 6\" of it is considered to be within your army's Shadow of Chaos.",
+        "restrictions": ""
       },
       {
         "id": "warp-surge",
-        "name": "WARP SURGE",
+        "name": "Warp Surge",
         "cp": "1CP",
-        "category": "Demonic Incursion - Strategic Ploy",
+        "category": "Daemonic Incursion – Strategic Ploy",
+        "short": "Charge after Advancing (in Shadow of Chaos)",
         "when": "Your Charge phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that is within your army's Shadow of Chaos.",
         "effect": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced.",
-        "restrictions": "",
-        "short": "your unit is eligible to declare a charge in a turn in which…"
+        "restrictions": ""
       },
       {
-        "id": "corrupt-realspace",
-        "name": "CORRUPT REALSPACE",
+        "id": "draught-of-terror",
+        "name": "Draught of Terror",
         "cp": "1CP",
-        "category": "Demonic Incursion - Strategic Ploy",
-        "when": "Start of any Command phase.",
-        "target": "One LEGIONES DAEMONICA unit from your army that is within range of an objective marker you control.",
-        "effect": "That objective marker is said to be Corrupted and remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn. In addition, while an objective marker is Corrupted and under your control, the area of the battlefield within 6\" of that objective marker is considered to be within your army's Shadow of Chaos.",
-        "restrictions": "",
-        "short": "That objective marker is said to be Corrupted and remains…"
+        "category": "Daemonic Incursion – Battle Tactic",
+        "short": "+1 AP; re-roll Wounds vs Battle-shocked",
+        "when": "Your Shooting phase or the Fight phase.",
+        "target": "One LEGIONES DAEMONICA unit from your army that has not been selected to shoot or fight this phase.",
+        "effect": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in that unit by 1. In addition, until the end of the phase, each time such a weapon targets a unit that is Battle-shocked, you can re-roll the Wound roll.",
+        "restrictions": ""
       },
       {
         "id": "denizens-of-the-warp",
-        "name": "DENIZENS OF THE WARP",
+        "name": "Denizens of the Warp",
         "cp": "1CP",
-        "category": "Demonic Incursion - Strategic Ploy",
+        "category": "Daemonic Incursion – Strategic Ploy",
+        "short": "Deep Strike anywhere >6\" from enemies",
         "when": "Your Movement phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that is arriving using the Deep Strike ability this phase.",
-        "effect": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models. ---",
-        "restrictions": "",
-        "short": "Your unit can be set up anywhere on the battlefield that is…"
+        "effect": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.",
+        "restrictions": ""
+      },
+      {
+        "id": "the-realm-of-chaos",
+        "name": "The Realm of Chaos",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Battle Tactic",
+        "short": "Pull units into Reserves to redeploy",
+        "when": "End of your opponent's turn.",
+        "target": "Up to two LEGIONES DAEMONICA units from your army that are within your army's Shadow of Chaos, or one other LEGIONES DAEMONICA unit from your army.",
+        "effect": "Remove the targeted units from the battlefield and place them into Strategic Reserves. They will arrive back on the battlefield in the Reinforcements step of your next Movement phase using the Deep Strike ability.",
+        "restrictions": "You cannot target units that are within Engagement Range of one or more enemy units with this Stratagem."
+      },
+      {
+        "id": "daemonic-invulnerability",
+        "name": "Daemonic Invulnerability",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Battle Tactic",
+        "short": "Re-roll invulnerable saves of 1",
+        "when": "Your opponent's Shooting phase, just after an enemy unit has selected its targets.",
+        "target": "One LEGIONES DAEMONICA unit from your army that was selected as the target of one or more of that enemy unit's attacks.",
+        "effect": "Until the end of the phase, each time an invulnerable saving throw is made for a model in your unit, re-roll a saving throw of 1.",
+        "restrictions": ""
       }
     ]
   },

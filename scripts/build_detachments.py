@@ -119,7 +119,8 @@ def strat_short(s):
     return (t[:62].rsplit(' ', 1)[0] + '…') if len(t) > 64 else t
 for _d in dets.values():
     for _s in _d['stratagems']:
-        _s['short'] = strat_short(_s)
+        if not _s.get('short'):
+            _s['short'] = strat_short(_s)
 
 with open(os.path.join(ROOT, 'data', 'detachments.json'), 'w', encoding='utf-8') as f:
     json.dump(dets, f, ensure_ascii=False, indent=2)
