@@ -91,6 +91,16 @@ for b in blocks[1:]:
         'stratagems': stratagems,
     }
 
+# ── authoritative detachment overrides (rules/stratagems the export got wrong) ─
+_ov = os.path.join(ROOT, 'data', 'detachment-overrides.json')
+if os.path.exists(_ov):
+    for did, ov in json.load(open(_ov, encoding='utf-8')).items():
+        d = dets.setdefault(did, {'id': did, 'stratagems': []})
+        for k, v in ov.items():
+            d[k] = v
+        if 'ruleParts' in ov:
+            d['ruleDescription'] = ' '.join(f"{p['name']}: {p['text']}" for p in ov['ruleParts'])
+
 # ── short blurbs for stratagem tiles ─────────────────────────────────────────
 STRAT_SHORT = {  # curated for the focus detachment
     'sheathed-in-brass': 'Your Khorne unit gains Save 3+',
