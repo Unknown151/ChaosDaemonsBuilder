@@ -4,8 +4,9 @@
     "type": "Enhancement (20 pts)",
     "points": 20,
     "detachment": "daemonic-incursion",
-    "description": "<em>Rules text not provided in source data.</em>",
-    "short": "(rules text pending)"
+    "description": "KHORNE LEGIONES DAEMONICA model only. Add 1 to the Attacks and Strength characteristics of the bearer's melee weapons. While the bearer is within your army's Shadow of Chaos, add 2 to the Attacks and Strength characteristics of the bearer's melee weapons instead.",
+    "short": "+1 A & S to melee (+2 in Shadow of Chaos)",
+    "restriction": "Khorne Legiones Daemonica model only"
   },
   "avatar-of-perfection": {
     "name": "Avatar of Perfection",
@@ -168,30 +169,6 @@
     "type": "Enhancement (10 pts)",
     "points": 10,
     "detachment": "legion-of-excess",
-    "description": "<em>Rules text not provided in source data.</em>",
-    "short": "(rules text pending)"
-  },
-  "soulstealer": {
-    "name": "Soulstealer",
-    "type": "Enhancement (15 pts)",
-    "points": 15,
-    "detachment": "daemonic-incursion",
-    "description": "<em>Rules text not provided in source data.</em>",
-    "short": "(rules text pending)"
-  },
-  "the-endless-gift": {
-    "name": "The Endless Gift",
-    "type": "Enhancement (30 pts)",
-    "points": 30,
-    "detachment": "daemonic-incursion",
-    "description": "<em>Rules text not provided in source data.</em>",
-    "short": "(rules text pending)"
-  },
-  "the-everstave": {
-    "name": "The Everstave",
-    "type": "Enhancement (25 pts)",
-    "points": 25,
-    "detachment": "daemonic-incursion",
     "description": "<em>Rules text not provided in source data.</em>",
     "short": "(rules text pending)"
   }

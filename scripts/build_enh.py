@@ -91,6 +91,19 @@ for eid, e in enh.items():
     else:
         e['short'] = re.sub(r'<[^>]+>', '', e['description'])[:48].rstrip() + '…'
 
+# ── authoritative enhancement overrides (data/enhancement-overrides.json) ──────
+_ov = os.path.join(ROOT, 'data', 'enhancement-overrides.json')
+if os.path.exists(_ov):
+    ov = json.load(open(_ov, encoding='utf-8'))
+    # prune: keep only the listed enhancement ids for a given detachment
+    for det, keep in (ov.get('detachmentOnly') or {}).items():
+        for eid in [k for k, v in enh.items() if v.get('detachment') == det and k not in keep]:
+            del enh[eid]
+    # merge field overrides onto matching enhancements
+    for eid, fields in (ov.get('enhancements') or {}).items():
+        if eid in enh:
+            enh[eid].update(fields)
+
 with open(os.path.join(ROOT, 'data', 'enhancements.json'), 'w', encoding='utf-8') as f:
     json.dump(dict(sorted(enh.items())), f, ensure_ascii=False, indent=2)
 
