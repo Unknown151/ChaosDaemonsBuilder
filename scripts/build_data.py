@@ -502,6 +502,7 @@ ABILITY_SHORT = {
     'daemon-prince-of-slaanesh': 'Slaanesh: +2" Move',
     'daemonic-icon': "Unit's Leadership becomes 6+",
     'instrument-of-chaos': '+1 to Charge rolls',
+    'grotesque-regeneration': 'Heals all lost wounds at end of each phase',
 }
 
 def make_short(desc):

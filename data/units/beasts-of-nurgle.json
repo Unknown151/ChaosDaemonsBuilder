@@ -2,11 +2,11 @@
   "id": "beasts-of-nurgle",
   "name": "Beasts Of Nurgle",
   "keywords": [
+    "BEAST",
+    "CHAOS",
     "DAEMON",
     "NURGLE",
-    "BEASTS OF NURGLE",
-    "CHAOS",
-    "BEAST"
+    "BEASTS OF NURGLE"
   ],
   "type": [
     "Beast"
@@ -66,6 +66,11 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": [],
-  "skillEstimated": true
+  "canBeLeadBy": [
+    "horticulous-slimux"
+  ],
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

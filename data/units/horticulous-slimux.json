@@ -71,7 +71,9 @@
     "seed-the-garden-of-nurgle"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "beasts-of-nurgle"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

@@ -41,6 +41,13 @@
     }
   },
   "flesh-hounds": { "canBeLeadBy": ["karanak"] },
+  "beasts-of-nurgle": {
+    "verified": true,
+    "keywords": ["BEAST", "CHAOS", "DAEMON", "NURGLE", "BEASTS OF NURGLE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canBeLeadBy": ["horticulous-slimux"]
+  },
+  "horticulous-slimux": { "canLead": ["beasts-of-nurgle"] },
   "skarbrand": {
     "verified": true,
     "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKARBRAND"],

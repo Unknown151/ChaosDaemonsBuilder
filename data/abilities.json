@@ -375,7 +375,7 @@
     "name": "Grotesque Regeneration",
     "type": "Ability",
     "description": "At the end of each phase, if a Beasts of Nurgle model in this unit has lost any wounds but is not destroyed, that model regains all of its lost wounds.",
-    "short": "At the end of each phase, if a Beasts of Nurgle model in this unit has…"
+    "short": "Heals all lost wounds at end of each phase"
   },
   "harbinger-of-death": {
     "name": "Harbinger of Death",
