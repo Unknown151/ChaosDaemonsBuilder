@@ -75,6 +75,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
   margin-bottom:.8rem;overflow:hidden}
 .unit-card.attached{border-color:var(--accent-2)}
 .unit-card{scroll-margin-top:64px}
+.unit-card.epic{border-color:var(--accent-2);background:linear-gradient(180deg,rgba(212,161,58,.10),var(--panel) 55%)}
+.unit-card.epic .card-head{background:linear-gradient(180deg,rgba(212,161,58,.22),var(--panel-2))}
+.unit-card.epic .role-eyebrow{color:var(--accent-2)}
 .card-head{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem .9rem;cursor:pointer;
   background:var(--panel-2)}
 .card-head h3{margin:.1rem 0 0;font-size:1.5rem;font-weight:800;flex:1;letter-spacing:.01em;line-height:1.1}
@@ -293,7 +296,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.10.4</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.10.5</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -706,7 +709,8 @@ function renderLedUnitCard(inst){
       ${renderAbilities(u, null, opts.inst||null)}
     </div>`;
 
-  return `<div class="unit-card attached ${collapsed}" id="uc-${inst.instanceId}">
+  const epic = (leader.isEpicHero || bg.isEpicHero) ? 'epic' : '';
+  return `<div class="unit-card attached ${epic} ${collapsed}" id="uc-${inst.instanceId}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
       <span class="collapse-ind">▼</span>
       <div style="flex:1">
@@ -763,7 +767,7 @@ function renderSoloUnitCard(inst){
   const du = applyInstanceChoices(u, inst);
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
-  return `<div class="unit-card ${collapsed}" id="uc-${inst.instanceId}">
+  return `<div class="unit-card ${u.isEpicHero?'epic':''} ${collapsed}" id="uc-${inst.instanceId}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
       <span class="collapse-ind">▼</span>
       <div style="flex:1">
