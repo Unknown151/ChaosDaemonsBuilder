@@ -1,42 +1,81 @@
 {
-  "blood-legion": { "dp": 2, "category": "Purge the Foe" },
-  "legion-of-excess": { "dp": 2, "category": "Priority Assets" },
-  "plague-legion": { "dp": 2, "category": "Take and Hold" },
-  "scintillating-legion": { "dp": 2, "category": "Priority Assets" },
-  "shadow-legion": { "dp": 2, "category": "Purge the Foe" },
-
-  "dread-carnival": { "dp": 2, "dpUnconfirmed": true },
-  "infernal-onslaught": { "dp": 2, "dpUnconfirmed": true },
-  "pandaemoniac-inferno": { "dp": 2, "dpUnconfirmed": true },
-  "rotten-and-rusted": { "dp": 2, "dpUnconfirmed": true },
-
+  "blood-legion": {
+    "dp": 2,
+    "category": "Purge the Foe"
+  },
+  "legion-of-excess": {
+    "dp": 2,
+    "category": "Priority Assets"
+  },
+  "plague-legion": {
+    "dp": 2,
+    "category": "Take and Hold"
+  },
+  "scintillating-legion": {
+    "dp": 2,
+    "category": "Priority Assets"
+  },
+  "shadow-legion": {
+    "dp": 2,
+    "category": "Purge the Foe"
+  },
   "cavalcade-of-chaos": {
-    "id": "cavalcade-of-chaos", "name": "Cavalcade of Chaos", "god": null,
-    "dp": 1, "category": "Disruption", "unconfirmed": true,
-    "ruleName": "Cavalcade of Chaos", "ruleId": "cavalcade-of-chaos-rule",
+    "id": "cavalcade-of-chaos",
+    "name": "Cavalcade of Chaos",
+    "god": null,
+    "dp": 1,
+    "category": "Disruption",
+    "unconfirmed": true,
+    "ruleName": "Cavalcade of Chaos",
+    "ruleId": "cavalcade-of-chaos-rule",
     "ruleType": "Detachment Rule - Cavalcade of Chaos",
-    "ruleParts": [{ "name": "Cavalcade of Chaos", "text": "Rules text not provided in source data — to be supplied." }],
+    "ruleParts": [
+      {
+        "name": "Cavalcade of Chaos",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
     "stratagems": []
   },
   "lords-of-the-warp": {
-    "id": "lords-of-the-warp", "name": "Lords of the Warp", "god": null,
-    "dp": 1, "category": "Purge the Foe", "unconfirmed": true,
-    "ruleName": "Lords of the Warp", "ruleId": "lords-of-the-warp-rule",
+    "id": "lords-of-the-warp",
+    "name": "Lords of the Warp",
+    "god": null,
+    "dp": 1,
+    "category": "Purge the Foe",
+    "unconfirmed": true,
+    "ruleName": "Lords of the Warp",
+    "ruleId": "lords-of-the-warp-rule",
     "ruleType": "Detachment Rule - Lords of the Warp",
-    "ruleParts": [{ "name": "Lords of the Warp", "text": "Rules text not provided in source data — to be supplied." }],
+    "ruleParts": [
+      {
+        "name": "Lords of the Warp",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
     "stratagems": []
   },
   "warptide": {
-    "id": "warptide", "name": "Warptide", "god": null,
-    "dp": 1, "category": "Reconnaissance", "unconfirmed": true,
-    "ruleName": "Warptide", "ruleId": "warptide-rule",
+    "id": "warptide",
+    "name": "Warptide",
+    "god": null,
+    "dp": 1,
+    "category": "Reconnaissance",
+    "unconfirmed": true,
+    "ruleName": "Warptide",
+    "ruleId": "warptide-rule",
     "ruleType": "Detachment Rule - Warptide",
-    "ruleParts": [{ "name": "Warptide", "text": "Rules text not provided in source data — to be supplied." }],
+    "ruleParts": [
+      {
+        "name": "Warptide",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
     "stratagems": []
   },
-
   "daemonic-incursion": {
-    "dp": 3, "category": "Disruption",
+    "dp": 3,
+    "category": "Disruption",
     "ruleName": "Warp Rifts",
     "ruleId": "warp-rifts",
     "ruleType": "Detachment Rule - Warp Rifts",
@@ -47,42 +86,72 @@
       }
     ],
     "stratagems": [
-      { "id": "corrupt-realspace", "name": "Corrupt Realspace", "cp": "1CP", "category": "Daemonic Incursion – Strategic Ploy",
+      {
+        "id": "corrupt-realspace",
+        "name": "Corrupt Realspace",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Strategic Ploy",
         "short": "Corrupt an objective: hold it + 6\" Shadow of Chaos",
         "when": "Start of any Command phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that is within range of an objective marker you control.",
         "effect": "That objective marker is Corrupted and remains under your control, even if you have no models within range of it, until your opponent controls it at the start or end of any turn. In addition, while an objective marker is Corrupted and under your control, the area of the battlefield within 6\" of it is considered to be within your army's Shadow of Chaos.",
-        "restrictions": "" },
-      { "id": "warp-surge", "name": "Warp Surge", "cp": "1CP", "category": "Daemonic Incursion – Strategic Ploy",
+        "restrictions": ""
+      },
+      {
+        "id": "warp-surge",
+        "name": "Warp Surge",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Strategic Ploy",
         "short": "Charge after Advancing (in Shadow of Chaos)",
         "when": "Your Charge phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that is within your army's Shadow of Chaos.",
         "effect": "Until the end of the phase, your unit is eligible to declare a charge in a turn in which it Advanced.",
-        "restrictions": "" },
-      { "id": "draught-of-terror", "name": "Draught of Terror", "cp": "1CP", "category": "Daemonic Incursion – Battle Tactic",
+        "restrictions": ""
+      },
+      {
+        "id": "draught-of-terror",
+        "name": "Draught of Terror",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Battle Tactic",
         "short": "+1 AP; re-roll Wounds vs Battle-shocked",
         "when": "Your Shooting phase or the Fight phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that has not been selected to shoot or fight this phase.",
         "effect": "Until the end of the phase, improve the Armour Penetration characteristic of weapons equipped by models in that unit by 1. In addition, until the end of the phase, each time such a weapon targets a unit that is Battle-shocked, you can re-roll the Wound roll.",
-        "restrictions": "" },
-      { "id": "denizens-of-the-warp", "name": "Denizens of the Warp", "cp": "1CP", "category": "Daemonic Incursion – Strategic Ploy",
+        "restrictions": ""
+      },
+      {
+        "id": "denizens-of-the-warp",
+        "name": "Denizens of the Warp",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Strategic Ploy",
         "short": "Deep Strike anywhere >6\" from enemies",
         "when": "Your Movement phase.",
         "target": "One LEGIONES DAEMONICA unit from your army that is arriving using the Deep Strike ability this phase.",
         "effect": "Your unit can be set up anywhere on the battlefield that is more than 6\" horizontally away from all enemy models.",
-        "restrictions": "" },
-      { "id": "the-realm-of-chaos", "name": "The Realm of Chaos", "cp": "1CP", "category": "Daemonic Incursion – Battle Tactic",
+        "restrictions": ""
+      },
+      {
+        "id": "the-realm-of-chaos",
+        "name": "The Realm of Chaos",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Battle Tactic",
         "short": "Pull units into Reserves to redeploy",
         "when": "End of your opponent's turn.",
         "target": "Up to two LEGIONES DAEMONICA units from your army that are within your army's Shadow of Chaos, or one other LEGIONES DAEMONICA unit from your army.",
         "effect": "Remove the targeted units from the battlefield and place them into Strategic Reserves. They will arrive back on the battlefield in the Reinforcements step of your next Movement phase using the Deep Strike ability.",
-        "restrictions": "You cannot target units that are within Engagement Range of one or more enemy units with this Stratagem." },
-      { "id": "daemonic-invulnerability", "name": "Daemonic Invulnerability", "cp": "1CP", "category": "Daemonic Incursion – Battle Tactic",
+        "restrictions": "You cannot target units that are within Engagement Range of one or more enemy units with this Stratagem."
+      },
+      {
+        "id": "daemonic-invulnerability",
+        "name": "Daemonic Invulnerability",
+        "cp": "1CP",
+        "category": "Daemonic Incursion – Battle Tactic",
         "short": "Re-roll invulnerable saves of 1",
         "when": "Your opponent's Shooting phase, just after an enemy unit has selected its targets.",
         "target": "One LEGIONES DAEMONICA unit from your army that was selected as the target of one or more of that enemy unit's attacks.",
         "effect": "Until the end of the phase, each time an invulnerable saving throw is made for a model in your unit, re-roll a saving throw of 1.",
-        "restrictions": "" }
+        "restrictions": ""
+      }
     ]
   }
 }

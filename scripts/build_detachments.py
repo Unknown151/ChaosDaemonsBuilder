@@ -101,6 +101,14 @@ if os.path.exists(_ov):
         if 'ruleParts' in ov:
             d['ruleDescription'] = ' '.join(f"{p['name']}: {p['text']}" for p in ov['ruleParts'])
 
+# Detachments with no confirmed 11e Detachment Points cost — dropped from the
+# app entirely until the user supplies their DP/category.
+UNCONFIRMED_REMOVED = [
+    'dread-carnival', 'infernal-onslaught', 'pandaemoniac-inferno', 'rotten-and-rusted',
+]
+for _did in UNCONFIRMED_REMOVED:
+    dets.pop(_did, None)
+
 # ── short blurbs for stratagem tiles ─────────────────────────────────────────
 STRAT_SHORT = {  # curated for the focus detachment
     'sheathed-in-brass': 'Your Khorne unit gains Save 3+',
