@@ -59,7 +59,8 @@ BASE_RULES = {
     'leader': ('Core Ability', 'During the Declare Battle Formations step, this Character can be attached to a unit it can lead.'),
     'fights first': ('Core Ability', 'This unit fights in the Fight phase before units that do not have this ability.'),
     'feel no pain': ('Core Ability', 'Each time a model would lose a wound, roll a D6; on the listed value or better, that wound is not lost.'),
-    'stealth': ('Core Ability', 'Subtract 1 from Hit rolls for ranged attacks targeting this unit.'),
+    'stealth': ('Core Ability', 'If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the <strong onclick="showModal(\'benefit-of-cover\')" style="cursor:pointer;text-decoration:underline">Benefit of Cover</strong> against that attack (13.08).'),
+    'benefit of cover': ('Core Ability', 'Each time a ranged attack targets a unit that has the Benefit of Cover against it, worsen the BS characteristic of that attack by 1.'),
     'firing deck': ('Core Ability', 'Embarked models can shoot as if part of this Transport (up to the listed number of weapons).'),
     'infiltrators': ('Core Ability', 'Can be set up anywhere more than 9" horizontally from enemy models during deployment.'),
 }
@@ -482,6 +483,8 @@ for uid, u in units.items():
 # listed falls back to an auto-generated first-clause snippet.
 ABILITY_SHORT = {
     'psychic': 'Ignore BS/WS & hit-roll modifiers; counts as a psychic attack',
+    'stealth': 'Ranged attacks targeting this unit have the Benefit of Cover',
+    'benefit-of-cover': 'Ranged attacks targeting the unit have -1 BS',
     # core
     'deep-strike': 'Arrive from Reserves, >9" from enemies',
     'leader': 'Can attach to a Bodyguard unit',
@@ -527,6 +530,15 @@ def make_short(desc):
     if len(sent) > 78:
         sent = sent[:75].rsplit(' ', 1)[0] + '…'
     return sent
+
+# glossary entries not attached to any datasheet but linked from other rules
+GLOSSARY = {
+    'benefit-of-cover': 'benefit of cover',
+}
+for _gid, _bk in GLOSSARY.items():
+    if _gid not in abilities and _bk in BASE_RULES:
+        _kind, _desc = BASE_RULES[_bk]
+        abilities[_gid] = {'name': 'Benefit of Cover', 'type': _kind, 'description': _desc}
 
 for _aid, _a in abilities.items():
     _a['short'] = ABILITY_SHORT.get(_aid) or make_short(_a.get('description'))

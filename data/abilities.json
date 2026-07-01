@@ -59,6 +59,12 @@
     "description": "While this model is leading a unit, you can re-roll Charge rolls made for that unit. In addition, once per battle, you can target that unit with the Heroic Intervention Stratagem for 0CP, and can do so even if you have already used that Stratagem on a different unit this phase.",
     "short": "While this model is leading a unit, you can re-roll Charge rolls made for…"
   },
+  "benefit-of-cover": {
+    "name": "Benefit of Cover",
+    "type": "Core Ability",
+    "description": "Each time a ranged attack targets a unit that has the Benefit of Cover against it, worsen the BS characteristic of that attack by 1.",
+    "short": "Ranged attacks targeting the unit have -1 BS"
+  },
   "blast": {
     "name": "Blast",
     "type": "Weapon Ability",
@@ -758,8 +764,8 @@
   "stealth": {
     "name": "Stealth",
     "type": "Core Ability",
-    "description": "Subtract 1 from Hit rolls for ranged attacks targeting this unit.",
-    "short": "Subtract 1 from Hit rolls for ranged attacks targeting this unit"
+    "description": "If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the <strong onclick=\"showModal('benefit-of-cover')\" style=\"cursor:pointer;text-decoration:underline\">Benefit of Cover</strong> against that attack (13.08).",
+    "short": "Ranged attacks targeting this unit have the Benefit of Cover"
   },
   "storm-of-mutating-sorcery-psychic": {
     "name": "Storm of Mutating Sorcery (Psychic)",
