@@ -1,4 +1,26 @@
 {
+  "newEnhancements": {
+    "apocalyptic-steeds": {
+      "name": "Apocalyptic Steeds",
+      "type": "Enhancement (Upgrade) (10 pts)",
+      "points": 10,
+      "detachment": "cavalcade-of-chaos",
+      "upgrade": true,
+      "restriction": "Legiones Daemonica Mounted unit only",
+      "short": "+1\" Move",
+      "description": "LEGIONES DAEMONICA MOUNTED unit only. This unit has +1\" M."
+    },
+    "soul-shattering-charge": {
+      "name": "Soul-shattering Charge",
+      "type": "Enhancement (Upgrade) (10 pts)",
+      "points": 10,
+      "detachment": "cavalcade-of-chaos",
+      "upgrade": true,
+      "restriction": "Legiones Daemonica Mounted unit only",
+      "short": "After a charge, nearby models can fight engaged foes",
+      "description": "LEGIONES DAEMONICA MOUNTED unit only. When this unit is selected to fight, if this unit made a charge move this turn, you can use this ability. If you do, when determining which models in this unit can fight, friendly models that are within 3\" of enemy units engaged with this unit can target those enemy units."
+    }
+  },
   "enhancements": {
     "argath-the-king-of-blades": {
       "restriction": "Khorne Legiones Daemonica model only",

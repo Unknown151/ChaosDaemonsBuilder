@@ -345,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.13</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.13.1</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -1407,13 +1407,16 @@ function canEquipEnhancement(inst, enhId){
   return true;
 }
 const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
+// unit-type keywords a restriction sentence might name (beyond the gods above)
+const UNIT_TYPE_KEYWORDS = ['MONSTER','MOUNTED','INFANTRY','VEHICLE','BEAST','CAVALRY','FLY'];
 function enhancementAllowedFor(enh, u){
   if(!isContentDetachmentActive(enh)) return false;
   const k = u.keywords.map(x=>x.toUpperCase());
   const restr = (enh.restriction||'').toUpperCase();
   // god-keyword restriction (derived from restriction text)
   for(const g of GOD_KEYWORDS){ if(restr.includes(g) && !k.includes(g)) return false; }
-  if(/\bMONSTER\b/.test(restr) && !k.includes('MONSTER')) return false;
+  // unit-type restriction (e.g. "...Mounted unit only", "...Monster model only")
+  for(const t of UNIT_TYPE_KEYWORDS){ if(new RegExp('\\b'+t+'\\b').test(restr) && !k.includes(t)) return false; }
   // structured restrictedTo
   if(enh.restrictedTo && !enh.restrictedTo.includes(u.id)) return false;
   // weapon restriction

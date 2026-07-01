@@ -99,6 +99,10 @@ if os.path.exists(_ov):
     for det, keep in (ov.get('detachmentOnly') or {}).items():
         for eid in [k for k, v in enh.items() if v.get('detachment') == det and k not in keep]:
             del enh[eid]
+    # brand-new enhancements for detachments the points file never listed
+    # (e.g. Cavalcade of Chaos) — full objects, merged in as-is
+    for eid, obj in (ov.get('newEnhancements') or {}).items():
+        enh[eid] = obj
     # merge field overrides onto matching enhancements
     for eid, fields in (ov.get('enhancements') or {}).items():
         if eid in enh:
