@@ -200,6 +200,16 @@
     "description": "<em>Rules text not provided in source data.</em>",
     "short": "(rules text pending)"
   },
+  "swollen-with-power": {
+    "name": "Swollen with Power",
+    "type": "Enhancement (Upgrade) (10 pts)",
+    "points": 10,
+    "detachment": "lords-of-the-warp",
+    "upgrade": true,
+    "restriction": "Legiones Daemonica Character model only (excluding Monster units)",
+    "short": "+2 Wounds",
+    "description": "LEGIONES DAEMONICA CHARACTER model only (excluding MONSTER units). This model has +2 W."
+  },
   "the-endless-gift": {
     "name": "The Endless Gift",
     "type": "Enhancement (30 pts)",

@@ -345,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.13.1</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.13.2</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -1407,16 +1407,28 @@ function canEquipEnhancement(inst, enhId){
   return true;
 }
 const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
-// unit-type keywords a restriction sentence might name (beyond the gods above)
-const UNIT_TYPE_KEYWORDS = ['MONSTER','MOUNTED','INFANTRY','VEHICLE','BEAST','CAVALRY','FLY'];
+// keywords a restriction sentence might name (gods above + unit types below)
+const RESTRICT_KEYWORDS = ['CHARACTER','MONSTER','MOUNTED','INFANTRY','VEHICLE','BEAST','CAVALRY','FLY'];
 function enhancementAllowedFor(enh, u){
   if(!isContentDetachmentActive(enh)) return false;
+  // Epic Heroes can never take an Enhancement — and Upgrades don't lift that ban.
+  if(u.isEpicHero) return false;
   const k = u.keywords.map(x=>x.toUpperCase());
   const restr = (enh.restriction||'').toUpperCase();
-  // god-keyword restriction (derived from restriction text)
-  for(const g of GOD_KEYWORDS){ if(restr.includes(g) && !k.includes(g)) return false; }
-  // unit-type restriction (e.g. "...Mounted unit only", "...Monster model only")
-  for(const t of UNIT_TYPE_KEYWORDS){ if(new RegExp('\\b'+t+'\\b').test(restr) && !k.includes(t)) return false; }
+  // split off an "excluding X" / "except X" clause (up to the next . or )) so
+  // its keywords gate the opposite way from the required part of the sentence
+  const exM = restr.match(/\b(?:EXCLUDING|EXCEPT)\b[^.)]*/);
+  const exclText = exM ? exM[0] : '';
+  const reqText  = exM ? restr.slice(0, exM.index) + restr.slice(exM.index + exM[0].length) : restr;
+  const named = (text, kw) => new RegExp('\\b'+kw+'\\b').test(text);
+  // god-keyword restriction (derived from the required part of the text)
+  for(const g of GOD_KEYWORDS){ if(named(reqText, g) && !k.includes(g)) return false; }
+  // unit-type / CHARACTER restriction: required if named in the main clause,
+  // forbidden if named in the excluding clause
+  for(const t of RESTRICT_KEYWORDS){
+    if(named(exclText, t) && k.includes(t)) return false;       // "excluding MONSTER" bars monsters
+    else if(named(reqText, t) && !k.includes(t)) return false;  // "CHARACTER model only" bars non-characters
+  }
   // structured restrictedTo
   if(enh.restrictedTo && !enh.restrictedTo.includes(u.id)) return false;
   // weapon restriction

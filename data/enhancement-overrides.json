@@ -19,6 +19,16 @@
       "restriction": "Legiones Daemonica Mounted unit only",
       "short": "After a charge, nearby models can fight engaged foes",
       "description": "LEGIONES DAEMONICA MOUNTED unit only. When this unit is selected to fight, if this unit made a charge move this turn, you can use this ability. If you do, when determining which models in this unit can fight, friendly models that are within 3\" of enemy units engaged with this unit can target those enemy units."
+    },
+    "swollen-with-power": {
+      "name": "Swollen with Power",
+      "type": "Enhancement (Upgrade) (10 pts)",
+      "points": 10,
+      "detachment": "lords-of-the-warp",
+      "upgrade": true,
+      "restriction": "Legiones Daemonica Character model only (excluding Monster units)",
+      "short": "+2 Wounds",
+      "description": "LEGIONES DAEMONICA CHARACTER model only (excluding MONSTER units). This model has +2 W."
     }
   },
   "enhancements": {
