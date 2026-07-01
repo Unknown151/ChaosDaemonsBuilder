@@ -84,7 +84,9 @@
         "restrictions": "",
         "short": "Can charge after Advancing"
       }
-    ]
+    ],
+    "dp": 2,
+    "category": "Purge the Foe"
   },
   "daemonic-incursion": {
     "id": "daemonic-incursion",
@@ -167,7 +169,9 @@
         "effect": "Until the end of the phase, each time an invulnerable saving throw is made for a model in your unit, re-roll a saving throw of 1.",
         "restrictions": ""
       }
-    ]
+    ],
+    "dp": 3,
+    "category": "Disruption"
   },
   "dread-carnival": {
     "id": "dread-carnival",
@@ -228,7 +232,9 @@
         "restrictions": "",
         "short": "your unit is eligible to shoot and declare a charge in a turn…"
       }
-    ]
+    ],
+    "dp": 2,
+    "dpUnconfirmed": true
   },
   "infernal-onslaught": {
     "id": "infernal-onslaught",
@@ -289,7 +295,9 @@
         "restrictions": "",
         "short": "add 2\" to the Move characteristic of models in your unit."
       }
-    ]
+    ],
+    "dp": 2,
+    "dpUnconfirmed": true
   },
   "legion-of-excess": {
     "id": "legion-of-excess",
@@ -372,7 +380,9 @@
         "restrictions": "",
         "short": "each time a model in your unit makes a move, it can move…"
       }
-    ]
+    ],
+    "dp": 2,
+    "category": "Priority Assets"
   },
   "pandaemoniac-inferno": {
     "id": "pandaemoniac-inferno",
@@ -433,7 +443,9 @@
         "restrictions": "You can only use this Stratagem once. ---",
         "short": "The next time your unit is selected to move this phase,…"
       }
-    ]
+    ],
+    "dp": 2,
+    "dpUnconfirmed": true
   },
   "plague-legion": {
     "id": "plague-legion",
@@ -516,7 +528,9 @@
         "restrictions": "",
         "short": "after an enemy unit takes a Battle-shock test as a result of…"
       }
-    ]
+    ],
+    "dp": 2,
+    "category": "Take and Hold"
   },
   "rotten-and-rusted": {
     "id": "rotten-and-rusted",
@@ -577,7 +591,9 @@
         "restrictions": "You can only use this Stratagem once. ---",
         "short": "The next time your unit is selected to move this phase,…"
       }
-    ]
+    ],
+    "dp": 2,
+    "dpUnconfirmed": true
   },
   "scintillating-legion": {
     "id": "scintillating-legion",
@@ -660,7 +676,9 @@
         "restrictions": "",
         "short": "Remove your units from the battlefield and place them into…"
       }
-    ]
+    ],
+    "dp": 2,
+    "category": "Priority Assets"
   },
   "shadow-legion": {
     "id": "shadow-legion",
@@ -743,6 +761,65 @@
         "restrictions": "",
         "short": "Remove those selected units from the battlefield and place…"
       }
-    ]
+    ],
+    "dp": 2,
+    "category": "Purge the Foe"
+  },
+  "cavalcade-of-chaos": {
+    "id": "cavalcade-of-chaos",
+    "stratagems": [],
+    "name": "Cavalcade of Chaos",
+    "god": null,
+    "dp": 1,
+    "category": "Disruption",
+    "unconfirmed": true,
+    "ruleName": "Cavalcade of Chaos",
+    "ruleId": "cavalcade-of-chaos-rule",
+    "ruleType": "Detachment Rule - Cavalcade of Chaos",
+    "ruleParts": [
+      {
+        "name": "Cavalcade of Chaos",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
+    "ruleDescription": "Cavalcade of Chaos: Rules text not provided in source data — to be supplied."
+  },
+  "lords-of-the-warp": {
+    "id": "lords-of-the-warp",
+    "stratagems": [],
+    "name": "Lords of the Warp",
+    "god": null,
+    "dp": 1,
+    "category": "Purge the Foe",
+    "unconfirmed": true,
+    "ruleName": "Lords of the Warp",
+    "ruleId": "lords-of-the-warp-rule",
+    "ruleType": "Detachment Rule - Lords of the Warp",
+    "ruleParts": [
+      {
+        "name": "Lords of the Warp",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
+    "ruleDescription": "Lords of the Warp: Rules text not provided in source data — to be supplied."
+  },
+  "warptide": {
+    "id": "warptide",
+    "stratagems": [],
+    "name": "Warptide",
+    "god": null,
+    "dp": 1,
+    "category": "Reconnaissance",
+    "unconfirmed": true,
+    "ruleName": "Warptide",
+    "ruleId": "warptide-rule",
+    "ruleType": "Detachment Rule - Warptide",
+    "ruleParts": [
+      {
+        "name": "Warptide",
+        "text": "Rules text not provided in source data — to be supplied."
+      }
+    ],
+    "ruleDescription": "Warptide: Rules text not provided in source data — to be supplied."
   }
 }

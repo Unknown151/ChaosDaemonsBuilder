@@ -48,19 +48,37 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .list-row .btn{padding:.45rem .55rem;flex:none}
 .det-bar{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.8rem;margin-bottom:1rem}
 .det-head{display:flex;align-items:center;gap:.6rem;cursor:pointer}
-.det-current{flex:1;color:var(--accent-2);font-weight:700;font-size:.95rem}
+.det-current{flex:1;color:var(--accent-2);font-weight:700;font-size:.95rem;overflow:hidden;
+  text-overflow:ellipsis;white-space:nowrap}
 .det-chevron{color:var(--muted);transition:transform .15s}
 .det-bar.collapsed .det-chevron{transform:rotate(-90deg)}
 .det-bar.collapsed .det-body{display:none}
 .det-body{margin-top:.7rem}
-.det-grid{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
-.det-btn{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
-  padding:.35rem .7rem;border-radius:999px;cursor:pointer;font-size:.85rem}
-.det-btn.active{background:var(--accent);color:#fff;border-color:var(--accent)}
-.det-rule{font-size:.85rem;color:var(--muted)}
+.dp-counter{font-size:.8rem;font-weight:700;color:var(--accent-2);margin-bottom:.6rem}
+.dp-counter.over{color:var(--accent)}
+.det-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem;margin-bottom:.8rem}
+@media(max-width:520px){.det-grid{grid-template-columns:1fr}}
+.det-card{position:relative;background:var(--panel-2);border:1px solid var(--border);border-radius:8px;
+  overflow:hidden;cursor:pointer}
+.det-card:hover{border-color:var(--accent-2)}
+.det-card.active{border-color:var(--accent-2);box-shadow:0 0 0 1px var(--accent-2)}
+.det-card.blocked{opacity:.45;cursor:not-allowed}
+.det-card-bar{height:5px}
+.det-card-body{padding:.5rem .6rem}
+.det-card-name{font-weight:700;font-size:.88rem;padding-right:1.4rem}
+.det-card-meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;margin-top:.25rem;
+  font-size:.72rem;color:var(--muted)}
+.det-card-dp{font-weight:700;color:var(--accent-2)}
+.det-card-unique{font-style:italic}
+.det-card-info{position:absolute;top:.4rem;right:.4rem;background:none;border:none;color:var(--muted);
+  cursor:pointer;font-size:.85rem;line-height:1;padding:.1rem}
+.det-card-info:hover{color:var(--accent-2)}
+.det-rule{font-size:.85rem;color:var(--muted);margin-top:.6rem;padding-top:.6rem;border-top:1px solid var(--border)}
+.det-rule:first-of-type{margin-top:0;padding-top:0;border-top:none}
 .rule-part{margin-top:.45rem}
 .rule-part:first-child{margin-top:0}
 .rule-part strong{color:var(--accent-2)}
+.st-det{font-size:.66rem;color:var(--muted);font-style:italic;margin:.1rem 0}
 
 /* points */
 .points-bar{display:flex;align-items:center;gap:.8rem;background:var(--panel);
@@ -299,7 +317,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.11</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.12</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -351,10 +369,15 @@ let coreStratagems = [];
 /* ---- Army state ---- */
 let armyList = [];
 let nextInstanceId = 1;
-let selectedDetachment = 'blood-legion';
+const DETACHMENT_POINTS = 3;   // 11e Detachment Points budget — spend across multiple detachments
+let selectedDetachments = ['blood-legion'];   // array now, not a single id
 let pointsLimit = 0;
-let savedLists = [];      // [{ name, armyList, nextInstanceId, detachment, pointsLimit }]
+let savedLists = [];      // [{ name, armyList, nextInstanceId, detachments, pointsLimit }]
 let currentListSlot = 0;
+const DETACHMENT_CATEGORY_COLORS = {
+  'Disruption': '#36506f', 'Take and Hold': '#3a7d44', 'Purge the Foe': '#9e2f2f',
+  'Reconnaissance': '#2f8f8f', 'Priority Assets': '#c2922b',
+};
 
 /* ---- UI state ---- */
 let stratagemState = {};
@@ -420,7 +443,13 @@ function syncActiveToSlot(){
   if(!savedLists[currentListSlot]) return;
   const L = savedLists[currentListSlot];
   L.armyList = armyList; L.nextInstanceId = nextInstanceId;
-  L.detachment = selectedDetachment; L.pointsLimit = pointsLimit;
+  L.detachments = selectedDetachments; L.pointsLimit = pointsLimit;
+}
+// accept an array (current format) or a legacy single-string 'detachment' field
+function normalizeListDetachments(L){
+  if(Array.isArray(L.detachments)) return L.detachments.filter(id=>detachments[id]);
+  if(L.detachment && detachments[L.detachment]) return [L.detachment];
+  return ['blood-legion'];
 }
 function persistLists(){
   syncActiveToSlot();
@@ -433,12 +462,12 @@ function activateSlot(i){
   const L = savedLists[currentListSlot];
   armyList = L.armyList || [];
   nextInstanceId = L.nextInstanceId || 1;
-  selectedDetachment = L.detachment || 'blood-legion';
+  selectedDetachments = normalizeListDetachments(L);
   pointsLimit = L.pointsLimit || 0;
 }
 function newListObject(name){
   return { name: name || 'New List', armyList: [], nextInstanceId: 1,
-           detachment: defaultArmy.detachment || 'blood-legion', pointsLimit: defaultArmy.pointsLimit || 0 };
+           detachments: [defaultArmy.detachment || 'blood-legion'], pointsLimit: defaultArmy.pointsLimit || 0 };
 }
 function defaultListObject(){
   const L = newListObject('Blood Legion Patrol');
@@ -467,8 +496,9 @@ function restoreState(){
     if(legacy){
       try{
         const a = JSON.parse(legacy);
+        const legacyDet = localStorage.getItem(LS+'detachment')||'blood-legion';
         savedLists = [{ name:'My List', armyList:a.armyList||[], nextInstanceId:a.nextInstanceId||1,
-          detachment: localStorage.getItem(LS+'detachment')||'blood-legion', pointsLimit:a.pointsLimit||0 }];
+          detachments: [legacyDet], pointsLimit:a.pointsLimit||0 }];
       }catch(e){ savedLists = [defaultListObject()]; }
     } else savedLists = [defaultListObject()];
     currentListSlot = 0;
@@ -595,7 +625,13 @@ function stratPhases(s){
   return ph.length ? ph : ['Other'];
 }
 function allStratagems(){
-  return [ ...((detachments[selectedDetachment]||{}).stratagems||[]), ...coreStratagems ];
+  const out = [];
+  selectedDetachments.forEach(id=>{
+    const d = detachments[id]; if(!d) return;
+    (d.stratagems||[]).forEach(s=>out.push(Object.assign({}, s, { _detName: d.name })));
+  });
+  coreStratagems.forEach(s=>out.push(s));
+  return out;
 }
 function renderStratagems(){
   const el = document.getElementById('strat-tab'); if(!el) return;
@@ -612,8 +648,10 @@ function renderStratagems(){
   el.innerHTML = html;
 }
 function stratTile(s){
+  const tag = !s.core && selectedDetachments.length>1 && s._detName ? `<div class="st-det">${s._detName}</div>` : '';
   return `<div class="strat-tile ${s.core?'core':''}" onclick="openStratagem('${s.id}')">
     <div class="st-head"><span class="st-name">${s.name}</span><span class="strat-cp">${s.cp}</span></div>
+    ${tag}
     <div class="st-short">${s.short||''}</div>
   </div>`;
 }
@@ -627,34 +665,101 @@ function openStratagem(id){
   );
 }
 function loadDetachment(){
-  if(!detachments[selectedDetachment]) selectedDetachment = Object.keys(detachments)[0];
+  // drop any selected ids that no longer exist in the data — an empty
+  // selection afterwards is valid (0 DP spent), so no default is forced here.
+  selectedDetachments = selectedDetachments.filter(id => detachments[id]);
 }
-function selectDetachment(id){
-  selectedDetachment = id;
-  // clear enhancements that don't belong to the new detachment
-  armyList.forEach(i => { if(i.enhancementId && enhancements[i.enhancementId] &&
-    enhancements[i.enhancementId].detachment !== id) i.enhancementId = null; });
-  initStratagemState();
+
+/* ---- Detachment Points (11e): pick any combo of detachments up to the DP budget ---- */
+function isDetachmentActive(id){ return selectedDetachments.includes(id); }
+function dpSpent(){ return selectedDetachments.reduce((s,id)=>s+((detachments[id]||{}).dp||0),0); }
+function dpRemaining(){ return DETACHMENT_POINTS - dpSpent(); }
+function uniqueGroupTaken(group, exceptId){
+  if(!group) return false;
+  return selectedDetachments.some(id=>id!==exceptId && (detachments[id]||{}).unique===group);
+}
+function canAddDetachment(id){
+  const d = detachments[id];
+  if(!d || isDetachmentActive(id)) return false;
+  if(d.dp > dpRemaining()) return false;
+  if(uniqueGroupTaken(d.unique)) return false;
+  return true;
+}
+// is this piece of content (enhancement/stratagem/etc) legal under the active detachments?
+function isContentDetachmentActive(item){
+  if(!item || !item.detachment) return true;
+  const ids = Array.isArray(item.detachment) ? item.detachment : [item.detachment];
+  return ids.some(isDetachmentActive);
+}
+function clearOrphanedEnhancements(){
+  armyList.forEach(inst=>{
+    if(inst.enhancementId && !isContentDetachmentActive(enhancements[inst.enhancementId])) inst.enhancementId = null;
+  });
+}
+function resetDetachmentStratagemState(id){
+  const d = detachments[id]; if(!d) return;
+  (d.stratagems||[]).forEach(s=>{ stratagemState[s.id] = false; });
+}
+function toggleDetachmentSelection(id){
+  const d = detachments[id]; if(!d) return;
+  if(isDetachmentActive(id)){
+    selectedDetachments = selectedDetachments.filter(x=>x!==id);
+    resetDetachmentStratagemState(id);
+    clearOrphanedEnhancements();
+  } else {
+    if(d.dp > dpRemaining()){
+      alert(`Not enough Detachment Points — ${d.name} costs ${d.dp} DP, ${dpRemaining()} left.`);
+      return;
+    }
+    if(uniqueGroupTaken(d.unique)){
+      alert(`${d.name} can't be combined with another selected detachment.`);
+      return;
+    }
+    selectedDetachments.push(id);
+  }
   saveState(); renderApp();
 }
 
-/* ---- Detachment selector ---- */
+/* ---- Detachment selector (Detachment Points card grid) ---- */
 function renderDetachmentSelector(){
-  const d = detachments[selectedDetachment];
   const bar = document.getElementById('det-bar');
   bar.classList.toggle('collapsed', !detExpanded);
+  const spent = dpSpent();
+  const activeNames = selectedDetachments.map(id=>(detachments[id]||{}).name).filter(Boolean);
+  const summary = activeNames.length ? activeNames.join(', ') : 'No detachments selected';
+
+  const sorted = Object.values(detachments).slice().sort((a,b)=>a.name.localeCompare(b.name));
+  const cards = sorted.map(d=>{
+    const active = isDetachmentActive(d.id);
+    const blocked = !active && !canAddDetachment(d.id);
+    const color = DETACHMENT_CATEGORY_COLORS[d.category] || 'var(--border)';
+    return `<div class="det-card ${active?'active':''} ${blocked?'blocked':''}" onclick="toggleDetachmentSelection('${d.id}')">
+      <div class="det-card-bar" style="background:${color}"></div>
+      <div class="det-card-body">
+        <div class="det-card-name">${active?'✓ ':''}${d.name}</div>
+        <div class="det-card-meta">
+          <span class="det-card-dp">${d.dp!=null?d.dp:'?'} DP${d.dpUnconfirmed?' <span class="skill-note" style="display:inline">(unconfirmed)</span>':''}</span>
+          ${d.unique?`<span class="det-card-unique">Unique: ${d.unique}</span>`:''}
+        </div>
+        ${d.unconfirmed?'<div class="skill-note">rule/stratagems pending</div>':''}
+      </div>
+      <button class="det-card-info" onclick="event.stopPropagation();showModal('${d.ruleId}')" title="View rule">ⓘ</button>
+    </div>`;
+  }).join('');
+
+  const rulesHtml = selectedDetachments.map(id=>detachments[id]).filter(Boolean)
+    .map(d=>`<div class="det-rule">${renderRuleParts(d)}</div>`).join('');
+
   bar.innerHTML =
     `<div class="det-head" onclick="toggleDetachment()">
-      <span class="config-label" style="margin:0">Detachment</span>
-      <span class="det-current">${d.name}</span>
+      <span class="config-label" style="margin:0">Detachments</span>
+      <span class="det-current">${detExpanded ? `${spent} / ${DETACHMENT_POINTS} DP` : summary}</span>
       <span class="det-chevron">▾</span>
     </div>
     <div class="det-body">
-      <div class="det-grid">` +
-      Object.values(detachments).map(x =>
-        `<button class="det-btn ${x.id===selectedDetachment?'active':''}" onclick="event.stopPropagation();selectDetachment('${x.id}')">${x.name}</button>`
-      ).join('') + `</div>` +
-      `<div class="det-rule">${renderRuleParts(d)}</div>
+      <div class="dp-counter ${spent>DETACHMENT_POINTS?'over':''}">${spent} / ${DETACHMENT_POINTS} DP used</div>
+      <div class="det-grid">${cards}</div>
+      ${rulesHtml || '<div class="empty" style="padding:.5rem 0">Select one or more detachments above.</div>'}
     </div>`;
 }
 
@@ -1186,7 +1291,7 @@ function getUsedEnhancements(exceptInstanceId){
 }
 const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
 function enhancementAllowedFor(enh, u){
-  if(enh.detachment !== selectedDetachment) return false;
+  if(!isContentDetachmentActive(enh)) return false;
   const k = u.keywords.map(x=>x.toUpperCase());
   const restr = (enh.restriction||'').toUpperCase();
   // god-keyword restriction (derived from restriction text)
@@ -1313,10 +1418,10 @@ function pickerGroupsHtml(q){
     }
     return html;
   };
-  const god = (detachments[selectedDetachment]||{}).god;
+  const gods = selectedDetachments.map(id=>(detachments[id]||{}).god).filter(Boolean);
   let html;
-  if(god){
-    const inGod = id => units[id].keywords.map(x=>x.toUpperCase()).includes(god);
+  if(gods.length){
+    const inGod = id => units[id].keywords.map(x=>x.toUpperCase()).some(k=>gods.includes(k));
     html = groupsFor(inGod);
     const other = groupsFor(id=>!inGod(id));
     if(other) html += `<div class="pick-divider">Other Daemons</div>` + other;

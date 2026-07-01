@@ -4,9 +4,18 @@
       "restriction": "Khorne Legiones Daemonica model only",
       "short": "+1 A & S to melee (+2 in Shadow of Chaos)",
       "description": "KHORNE LEGIONES DAEMONICA model only. Add 1 to the Attacks and Strength characteristics of the bearer's melee weapons. While the bearer is within your army's Shadow of Chaos, add 2 to the Attacks and Strength characteristics of the bearer's melee weapons instead."
+    },
+    "soulstealer": {
+      "short": "(rules text pending)",
+      "description": "<em>Rules text not provided in source data.</em>"
+    },
+    "the-endless-gift": {
+      "short": "(rules text pending)",
+      "description": "<em>Rules text not provided in source data.</em>"
+    },
+    "the-everstave": {
+      "short": "(rules text pending)",
+      "description": "<em>Rules text not provided in source data.</em>"
     }
-  },
-  "detachmentOnly": {
-    "daemonic-incursion": ["argath-the-king-of-blades"]
   }
 }

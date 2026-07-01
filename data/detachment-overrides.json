@@ -1,5 +1,42 @@
 {
+  "blood-legion": { "dp": 2, "category": "Purge the Foe" },
+  "legion-of-excess": { "dp": 2, "category": "Priority Assets" },
+  "plague-legion": { "dp": 2, "category": "Take and Hold" },
+  "scintillating-legion": { "dp": 2, "category": "Priority Assets" },
+  "shadow-legion": { "dp": 2, "category": "Purge the Foe" },
+
+  "dread-carnival": { "dp": 2, "dpUnconfirmed": true },
+  "infernal-onslaught": { "dp": 2, "dpUnconfirmed": true },
+  "pandaemoniac-inferno": { "dp": 2, "dpUnconfirmed": true },
+  "rotten-and-rusted": { "dp": 2, "dpUnconfirmed": true },
+
+  "cavalcade-of-chaos": {
+    "id": "cavalcade-of-chaos", "name": "Cavalcade of Chaos", "god": null,
+    "dp": 1, "category": "Disruption", "unconfirmed": true,
+    "ruleName": "Cavalcade of Chaos", "ruleId": "cavalcade-of-chaos-rule",
+    "ruleType": "Detachment Rule - Cavalcade of Chaos",
+    "ruleParts": [{ "name": "Cavalcade of Chaos", "text": "Rules text not provided in source data — to be supplied." }],
+    "stratagems": []
+  },
+  "lords-of-the-warp": {
+    "id": "lords-of-the-warp", "name": "Lords of the Warp", "god": null,
+    "dp": 1, "category": "Purge the Foe", "unconfirmed": true,
+    "ruleName": "Lords of the Warp", "ruleId": "lords-of-the-warp-rule",
+    "ruleType": "Detachment Rule - Lords of the Warp",
+    "ruleParts": [{ "name": "Lords of the Warp", "text": "Rules text not provided in source data — to be supplied." }],
+    "stratagems": []
+  },
+  "warptide": {
+    "id": "warptide", "name": "Warptide", "god": null,
+    "dp": 1, "category": "Reconnaissance", "unconfirmed": true,
+    "ruleName": "Warptide", "ruleId": "warptide-rule",
+    "ruleType": "Detachment Rule - Warptide",
+    "ruleParts": [{ "name": "Warptide", "text": "Rules text not provided in source data — to be supplied." }],
+    "stratagems": []
+  },
+
   "daemonic-incursion": {
+    "dp": 3, "category": "Disruption",
     "ruleName": "Warp Rifts",
     "ruleId": "warp-rifts",
     "ruleType": "Detachment Rule - Warp Rifts",

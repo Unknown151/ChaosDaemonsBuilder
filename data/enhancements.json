@@ -171,5 +171,29 @@
     "detachment": "legion-of-excess",
     "description": "<em>Rules text not provided in source data.</em>",
     "short": "(rules text pending)"
+  },
+  "soulstealer": {
+    "name": "Soulstealer",
+    "type": "Enhancement (15 pts)",
+    "points": 15,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>",
+    "short": "(rules text pending)"
+  },
+  "the-endless-gift": {
+    "name": "The Endless Gift",
+    "type": "Enhancement (30 pts)",
+    "points": 30,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>",
+    "short": "(rules text pending)"
+  },
+  "the-everstave": {
+    "name": "The Everstave",
+    "type": "Enhancement (25 pts)",
+    "points": 25,
+    "detachment": "daemonic-incursion",
+    "description": "<em>Rules text not provided in source data.</em>",
+    "short": "(rules text pending)"
   }
 }
