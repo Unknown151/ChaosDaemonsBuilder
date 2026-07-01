@@ -584,17 +584,16 @@
     "god": null,
     "dp": 1,
     "category": "Purge the Foe",
-    "unconfirmed": true,
-    "ruleName": "Lords of the Warp",
+    "ruleName": "Loci of Power",
     "ruleId": "lords-of-the-warp-rule",
-    "ruleType": "Detachment Rule - Lords of the Warp",
+    "ruleType": "Detachment Rule - Loci of Power",
     "ruleParts": [
       {
-        "name": "Lords of the Warp",
-        "text": "Rules text not provided in source data — to be supplied."
+        "name": "Loci of Power",
+        "text": "Friendly LEGIONES DAEMONICA CHARACTER models (excluding MONSTER models) have +1 Ld and OC."
       }
     ],
-    "ruleDescription": "Lords of the Warp: Rules text not provided in source data — to be supplied."
+    "ruleDescription": "Loci of Power: Friendly LEGIONES DAEMONICA CHARACTER models (excluding MONSTER models) have +1 Ld and OC."
   },
   "warptide": {
     "id": "warptide",
