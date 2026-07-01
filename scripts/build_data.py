@@ -47,7 +47,7 @@ BASE_RULES = {
     'melta': ('Weapon Ability', 'When targeting a unit within half range, increase the Damage characteristic by the value (X).'),
     'anti': ('Weapon Ability', 'Wound rolls of the listed value or better against the keyworded target are Critical Wounds.'),
     'hazardous': ('Weapon Ability', 'After firing, roll one D6 per Hazardous weapon used; on a 1 the bearer suffers 3 mortal wounds (or is destroyed if a single model).'),
-    'psychic': ('Weapon Ability', 'This is a Psychic Attack.'),
+    'psychic': ('Weapon Ability', 'Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).'),
     'lance': ('Weapon Ability', 'Add 1 to Wound rolls if the bearer made a Charge move this turn.'),
     'twin-linked': ('Weapon Ability', 'You can re-roll the Wound roll for attacks made with this weapon.'),
     'extra attacks': ('Weapon Ability', 'Attacks are made in addition to those from the bearer’s other melee weapons.'),
@@ -481,6 +481,7 @@ for uid, u in units.items():
 # Curated short summaries (overview text on the ability tiles). Anything not
 # listed falls back to an auto-generated first-clause snippet.
 ABILITY_SHORT = {
+    'psychic': 'Ignore BS/WS & hit-roll modifiers; counts as a psychic attack',
     # core
     'deep-strike': 'Arrive from Reserves, >9" from enemies',
     'leader': 'Can attach to a Bodyguard unit',
