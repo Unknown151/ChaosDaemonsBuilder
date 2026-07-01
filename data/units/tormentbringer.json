@@ -14,7 +14,7 @@
     "Mounted",
     "Character"
   ],
-  "isLeader": false,
+  "isLeader": true,
   "isEpicHero": false,
   "isBattleline": false,
   "stats": {
@@ -29,7 +29,7 @@
   "modelBreakdown": "1 Tormentbringer",
   "models": 1,
   "baseModels": 1,
-  "points": 140,
+  "points": 135,
   "weapons": {
     "ranged": [
       {
@@ -101,7 +101,9 @@
     "hysterical-frenzy-psychic"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "hellflayers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

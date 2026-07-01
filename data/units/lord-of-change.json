@@ -30,7 +30,7 @@
   "modelBreakdown": "1 Lord of Change",
   "models": 1,
   "baseModels": 1,
-  "points": 285,
+  "points": 300,
   "weapons": {
     "ranged": [
       {
@@ -118,5 +118,6 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "pointsThird": 315
 }

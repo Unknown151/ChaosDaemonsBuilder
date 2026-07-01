@@ -72,7 +72,9 @@
     "meet-your-quota"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "plaguebearers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

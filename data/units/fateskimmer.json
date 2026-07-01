@@ -104,7 +104,9 @@
     "rider-of-the-immaterial-winds"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "screamers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

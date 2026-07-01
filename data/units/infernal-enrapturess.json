@@ -86,7 +86,9 @@
     "discordant-disruption-aura"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "daemonettes"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

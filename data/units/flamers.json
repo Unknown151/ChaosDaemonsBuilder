@@ -80,6 +80,8 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "exalted-flamer"
+  ],
   "skillEstimated": true
 }

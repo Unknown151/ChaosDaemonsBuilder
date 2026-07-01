@@ -152,5 +152,6 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "pointsThird": 195
 }

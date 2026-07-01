@@ -30,7 +30,7 @@
   "modelBreakdown": "1 Fluxmaster",
   "models": 1,
   "baseModels": 1,
-  "points": 60,
+  "points": 80,
   "weapons": {
     "ranged": [
       {
@@ -89,7 +89,10 @@
     "altered-reality-psychic"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "blue-horrors",
+    "pink-horrors"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

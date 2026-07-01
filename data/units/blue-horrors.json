@@ -99,6 +99,9 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "changecaster",
+    "fluxmaster"
+  ],
   "skillEstimated": true
 }

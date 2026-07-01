@@ -57,7 +57,9 @@
     "tally-of-pestilence"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "plaguebearers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

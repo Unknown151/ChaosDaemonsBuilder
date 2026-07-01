@@ -250,6 +250,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .cc-loadout{font-size:.72rem;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;margin-top:.1rem}
 .pts-badge{border:1px solid var(--accent-2);color:var(--accent-2);font-weight:700;font-size:.8rem;
   border-radius:6px;padding:.2rem .5rem;white-space:nowrap}
+.tier3-tag{background:var(--accent);color:#fff;font-size:.6rem;font-weight:700;border-radius:3px;
+  padding:.05rem .3rem;vertical-align:middle}
 .cc-kebab,.cc-chevron{background:var(--panel-2);border:1px solid var(--border);color:var(--text);
   width:34px;height:34px;border-radius:6px;cursor:pointer;font-size:1rem;line-height:1;flex:none}
 .cc-chevron{transition:transform .15s}
@@ -297,7 +299,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.10.6</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.11</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -533,13 +535,26 @@ function normalizeInstance(inst){
 }
 
 /* ===================== Points ===================== */
+// 0-based position of this instance among same-unitId instances in the army
+// (order added) — used for the "3rd+ copy costs more" points rule.
+function unitCopyRank(inst){
+  let rank = 0;
+  for(const i of armyList){
+    if(i.unitId !== inst.unitId) continue;
+    if(i === inst) return rank;
+    rank++;
+  }
+  return rank;
+}
 function calculateInstancePoints(inst){
   const u = units[inst.unitId]; if(!u) return 0;
-  let pts = u.points || 0;
-  if(u.modelBrackets && u.modelBrackets.length){
+  const tier3 = (u.pointsThird != null || u.modelBracketsThird) && unitCopyRank(inst) >= 2;
+  let pts = (tier3 && u.pointsThird != null) ? u.pointsThird : (u.points || 0);
+  const brackets = (tier3 && u.modelBracketsThird) ? u.modelBracketsThird : u.modelBrackets;
+  if(brackets && brackets.length){
     // priced by bracket — use the highest bracket whose size is <= modelCount
-    let b = u.modelBrackets[0];
-    for(const br of u.modelBrackets) if(inst.modelCount >= br.models) b = br;
+    let b = brackets[0];
+    for(const br of brackets) if(inst.modelCount >= br.models) b = br;
     pts = b.points;
   } else if(u.maxModels && inst.modelCount > u.baseModels){
     pts *= Math.ceil(inst.modelCount / u.baseModels);
@@ -1015,7 +1030,7 @@ function renderArmyInstance(inst){
         <h3>${u.name}</h3>
         <div class="cc-loadout">${loadoutSummary(inst, du)}</div>
       </div>
-      <span class="pts-badge">${calculateInstancePoints(inst)} pts</span>
+      <span class="pts-badge">${calculateInstancePoints(inst)} pts${((u.pointsThird!=null||u.modelBracketsThird)&&unitCopyRank(inst)>=2)?' <span class="tier3-tag" title="3rd+ copy of this unit costs more">3rd+</span>':''}</span>
       <div class="cc-menu"><button class="cc-kebab" onclick="event.stopPropagation();toggleInstanceMenu('${inst.instanceId}')" title="Options">⋮</button>${menu}</div>
       <button class="cc-chevron" onclick="event.stopPropagation();toggleConfigCard('${inst.instanceId}')">▾</button>
     </div>

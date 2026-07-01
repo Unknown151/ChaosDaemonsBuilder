@@ -56,7 +56,9 @@
     "disease-of-mirth-aura"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "plaguebearers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

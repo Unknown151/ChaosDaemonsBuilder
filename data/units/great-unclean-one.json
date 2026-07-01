@@ -29,7 +29,7 @@
   "modelBreakdown": "1 Great Unclean One",
   "models": 1,
   "baseModels": 1,
-  "points": 250,
+  "points": 265,
   "weapons": {
     "ranged": [
       {
@@ -131,5 +131,6 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "pointsThird": 280
 }

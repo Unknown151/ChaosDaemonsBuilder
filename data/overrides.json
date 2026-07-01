@@ -6,7 +6,8 @@
     "abilities": ["brass-stampede", "instrument-of-chaos", "daemonic-icon"],
     "wargear": [],
     "wargearOptions": [],
-    "statMods": [{ "field": "ld", "value": "6+", "source": "daemonic-icon" }]
+    "statMods": [{ "field": "ld", "value": "6+", "source": "daemonic-icon" }],
+    "canBeLeadBy": ["skullmaster"]
   },
   "bloodletters": {
     "verified": true,
@@ -142,5 +143,24 @@
         ]
       }
     ]
-  }
+  },
+  "changecaster": { "canLead": ["blue-horrors", "pink-horrors"] },
+  "blue-horrors": { "canBeLeadBy": ["changecaster", "fluxmaster"] },
+  "pink-horrors": { "canBeLeadBy": ["changecaster", "fluxmaster"] },
+  "fluxmaster": { "canLead": ["blue-horrors", "pink-horrors"] },
+  "epidemius": { "canLead": ["plaguebearers"] },
+  "poxbringer": { "canLead": ["plaguebearers"] },
+  "sloppity-bilepiper": { "canLead": ["plaguebearers"] },
+  "spoilpox-scrivener": { "canLead": ["plaguebearers"] },
+  "plaguebearers": { "canBeLeadBy": ["epidemius", "poxbringer", "sloppity-bilepiper", "spoilpox-scrivener"] },
+  "exalted-flamer": { "canLead": ["flamers"] },
+  "flamers": { "canBeLeadBy": ["exalted-flamer"] },
+  "fateskimmer": { "canLead": ["screamers"] },
+  "screamers": { "canBeLeadBy": ["fateskimmer"] },
+  "infernal-enrapturess": { "canLead": ["daemonettes"] },
+  "syllesske": { "canLead": ["daemonettes"] },
+  "tranceweaver": { "canLead": ["daemonettes"] },
+  "daemonettes": { "canBeLeadBy": ["infernal-enrapturess", "syllesske", "tranceweaver"] },
+  "skullmaster": { "canLead": ["bloodcrushers"] },
+  "tormentbringer": { "isLeader": true, "canLead": ["hellflayers"] }
 }

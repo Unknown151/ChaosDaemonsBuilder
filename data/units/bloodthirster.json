@@ -29,7 +29,7 @@
   "modelBreakdown": "1 Bloodthirster",
   "models": 1,
   "baseModels": 1,
-  "points": 305,
+  "points": 320,
   "weapons": {
     "ranged": [
       {
@@ -141,5 +141,6 @@
   "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
   "wargearOptions": [
     "This model's great axe of Khorne can be replaced with 1 axe of Khorne and one of the following: 1 bloodflail; 1 lash of Khorne."
-  ]
+  ],
+  "pointsThird": 335
 }

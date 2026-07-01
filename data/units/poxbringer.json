@@ -58,7 +58,9 @@
     "feculent-despair-aura-psychic"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "plaguebearers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

@@ -88,7 +88,10 @@
     "storm-of-mutating-sorcery-psychic"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "blue-horrors",
+    "pink-horrors"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

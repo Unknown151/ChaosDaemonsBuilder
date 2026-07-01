@@ -27,7 +27,7 @@
   "modelBreakdown": "1 Alluress; 9 Daemonettes",
   "models": 10,
   "baseModels": 10,
-  "points": 100,
+  "points": 90,
   "weapons": {
     "ranged": [],
     "melee": [
@@ -58,6 +58,10 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "infernal-enrapturess",
+    "syllesske",
+    "tranceweaver"
+  ],
   "skillEstimated": true
 }

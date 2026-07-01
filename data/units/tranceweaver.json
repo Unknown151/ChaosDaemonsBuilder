@@ -58,7 +58,9 @@
     "symphony-of-pain-psychic"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "daemonettes"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }

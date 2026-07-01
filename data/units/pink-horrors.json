@@ -56,7 +56,7 @@
   "modelBreakdown": "10 Pink Horrors",
   "models": 10,
   "baseModels": 10,
-  "points": 140,
+  "points": 150,
   "weapons": {
     "ranged": [
       {
@@ -153,6 +153,9 @@
     "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two"
   ],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "changecaster",
+    "fluxmaster"
+  ],
   "skillEstimated": true
 }

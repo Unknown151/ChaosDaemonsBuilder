@@ -27,7 +27,7 @@
   "modelBreakdown": "1 Plagueridden; 9 Plaguebearers",
   "models": 10,
   "baseModels": 10,
-  "points": 110,
+  "points": 115,
   "weapons": {
     "ranged": [],
     "melee": [
@@ -57,6 +57,11 @@
     "instrument-of-chaos"
   ],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "epidemius",
+    "poxbringer",
+    "sloppity-bilepiper",
+    "spoilpox-scrivener"
+  ],
   "skillEstimated": true
 }

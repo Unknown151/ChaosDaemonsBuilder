@@ -226,6 +226,18 @@ POINTS['tranceweaver'] = [(1, 60)]
 _ov_path = os.path.join(ROOT, 'data', 'overrides.json')
 OVERRIDES = json.load(open(_ov_path, encoding='utf-8')) if os.path.exists(_ov_path) else {}
 
+# Point updates from the user's live pricing reference (supersedes the original
+# points file; adds 1st-2nd vs 3rd+ same-unit tiered pricing where it applies).
+_pts_ov_path = os.path.join(ROOT, 'data', 'points-overrides.json')
+POINTS_OVERRIDES = json.load(open(_pts_ov_path, encoding='utf-8')) if os.path.exists(_pts_ov_path) else {}
+
+def apply_points_override(unit):
+    ov = POINTS_OVERRIDES.get(unit['id'])
+    if not ov:
+        return
+    for k, v in ov.items():
+        unit[k] = v
+
 def apply_override(unit):
     ov = OVERRIDES.get(unit['id'])
     if not ov:
@@ -457,6 +469,7 @@ for b in blocks[1:]:
 
     apply_skills(unit)   # fill estimated BS/WS (source export omitted them)
     apply_override(unit) # authoritative corrections from official datasheets
+    apply_points_override(unit) # live points reference (supersedes points file)
     units[uid] = unit
 
 # ── Write unit files ─────────────────────────────────────────────────────────

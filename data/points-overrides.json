@@ -1,0 +1,30 @@
+{
+  "beasts-of-nurgle": { "points": 70, "modelBrackets": [{"models":1,"points":70},{"models":2,"points":140}] },
+  "belakor": { "points": 390 },
+  "bloodcrushers": {
+    "points": 95, "modelBrackets": [{"models":3,"points":95},{"models":6,"points":180}],
+    "pointsThird": 105, "modelBracketsThird": [{"models":3,"points":105},{"models":6,"points":190}]
+  },
+  "bloodthirster": { "points": 320, "pointsThird": 335 },
+  "daemonettes": { "points": 90 },
+  "daemon-prince-of-chaos": { "points": 165 },
+  "daemon-prince-of-chaos-with-wings": { "points": 190 },
+  "fiends": { "points": 90, "modelBrackets": [{"models":3,"points":90},{"models":6,"points":180}] },
+  "fluxmaster": { "points": 80 },
+  "great-unclean-one": { "points": 265, "pointsThird": 280 },
+  "karanak": { "points": 70 },
+  "keeper-of-secrets": { "points": 255, "pointsThird": 270 },
+  "lord-of-change": { "points": 300, "pointsThird": 315 },
+  "nurglings": { "points": 45, "modelBrackets": [{"models":3,"points":45},{"models":6,"points":90}] },
+  "pink-horrors": { "points": 150 },
+  "plaguebearers": { "points": 115 },
+  "rendmaster-on-blood-throne": { "points": 150, "pointsThird": 170 },
+  "rotigus": { "points": 280 },
+  "seekers": { "points": 80, "modelBrackets": [{"models":5,"points":80},{"models":10,"points":155}] },
+  "skarbrand": { "points": 315 },
+  "skull-cannon": { "points": 90 },
+  "skullmaster": { "points": 85 },
+  "soul-grinder": { "points": 180, "pointsThird": 195 },
+  "the-changeling": { "points": 105 },
+  "tormentbringer": { "points": 135 }
+}

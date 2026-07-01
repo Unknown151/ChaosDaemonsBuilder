@@ -27,15 +27,15 @@
   "models": 3,
   "baseModels": 3,
   "maxModels": 6,
-  "points": 110,
+  "points": 95,
   "modelBrackets": [
     {
       "models": 3,
-      "points": 110
+      "points": 95
     },
     {
       "models": 6,
-      "points": 220
+      "points": 180
     }
   ],
   "weapons": {
@@ -78,7 +78,9 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": [],
+  "canBeLeadBy": [
+    "skullmaster"
+  ],
   "verified": true,
   "factionKeywords": [
     "LEGIONES DAEMONICA"
@@ -89,6 +91,17 @@
       "field": "ld",
       "value": "6+",
       "source": "daemonic-icon"
+    }
+  ],
+  "pointsThird": 105,
+  "modelBracketsThird": [
+    {
+      "models": 3,
+      "points": 105
+    },
+    {
+      "models": 6,
+      "points": 190
     }
   ]
 }

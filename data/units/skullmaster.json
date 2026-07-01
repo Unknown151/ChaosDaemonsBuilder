@@ -28,7 +28,7 @@
   "modelBreakdown": "1 Skullmaster",
   "models": 1,
   "baseModels": 1,
-  "points": 100,
+  "points": 85,
   "weapons": {
     "ranged": [],
     "melee": [
@@ -68,7 +68,9 @@
     "devastating-charge"
   ],
   "wargear": [],
-  "canLead": [],
+  "canLead": [
+    "bloodcrushers"
+  ],
   "canBeLeadBy": [],
   "skillEstimated": true
 }
