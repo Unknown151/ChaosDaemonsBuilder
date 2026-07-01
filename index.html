@@ -80,6 +80,32 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .rule-part strong{color:var(--accent-2)}
 .st-det{font-size:.66rem;color:var(--muted);font-style:italic;margin:.1rem 0}
 
+/* Available Enhancements overview (Builder tab) */
+.enh-overview-bar{background:var(--panel);border:1px solid var(--border);border-radius:8px;padding:.8rem;margin-bottom:1rem}
+.eo-head{display:flex;align-items:center;gap:.6rem;cursor:pointer}
+.eo-title{flex:1;color:var(--accent-2);font-weight:700;font-size:.95rem;text-transform:uppercase;letter-spacing:.03em}
+.eo-count{background:var(--panel-2);border:1px solid var(--border);color:var(--text);font-weight:700;
+  font-size:.78rem;border-radius:999px;padding:.1rem .55rem;min-width:1.6rem;text-align:center}
+.eo-chevron{color:var(--muted);transition:transform .15s}
+.enh-overview-bar.collapsed .eo-chevron{transform:rotate(-90deg)}
+.enh-overview-bar.collapsed .eo-body{display:none}
+.eo-body{margin-top:.7rem}
+.eo-det-group{font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);
+  font-weight:700;margin:1rem 0 .5rem;padding-bottom:.25rem;border-bottom:1px solid var(--border)}
+.eo-det-group:first-child{margin-top:0}
+.eo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.5rem}
+@media(max-width:520px){.eo-grid{grid-template-columns:1fr}}
+.eo-card{background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:.5rem .6rem;cursor:pointer}
+.eo-card:hover{border-color:var(--accent-2)}
+.eo-card-head{display:flex;justify-content:space-between;gap:.5rem;align-items:baseline}
+.eo-card-name{font-weight:700;color:var(--accent-2);font-size:.88rem}
+.eo-card-pts{font-size:.78rem;color:var(--muted);white-space:nowrap}
+.eo-upg-tag{display:inline-block;background:rgba(63,127,184,.18);border:1px solid var(--core);color:var(--core);
+  font-size:.62rem;font-weight:700;letter-spacing:.04em;border-radius:4px;padding:.05rem .35rem;margin:.3rem 0 0}
+.eo-restr{font-size:.72rem;color:var(--muted);margin-top:.2rem}
+.eo-restr::before{content:'› ';color:var(--accent-2)}
+.eo-desc{font-size:.8rem;color:var(--text);margin-top:.25rem;line-height:1.3}
+
 /* points */
 .points-bar{display:flex;align-items:center;gap:.8rem;background:var(--panel);
   border:1px solid var(--border);border-radius:8px;padding:.6rem .9rem;margin-bottom:1rem}
@@ -251,6 +277,8 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .ec-short{font-size:.82rem}
 .ec-pts{font-size:.72rem;color:var(--accent-2);font-weight:700;white-space:nowrap}
 .ed-desc{font-size:.86rem;color:var(--text);margin-top:.3rem}
+.upg-tag{display:inline-block;background:rgba(63,127,184,.18);border:1px solid var(--core);color:var(--core);
+  font-size:.62rem;font-weight:700;letter-spacing:.04em;border-radius:4px;padding:.05rem .35rem}
 .eo-restr{font-size:.74rem;color:var(--muted);font-style:italic;margin-top:.15rem}
 .wargear-exclusive-option,.wargear-choice{display:block;padding:.3rem .5rem;border:1px solid var(--border);
   border-radius:5px;margin-bottom:.3rem;cursor:pointer;font-size:.85rem}
@@ -317,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.12.1</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.13</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -336,6 +364,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
   <section id="config-tab" class="tab-panel">
     <div class="list-bar" id="list-bar"></div>
     <div class="det-bar" id="det-bar"></div>
+    <div class="enh-overview-bar" id="enh-overview-bar"></div>
     <div class="points-bar" id="points-bar"></div>
     <div id="config-list"></div>
   </section>
@@ -385,6 +414,7 @@ let characterState = {}, bodyguardState = {};
 let expandedCards = {}, configExpandedCards = {};
 let weaponDetailOpen = {}, menuOpenId = null;
 let detExpanded = true;
+let enhOverviewExpanded = true;
 
 /* ---- Constants (built at load) ---- */
 let ALL_UNIT_IDS = [];
@@ -484,6 +514,7 @@ function restoreState(){
   const theme = localStorage.getItem(LS+'theme') || 'dark';
   document.documentElement.setAttribute('data-theme', theme);
   detExpanded = localStorage.getItem(LS+'det-expanded') !== '0';
+  enhOverviewExpanded = localStorage.getItem(LS+'enh-overview-expanded') !== '0';
 
   const saved = localStorage.getItem(LS+'saved-lists');
   if(saved){
@@ -772,6 +803,49 @@ function renderRuleParts(d){
   const parts = d.ruleParts && d.ruleParts.length ? d.ruleParts
     : [{name:d.ruleName, text:d.ruleDescription}];
   return parts.map(p=>`<div class="rule-part"><strong>${p.name}:</strong> ${p.text}</div>`).join('');
+}
+
+/* ---- Available Enhancements overview (reference — every enhancement from
+   every active detachment, grouped by detachment, tap for full text) ---- */
+function toggleEnhOverview(){
+  enhOverviewExpanded = !enhOverviewExpanded;
+  localStorage.setItem(LS+'enh-overview-expanded', enhOverviewExpanded ? '1' : '0');
+  renderEnhancementsOverview();
+}
+function enhOverviewCard(id, e){
+  return `<div class="eo-card" onclick="showModal('${id}')">
+    <div class="eo-card-head"><span class="eo-card-name">${e.name}</span><span class="eo-card-pts">${e.points} pts</span></div>
+    ${e.upgrade?'<div class="eo-upg-tag">UPGRADE</div>':''}
+    ${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
+    <div class="eo-desc">${e.short||''}</div>
+  </div>`;
+}
+function renderEnhancementsOverview(){
+  const bar = document.getElementById('enh-overview-bar'); if(!bar) return;
+  bar.classList.toggle('collapsed', !enhOverviewExpanded);
+  const byDet = {};
+  Object.entries(enhancements).forEach(([id,e])=>{
+    const ids = Array.isArray(e.detachment) ? e.detachment : [e.detachment];
+    ids.filter(isDetachmentActive).forEach(did=>{
+      (byDet[did] = byDet[did] || []).push([id,e]);
+    });
+  });
+  const groupsHtml = selectedDetachments
+    .filter(did => byDet[did] && byDet[did].length)
+    .map(did => {
+      const d = detachments[did];
+      const cards = byDet[did].sort((a,b)=>a[1].name.localeCompare(b[1].name))
+        .map(([id,e])=>enhOverviewCard(id,e)).join('');
+      return `<div class="eo-det-group">${d?d.name:did}</div><div class="eo-grid">${cards}</div>`;
+    }).join('');
+  const total = Object.values(byDet).reduce((s,arr)=>s+arr.length,0);
+  bar.innerHTML =
+    `<div class="eo-head" onclick="toggleEnhOverview()">
+      <span class="eo-title">Available Enhancements</span>
+      <span class="eo-count">${total}</span>
+      <span class="eo-chevron">▾</span>
+    </div>
+    <div class="eo-body">${groupsHtml || '<div class="empty">Select a detachment to see its enhancements.</div>'}</div>`;
 }
 
 /* ---- Points bar ---- */
@@ -1071,6 +1145,7 @@ function renderListBar(){
 function renderConfigurationTab(){
   renderListBar();
   renderDetachmentSelector();
+  renderEnhancementsOverview();
   updateConfigPoints();
   const el = document.getElementById('config-list');
   let html = `<div class="cfg-actions">
@@ -1107,12 +1182,16 @@ function renderArmyInstance(inst){
   body += renderLoadout(inst, du);
 
   // leader assignment (units that can be led) + the leader's enhancement;
-  // otherwise the unit's own enhancement if it's an eligible character
+  // otherwise the unit's own enhancement/upgrade if it's eligible for one.
+  // Normal Enhancements are Character-only; Upgrades can go on any unit.
   if((u.canBeLeadBy||[]).length){
     body += renderLeaderSelector(inst, u);
-    if(inst.leaderId && units[inst.leaderId] && isEnhancementEligible(units[inst.leaderId]))
+    const leader = inst.leaderId && units[inst.leaderId];
+    if(leader && (isEnhancementEligible(leader) || hasEligibleUpgrades(leader)))
       body += renderInstanceEnhancementSelector(inst, inst.leaderId);
-  } else if(isEnhancementEligible(u)){
+    else if(hasEligibleUpgrades(u))
+      body += renderInstanceEnhancementSelector(inst, inst.unitId);
+  } else if(isEnhancementEligible(u) || hasEligibleUpgrades(u)){
     body += renderInstanceEnhancementSelector(inst, inst.unitId);
   }
 
@@ -1284,10 +1363,48 @@ function isEnhancementEligible(u){
   const k = u.keywords.map(x=>x.toUpperCase());
   return u.isLeader || k.includes('CHARACTER');
 }
+// Upgrades (unlike normal Enhancements) can be given to any unit, not just Characters.
+function hasEligibleUpgrades(u){
+  return Object.values(enhancements).some(e=>e.upgrade && isContentDetachmentActive(e) && enhancementAllowedFor(e,u));
+}
 
-/* enhancement filter + selector */
+/* enhancement filter + selector
+   Rules (core rulebook — Select Enhancements):
+   - Only Character units can be given a normal Enhancement; Epic Heroes cannot.
+   - Your army cannot include more than one of the same (non-Upgrade) Enhancement.
+   - Upgrades can go on non-Character units too, and up to 3 copies of the same
+     Upgrade are allowed; the 2nd and 3rd copies don't count toward the army's
+     3-enhancement cap (but each still costs its points). */
 function getUsedEnhancements(exceptInstanceId){
   return armyList.filter(i=>i.instanceId!==exceptInstanceId && i.enhancementId).map(i=>i.enhancementId);
+}
+function usedEnhancementCounts(exceptInstanceId){
+  const counts = {};
+  getUsedEnhancements(exceptInstanceId).forEach(id=>{ counts[id] = (counts[id]||0)+1; });
+  return counts;
+}
+// how many of the army's 3-enhancement cap are currently spent, excluding this instance
+function enhancementCapUsed(exceptInstanceId){
+  const counts = usedEnhancementCounts(exceptInstanceId);
+  let cap = 0;
+  Object.entries(counts).forEach(([id,n])=>{
+    const e = enhancements[id]; if(!e) return;
+    cap += e.upgrade ? 1 : n;   // an Upgrade's 2nd/3rd copy never adds to the cap
+  });
+  return cap;
+}
+function canEquipEnhancement(inst, enhId){
+  const e = enhancements[enhId]; if(!e) return false;
+  if(inst.enhancementId === enhId) return true;   // already equipped here — always shown
+  const n = (usedEnhancementCounts(inst.instanceId)[enhId]) || 0;
+  if(e.upgrade){
+    if(n >= 3) return false;                       // max 3 copies of the same Upgrade
+    if(n === 0 && enhancementCapUsed(inst.instanceId) >= 3) return false;
+  } else {
+    if(n >= 1) return false;                        // max 1 of the same Enhancement army-wide
+    if(enhancementCapUsed(inst.instanceId) >= 3) return false;
+  }
+  return true;
 }
 const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
 function enhancementAllowedFor(enh, u){
@@ -1309,19 +1426,19 @@ function enhancementAllowedFor(enh, u){
 }
 function renderInstanceEnhancementSelector(inst, characterId){
   const u = units[characterId];
-  const used = getUsedEnhancements(inst.instanceId);
-  const atMax = used.length >= 3;
   const options = Object.entries(enhancements)
     .filter(([id,e])=>enhancementAllowedFor(e,u))
-    .filter(([id,e])=>!used.includes(id));   // hide ones taken elsewhere
+    .filter(([id,e])=>canEquipEnhancement(inst,id));
+  const atCap = enhancementCapUsed(inst.instanceId) >= 3 && !inst.enhancementId;
   let html = `<div class="config-label">Enhancement</div><div class="enh-chips">`;
   options.forEach(([id,e])=>{
     const active = inst.enhancementId===id ? 'active' : '';
     html += `<button class="enh-chip ${active}" onclick="openEnhancement('${inst.instanceId}','${id}')" title="${e.name}">
+      ${e.upgrade?'<span class="upg-tag">UPG</span>':''}
       <span class="ec-short">${e.short}</span><span class="ec-pts">${e.points} pts</span></button>`;
   });
   html += `</div>`;
-  if(atMax && !inst.enhancementId) html += `<div class="config-label" style="color:var(--accent)">Max 3 enhancements per army reached.</div>`;
+  if(atCap) html += `<div class="config-label" style="color:var(--accent)">Max 3 enhancements per army reached.</div>`;
   return html;
 }
 
@@ -1330,14 +1447,15 @@ function openEnhancement(instanceId, enhId){
   const inst = armyList.find(i=>i.instanceId===instanceId);
   const e = enhancements[enhId]; if(!inst || !e) return;
   const equipped = inst.enhancementId === enhId;
-  const atMax = getUsedEnhancements(instanceId).length >= 3 && !equipped;
-  const btn = atMax
-    ? `<button class="btn ghost" disabled>Max 3 enhancements reached</button>`
+  const blocked = !equipped && !canEquipEnhancement(inst, enhId);
+  const btn = blocked
+    ? `<button class="btn ghost" disabled>${e.upgrade?'Max copies / enhancement cap reached':'Max 3 enhancements reached'}</button>`
     : `<button class="btn ${equipped?'ghost':''}" onclick="setEnhancement('${instanceId}','${enhId}');openEnhancement('${instanceId}','${enhId}')">${equipped?'✓ Equipped — remove':'Equip'}</button>`;
   showModalRaw(
     `${e.name} <span style="color:var(--accent-2);font-size:.85rem">${e.points} pts</span>`,
     e.type,
-    `${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
+    `${e.upgrade?'<div class="upg-tag">UPGRADE</div>':''}
+     ${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
      <div class="ed-desc">${e.description}</div>
      <div style="margin-top:1rem">${btn}</div>`
   );
@@ -1434,7 +1552,18 @@ function filterPicker(q){ document.getElementById('picker-groups').innerHTML = p
 
 /* ===================== Modal ===================== */
 function showModal(id){
-  let entry = abilities[id] || enhancements[id];
+  if(enhancements[id]){
+    const e = enhancements[id];
+    showModalRaw(
+      `${e.name} <span style="color:var(--accent-2);font-size:.85rem">${e.points} pts</span>`,
+      e.type || '',
+      `${e.upgrade?'<div class="upg-tag">UPGRADE</div>':''}
+       ${e.restriction?`<div class="eo-restr">${e.restriction}</div>`:''}
+       <div class="ed-desc">${e.description||''}</div>`
+    );
+    return;
+  }
+  let entry = abilities[id];
   if(!entry){ const d = Object.values(detachments).find(x=>x.ruleId===id);
     if(d) entry = { name:d.name, type:'Detachment Rule', description:renderRuleParts(d) }; }
   if(!entry) return;
