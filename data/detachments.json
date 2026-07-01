@@ -597,21 +597,54 @@
   },
   "warptide": {
     "id": "warptide",
-    "stratagems": [],
+    "stratagems": [
+      {
+        "id": "soulseeing",
+        "name": "Soulseeing",
+        "cp": "1CP",
+        "category": "Warptide",
+        "short": "+6\" detection range on an enemy unit",
+        "when": "Start of your Shooting phase.",
+        "target": "One friendly LEGIONES DAEMONICA BATTLELINE unit.",
+        "effect": "Select one visible enemy unit within 12\" of your unit. That enemy unit has +6\" detection range.",
+        "restrictions": ""
+      },
+      {
+        "id": "incorporeal-entities",
+        "name": "Incorporeal Entities",
+        "cp": "1CP",
+        "category": "Warptide",
+        "short": "-1 to wound vs high-Strength shooting",
+        "when": "Your opponent's Shooting phase, when an enemy unit targets a friendly LEGIONES DAEMONICA BATTLELINE unit.",
+        "target": "That LEGIONES DAEMONICA BATTLELINE unit.",
+        "effect": "Ranged attacks that target your unit with a S greater than your unit's T have -1 to wound rolls.",
+        "restrictions": ""
+      },
+      {
+        "id": "daemonic-infestation",
+        "name": "Daemonic Infestation",
+        "cp": "1CP",
+        "category": "Warptide",
+        "short": "Heal 3 wounds",
+        "when": "Your Command phase.",
+        "target": "One friendly LEGIONES DAEMONICA BATTLELINE unit (excluding PINK HORRORS units).",
+        "effect": "Your unit heals 3 wounds.",
+        "restrictions": ""
+      }
+    ],
     "name": "Warptide",
     "god": null,
     "dp": 1,
     "category": "Reconnaissance",
-    "unconfirmed": true,
-    "ruleName": "Warptide",
+    "ruleName": "Shudderblink",
     "ruleId": "warptide-rule",
-    "ruleType": "Detachment Rule - Warptide",
+    "ruleType": "Detachment Rule - Shudderblink",
     "ruleParts": [
       {
-        "name": "Warptide",
-        "text": "Rules text not provided in source data — to be supplied."
+        "name": "Shudderblink",
+        "text": "When a friendly LEGIONES DAEMONICA BATTLELINE unit is selected to make an Advance move: That unit's ranged attacks have [ASSAULT] until the end of the turn. That move does not prevent that unit from being eligible to declare a charge."
       }
     ],
-    "ruleDescription": "Warptide: Rules text not provided in source data — to be supplied."
+    "ruleDescription": "Shudderblink: When a friendly LEGIONES DAEMONICA BATTLELINE unit is selected to make an Advance move: That unit's ranged attacks have [ASSAULT] until the end of the turn. That move does not prevent that unit from being eligible to declare a charge."
   }
 }

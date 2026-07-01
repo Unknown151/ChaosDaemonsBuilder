@@ -20,6 +20,26 @@
       "short": "After a charge, nearby models can fight engaged foes",
       "description": "LEGIONES DAEMONICA MOUNTED unit only. When this unit is selected to fight, if this unit made a charge move this turn, you can use this ability. If you do, when determining which models in this unit can fight, friendly models that are within 3\" of enemy units engaged with this unit can target those enemy units."
     },
+    "soul-hungry-slaughterers": {
+      "name": "Soul-hungry Slaughterers",
+      "type": "Enhancement (Upgrade) (10 pts)",
+      "points": 10,
+      "detachment": "warptide",
+      "upgrade": true,
+      "restriction": "Legiones Daemonica Battleline unit only",
+      "short": "Heroic Intervention/Fire Overwatch targeting this unit is -1 CP",
+      "description": "LEGIONES DAEMONICA BATTLELINE unit only. When you target this unit with the Heroic Intervention/Fire Overwatch stratagem, that use is -1 CP."
+    },
+    "bane-forged-weapons": {
+      "name": "Bane-forged Weapons",
+      "type": "Enhancement (Upgrade) (15 pts)",
+      "points": 15,
+      "detachment": "warptide",
+      "upgrade": true,
+      "restriction": "Legiones Daemonica Battleline unit only",
+      "short": "+1 Strength",
+      "description": "LEGIONES DAEMONICA BATTLELINE unit only. This unit's attacks have +1 S."
+    },
     "swollen-with-power": {
       "name": "Swollen with Power",
       "type": "Enhancement (Upgrade) (10 pts)",

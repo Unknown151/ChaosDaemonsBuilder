@@ -345,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.13.4</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.13.5</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -1408,7 +1408,7 @@ function canEquipEnhancement(inst, enhId){
 }
 const GOD_KEYWORDS = ['KHORNE','NURGLE','TZEENTCH','SLAANESH','UNDIVIDED'];
 // keywords a restriction sentence might name (gods above + unit types below)
-const RESTRICT_KEYWORDS = ['CHARACTER','MONSTER','MOUNTED','INFANTRY','VEHICLE','BEAST','CAVALRY','FLY'];
+const RESTRICT_KEYWORDS = ['CHARACTER','MONSTER','MOUNTED','INFANTRY','VEHICLE','BEAST','CAVALRY','FLY','BATTLELINE'];
 function enhancementAllowedFor(enh, u){
   if(!isContentDetachmentActive(enh)) return false;
   // Epic Heroes can never take an Enhancement — and Upgrades don't lift that ban.

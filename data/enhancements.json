@@ -26,6 +26,16 @@
     "description": "<em>Rules text not provided in source data.</em>",
     "short": "(rules text pending)"
   },
+  "bane-forged-weapons": {
+    "name": "Bane-forged Weapons",
+    "type": "Enhancement (Upgrade) (15 pts)",
+    "points": 15,
+    "detachment": "warptide",
+    "upgrade": true,
+    "restriction": "Legiones Daemonica Battleline unit only",
+    "short": "+1 Strength",
+    "description": "LEGIONES DAEMONICA BATTLELINE unit only. This unit's attacks have +1 S."
+  },
   "brazenmaw": {
     "name": "Brazenmaw",
     "type": "Enhancement (15 pts)",
@@ -181,6 +191,16 @@
     "detachment": "legion-of-excess",
     "description": "<em>Rules text not provided in source data.</em>",
     "short": "(rules text pending)"
+  },
+  "soul-hungry-slaughterers": {
+    "name": "Soul-hungry Slaughterers",
+    "type": "Enhancement (Upgrade) (10 pts)",
+    "points": 10,
+    "detachment": "warptide",
+    "upgrade": true,
+    "restriction": "Legiones Daemonica Battleline unit only",
+    "short": "Heroic Intervention/Fire Overwatch targeting this unit is -1 CP",
+    "description": "LEGIONES DAEMONICA BATTLELINE unit only. When you target this unit with the Heroic Intervention/Fire Overwatch stratagem, that use is -1 CP."
   },
   "soul-shattering-charge": {
     "name": "Soul-shattering Charge",
