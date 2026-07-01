@@ -534,7 +534,52 @@
   },
   "lords-of-the-warp": {
     "id": "lords-of-the-warp",
-    "stratagems": [],
+    "stratagems": [
+      {
+        "id": "carnival-of-excess",
+        "name": "Carnival of Excess",
+        "cp": "1CP",
+        "category": "Lords of the Warp",
+        "short": "Slaanesh character gains Fights First",
+        "when": "Fight phase, when an enemy unit has fought.",
+        "target": "One friendly LEGIONES DAEMONICA CHARACTER SLAANESH unit (excluding MONSTER units) that has not been selected to fight this phase.",
+        "effect": "Your unit has Fights First and must be the next unit you select to fight.",
+        "restrictions": ""
+      },
+      {
+        "id": "call-to-murder",
+        "name": "Call to Murder",
+        "cp": "1CP",
+        "category": "Lords of the Warp",
+        "short": "+1 A to a charging Khorne character's melee",
+        "when": "Fight phase, when a friendly LEGIONES DAEMONICA KHORNE CHARACTER unit (excluding MONSTER units) that made a charge move this turn is selected to fight.",
+        "target": "That LEGIONES DAEMONICA CHARACTER KHORNE unit.",
+        "effect": "Your unit's melee attacks have +1 A.",
+        "restrictions": ""
+      },
+      {
+        "id": "skirling-magicks",
+        "name": "Skirling Magicks",
+        "cp": "1CP",
+        "category": "Lords of the Warp",
+        "short": "Tzeentch character's ranged attacks gain [LETHAL HITS]",
+        "when": "Your Shooting phase, when a friendly LEGIONES DAEMONICA CHARACTER TZEENTCH unit (excluding MONSTER units) is selected to shoot.",
+        "target": "That LEGIONES DAEMONICA CHARACTER TZEENTCH unit.",
+        "effect": "Your unit's ranged attacks have [LETHAL HITS].",
+        "restrictions": ""
+      },
+      {
+        "id": "bilious-blessing",
+        "name": "Bilious Blessing",
+        "cp": "1CP",
+        "category": "Lords of the Warp",
+        "short": "Roll 7D6; each 4+ deals 1 MW to a nearby enemy",
+        "when": "Start of your Shooting phase.",
+        "target": "One friendly LEGIONES DAEMONICA CHARACTER NURGLE unit (excluding MONSTER units).",
+        "effect": "Select one visible enemy unit within 8\" of your unit and roll seven D6: for each 4+, that enemy unit suffers 1 mortal wound.",
+        "restrictions": ""
+      }
+    ],
     "name": "Lords of the Warp",
     "god": null,
     "dp": 1,
