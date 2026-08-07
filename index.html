@@ -345,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.13.7</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.14</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -582,6 +582,7 @@ function duplicateInstance(instanceId){
   const copy = JSON.parse(JSON.stringify(armyList[idx]));
   copy.instanceId = 'inst-' + (nextInstanceId++);
   copy.enhancementId = null;   // enhancements are once-per-army — don't clone
+  copy.upgradeId = null;
   armyList.splice(idx + 1, 0, copy);
   menuOpenId = null; saveState(); renderApp();
 }
@@ -591,7 +592,7 @@ function normalizeInstance(inst){
     instanceId: inst.instanceId, unitId: inst.unitId,
     modelCount: u.models || u.baseModels || 1,
     weapons: {}, leaderId: null, leaderWargear: [],
-    enhancementId: null, selectedWargear: [], abilityChoices: {}, allegiance: null,
+    enhancementId: null, upgradeId: null, selectedWargear: [], abilityChoices: {}, allegiance: null,
   }, inst);
 }
 
@@ -621,6 +622,7 @@ function calculateInstancePoints(inst){
     pts *= Math.ceil(inst.modelCount / u.baseModels);
   }
   if(inst.enhancementId && enhancements[inst.enhancementId]) pts += enhancements[inst.enhancementId].points;
+  if(inst.upgradeId && enhancements[inst.upgradeId]) pts += enhancements[inst.upgradeId].points;
   if(inst.leaderId && units[inst.leaderId]) pts += units[inst.leaderId].points || 0;
   return pts;
 }
@@ -724,7 +726,9 @@ function isContentDetachmentActive(item){
 }
 function clearOrphanedEnhancements(){
   armyList.forEach(inst=>{
-    if(inst.enhancementId && !isContentDetachmentActive(enhancements[inst.enhancementId])) inst.enhancementId = null;
+    ENH_SLOTS.forEach(s=>{
+      if(inst[s] && !isContentDetachmentActive(enhancements[inst[s]])) inst[s] = null;
+    });
   });
 }
 function resetDetachmentStratagemState(id){
@@ -875,13 +879,18 @@ function renderUnits(){
 }
 
 function renderLedUnitCard(inst){
-  const bg = units[inst.unitId], leader = units[inst.leaderId];
-  if(!bg || !leader) return renderSoloUnitCard(inst);
+  const bg = units[inst.unitId], leaderU = units[inst.leaderId];
+  if(!bg || !leaderU) return renderSoloUnitCard(inst);
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
+  const upg = inst.upgradeId ? enhancements[inst.upgradeId] : null;
+  // leader carries the enhancement (its statMods apply to the leader)
+  const leader = applyEnhStatMods(leaderU, inst.enhancementId);
 
-  // bodyguard copy with the leader's granted abilities injected as inherited
-  const displayBg = JSON.parse(JSON.stringify(bg));
+  // bodyguard copy with the leader's granted abilities injected as inherited,
+  // then the unit's own Upgrade stat mods applied
+  let displayBg = applyEnhStatMods(bg, inst.upgradeId);
+  displayBg = JSON.parse(JSON.stringify(displayBg));
   const lb = leader.leaderBonus;
   if(lb && (lb.grantsAbilities||[]).length){
     ['ranged','melee'].forEach(cat=>{
@@ -916,12 +925,27 @@ function renderLedUnitCard(inst){
     </div>
     <div class="card-body">
       ${section('Leader', leader, {enh, afterName: renderLeaderBonus(leader)})}
-      ${section('Bodyguard', displayBg, {inst})}
+      ${section('Bodyguard', displayBg, {inst, afterName: upg?`<div class="enh-box"><span class="upg-tag">UPGRADE</span> <span class="enh-name" onclick="showModal('${inst.upgradeId}')">${upg.name}</span></div>`:''})}
       <div class="kw-line"><b>Keywords:</b> ${(bg.keywords||[]).join(', ')}${(bg.factionKeywords||[]).length?` &nbsp;·&nbsp; <b>Faction:</b> ${bg.factionKeywords.join(', ')}`:''}</div>
     </div></div>`;
 }
 
 function bumpStat(v, d){ const m = String(v).match(/^(\d+)(.*)$/); return m ? (parseInt(m[1],10)+d)+m[2] : v; }
+// apply an enhancement/upgrade's declared statMods/weaponMods to a display copy
+function applyEnhStatMods(target, enhId){
+  const e = enhId ? enhancements[enhId] : null;
+  if(!e || (!e.statMods && !e.weaponMods)) return target;
+  const t = JSON.parse(JSON.stringify(target));
+  (e.statMods||[]).forEach(m=>{ if(t.stats && t.stats[m.field]!=null) t.stats[m.field] = bumpStat(t.stats[m.field], m.delta); });
+  (e.weaponMods||[]).forEach(m=>['ranged','melee'].forEach(cat=>{
+    if(m.category && m.category!==cat) return;
+    (t.weapons[cat]||[]).forEach(w=>{
+      if(m.match && !w.name.toLowerCase().includes(m.match)) return;
+      if(w[m.field]!=null) w[m.field] = bumpStat(w[m.field], m.delta);
+    });
+  }));
+  return t;
+}
 // apply per-instance choices (god allegiance + ability-group weapon buffs) to a display copy
 function applyInstanceChoices(u, inst){
   let du = u;
@@ -959,9 +983,12 @@ function allegianceNote(u, inst){
 
 function renderSoloUnitCard(inst){
   const u = units[inst.unitId]; if(!u) return '';
-  const du = applyInstanceChoices(u, inst);
+  let du = applyInstanceChoices(u, inst);
+  du = applyEnhStatMods(du, inst.upgradeId);
+  du = applyEnhStatMods(du, inst.enhancementId);
   const collapsed = expandedCards[inst.instanceId] ? '' : 'collapsed';
   const enh = inst.enhancementId ? enhancements[inst.enhancementId] : null;
+  const upg = inst.upgradeId ? enhancements[inst.upgradeId] : null;
   const tier = u.isEpicHero ? 'epic'
     : ((u.keywords||[]).map(x=>x.toUpperCase()).includes('CHARACTER') ? 'character' : '');
   return `<div class="unit-card ${tier} ${collapsed}" id="uc-${inst.instanceId}">
@@ -981,6 +1008,7 @@ function renderSoloUnitCard(inst){
       ${u.damagedProfile?`<div class="damaged-note"><b>Damaged (${u.damagedProfile} wounds):</b> ${u.damagedText||''}</div>`:''}
       ${allegianceNote(u, inst)}
       ${enh?`<div class="enh-box"><span class="enh-name" onclick="showModal('${inst.enhancementId}')">✦ ${enh.name}</span> — ${enh.type}</div>`:''}
+      ${upg?`<div class="enh-box"><span class="upg-tag">UPGRADE</span> <span class="enh-name" onclick="showModal('${inst.upgradeId}')">${upg.name}</span></div>`:''}
       ${renderWeapons(du, inst)}
       ${u.skillEstimated?`<div class="skill-note">≈ BS/WS estimated — not in source data; verify before play.</div>`:''}
       ${renderAbilities(du, enh, inst)}
@@ -1186,13 +1214,17 @@ function renderArmyInstance(inst){
   // Normal Enhancements are Character-only; Upgrades can go on any unit.
   if((u.canBeLeadBy||[]).length){
     body += renderLeaderSelector(inst, u);
+    // the leader (a Character) carries the enhancement slot
     const leader = inst.leaderId && units[inst.leaderId];
-    if(leader && (isEnhancementEligible(leader) || hasEligibleUpgrades(leader)))
-      body += renderInstanceEnhancementSelector(inst, inst.leaderId);
-    else if(hasEligibleUpgrades(u))
-      body += renderInstanceEnhancementSelector(inst, inst.unitId);
-  } else if(isEnhancementEligible(u) || hasEligibleUpgrades(u)){
-    body += renderInstanceEnhancementSelector(inst, inst.unitId);
+    if(leader && isEnhancementEligible(leader))
+      body += renderInstanceEnhancementSelector(inst, inst.leaderId, 'enhancementId');
+    // the unit's own body can take an Upgrade — independent of any leader
+    if(hasEligibleUpgrades(u))
+      body += renderInstanceEnhancementSelector(inst, inst.unitId, 'upgradeId', true);
+  } else if(isEnhancementEligible(u)){
+    body += renderInstanceEnhancementSelector(inst, inst.unitId, 'enhancementId');
+  } else if(hasEligibleUpgrades(u)){
+    body += renderInstanceEnhancementSelector(inst, inst.unitId, 'upgradeId', true);
   }
 
   // wargear choices
@@ -1374,35 +1406,39 @@ function hasEligibleUpgrades(u){
    - Your army cannot include more than one of the same (non-Upgrade) Enhancement.
    - Upgrades can go on non-Character units too, and up to 3 copies of the same
      Upgrade are allowed; the 2nd and 3rd copies don't count toward the army's
-     3-enhancement cap (but each still costs its points). */
-function getUsedEnhancements(exceptInstanceId){
-  return armyList.filter(i=>i.instanceId!==exceptInstanceId && i.enhancementId).map(i=>i.enhancementId);
-}
-function usedEnhancementCounts(exceptInstanceId){
+     3-enhancement cap (but each still costs its points).
+   Each instance has TWO slots: 'enhancementId' (the unit/leader's character
+   enhancement) and 'upgradeId' (an Upgrade applied to the unit's own body).
+   A led unit can carry a leader enhancement AND its own upgrade at once. */
+const ENH_SLOTS = ['enhancementId','upgradeId'];
+// multiset of every equipped enhancement/upgrade id across the army, skipping
+// the one slot currently being edited (so a candidate can replace it)
+function equippedCountsExcluding(inst, slot){
   const counts = {};
-  getUsedEnhancements(exceptInstanceId).forEach(id=>{ counts[id] = (counts[id]||0)+1; });
+  armyList.forEach(i => ENH_SLOTS.forEach(s => {
+    if(i.instanceId===inst.instanceId && s===slot) return;
+    const id = i[s]; if(id) counts[id] = (counts[id]||0)+1;
+  }));
   return counts;
 }
-// how many of the army's 3-enhancement cap are currently spent, excluding this instance
-function enhancementCapUsed(exceptInstanceId){
-  const counts = usedEnhancementCounts(exceptInstanceId);
+function capUsedExcluding(inst, slot){
   let cap = 0;
-  Object.entries(counts).forEach(([id,n])=>{
+  Object.entries(equippedCountsExcluding(inst, slot)).forEach(([id,n])=>{
     const e = enhancements[id]; if(!e) return;
     cap += e.upgrade ? 1 : n;   // an Upgrade's 2nd/3rd copy never adds to the cap
   });
   return cap;
 }
-function canEquipEnhancement(inst, enhId){
+function canEquipEnhancement(inst, enhId, slot){
   const e = enhancements[enhId]; if(!e) return false;
-  if(inst.enhancementId === enhId) return true;   // already equipped here — always shown
-  const n = (usedEnhancementCounts(inst.instanceId)[enhId]) || 0;
+  if(inst[slot] === enhId) return true;   // already equipped in this slot
+  const n = equippedCountsExcluding(inst, slot)[enhId] || 0;
   if(e.upgrade){
-    if(n >= 3) return false;                       // max 3 copies of the same Upgrade
-    if(n === 0 && enhancementCapUsed(inst.instanceId) >= 3) return false;
+    if(n >= 3) return false;                          // max 3 copies of the same Upgrade
+    if(n === 0 && capUsedExcluding(inst, slot) >= 3) return false;
   } else {
-    if(n >= 1) return false;                        // max 1 of the same Enhancement army-wide
-    if(enhancementCapUsed(inst.instanceId) >= 3) return false;
+    if(n >= 1) return false;                           // max 1 of the same Enhancement army-wide
+    if(capUsedExcluding(inst, slot) >= 3) return false;
   }
   return true;
 }
@@ -1439,16 +1475,21 @@ function enhancementAllowedFor(enh, u){
   }
   return true;
 }
-function renderInstanceEnhancementSelector(inst, characterId){
+// slot: 'enhancementId' (character/leader enhancement, shows all eligible) or
+// 'upgradeId' (unit's own Upgrade slot, shows Upgrades only)
+function renderInstanceEnhancementSelector(inst, characterId, slot, upgradesOnly){
+  slot = slot || 'enhancementId';
   const u = units[characterId];
   const options = Object.entries(enhancements)
+    .filter(([id,e])=>!upgradesOnly || e.upgrade)
     .filter(([id,e])=>enhancementAllowedFor(e,u))
-    .filter(([id,e])=>canEquipEnhancement(inst,id));
-  const atCap = enhancementCapUsed(inst.instanceId) >= 3 && !inst.enhancementId;
-  let html = `<div class="config-label">Enhancement</div><div class="enh-chips">`;
+    .filter(([id,e])=>canEquipEnhancement(inst,id,slot));
+  const atCap = capUsedExcluding(inst, slot) >= 3 && !inst[slot];
+  const label = upgradesOnly ? 'Upgrade' : 'Enhancement';
+  let html = `<div class="config-label">${label}</div><div class="enh-chips">`;
   options.forEach(([id,e])=>{
-    const active = inst.enhancementId===id ? 'active' : '';
-    html += `<button class="enh-chip ${active}" onclick="openEnhancement('${inst.instanceId}','${id}')" title="${e.name}">
+    const active = inst[slot]===id ? 'active' : '';
+    html += `<button class="enh-chip ${active}" onclick="openEnhancement('${inst.instanceId}','${id}','${slot}')" title="${e.name}">
       ${e.upgrade?'<span class="upg-tag">UPG</span>':''}
       <span class="ec-short">${e.short}</span><span class="ec-pts">${e.points} pts</span></button>`;
   });
@@ -1458,14 +1499,15 @@ function renderInstanceEnhancementSelector(inst, characterId){
 }
 
 /* enhancement popup — full description + equip/remove */
-function openEnhancement(instanceId, enhId){
+function openEnhancement(instanceId, enhId, slot){
+  slot = slot || 'enhancementId';
   const inst = armyList.find(i=>i.instanceId===instanceId);
   const e = enhancements[enhId]; if(!inst || !e) return;
-  const equipped = inst.enhancementId === enhId;
-  const blocked = !equipped && !canEquipEnhancement(inst, enhId);
+  const equipped = inst[slot] === enhId;
+  const blocked = !equipped && !canEquipEnhancement(inst, enhId, slot);
   const btn = blocked
     ? `<button class="btn ghost" disabled>${e.upgrade?'Max copies / enhancement cap reached':'Max 3 enhancements reached'}</button>`
-    : `<button class="btn ${equipped?'ghost':''}" onclick="setEnhancement('${instanceId}','${enhId}');openEnhancement('${instanceId}','${enhId}')">${equipped?'✓ Equipped — remove':'Equip'}</button>`;
+    : `<button class="btn ${equipped?'ghost':''}" onclick="setEnhancement('${instanceId}','${enhId}','${slot}');openEnhancement('${instanceId}','${enhId}','${slot}')">${equipped?'✓ Equipped — remove':'Equip'}</button>`;
   showModalRaw(
     `${e.name} <span style="color:var(--accent-2);font-size:.85rem">${e.points} pts</span>`,
     e.type,
@@ -1511,9 +1553,10 @@ function changeModelCount(id, delta){
   }
   saveState(); renderApp();
 }
-function setEnhancement(id, enhId){
+function setEnhancement(id, enhId, slot){
+  slot = slot || 'enhancementId';
   const inst = armyList.find(i=>i.instanceId===id);
-  inst.enhancementId = (inst.enhancementId===enhId) ? null : enhId;
+  inst[slot] = (inst[slot]===enhId) ? null : enhId;
   saveState(); renderApp();
 }
 function setPointsLimit(v){ pointsLimit = parseInt(v,10)||0; saveState(); renderConfigurationTab(); }

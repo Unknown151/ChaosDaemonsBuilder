@@ -8,6 +8,7 @@
       "upgrade": true,
       "restriction": "Legiones Daemonica Mounted unit only",
       "short": "+1\" Move",
+      "statMods": [{ "field": "m", "delta": 1 }],
       "description": "LEGIONES DAEMONICA MOUNTED unit only. This unit has +1\" M."
     },
     "soul-shattering-charge": {
@@ -38,6 +39,7 @@
       "upgrade": true,
       "restriction": "Legiones Daemonica Battleline unit only",
       "short": "+1 Strength",
+      "weaponMods": [{ "field": "s", "delta": 1 }],
       "description": "LEGIONES DAEMONICA BATTLELINE unit only. This unit's attacks have +1 S."
     },
     "swollen-with-power": {
@@ -48,6 +50,7 @@
       "upgrade": true,
       "restriction": "Legiones Daemonica Character model only (excluding Monster units)",
       "short": "+2 Wounds",
+      "statMods": [{ "field": "w", "delta": 2 }],
       "description": "LEGIONES DAEMONICA CHARACTER model only (excluding MONSTER units). This model has +2 W."
     }
   },
