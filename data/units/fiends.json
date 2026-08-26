@@ -35,7 +35,7 @@
     },
     {
       "models": 6,
-      "points": 180
+      "points": 190
     }
   ],
   "weapons": {
@@ -65,5 +65,16 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "pointsThird": 105,
+  "modelBracketsThird": [
+    {
+      "models": 3,
+      "points": 105
+    },
+    {
+      "models": 6,
+      "points": 205
+    }
+  ]
 }

@@ -28,7 +28,7 @@
   "modelBreakdown": "1 Rendmaster on Blood Throne",
   "models": 1,
   "baseModels": 1,
-  "points": 150,
+  "points": 160,
   "weapons": {
     "ranged": [],
     "melee": [
@@ -72,5 +72,5 @@
   "factionKeywords": [
     "LEGIONES DAEMONICA"
   ],
-  "pointsThird": 170
+  "pointsThird": 180
 }

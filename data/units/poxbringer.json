@@ -29,7 +29,7 @@
   "modelBreakdown": "1 Poxbringer",
   "models": 1,
   "baseModels": 1,
-  "points": 55,
+  "points": 60,
   "weapons": {
     "ranged": [],
     "melee": [
@@ -62,5 +62,6 @@
     "plaguebearers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "skillEstimated": true,
+  "pointsThird": 70
 }

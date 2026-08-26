@@ -27,15 +27,15 @@
   "models": 1,
   "baseModels": 1,
   "maxModels": 2,
-  "points": 70,
+  "points": 80,
   "modelBrackets": [
     {
       "models": 1,
-      "points": 70
+      "points": 80
     },
     {
       "models": 2,
-      "points": 140
+      "points": 150
     }
   ],
   "weapons": {

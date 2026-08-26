@@ -27,11 +27,11 @@
   "models": 5,
   "baseModels": 5,
   "maxModels": 10,
-  "points": 80,
+  "points": 85,
   "modelBrackets": [
     {
       "models": 5,
-      "points": 80
+      "points": 85
     },
     {
       "models": 10,

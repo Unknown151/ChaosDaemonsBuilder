@@ -35,7 +35,7 @@
     },
     {
       "models": 6,
-      "points": 180
+      "points": 200
     }
   ],
   "weapons": {
@@ -93,15 +93,15 @@
       "source": "daemonic-icon"
     }
   ],
-  "pointsThird": 105,
+  "pointsThird": 135,
   "modelBracketsThird": [
     {
       "models": 3,
-      "points": 105
+      "points": 135
     },
     {
       "models": 6,
-      "points": 190
+      "points": 240
     }
   ]
 }
