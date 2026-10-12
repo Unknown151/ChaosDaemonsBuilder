@@ -2,12 +2,12 @@
   "id": "sloppity-bilepiper",
   "name": "Sloppity Bilepiper",
   "keywords": [
-    "CHARACTER",
     "INFANTRY",
-    "SLOPPITY BILEPIPER",
-    "NURGLE",
+    "CHARACTER",
+    "CHAOS",
     "DAEMON",
-    "CHAOS"
+    "NURGLE",
+    "SLOPPITY BILEPIPER"
   ],
   "type": [
     "Character",
@@ -35,7 +35,7 @@
       {
         "name": "Marotter",
         "a": "4",
-        "ws": "4+",
+        "ws": "3+",
         "s": "5",
         "ap": "0",
         "d": "1",
@@ -60,5 +60,12 @@
     "plaguebearers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, add 1\" to that unit's Move and you can re-roll its Advance rolls.",
+    "short": "Led unit: +1\" Move, re-roll Advance rolls"
+  }
 }

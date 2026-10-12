@@ -1,15 +1,47 @@
 {
   "blood-legion": {
     "dp": 2,
-    "category": "Purge the Foe"
+    "category": "Purge the Foe",
+    "stratagemOverrides": {
+      "fools-flight": {
+        "short": "Charge an enemy that Fell Back",
+        "when": "Your opponent's Movement phase, when an enemy unit finishes a fall-back move.",
+        "target": "One friendly unengaged LEGIONES DAEMONICA KHORNE unit within 6\" of that enemy unit.",
+        "effect": "Your unit declares a charge. Its charge targets must be enemy units that made a fall-back move this phase and are within the maximum distance."
+      }
+    }
   },
   "legion-of-excess": {
     "dp": 2,
-    "category": "Priority Assets"
+    "category": "Priority Assets",
+    "ruleParts": [
+      {
+        "name": "Beguiling Aura",
+        "text": "LEGIONES DAEMONICA SLAANESH units from your army are eligible to declare a charge in a turn in which they Fell Back."
+      },
+      {
+        "name": "Seductive Gambit",
+        "text": "Each time a LEGIONES DAEMONICA SLAANESH unit from your army ends a Charge move, it can perform a Seductive Gambit: until the end of the turn it loses Fights First, but its attacks can re-roll the Hit roll and re-roll Wound rolls of 1."
+      }
+    ],
+    "removeStratagems": ["thieves-of-pain"],
+    "addStratagems": [
+      { "id": "rapturous-agony", "name": "RAPTUROUS AGONY", "cp": "1CP", "category": "Legion of Excess - Strategic Ploy",
+        "short": "-1 to wound vs attacks stronger than your Toughness",
+        "when": "Your opponent's Shooting phase or the Fight phase, when an enemy unit targets a friendly LEGIONES DAEMONICA SLAANESH unit (excluding MONSTER and VEHICLE units).",
+        "target": "That LEGIONES DAEMONICA SLAANESH unit.",
+        "effect": "Attacks that target your unit with a Strength greater than its Toughness have -1 to Wound rolls.",
+        "restrictions": "" }
+    ]
   },
   "plague-legion": {
     "dp": 2,
-    "category": "Take and Hold"
+    "category": "Take and Hold",
+    "stratagemOverrides": {
+      "foetid-resurgence": {
+        "effect": "Return up to 1 destroyed model (excluding CHARACTER models) to your unit with its full wounds remaining, or up to D3 such models if it is a BATTLELINE unit. If your unit is a MONSTER unit, one model in it regains up to D3+1 lost wounds instead."
+      }
+    }
   },
   "scintillating-legion": {
     "dp": 2,
@@ -17,7 +49,41 @@
   },
   "shadow-legion": {
     "dp": 2,
-    "category": "Purge the Foe"
+    "category": "Purge the Foe",
+    "ruleParts": [
+      {
+        "name": "Thralls of the First Prince",
+        "text": "Your army cannot include DAEMON PRINCE, DAEMON PRINCE WITH WINGS or EPIC HERO units other than BE'LAKOR. It can include certain HERETIC ASTARTES units (up to 500 pts at Incursion, 1000 pts at Strike Force, 1500 pts at Onslaught). LEGIONES DAEMONICA units gain the SHADOW LEGION keyword; BE'LAKOR and HERETIC ASTARTES units gain SHADOW LEGION and UNDIVIDED."
+      },
+      {
+        "name": "Murderer's Cowl",
+        "text": "SHADOW LEGION KHORNE units are eligible to shoot and declare a charge in a turn in which they Advanced."
+      },
+      {
+        "name": "Penumbral Puppetry",
+        "text": "SHADOW LEGION TZEENTCH units have Stealth, and melee attacks that target them have -1 to Hit rolls."
+      },
+      {
+        "name": "Gloam Rot",
+        "text": "SHADOW LEGION NURGLE units: attacks with a Strength greater than the unit's Toughness have -1 to Wound rolls against them."
+      },
+      {
+        "name": "Shadow's Caress",
+        "text": "SHADOW LEGION SLAANESH units cannot be targeted by snap shooting attacks."
+      },
+      {
+        "name": "Disciples of Be'lakor",
+        "text": "SHADOW LEGION UNDIVIDED units have the Dark Pacts army rule from Codex: Chaos Space Marines (BE'LAKOR automatically passes its Leadership test). SHADOW LEGION HERETIC ASTARTES models also have Deep Strike."
+      }
+    ],
+    "stratagemOverrides": {
+      "shade-path": {
+        "short": "-1 to a nearby enemy's Charge rolls",
+        "when": "Start of your opponent's Charge phase.",
+        "target": "One friendly SHADOW LEGION unit.",
+        "effect": "Select one visible enemy unit within 12\" of your unit. When that enemy unit declares a charge, it has -1 to Charge rolls. If your unit has the NURGLE keyword, that enemy unit must also make a battle-shock roll."
+      }
+    }
   },
   "cavalcade-of-chaos": {
     "id": "cavalcade-of-chaos",
@@ -25,17 +91,35 @@
     "god": null,
     "dp": 1,
     "category": "Disruption",
-    "unconfirmed": true,
-    "ruleName": "Cavalcade of Chaos",
+    "ruleName": "Unholy Avalanche",
     "ruleId": "cavalcade-of-chaos-rule",
-    "ruleType": "Detachment Rule - Cavalcade of Chaos",
+    "ruleType": "Detachment Rule - Unholy Avalanche",
     "ruleParts": [
       {
-        "name": "Cavalcade of Chaos",
-        "text": "Rules text not provided in source data — to be supplied."
+        "name": "Unholy Avalanche",
+        "text": "A friendly LEGIONES DAEMONICA MOUNTED unit that made a fall-back move this turn is still eligible to shoot and to declare a charge."
       }
     ],
-    "stratagems": []
+    "stratagems": [
+      { "id": "from-beyond-the-veil", "name": "From Beyond the Veil", "cp": "2CP", "category": "Cavalcade of Chaos",
+        "short": "A Mounted unit in reserves makes an ingress move",
+        "when": "End of the Movement phase, from the start of the battle.",
+        "target": "One friendly LEGIONES DAEMONICA MOUNTED unit in Strategic Reserves.",
+        "effect": "Your unit can make an ingress move.",
+        "restrictions": "" },
+      { "id": "warp-riders", "name": "Warp-riders", "cp": "1CP", "category": "Cavalcade of Chaos",
+        "short": "Mounted unit gains MOBILE as it moves",
+        "when": "Your Movement phase, when a friendly LEGIONES DAEMONICA MOUNTED unit is selected to move.",
+        "target": "That LEGIONES DAEMONICA MOUNTED unit.",
+        "effect": "Your unit has the MOBILE keyword.",
+        "restrictions": "" },
+      { "id": "inescapable-manifestations", "name": "Inescapable Manifestations", "cp": "1CP", "category": "Cavalcade of Chaos",
+        "short": "Enemies falling back from your unit must desperately escape",
+        "when": "Your opponent's Movement phase, when a unit engaged with a friendly LEGIONES DAEMONICA MOUNTED unit is selected to make a fall-back move.",
+        "target": "That LEGIONES DAEMONICA MOUNTED unit.",
+        "effect": "An enemy unit engaged with your unit that is selected to make a fall-back move must use the desperate escape mode. If that enemy unit is battle-shocked, subtract 1 from those hazard rolls.",
+        "restrictions": "" }
+    ]
   },
   "lords-of-the-warp": {
     "id": "lords-of-the-warp",
@@ -124,7 +208,7 @@
     "ruleParts": [
       {
         "name": "Warp Rifts",
-        "text": "Each time a LEGIONES DAEMONICA unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within your army's Shadow of Chaos, and/or if it is set up wholly within 6\" of one or more friendly BLOODTHIRSTER, GREAT UNCLEAN ONE, KAIROS FATEWEAVER, KEEPER OF SECRETS, LORD OF CHANGE, ROTIGUS, SHALAXI HELBANE or SKARBRAND units with which it shares the KHORNE, TZEENTCH, NURGLE or SLAANESH keyword, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 9\"."
+        "text": "Each time a LEGIONES DAEMONICA unit from your army is set up on the battlefield using the Deep Strike ability, if it is set up wholly within your army's Shadow of Chaos, and/or if it is set up wholly within 6\" of one or more friendly BLOODTHIRSTER, GREAT UNCLEAN ONE, KAIROS FATEWEAVER, KEEPER OF SECRETS, LORD OF CHANGE, ROTIGUS, SHALAXI HELBANE or SKARBRAND units with which it shares the KHORNE, TZEENTCH, NURGLE or SLAANESH keyword, it can be set up anywhere that is more than 6\" horizontally away from all enemy models, instead of more than 8\"."
       }
     ],
     "stratagems": [
@@ -180,7 +264,7 @@
         "short": "Pull units into Reserves to redeploy",
         "when": "End of your opponent's turn.",
         "target": "Up to two LEGIONES DAEMONICA units from your army that are within your army's Shadow of Chaos, or one other LEGIONES DAEMONICA unit from your army.",
-        "effect": "Remove the targeted units from the battlefield and place them into Strategic Reserves. They will arrive back on the battlefield in the Reinforcements step of your next Movement phase using the Deep Strike ability.",
+        "effect": "Place the targeted units into Strategic Reserves. Each must make an ingress move in your next Movement phase (including in your first turn).",
         "restrictions": "You cannot target units that are within Engagement Range of one or more enemy units with this Stratagem."
       },
       {

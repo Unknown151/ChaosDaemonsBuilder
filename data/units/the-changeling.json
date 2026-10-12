@@ -6,10 +6,10 @@
     "CHARACTER",
     "EPIC HERO",
     "PSYKER",
+    "CHAOS",
     "DAEMON",
     "TZEENTCH",
-    "THE CHANGELING",
-    "CHAOS"
+    "THE CHANGELING"
   ],
   "type": [
     "Infantry",
@@ -95,5 +95,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

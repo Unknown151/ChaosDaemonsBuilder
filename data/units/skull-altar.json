@@ -2,11 +2,12 @@
   "id": "skull-altar",
   "name": "Skull Altar",
   "keywords": [
-    "KHORNE",
-    "SKULL ALTAR",
     "FORTIFICATION",
+    "FRAME",
     "CHAOS",
-    "DAEMON"
+    "DAEMON",
+    "KHORNE",
+    "SKULL ALTAR"
   ],
   "type": [
     "Fortification"
@@ -40,5 +41,9 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

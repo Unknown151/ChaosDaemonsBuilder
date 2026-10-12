@@ -345,7 +345,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.15</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.16</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -398,7 +398,12 @@ let coreStratagems = [];
 /* ---- Army state ---- */
 let armyList = [];
 let nextInstanceId = 1;
-const DETACHMENT_POINTS = 3;   // 11e Detachment Points budget — spend across multiple detachments
+// 11e battle sizes (core rules 25.03): the points limit sets the Detachment
+// Points budget and how many enhancements the army can include.
+const BATTLE_SIZES = {
+  incursion:   { name:'Incursion',    dp:2, enhancements:2 },
+  strikeForce: { name:'Strike Force', dp:3, enhancements:4 },
+};
 let selectedDetachments = ['blood-legion'];   // array now, not a single id
 let pointsLimit = 0;
 let savedLists = [];      // [{ name, armyList, nextInstanceId, detachments, pointsLimit }]
@@ -588,12 +593,16 @@ function duplicateInstance(instanceId){
 }
 function normalizeInstance(inst){
   const u = units[inst.unitId] || {};
-  return Object.assign({
+  const n = Object.assign({
     instanceId: inst.instanceId, unitId: inst.unitId,
     modelCount: u.models || u.baseModels || 1,
     weapons: {}, leaderId: null, leaderWargear: [],
     enhancementId: null, upgradeId: null, selectedWargear: [], abilityChoices: {}, allegiance: null,
   }, inst);
+  // a unit (attached units included) can only have one enhancement — lists
+  // saved before that was enforced may hold both; the leader's one is kept
+  if(n.enhancementId && n.upgradeId) n.upgradeId = null;
+  return n;
 }
 
 /* ===================== Points ===================== */
@@ -639,16 +648,8 @@ function renderApp(){
 
 /* ---- Stratagems tab (grouped by phase, tiles + tap-for-detail) ---- */
 const STRAT_PHASES = ['Command','Movement','Shooting','Charge','Fight'];
-const CORE_STRAT_PHASES = {
-  'command-re-roll': STRAT_PHASES.slice(),
-  'counter-offensive': ['Fight'], 'epic-challenge': ['Fight'],
-  'fire-overwatch': ['Movement','Charge'], 'go-to-ground': ['Shooting'],
-  'grenade': ['Shooting'], 'heroic-intervention': ['Charge'],
-  'insane-bravery': ['Command'], 'rapid-ingress': ['Movement'],
-  'smokescreen': ['Shooting'], 'tank-shock': ['Charge'],
-};
 function stratPhases(s){
-  if(CORE_STRAT_PHASES[s.id]) return CORE_STRAT_PHASES[s.id];
+  // core stratagems carry their phases in core-stratagems.json
   if(Array.isArray(s.phases) && s.phases.length) return s.phases;
   const w = (s.when||'').toLowerCase();
   if(w.includes('any phase')) return STRAT_PHASES.slice();
@@ -671,7 +672,7 @@ function renderStratagems(){
   const all = allStratagems();
   const groups = {}; [...STRAT_PHASES,'Other'].forEach(p=>groups[p]=[]);
   all.forEach(s=>stratPhases(s).forEach(p=>(groups[p]=groups[p]||[]).push(s)));
-  let html = `<div class="strat-legend"><span class="dot det"></span>Detachment &nbsp; <span class="dot core"></span>Core <span class="skill-note">≈ Core from knowledge — verify</span></div>`;
+  let html = `<div class="strat-legend"><span class="dot det"></span>Detachment &nbsp; <span class="dot core"></span>Core</div>`;
   [...STRAT_PHASES,'Other'].forEach(p=>{
     if(!groups[p].length) return;
     html += `<div class="strat-group">${p==='Other'?'Other / Any Phase':p+' Phase'}</div><div class="strat-tiles">`;
@@ -703,10 +704,29 @@ function loadDetachment(){
   selectedDetachments = selectedDetachments.filter(id => detachments[id]);
 }
 
+/* ---- Battle size: a points limit of 1000 or less is an Incursion battle,
+   anything else (including no limit) is treated as Strike Force ---- */
+function battleSize(){
+  return (pointsLimit > 0 && pointsLimit <= 1000) ? BATTLE_SIZES.incursion : BATTLE_SIZES.strikeForce;
+}
+function detachmentPoints(){ return battleSize().dp; }
+function enhancementLimit(){ return battleSize().enhancements; }
+
 /* ---- Detachment Points (11e): pick any combo of detachments up to the DP budget ---- */
 function isDetachmentActive(id){ return selectedDetachments.includes(id); }
 function dpSpent(){ return selectedDetachments.reduce((s,id)=>s+((detachments[id]||{}).dp||0),0); }
-function dpRemaining(){ return DETACHMENT_POINTS - dpSpent(); }
+function dpRemaining(){ return detachmentPoints() - dpSpent(); }
+// an Incursion army may take one 3DP detachment as its only detachment
+function incursionSoloAllowed(dp, othersSelected){
+  return battleSize() === BATTLE_SIZES.incursion && dp === 3 && othersSelected === 0;
+}
+function fitsDpBudget(d){
+  return d.dp <= dpRemaining() || incursionSoloAllowed(d.dp, selectedDetachments.length);
+}
+function dpOverBudget(){
+  const spent = dpSpent();
+  return spent > detachmentPoints() && !incursionSoloAllowed(spent, selectedDetachments.length - 1);
+}
 function uniqueGroupTaken(group, exceptId){
   if(!group) return false;
   return selectedDetachments.some(id=>id!==exceptId && (detachments[id]||{}).unique===group);
@@ -714,7 +734,7 @@ function uniqueGroupTaken(group, exceptId){
 function canAddDetachment(id){
   const d = detachments[id];
   if(!d || isDetachmentActive(id)) return false;
-  if(d.dp > dpRemaining()) return false;
+  if(!fitsDpBudget(d)) return false;
   if(uniqueGroupTaken(d.unique)) return false;
   return true;
 }
@@ -742,8 +762,8 @@ function toggleDetachmentSelection(id){
     resetDetachmentStratagemState(id);
     clearOrphanedEnhancements();
   } else {
-    if(d.dp > dpRemaining()){
-      alert(`Not enough Detachment Points — ${d.name} costs ${d.dp} DP, ${dpRemaining()} left.`);
+    if(!fitsDpBudget(d)){
+      alert(`Not enough Detachment Points — ${d.name} costs ${d.dp} DP, ${Math.max(0, dpRemaining())} left (${battleSize().name}: ${detachmentPoints()} DP).`);
       return;
     }
     if(uniqueGroupTaken(d.unique)){
@@ -788,11 +808,11 @@ function renderDetachmentSelector(){
   bar.innerHTML =
     `<div class="det-head" onclick="toggleDetachment()">
       <span class="config-label" style="margin:0">Detachments</span>
-      <span class="det-current">${detExpanded ? `${spent} / ${DETACHMENT_POINTS} DP` : summary}</span>
+      <span class="det-current">${detExpanded ? `${spent} / ${detachmentPoints()} DP` : summary}</span>
       <span class="det-chevron">▾</span>
     </div>
     <div class="det-body">
-      <div class="dp-counter ${spent>DETACHMENT_POINTS?'over':''}">${spent} / ${DETACHMENT_POINTS} DP used</div>
+      <div class="dp-counter ${dpOverBudget()?'over':''}">${spent} / ${detachmentPoints()} DP used · ${battleSize().name}${spent>detachmentPoints() && !dpOverBudget() ? ' — one 3 DP detachment allowed on its own' : ''}</div>
       <div class="det-grid">${cards}</div>
       ${rulesHtml || '<div class="empty" style="padding:.5rem 0">Select one or more detachments above.</div>'}
     </div>`;
@@ -961,6 +981,11 @@ function applyInstanceChoices(u, inst){
         (opt.weaponMods||[]).forEach(m=>{ if(w.name.toLowerCase().includes(m.match)) w[m.field] = bumpStat(w[m.field], m.delta); });
       }));
       if(opt.abilityId) du.abilities = [opt.abilityId, ...(du.abilities||[])];
+      // god-specific wargear (e.g. Soul Grinder): keep only the chosen god's weapon
+      const granted = u.allegiance.options.map(o=>o.grantsWeapon).filter(Boolean);
+      if(granted.length) ['ranged','melee'].forEach(cat=>{
+        du.weapons[cat] = (du.weapons[cat]||[]).filter(w=>!granted.includes(w.name) || w.name===opt.grantsWeapon);
+      });
     }
   }
   // ability-group weapon buffs (e.g. Harbinger of Death -> chosen keyword on hellforged)
@@ -1378,6 +1403,7 @@ function renderLeaderBonus(leader){
       const ap = (typeof g==='object' && g.abilityAppliesTo) ? ` (${g.abilityAppliesTo})` : '';
       return `<span class="lb-grant">${disp}${ap}</span>`;
     }).join(', ');
+    if(lb.short) inner += ` · ${lb.short}`;   // the part of the bonus that isn't a weapon ability
   } else if(lb && lb.short){ inner = lb.short; }
   else if(lb && lb.text){ inner = lb.text; }
   else { inner = `<span style="color:var(--muted)">${leader.name} — see datasheet for leading bonus.</span>`; }
@@ -1391,7 +1417,8 @@ function setLeader(instId, lid){
 }
 
 function isEnhancementEligible(u){
-  if(u.isEpicHero) return false;
+  // noEnhancements: datasheets that say the model cannot be given Enhancements
+  if(u.isEpicHero || u.noEnhancements) return false;
   const k = u.keywords.map(x=>x.toUpperCase());
   return u.isLeader || k.includes('CHARACTER');
 }
@@ -1406,11 +1433,20 @@ function hasEligibleUpgrades(u){
    - Your army cannot include more than one of the same (non-Upgrade) Enhancement.
    - Upgrades can go on non-Character units too, and up to 3 copies of the same
      Upgrade are allowed; the 2nd and 3rd copies don't count toward the army's
-     3-enhancement cap (but each still costs its points).
+     enhancement limit (but each still costs its points).
+   - The enhancement limit depends on battle size: 2 at Incursion, 4 at Strike Force.
+   - No unit can have more than one enhancement, and that includes attached
+     units: a leader's enhancement and an Upgrade on its Bodyguard unit are
+     mutually exclusive.
    Each instance has TWO slots: 'enhancementId' (the unit/leader's character
    enhancement) and 'upgradeId' (an Upgrade applied to the unit's own body).
-   A led unit can carry a leader enhancement AND its own upgrade at once. */
+   Only one of the two can be filled at a time. */
 const ENH_SLOTS = ['enhancementId','upgradeId'];
+// what the instance already carries in its *other* slot (null if nothing)
+function otherSlotEnhancement(inst, slot){
+  const id = inst[slot === 'upgradeId' ? 'enhancementId' : 'upgradeId'];
+  return (id && enhancements[id]) || null;
+}
 // multiset of every equipped enhancement/upgrade id across the army, skipping
 // the one slot currently being edited (so a candidate can replace it)
 function equippedCountsExcluding(inst, slot){
@@ -1432,13 +1468,14 @@ function capUsedExcluding(inst, slot){
 function canEquipEnhancement(inst, enhId, slot){
   const e = enhancements[enhId]; if(!e) return false;
   if(inst[slot] === enhId) return true;   // already equipped in this slot
+  if(otherSlotEnhancement(inst, slot)) return false;   // one enhancement per unit
   const n = equippedCountsExcluding(inst, slot)[enhId] || 0;
   if(e.upgrade){
     if(n >= 3) return false;                          // max 3 copies of the same Upgrade
-    if(n === 0 && capUsedExcluding(inst, slot) >= 3) return false;
+    if(n === 0 && capUsedExcluding(inst, slot) >= enhancementLimit()) return false;
   } else {
     if(n >= 1) return false;                           // max 1 of the same Enhancement army-wide
-    if(capUsedExcluding(inst, slot) >= 3) return false;
+    if(capUsedExcluding(inst, slot) >= enhancementLimit()) return false;
   }
   return true;
 }
@@ -1448,7 +1485,7 @@ const RESTRICT_KEYWORDS = ['CHARACTER','MONSTER','MOUNTED','INFANTRY','VEHICLE',
 function enhancementAllowedFor(enh, u){
   if(!isContentDetachmentActive(enh)) return false;
   // Epic Heroes can never take an Enhancement — and Upgrades don't lift that ban.
-  if(u.isEpicHero) return false;
+  if(u.isEpicHero || u.noEnhancements) return false;
   const k = u.keywords.map(x=>x.toUpperCase());
   const restr = (enh.restriction||'').toUpperCase();
   // split off an "excluding X" / "except X" clause (up to the next . or )) so
@@ -1484,7 +1521,7 @@ function renderInstanceEnhancementSelector(inst, characterId, slot, upgradesOnly
     .filter(([id,e])=>!upgradesOnly || e.upgrade)
     .filter(([id,e])=>enhancementAllowedFor(e,u))
     .filter(([id,e])=>canEquipEnhancement(inst,id,slot));
-  const atCap = capUsedExcluding(inst, slot) >= 3 && !inst[slot];
+  const atCap = capUsedExcluding(inst, slot) >= enhancementLimit() && !inst[slot];
   const label = upgradesOnly ? 'Upgrade' : 'Enhancement';
   let html = `<div class="config-label">${label}</div><div class="enh-chips">`;
   options.forEach(([id,e])=>{
@@ -1494,7 +1531,9 @@ function renderInstanceEnhancementSelector(inst, characterId, slot, upgradesOnly
       <span class="ec-short">${e.short}</span><span class="ec-pts">${e.points} pts</span></button>`;
   });
   html += `</div>`;
-  if(atCap) html += `<div class="config-label" style="color:var(--accent)">Max 3 enhancements per army reached.</div>`;
+  const other = otherSlotEnhancement(inst, slot);
+  if(other) html += `<div class="config-label" style="color:var(--accent)">One enhancement per unit (attached units included) — remove ${other.name} to choose one here.</div>`;
+  else if(atCap) html += `<div class="config-label" style="color:var(--accent)">Max ${enhancementLimit()} enhancements per army reached (${battleSize().name}).</div>`;
   return html;
 }
 
@@ -1506,7 +1545,7 @@ function openEnhancement(instanceId, enhId, slot){
   const equipped = inst[slot] === enhId;
   const blocked = !equipped && !canEquipEnhancement(inst, enhId, slot);
   const btn = blocked
-    ? `<button class="btn ghost" disabled>${e.upgrade?'Max copies / enhancement cap reached':'Max 3 enhancements reached'}</button>`
+    ? `<button class="btn ghost" disabled>${otherSlotEnhancement(inst, slot)?'This unit already has an enhancement':(e.upgrade?'Max copies / enhancement cap reached':`Max ${enhancementLimit()} enhancements reached`)}</button>`
     : `<button class="btn ${equipped?'ghost':''}" onclick="setEnhancement('${instanceId}','${enhId}','${slot}');openEnhancement('${instanceId}','${enhId}','${slot}')">${equipped?'✓ Equipped — remove':'Equip'}</button>`;
   showModalRaw(
     `${e.name} <span style="color:var(--accent-2);font-size:.85rem">${e.points} pts</span>`,
@@ -1556,6 +1595,7 @@ function changeModelCount(id, delta){
 function setEnhancement(id, enhId, slot){
   slot = slot || 'enhancementId';
   const inst = armyList.find(i=>i.instanceId===id);
+  if(inst[slot]!==enhId && !canEquipEnhancement(inst, enhId, slot)) return;
   inst[slot] = (inst[slot]===enhId) ? null : enhId;
   saveState(); renderApp();
 }

@@ -3,13 +3,13 @@
   "name": "The Masque Of Slaanesh",
   "keywords": [
     "INFANTRY",
-    "THE MASQUE OF SLAANESH",
-    "FLY",
-    "EPIC HERO",
     "CHARACTER",
+    "EPIC HERO",
+    "FLY",
     "CHAOS",
+    "DAEMON",
     "SLAANESH",
-    "DAEMON"
+    "THE MASQUE OF SLAANESH"
   ],
   "type": [
     "Infantry",
@@ -61,5 +61,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

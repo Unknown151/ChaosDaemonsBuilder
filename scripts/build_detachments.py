@@ -24,15 +24,12 @@ GOD = {
 }
 
 # Rule text the Wahapedia export dropped, plus named sub-rule splits.
+# Murdercall as errata'd for 11th edition (opponent's Movement phase, 8", a
+# surge move of up to D6" — see core rules 21.01 for how surge moves work).
 SURGE_TEXT = (
-    'Each time an enemy unit (excluding AIRCRAFT) ends a Normal or Advance move '
-    'within 6" of one or more LEGIONES DAEMONICA KHORNE units from your army, one '
-    'of those LEGIONES DAEMONICA KHORNE units can make a Surge move towards that '
-    'enemy unit. To do so, roll one D6: models in your unit move a number of inches '
-    'up to this result, but your unit must end that move as close as possible to '
-    'that enemy unit. When doing so, those models can be moved within Engagement '
-    'Range of that enemy unit. A unit cannot make a Surge move while it is within '
-    'Engagement Range of one or more enemy units.'
+    'In your opponent\'s Movement phase, each time an enemy unit (excluding '
+    'AIRCRAFT) finishes a move within 8" of one or more LEGIONES DAEMONICA KHORNE '
+    'units from your army, one of those units can make a surge move of up to D6".'
 )
 # detachment id -> function(parsed_rule_text) -> list of {name, text}
 RULE_PARTS = {
@@ -67,7 +64,8 @@ for b in blocks[1:]:
         body = strat_blocks[i + 3]
         def field(key):
             m = re.search(key + r':\s*(.*?)(?=\n[A-Z]{2,}:|\nDesigner|\nExample|\Z)', body, re.S)
-            return re.sub(r'\s*\n\s*', ' ', m.group(1).strip()) if m else ''
+            # drop the "---" section rule the export leaves after a detachment's last stratagem
+            return re.sub(r'\s*-{3,}\s*$', '', re.sub(r'\s*\n\s*', ' ', m.group(1).strip())) if m else ''
         stratagems.append({
             'id': slug(sname),
             'name': sname,
@@ -92,12 +90,25 @@ for b in blocks[1:]:
     }
 
 # ── authoritative detachment overrides (rules/stratagems the export got wrong) ─
+# Plain keys replace the parsed value. Three keys patch the parsed stratagem
+# list instead of replacing it wholesale:
+#   stratagemOverrides: { id: {fields…} }  merge fields onto one stratagem
+#   removeStratagems:   [ id, … ]          drop stratagems that no longer exist
+#   addStratagems:      [ {stratagem}, … ] append new ones
 _ov = os.path.join(ROOT, 'data', 'detachment-overrides.json')
 if os.path.exists(_ov):
     for did, ov in json.load(open(_ov, encoding='utf-8')).items():
         d = dets.setdefault(did, {'id': did, 'stratagems': []})
         for k, v in ov.items():
-            d[k] = v
+            if k == 'stratagemOverrides':
+                for s in d['stratagems']:
+                    s.update(v.get(s['id'], {}))
+            elif k == 'removeStratagems':
+                d['stratagems'] = [s for s in d['stratagems'] if s['id'] not in v]
+            elif k == 'addStratagems':
+                d['stratagems'] = d['stratagems'] + v
+            else:
+                d[k] = v
         if 'ruleParts' in ov:
             d['ruleDescription'] = ' '.join(f"{p['name']}: {p['text']}" for p in ov['ruleParts'])
 

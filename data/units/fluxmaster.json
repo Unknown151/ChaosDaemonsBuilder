@@ -2,14 +2,14 @@
   "id": "fluxmaster",
   "name": "Fluxmaster",
   "keywords": [
-    "TZEENTCH",
-    "FLUXMASTER",
-    "PSYKER",
+    "MOUNTED",
+    "CHARACTER",
     "FLY",
+    "PSYKER",
     "CHAOS",
     "DAEMON",
-    "CHARACTER",
-    "MOUNTED"
+    "TZEENTCH",
+    "FLUXMASTER"
   ],
   "type": [
     "Character",
@@ -94,5 +94,12 @@
     "pink-horrors"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "This model's unit has Stealth, and melee attacks that target it have -1 to Hit rolls.",
+    "short": "Unit has Stealth; melee attacks against it are -1 to hit"
+  }
 }

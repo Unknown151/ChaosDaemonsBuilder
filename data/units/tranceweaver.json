@@ -2,13 +2,13 @@
   "id": "tranceweaver",
   "name": "Tranceweaver",
   "keywords": [
-    "SLAANESH",
-    "TRANCEWEAVER",
-    "DAEMON",
     "INFANTRY",
     "CHARACTER",
     "PSYKER",
-    "CHAOS"
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "TRANCEWEAVER"
   ],
   "type": [
     "Infantry",
@@ -36,7 +36,7 @@
       {
         "name": "Ravaging claws",
         "a": "6",
-        "ws": "3+",
+        "ws": "2+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -62,5 +62,12 @@
     "daemonettes"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "Attacks made by this model's unit re-roll Hit rolls of 1, or can re-roll the Hit roll entirely if the target is within range of an objective marker.",
+    "short": "Unit re-rolls Hit rolls of 1 (full re-roll vs targets on objectives)"
+  }
 }

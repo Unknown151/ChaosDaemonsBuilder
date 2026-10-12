@@ -2,12 +2,12 @@
   "id": "plague-drones",
   "name": "Plague Drones",
   "keywords": [
-    "PLAGUE DRONES",
     "MOUNTED",
     "FLY",
     "CHAOS",
     "DAEMON",
-    "NURGLE"
+    "NURGLE",
+    "PLAGUE DRONES"
   ],
   "type": [
     "Mounted"
@@ -75,7 +75,7 @@
       {
         "name": "Plaguesword",
         "a": "2",
-        "ws": "4+",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -99,5 +99,12 @@
   ],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Plague Drone can be equipped with 1 instrument of Chaos.",
+    "1 other Plague Drone can be equipped with 1 daemonic icon."
+  ]
 }

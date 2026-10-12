@@ -2,14 +2,14 @@
   "id": "syllesske",
   "name": "Syll'esske",
   "keywords": [
-    "SYLL'ESSKE",
     "MONSTER",
     "CHARACTER",
+    "EPIC HERO",
     "PSYKER",
     "CHAOS",
     "DAEMON",
     "SLAANESH",
-    "EPIC HERO"
+    "SYLL'ESSKE"
   ],
   "type": [
     "Monster",
@@ -87,7 +87,7 @@
       {
         "name": "Axe of Dominion",
         "a": "6",
-        "ws": "2+",
+        "ws": "3+",
         "s": "7",
         "ap": "-2",
         "d": "3",
@@ -123,5 +123,12 @@
     "daemonettes"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, unmodified Wound rolls of 5+ for melee attacks made by that unit are Critical Wounds.",
+    "short": "Led unit's melee scores Critical Wounds on 5+"
+  }
 }

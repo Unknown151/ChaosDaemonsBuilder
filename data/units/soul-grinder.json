@@ -2,11 +2,11 @@
   "id": "soul-grinder",
   "name": "Soul Grinder",
   "keywords": [
-    "SOUL GRINDER",
-    "DAEMON",
-    "CHAOS",
+    "VEHICLE",
     "WALKER",
-    "VEHICLE"
+    "CHAOS",
+    "DAEMON",
+    "SOUL GRINDER"
   ],
   "type": [
     "Vehicle"
@@ -152,6 +152,48 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true,
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-5",
+  "damagedText": "While this model has 1-5 wounds remaining, its attacks have -1 to Hit rolls.",
+  "wargearOptions": [
+    "Warpsword can be replaced with 1 warpclaw.",
+    "Daemonic Allegiance: choose a god keyword — it adds that god's ranged weapon."
+  ],
+  "allegiance": {
+    "label": "Daemonic Allegiance",
+    "options": [
+      {
+        "id": "khorne",
+        "label": "Khorne",
+        "keyword": "KHORNE",
+        "effect": "Adds torrent of burning blood",
+        "grantsWeapon": "Torrent of burning blood"
+      },
+      {
+        "id": "tzeentch",
+        "label": "Tzeentch",
+        "keyword": "TZEENTCH",
+        "effect": "Adds warp gaze",
+        "grantsWeapon": "Warp gaze"
+      },
+      {
+        "id": "nurgle",
+        "label": "Nurgle",
+        "keyword": "NURGLE",
+        "effect": "Adds phlegm bombardment",
+        "grantsWeapon": "Phlegm bombardment"
+      },
+      {
+        "id": "slaanesh",
+        "label": "Slaanesh",
+        "keyword": "SLAANESH",
+        "effect": "Adds scream of despair",
+        "grantsWeapon": "Scream of despair"
+      }
+    ]
+  },
   "pointsThird": 195
 }

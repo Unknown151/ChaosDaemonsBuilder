@@ -2,12 +2,12 @@
   "id": "infernal-enrapturess",
   "name": "Infernal Enrapturess",
   "keywords": [
-    "INFERNAL ENRAPTURESS",
     "INFANTRY",
     "CHARACTER",
     "CHAOS",
     "DAEMON",
-    "SLAANESH"
+    "SLAANESH",
+    "INFERNAL ENRAPTURESS"
   ],
   "type": [
     "Infantry",
@@ -64,7 +64,7 @@
       {
         "name": "Ravaging claws",
         "a": "5",
-        "ws": "3+",
+        "ws": "2+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -90,5 +90,12 @@
     "daemonettes"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, in your Command phase you can return D3 destroyed Bodyguard models to that unit.",
+    "short": "Command phase: return D3 destroyed Bodyguard models"
+  }
 }

@@ -2,14 +2,14 @@
   "id": "blue-horrors",
   "name": "Blue Horrors",
   "keywords": [
-    "DAEMON",
-    "BRIMSTONE",
-    "CHAOS",
-    "BATTLELINE",
     "INFANTRY",
-    "BLUE",
+    "BATTLELINE",
+    "CHAOS",
+    "DAEMON",
     "TZEENTCH",
-    "HORRORS"
+    "HORRORS",
+    "BLUE",
+    "BRIMSTONE"
   ],
   "type": [
     "Infantry"
@@ -36,7 +36,7 @@
         "name": "Coruscating Blue Flames",
         "range": "18",
         "a": "2",
-        "bs": "5+",
+        "bs": "4+",
         "s": "3",
         "ap": "-1",
         "d": "1",
@@ -103,5 +103,8 @@
     "changecaster",
     "fluxmaster"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

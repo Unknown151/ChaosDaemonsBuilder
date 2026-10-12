@@ -2,12 +2,12 @@
   "id": "nurglings",
   "name": "Nurglings",
   "keywords": [
-    "NURGLINGS",
-    "NURGLE",
-    "DAEMON",
     "SWARM",
     "BATTLELINE",
-    "CHAOS"
+    "CHAOS",
+    "DAEMON",
+    "NURGLE",
+    "NURGLINGS"
   ],
   "type": [
     "Swarm"
@@ -67,5 +67,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

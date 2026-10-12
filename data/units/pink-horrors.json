@@ -2,14 +2,14 @@
   "id": "pink-horrors",
   "name": "Pink Horrors",
   "keywords": [
-    "HORRORS",
-    "TZEENTCH",
-    "DAEMON",
-    "CHAOS",
-    "BATTLELINE",
     "INFANTRY",
-    "BLUE",
+    "BATTLELINE",
+    "CHAOS",
+    "DAEMON",
+    "TZEENTCH",
+    "HORRORS",
     "PINK",
+    "BLUE",
     "BRIMSTONE"
   ],
   "type": [
@@ -63,7 +63,7 @@
         "name": "Coruscating Pink Flames",
         "range": "18",
         "a": "2",
-        "bs": "4+",
+        "bs": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -93,7 +93,7 @@
         "name": "Coruscating Yellow Flames",
         "range": "18",
         "a": "2",
-        "bs": "4+",
+        "bs": "5+",
         "s": "2",
         "ap": "-1",
         "d": "1",
@@ -120,7 +120,7 @@
       {
         "name": "Blue claws",
         "a": "1",
-        "ws": "4+",
+        "ws": "5+",
         "s": "3",
         "ap": "0",
         "d": "1",
@@ -131,7 +131,7 @@
       {
         "name": "Yellow claws",
         "a": "2",
-        "ws": "4+",
+        "ws": "5+",
         "s": "2",
         "ap": "0",
         "d": "1",
@@ -145,17 +145,24 @@
     "deep-strike"
   ],
   "abilities": [
-    "split-2"
+    "split-2",
+    "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two"
   ],
   "wargear": [
     "daemonic-icon",
-    "instrument-of-chaos",
-    "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two"
+    "instrument-of-chaos"
   ],
   "canLead": [],
   "canBeLeadBy": [
     "changecaster",
     "fluxmaster"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Pink Horror can be equipped with 1 instrument of Chaos.",
+    "1 other Pink Horror can be equipped with 1 daemonic icon."
+  ]
 }

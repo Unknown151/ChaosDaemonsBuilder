@@ -35,7 +35,7 @@
     },
     {
       "models": 6,
-      "points": 200
+      "points": 210
     }
   ],
   "weapons": {
@@ -101,7 +101,7 @@
     },
     {
       "models": 6,
-      "points": 240
+      "points": 250
     }
   ]
 }

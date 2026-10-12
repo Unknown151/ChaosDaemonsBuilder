@@ -2,14 +2,14 @@
   "id": "the-blue-scribes",
   "name": "The Blue Scribes",
   "keywords": [
-    "THE BLUE SCRIBES",
-    "TZEENTCH",
-    "DAEMON",
-    "FLY",
-    "EPIC HERO",
-    "CHARACTER",
     "MOUNTED",
-    "CHAOS"
+    "CHARACTER",
+    "EPIC HERO",
+    "FLY",
+    "CHAOS",
+    "DAEMON",
+    "TZEENTCH",
+    "THE BLUE SCRIBES"
   ],
   "type": [
     "Character",
@@ -37,7 +37,7 @@
       {
         "name": "Sharp quills",
         "a": "4",
-        "ws": "4+",
+        "ws": "5+",
         "s": "2",
         "ap": "0",
         "d": "1",
@@ -60,5 +60,8 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

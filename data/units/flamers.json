@@ -2,12 +2,12 @@
   "id": "flamers",
   "name": "Flamers",
   "keywords": [
-    "DAEMON",
-    "TZEENTCH",
-    "FLAMERS",
     "INFANTRY",
     "FLY",
-    "CHAOS"
+    "CHAOS",
+    "DAEMON",
+    "TZEENTCH",
+    "FLAMERS"
   ],
   "type": [
     "Infantry"
@@ -83,5 +83,8 @@
   "canBeLeadBy": [
     "exalted-flamer"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

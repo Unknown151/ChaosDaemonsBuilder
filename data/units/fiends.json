@@ -2,11 +2,11 @@
   "id": "fiends",
   "name": "Fiends",
   "keywords": [
-    "DAEMON",
-    "CHAOS",
     "BEAST",
-    "FIENDS",
-    "SLAANESH"
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "FIENDS"
   ],
   "type": [
     "Beast"
@@ -65,16 +65,19 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true,
-  "pointsThird": 105,
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "pointsThird": 115,
   "modelBracketsThird": [
     {
       "models": 3,
-      "points": 105
+      "points": 115
     },
     {
       "models": 6,
-      "points": 205
+      "points": 215
     }
   ]
 }

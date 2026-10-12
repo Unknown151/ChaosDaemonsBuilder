@@ -2,13 +2,13 @@
   "id": "lord-of-change",
   "name": "Lord of Change",
   "keywords": [
-    "PSYKER",
-    "FLY",
-    "CHARACTER",
     "MONSTER",
+    "CHARACTER",
+    "FLY",
+    "PSYKER",
     "CHAOS",
-    "TZEENTCH",
     "DAEMON",
+    "TZEENTCH",
     "LORD OF CHANGE"
   ],
   "type": [
@@ -118,6 +118,14 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true,
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls.",
+  "wargearOptions": [
+    "Can additionally take one of: rod of sorcery or baleful sword."
+  ],
   "pointsThird": 340
 }

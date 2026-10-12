@@ -2,12 +2,12 @@
   "id": "bloodmaster",
   "name": "Bloodmaster",
   "keywords": [
-    "KHORNE",
-    "BLOODMASTER",
+    "INFANTRY",
+    "CHARACTER",
     "CHAOS",
     "DAEMON",
-    "CHARACTER",
-    "INFANTRY"
+    "KHORNE",
+    "BLOODMASTER"
   ],
   "type": [
     "Character",
@@ -58,5 +58,12 @@
     "bloodletters"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, add 1 to Wound rolls for attacks made by models in that unit.",
+    "short": "Led unit: +1 to Wound rolls"
+  }
 }

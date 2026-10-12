@@ -2,13 +2,13 @@
   "id": "horticulous-slimux",
   "name": "Horticulous Slimux",
   "keywords": [
-    "HORTICULOUS SLIMUX",
     "MOUNTED",
     "CHARACTER",
     "EPIC HERO",
     "CHAOS",
     "DAEMON",
-    "NURGLE"
+    "NURGLE",
+    "HORTICULOUS SLIMUX"
   ],
   "type": [
     "Mounted",
@@ -36,7 +36,7 @@
       {
         "name": "Acidic maw",
         "a": "2",
-        "ws": "3+",
+        "ws": "4+",
         "s": "7",
         "ap": "-4",
         "d": "3",
@@ -75,5 +75,12 @@
     "beasts-of-nurgle"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, you can re-roll its Charge rolls. Once per battle, Heroic Intervention can target this unit for 1CP less, regardless of other uses of that Stratagem this phase.",
+    "short": "Led unit re-rolls Charges; once per battle a cheaper Heroic Intervention"
+  }
 }

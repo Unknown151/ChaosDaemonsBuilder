@@ -2,13 +2,13 @@
   "id": "epidemius",
   "name": "Epidemius",
   "keywords": [
-    "CHARACTER",
     "INFANTRY",
+    "CHARACTER",
     "EPIC HERO",
     "CHAOS",
-    "EPIDEMIUS",
+    "DAEMON",
     "NURGLE",
-    "DAEMON"
+    "EPIDEMIUS"
   ],
   "type": [
     "Character",
@@ -36,7 +36,7 @@
       {
         "name": "Balesword and Nurgling attendants",
         "a": "D6+3",
-        "ws": "4+",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -61,5 +61,12 @@
     "plaguebearers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, models in that unit have a 4+ invulnerable save.",
+    "short": "Led unit has a 4+ invulnerable save"
+  }
 }

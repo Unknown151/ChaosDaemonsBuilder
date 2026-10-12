@@ -5,8 +5,9 @@
     "FORTIFICATION",
     "CHAOS",
     "DAEMON",
-    "FECULENT GNARLMAW",
-    "NURGLE"
+    "FRAME",
+    "NURGLE",
+    "FECULENT GNARLMAW"
   ],
   "type": [
     "Fortification"
@@ -40,5 +41,9 @@
   ],
   "wargear": [],
   "canLead": [],
-  "canBeLeadBy": []
+  "canBeLeadBy": [],
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

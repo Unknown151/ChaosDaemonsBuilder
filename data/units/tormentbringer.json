@@ -3,12 +3,12 @@
   "name": "Tormentbringer",
   "keywords": [
     "MOUNTED",
+    "CHARACTER",
     "PSYKER",
     "CHAOS",
     "DAEMON",
     "SLAANESH",
-    "TORMENTBRINGER",
-    "CHARACTER"
+    "TORMENTBRINGER"
   ],
   "type": [
     "Mounted",
@@ -36,7 +36,7 @@
         "name": "Lashes of torment",
         "range": "12",
         "a": "6",
-        "bs": "3+",
+        "bs": "2+",
         "s": "4",
         "ap": "-1",
         "d": "2",
@@ -53,7 +53,7 @@
       {
         "name": "Lashes of torment",
         "a": "6",
-        "ws": "3+",
+        "ws": "2+",
         "s": "4",
         "ap": "-1",
         "d": "2",
@@ -105,5 +105,12 @@
     "hellflayers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "Models in this model's unit that are destroyed before they have fought can still fight before being removed (Hysterical Frenzy).",
+    "short": "Unit's slain models still fight before being removed"
+  }
 }

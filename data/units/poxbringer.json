@@ -2,13 +2,13 @@
   "id": "poxbringer",
   "name": "Poxbringer",
   "keywords": [
-    "CHAOS",
     "INFANTRY",
     "CHARACTER",
-    "POXBRINGER",
-    "NURGLE",
     "PSYKER",
-    "DAEMON"
+    "CHAOS",
+    "DAEMON",
+    "NURGLE",
+    "POXBRINGER"
   ],
   "type": [
     "Infantry",
@@ -36,7 +36,7 @@
       {
         "name": "Foul balesword",
         "a": "4",
-        "ws": "4+",
+        "ws": "3+",
         "s": "5",
         "ap": "-2",
         "d": "2",
@@ -62,6 +62,13 @@
     "plaguebearers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true,
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, unmodified Hit rolls of 5+ made for that unit are Critical Hits.",
+    "short": "Led unit scores Critical Hits on 5+"
+  },
   "pointsThird": 70
 }

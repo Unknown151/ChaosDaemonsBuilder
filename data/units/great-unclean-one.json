@@ -2,12 +2,12 @@
   "id": "great-unclean-one",
   "name": "Great Unclean One",
   "keywords": [
-    "NURGLE",
     "MONSTER",
     "CHARACTER",
     "PSYKER",
     "CHAOS",
     "DAEMON",
+    "NURGLE",
     "GREAT UNCLEAN ONE"
   ],
   "type": [
@@ -36,7 +36,7 @@
         "name": "Plague flail",
         "range": "6",
         "a": "D6+1",
-        "bs": "4+",
+        "bs": "3+",
         "s": "7",
         "ap": "-2",
         "d": "2",
@@ -64,7 +64,7 @@
       {
         "name": "Bileblade",
         "a": "3",
-        "ws": "3+",
+        "ws": "2+",
         "s": "6",
         "ap": "-2",
         "d": "2",
@@ -78,7 +78,7 @@
       {
         "name": "Bilesword - strike",
         "a": "6",
-        "ws": "3+",
+        "ws": "2+",
         "s": "10",
         "ap": "-2",
         "d": "D6+1",
@@ -91,7 +91,7 @@
       {
         "name": "Bilesword - sweep",
         "a": "12",
-        "ws": "3+",
+        "ws": "2+",
         "s": "7",
         "ap": "-1",
         "d": "1",
@@ -104,7 +104,7 @@
       {
         "name": "Doomsday bell",
         "a": "6",
-        "ws": "3+",
+        "ws": "2+",
         "s": "7",
         "ap": "-1",
         "d": "2",
@@ -125,12 +125,20 @@
   "abilities": [
     "greater-daemon-of-nurgle-aura",
     "daemon-lord-of-nurgle-aura",
-    "nurgles-rot-psychic",
-    "reverberating-summons-2"
+    "nurgles-rot-psychic"
   ],
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true,
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls.",
+  "wargearOptions": [
+    "Plague flail can be replaced with 1 bileblade.",
+    "Bilesword can be replaced with 1 doomsday bell."
+  ],
   "pointsThird": 280
 }

@@ -27,11 +27,11 @@
   "models": 5,
   "baseModels": 5,
   "maxModels": 10,
-  "points": 75,
+  "points": 80,
   "modelBrackets": [
     {
       "models": 5,
-      "points": 75
+      "points": 80
     },
     {
       "models": 10,
@@ -83,5 +83,8 @@
   "canBeLeadBy": [
     "karanak"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ]
 }

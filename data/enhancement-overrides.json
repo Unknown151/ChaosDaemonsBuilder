@@ -61,16 +61,109 @@
       "description": "KHORNE LEGIONES DAEMONICA model only. Add 1 to the Attacks and Strength characteristics of the bearer's melee weapons. While the bearer is within your army's Shadow of Chaos, add 2 to the Attacks and Strength characteristics of the bearer's melee weapons instead."
     },
     "soulstealer": {
-      "short": "(rules text pending)",
-      "description": "<em>Rules text not provided in source data.</em>"
+      "restriction": "Slaanesh Legiones Daemonica model only",
+      "short": "Melee kills can heal: D6, 4+ regains 1 wound",
+      "description": "SLAANESH LEGIONES DAEMONICA model only. Each time the bearer destroys an enemy model with a melee attack, roll one D6, adding 1 if the bearer is within your army's Shadow of Chaos: on a 4+, the bearer regains 1 lost wound."
     },
     "the-endless-gift": {
-      "short": "(rules text pending)",
-      "description": "<em>Rules text not provided in source data.</em>"
+      "restriction": "Nurgle Legiones Daemonica model only",
+      "short": "Feel No Pain 5+",
+      "description": "NURGLE LEGIONES DAEMONICA model only. The bearer has the Feel No Pain 5+ ability."
     },
     "the-everstave": {
-      "short": "(rules text pending)",
-      "description": "<em>Rules text not provided in source data.</em>"
+      "restriction": "Tzeentch Legiones Daemonica model only",
+      "short": "Ranged: +1 S & +3\" range (+2 / +6\" in Shadow of Chaos)",
+      "description": "TZEENTCH LEGIONES DAEMONICA model only. The bearer's ranged weapons have +1 Strength and +3\" Range. While the bearer is within your army's Shadow of Chaos, they have +2 Strength and +6\" Range instead."
+    },
+
+    "false-majesty": {
+      "restriction": "Legiones Daemonica Slaanesh model only",
+      "short": "Aura: nearby Slaanesh get +1 to melee Wound rolls",
+      "description": "<strong>[AURA]</strong> LEGIONES DAEMONICA SLAANESH model only. While a friendly LEGIONES DAEMONICA SLAANESH unit (excluding MONSTERS) is within 6\" of the bearer, add 1 to Wound rolls for melee attacks made by models in that unit."
+    },
+    "dreaming-crown": {
+      "restriction": "Legiones Daemonica Slaanesh model only",
+      "short": "Aura: nearby Slaanesh get +1 to melee Hit rolls",
+      "description": "<strong>[AURA]</strong> LEGIONES DAEMONICA SLAANESH model only. While a friendly LEGIONES DAEMONICA SLAANESH unit (excluding MONSTERS) is within 6\" of the bearer, add 1 to Hit rolls for melee attacks made by models in that unit."
+    },
+    "avatar-of-perfection": {
+      "restriction": "Legiones Daemonica Slaanesh Monster model only",
+      "short": "Alone: re-roll Advance & Charge, ignore move modifiers",
+      "description": "LEGIONES DAEMONICA SLAANESH MONSTER model only. At the start of each phase, if no other friendly units are within 6\" of the bearer, you can re-roll its Advance and Charge rolls and ignore any modifiers to its Move characteristic, Advance rolls and Charge rolls."
+    },
+    "soul-glutton": {
+      "restriction": "Legiones Daemonica Slaanesh Monster model only",
+      "short": "Heal up to D3 after killing in the Fight phase",
+      "description": "LEGIONES DAEMONICA SLAANESH MONSTER model only. At the end of the Fight phase, if the bearer's attacks destroyed one or more enemy models this phase, it can regain up to D3 lost wounds."
+    },
+
+    "cankerblight": {
+      "restriction": "Legiones Daemonica Nurgle model only",
+      "short": "Enemy failing Battle-shock within 6\" loses a model",
+      "description": "LEGIONES DAEMONICA NURGLE model only. Each time an enemy unit (excluding MONSTERS and VEHICLES) within 6\" of the bearer fails a Battle-shock test, the bearer can use this Enhancement: one model in that unit, chosen by its controlling player, is destroyed. When it is used, your army's Daemonic Terror rule inflicts no mortal wounds."
+    },
+    "maggot-maws": {
+      "restriction": "Legiones Daemonica Nurgle model only",
+      "short": "Shooting phase: Battle-shock test, then 3+ → D3 MW",
+      "description": "LEGIONES DAEMONICA NURGLE model only. In your Shooting phase, select one enemy unit within 6\" of the bearer: it must take a Battle-shock test, then roll one D6 — on a 3+ it suffers D3 mortal wounds. When this is used, your army's Daemonic Terror rule inflicts no mortal wounds."
+    },
+    "droning-shroud": {
+      "restriction": "Legiones Daemonica Nurgle Monster model only",
+      "short": "Aura: nearby Nurgle can only be shot from within 18\"",
+      "description": "<strong>[AURA]</strong> LEGIONES DAEMONICA NURGLE MONSTER model only. While a friendly LEGIONES DAEMONICA NURGLE unit is within 6\" of the bearer, it can only be targeted by ranged attacks made from within 18\"."
+    },
+    "font-of-spores": {
+      "restriction": "Legiones Daemonica Nurgle Monster model only",
+      "short": "Aura: nearby Nurgle weapons improve AP by 1",
+      "description": "<strong>[AURA]</strong> LEGIONES DAEMONICA NURGLE MONSTER model only. While a friendly LEGIONES DAEMONICA NURGLE unit is within 6\" of the bearer, improve the Armour Penetration of that unit's weapons by 1."
+    },
+
+    "inescapable-eye": {
+      "type": "Enhancement (15 pts)",
+      "points": 15,
+      "restriction": "Legiones Daemonica Tzeentch model only",
+      "short": "Command phase: gain an extra Flux token",
+      "description": "LEGIONES DAEMONICA TZEENTCH model only. In your Command phase, if the bearer is on the battlefield and your opponent has one or more Flux tokens, you gain one additional Flux token."
+    },
+    "infernal-puppeteer": {
+      "type": "Enhancement (20 pts)",
+      "points": 20,
+      "restriction": "Legiones Daemonica Tzeentch Monster model only",
+      "short": "When shooting: visible enemies +9\" detection range",
+      "description": "LEGIONES DAEMONICA TZEENTCH MONSTER model only. In your Shooting phase, when the bearer's unit is selected to shoot, each enemy unit visible to a friendly LEGIONES DAEMONICA TZEENTCH unit has +9\" detection range until the bearer's unit has finished shooting."
+    },
+    "neverblade": {
+      "type": "Enhancement (25 pts)",
+      "points": 25,
+      "restriction": "Legiones Daemonica Tzeentch Monster model only",
+      "short": "Melee: +2 S, +1 A, +1 AP, +1 to hit",
+      "description": "LEGIONES DAEMONICA TZEENTCH MONSTER model only. The bearer's melee weapons have +2 Strength, +1 Attacks and improve their Armour Penetration by 1, and the bearer's melee attacks have +1 to Hit rolls."
+    },
+    "improbable-shield": {
+      "restriction": "Legiones Daemonica Tzeentch model only",
+      "short": "Aura: nearby Tzeentch FNP 4+ vs psychic & mortal wounds",
+      "description": "<strong>[AURA]</strong> LEGIONES DAEMONICA TZEENTCH model only. While a friendly LEGIONES DAEMONICA TZEENTCH unit is within 6\" of the bearer, its models have Feel No Pain 4+ against Psychic Attacks and mortal wounds."
+    },
+
+    "leaping-shadows": {
+      "restriction": "Shadow Legion model only",
+      "short": "Bearer's unit has Scouts 9\"",
+      "description": "SHADOW LEGION model only. Models in the bearer's unit have the Scouts 9\" ability."
+    },
+    "mantle-of-gloom": {
+      "restriction": "Shadow Legion model only",
+      "short": "Enemies engaged with the bearer's unit have -1 OC",
+      "description": "<strong>[AURA]</strong> SHADOW LEGION model only. While an enemy unit is within Engagement Range of the bearer's unit, its models have -1 Objective Control."
+    },
+    "fade-to-darkness": {
+      "restriction": "Shadow Legion model only",
+      "short": "After a kill in the Fight phase, return to Reserves",
+      "description": "SHADOW LEGION model only. At the end of the Fight phase, if the bearer's unit destroyed one or more enemy units this phase and is not within Engagement Range of any enemy units, you can remove it from the battlefield and place it into Strategic Reserves."
+    },
+    "malice-made-manifest": {
+      "restriction": "Shadow Legion model only",
+      "short": "Start of Fight: D6 — 2-5 → D3 MW, 6 → 3 MW",
+      "description": "SHADOW LEGION model only. At the start of the Fight phase, select one enemy unit within Engagement Range of the bearer's unit and roll one D6: on a 2-5 it suffers D3 mortal wounds; on a 6 it suffers 3 mortal wounds."
     }
   }
 }

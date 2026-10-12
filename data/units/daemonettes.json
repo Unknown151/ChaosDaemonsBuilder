@@ -2,12 +2,12 @@
   "id": "daemonettes",
   "name": "Daemonettes",
   "keywords": [
-    "DAEMONETTES",
-    "SLAANESH",
-    "DAEMON",
-    "CHAOS",
+    "INFANTRY",
     "BATTLELINE",
-    "INFANTRY"
+    "CHAOS",
+    "DAEMON",
+    "SLAANESH",
+    "DAEMONETTES"
   ],
   "type": [
     "Infantry"
@@ -63,5 +63,12 @@
     "syllesske",
     "tranceweaver"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Daemonette can be equipped with 1 instrument of Chaos.",
+    "1 other Daemonette can be equipped with 1 daemonic icon."
+  ]
 }

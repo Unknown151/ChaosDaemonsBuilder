@@ -2,11 +2,11 @@
   "id": "seekers",
   "name": "Seekers",
   "keywords": [
+    "MOUNTED",
     "CHAOS",
     "DAEMON",
     "SLAANESH",
-    "SEEKERS",
-    "MOUNTED"
+    "SEEKERS"
   ],
   "type": [
     "Mounted"
@@ -83,5 +83,12 @@
   ],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Seeker can be equipped with 1 instrument of Chaos.",
+    "1 other Seeker can be equipped with 1 daemonic icon."
+  ]
 }

@@ -2,12 +2,12 @@
   "id": "skullmaster",
   "name": "Skullmaster",
   "keywords": [
-    "KHORNE",
-    "DAEMON",
-    "CHAOS",
     "MOUNTED",
-    "SKULLMASTER",
-    "CHARACTER"
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON",
+    "KHORNE",
+    "SKULLMASTER"
   ],
   "type": [
     "Mounted",
@@ -72,5 +72,12 @@
     "bloodcrushers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, each time that unit ends a Charge move its Juggernaut's bladed horns have [DEVASTATING WOUNDS] until the end of the turn.",
+    "short": "After charging: bladed horns gain [Devastating Wounds]"
+  }
 }

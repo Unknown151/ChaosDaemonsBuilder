@@ -2,14 +2,14 @@
   "id": "fateskimmer",
   "name": "Fateskimmer",
   "keywords": [
-    "TZEENTCH",
-    "FATESKIMMER",
-    "PSYKER",
     "MOUNTED",
-    "FLY",
     "CHARACTER",
+    "FLY",
+    "PSYKER",
     "CHAOS",
-    "DAEMON"
+    "DAEMON",
+    "TZEENTCH",
+    "FATESKIMMER"
   ],
   "type": [
     "Mounted",
@@ -81,7 +81,7 @@
       {
         "name": "Screamer bites",
         "a": "6",
-        "ws": "4+",
+        "ws": "3+",
         "s": "6",
         "ap": "-2",
         "d": "2",
@@ -108,5 +108,19 @@
     "screamers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, melee weapons in that unit have [LETHAL HITS].",
+    "grantsAbilities": [
+      {
+        "id": "lethal-hits",
+        "display": "Lethal Hits",
+        "abilityAppliesTo": "melee"
+      }
+    ],
+    "appliesTo": "melee"
+  }
 }

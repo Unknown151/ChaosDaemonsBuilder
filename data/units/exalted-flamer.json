@@ -2,9 +2,9 @@
   "id": "exalted-flamer",
   "name": "Exalted Flamer",
   "keywords": [
-    "FLY",
     "INFANTRY",
     "CHARACTER",
+    "FLY",
     "CHAOS",
     "DAEMON",
     "TZEENTCH",
@@ -92,5 +92,20 @@
     "flamers"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "noEnhancements": true,
+  "leaderBonus": {
+    "text": "While this model is leading a unit, ranged weapons in that unit have [ASSAULT].",
+    "grantsAbilities": [
+      {
+        "id": "assault",
+        "display": "Assault",
+        "abilityAppliesTo": "ranged"
+      }
+    ],
+    "appliesTo": "ranged"
+  }
 }

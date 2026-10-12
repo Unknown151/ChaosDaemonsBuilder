@@ -2,10 +2,10 @@
   "id": "daemon-prince-of-chaos",
   "name": "Daemon Prince of Chaos",
   "keywords": [
-    "DAEMON",
-    "CHAOS",
-    "CHARACTER",
     "MONSTER",
+    "CHARACTER",
+    "CHAOS",
+    "DAEMON",
     "DAEMON PRINCE OF CHAOS"
   ],
   "type": [
@@ -34,7 +34,7 @@
         "name": "Infernal cannon",
         "range": "24",
         "a": "3",
-        "bs": "3+",
+        "bs": "2+",
         "s": "5",
         "ap": "-1",
         "d": "2",
@@ -80,7 +80,7 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true,
+  "verified": true,
   "factionKeywords": [
     "LEGIONES DAEMONICA"
   ],

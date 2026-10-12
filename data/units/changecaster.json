@@ -2,13 +2,13 @@
   "id": "changecaster",
   "name": "Changecaster",
   "keywords": [
-    "CHANGECASTER",
-    "TZEENTCH",
-    "DAEMON",
     "INFANTRY",
     "CHARACTER",
     "PSYKER",
-    "CHAOS"
+    "CHAOS",
+    "DAEMON",
+    "TZEENTCH",
+    "CHANGECASTER"
   ],
   "type": [
     "Infantry",
@@ -93,5 +93,19 @@
     "pink-horrors"
   ],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "leaderBonus": {
+    "text": "While this model is leading a unit, ranged weapons in that unit have [SUSTAINED HITS 1].",
+    "grantsAbilities": [
+      {
+        "id": "sustained-hits-1",
+        "display": "Sustained Hits 1",
+        "abilityAppliesTo": "ranged"
+      }
+    ],
+    "appliesTo": "ranged"
+  }
 }

@@ -3,13 +3,13 @@
   "name": "Rotigus",
   "keywords": [
     "MONSTER",
+    "CHARACTER",
+    "EPIC HERO",
+    "PSYKER",
     "CHAOS",
     "DAEMON",
-    "ROTIGUS",
-    "CHARACTER",
-    "PSYKER",
-    "EPIC HERO",
-    "NURGLE"
+    "NURGLE",
+    "ROTIGUS"
   ],
   "type": [
     "Monster",
@@ -54,7 +54,7 @@
       {
         "name": "Gnarlrod - strike",
         "a": "7",
-        "ws": "3+",
+        "ws": "2+",
         "s": "10",
         "ap": "-3",
         "d": "3",
@@ -68,7 +68,7 @@
       {
         "name": "Gnarlrod - sweep",
         "a": "14",
-        "ws": "3+",
+        "ws": "2+",
         "s": "8",
         "ap": "-1",
         "d": "1",
@@ -94,5 +94,10 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls."
 }

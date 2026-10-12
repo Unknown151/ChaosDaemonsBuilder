@@ -30,39 +30,42 @@ def slug(s):
     s = re.sub(r'[^a-z0-9]+', '-', s)
     return s.strip('-')
 
-# ── Standard 10th-ed rules text for common weapon/core abilities ──────────────
+# ── Standard 11th-ed rules summaries for common weapon/core abilities ─────────
 # Keyed by the *base* keyword (parameter stripped). Used to fill ability bodies.
+# Short summaries of the 11th edition core rules (section 24) — see the core
+# rules for the full wording.
 BASE_RULES = {
-    'lethal hits': ('Weapon Ability', 'Each unmodified <strong>Hit roll of 6</strong> automatically wounds the target.'),
-    'sustained hits': ('Weapon Ability', 'Each <strong>Critical Hit</strong> scores a number of additional hits as denoted by the value (X).'),
-    'devastating wounds': ('Weapon Ability', 'Each <strong>Critical Wound</strong> inflicts mortal wounds equal to the weapon’s Damage, instead of the normal damage.'),
-    'precision': ('Weapon Ability', 'Attacks targeting a unit with an attached Character can be allocated to that Character model.'),
-    'torrent': ('Weapon Ability', 'Weapons with [TORRENT] in their profile are known as Torrent weapons. Each time an attack is made with such a weapon, that attack automatically hits the target.'),
-    'ignores cover': ('Weapon Ability', 'The target cannot have the Benefit of Cover against this weapon’s attacks.'),
-    'rapid fire': ('Weapon Ability', 'When targeting a unit within half range, increase the Attacks characteristic by the value (X).'),
-    'assault': ('Weapon Ability', 'This weapon can be shot even if the bearer’s unit Advanced this turn.'),
-    'heavy': ('Weapon Ability', 'If the bearer’s unit Remained Stationary this turn, add 1 to Hit rolls with this weapon.'),
-    'pistol': ('Weapon Ability', 'This weapon can be shot while the bearer is within Engagement Range of enemy units.'),
-    'blast': ('Weapon Ability', 'Add 1 to the Attacks for every 5 models in the target unit. Cannot target units in Engagement Range.'),
-    'melta': ('Weapon Ability', 'When targeting a unit within half range, increase the Damage characteristic by the value (X).'),
-    'anti': ('Weapon Ability', 'Wound rolls of the listed value or better against the keyworded target are Critical Wounds.'),
-    'hazardous': ('Weapon Ability', 'After firing, roll one D6 per Hazardous weapon used; on a 1 the bearer suffers 3 mortal wounds (or is destroyed if a single model).'),
+    'lethal hits': ('Weapon Ability', 'Each <strong>Critical Hit</strong> made with this weapon can be treated as an automatic wound (your choice). No Wound roll is made for it, so it cannot become a Critical Wound.'),
+    'sustained hits': ('Weapon Ability', 'Each <strong>Critical Hit</strong> made with this weapon scores X additional hits on the target.'),
+    'devastating wounds': ('Weapon Ability', 'Each <strong>Critical Wound</strong> ends that attack and deals mortal wounds equal to the weapon’s Damage instead, applied after any normal damage. Each Critical Wound can damage only one model — excess mortal wounds are lost.'),
+    'precision': ('Weapon Ability', 'If the target unit contains a visible CHARACTER, you can choose for these attacks to be allocated to that CHARACTER first.'),
+    'torrent': ('Weapon Ability', 'Attacks made with this weapon automatically hit. A [TORRENT] weapon cannot also have [INDIRECT FIRE] or [PRECISION].'),
+    'ignores cover': ('Weapon Ability', 'The target cannot have the Benefit of Cover against this weapon’s attacks — including cover granted by rules such as Stealth.'),
+    'rapid fire': ('Weapon Ability', 'Gain X additional attack dice when the target is within half this weapon’s range.'),
+    'assault': ('Weapon Ability', 'A unit with one or more [ASSAULT] weapons can shoot using assault shooting (core rules 10.05).'),
+    'heavy': ('Weapon Ability', 'In your Shooting phase, add 1 to Hit rolls if the bearer’s unit is unengaged, was not set up this turn, and none of its models moved more than 3" this turn.'),
+    'pistol': ('Weapon Ability', 'Identical to [CLOSE-QUARTERS]: the bearer’s unit can shoot using close-quarters shooting (core rules 10.06). When shooting any other way, a model that is not a MONSTER or VEHICLE fires either these weapons or its other ranged weapons, not both.'),
+    'blast': ('Weapon Ability', 'Gain 1 additional attack dice for every five models in the target unit (rounding down). [BLAST X] adds X per five models instead.'),
+    'melta': ('Weapon Ability', 'Add X to this weapon’s Damage when the target is within half range.'),
+    'anti': ('Weapon Ability', '[ANTI-X Y+]: against a target with keyword X, an unmodified Wound roll of Y+ is a Critical Wound.'),
+    'hazardous': ('Weapon Ability', 'After the unit has resolved its attacks, make one hazard roll for each [HAZARDOUS] weapon it used. Hazard roll: on a D6 result of 1-2 the unit suffers 1 mortal wound (3 if every model in it is a MONSTER or VEHICLE).'),
     'psychic': ('Weapon Ability', 'Each time an attack is made with a [PSYCHIC] weapon, you can ignore any or all modifiers to that attack’s BS or WS characteristic and any or all modifiers to the hit roll. Attacks made with [PSYCHIC] weapons are known as psychic attacks (this can be important for the triggering of other rules).'),
-    'lance': ('Weapon Ability', 'Add 1 to Wound rolls if the bearer made a Charge move this turn.'),
+    'lance': ('Weapon Ability', 'Add 1 to Wound rolls if the attacking model’s unit made a Charge move this turn.'),
     'twin-linked': ('Weapon Ability', 'You can re-roll the Wound roll for attacks made with this weapon.'),
-    'extra attacks': ('Weapon Ability', 'Attacks are made in addition to those from the bearer’s other melee weapons.'),
-    'indirect fire': ('Weapon Ability', 'Can target and be used to make attacks against units not visible to the bearer.'),
-    'one shot': ('Weapon Ability', 'This weapon can only be shot once per battle.'),
-    'deep strike': ('Core Ability', 'This unit can be placed in Reserves and arrive anywhere more than 9" from enemy models.'),
-    'deadly demise': ('Core Ability', 'When destroyed, roll one D6 (per the value); on a 6 each unit within 6" suffers mortal wounds.'),
-    'scouts': ('Core Ability', 'This unit can make a Normal move of up to the listed distance before the first turn begins.'),
-    'leader': ('Core Ability', 'During the Declare Battle Formations step, this Character can be attached to a unit it can lead.'),
-    'fights first': ('Core Ability', 'This unit fights in the Fight phase before units that do not have this ability.'),
-    'feel no pain': ('Core Ability', 'Each time a model would lose a wound, roll a D6; on the listed value or better, that wound is not lost.'),
+    'extra attacks': ('Weapon Ability', 'The bearer attacks with all of its [EXTRA ATTACKS] weapons in addition to one of its other melee weapons.'),
+    'indirect fire': ('Weapon Ability', 'A unit with one or more [INDIRECT FIRE] weapons can shoot using indirect shooting (core rules 10.07).'),
+    'one shot': ('Weapon Ability', 'This weapon can only be selected to make attacks once per battle.'),
+    'deep strike': ('Core Ability', 'When this unit makes an ingress move, it can be set up anywhere on the battlefield that is more than 8" horizontally from all enemy units — if every model in the unit has this ability.'),
+    'deadly demise': ('Core Ability', 'When this model is destroyed, roll one D6: on a 6, each unit within 6" suffers X mortal wounds (roll separately for each unit if X is random).'),
+    'scouts': ('Core Ability', 'Before the battle, if every model in the unit has this ability: a unit wholly within your deployment zone can make a scout move of up to X", ending more than 8" from all enemy units. A unit in Strategic Reserves can instead be set up wholly within your deployment zone.'),
+    'leader': ('Core Ability', 'When mustering your army, this unit can be attached to one Bodyguard unit it is able to lead. A Bodyguard unit can have one Leader and one Support unit attached.'),
+    'fights first': ('Core Ability', 'While every model in the unit has this ability, it is a Fights First unit and fights in the Fights First step of the Fight phase.'),
+    'feel no pain': ('Core Ability', 'Each time a model with this ability would lose a wound, roll one D6: on X+, that wound is not lost.'),
     'stealth': ('Core Ability', 'If every model in a unit has this ability, each time a ranged attack targets that unit, that unit has the <strong onclick="showModal(\'benefit-of-cover\')" style="cursor:pointer;text-decoration:underline">Benefit of Cover</strong> against that attack (13.08).'),
     'benefit of cover': ('Core Ability', 'Each time a ranged attack targets a unit that has the Benefit of Cover against it, worsen the BS characteristic of that attack by 1.'),
+    'lone operative': ('Core Ability', 'Unless it is part of an attached unit, this unit is only visible to enemy models within 12", and [INDIRECT FIRE] weapons can only target it from within 12".'),
     'firing deck': ('Core Ability', 'Embarked models can shoot as if part of this Transport (up to the listed number of weapons).'),
-    'infiltrators': ('Core Ability', 'Can be set up anywhere more than 9" horizontally from enemy models during deployment.'),
+    'infiltrators': ('Core Ability', 'During deployment, if every model in the unit has this ability, it can be set up anywhere more than 8" horizontally from the enemy deployment zone and all enemy units.'),
 }
 
 FACTION_RULES = {
@@ -249,13 +252,13 @@ def apply_override(unit):
                 unit.pop('skillEstimated', None)
                 unit['verified'] = True
         elif k == 'weaponSkills':
-            # per-weapon BS/WS fixes for multi-weapon units (e.g. chariots)
-            allw = unit['weapons']['ranged'] + unit['weapons']['melee']
-            for w in allw:
-                fix = v.get(w['name'])
-                if fix:
-                    if 'ws' in fix: w['ws'] = fix['ws']
-                    if 'bs' in fix: w['bs'] = fix['bs']
+            # per-weapon BS/WS fixes: WS applies to melee profiles, BS to ranged
+            # (some weapons share a name across both, e.g. lashes of torment)
+            for cat, key in (('melee', 'ws'), ('ranged', 'bs')):
+                for w in unit['weapons'][cat]:
+                    fix = v.get(w['name'])
+                    if fix and key in fix:
+                        w[key] = fix[key]
         else:
             unit[k] = v
 
@@ -486,10 +489,21 @@ ABILITY_SHORT = {
     'stealth': 'Ranged attacks targeting this unit have the Benefit of Cover',
     'benefit-of-cover': 'Ranged attacks targeting the unit have -1 BS',
     # core
-    'deep-strike': 'Arrive from Reserves, >9" from enemies',
+    'deep-strike': 'Ingress move: set up >8" from all enemy units',
     'leader': 'Can attach to a Bodyguard unit',
     'fights-first': 'Fights first in the Fight phase',
     'scouts-6': 'Pre-battle move up to 6"',
+    'scouts-9': 'Pre-battle move up to 9"',
+    'infiltrators': 'Deploy anywhere >8" from the enemy zone and units',
+    'lone-operative': 'Only visible to enemy models within 12"',
+    # weapon
+    'lethal-hits': 'Critical Hits can automatically wound',
+    'devastating-wounds': 'Critical Wounds deal mortal wounds equal to Damage',
+    'hazardous': 'Hazard roll after attacking: 1-2 → mortal wound(s)',
+    'assault': 'Unit can shoot using assault shooting',
+    'pistol': 'Close-quarters weapon — can shoot while engaged',
+    'blast': '+1 attack dice per five models in the target',
+    'precision': 'Can be allocated to a visible Character first',
     'deadly-demise-d6': 'On death, roll D6; 6 → D6 MW to units within 6"',
     'deadly-demise-d3': 'On death, roll D6; 6 → D3 MW to units within 6"',
     'deadly-demise-1': 'On death, roll D6; 6 → 1 MW to units within 6"',
@@ -540,8 +554,20 @@ for _gid, _bk in GLOSSARY.items():
         _kind, _desc = BASE_RULES[_bk]
         abilities[_gid] = {'name': 'Benefit of Cover', 'type': _kind, 'description': _desc}
 
+# ── authoritative ability overrides (data/ability-overrides.json) ─────────────
+# Datasheet abilities whose rules changed since the reference export, or whose
+# text the export truncated. Fields are merged over the parsed entry, new ids
+# are added, and a null value drops an entry that is no longer used.
+_ab_ov_path = os.path.join(ROOT, 'data', 'ability-overrides.json')
+if os.path.exists(_ab_ov_path):
+    for _aid, _fields in json.load(open(_ab_ov_path, encoding='utf-8')).items():
+        if _fields is None:
+            abilities.pop(_aid, None)
+        else:
+            abilities.setdefault(_aid, {'name': _aid, 'type': 'Ability', 'description': ''}).update(_fields)
+
 for _aid, _a in abilities.items():
-    _a['short'] = ABILITY_SHORT.get(_aid) or make_short(_a.get('description'))
+    _a['short'] = _a.get('short') or ABILITY_SHORT.get(_aid) or make_short(_a.get('description'))
 
 with open(os.path.join(ROOT, 'data', 'abilities.json'), 'w', encoding='utf-8') as f:
     json.dump(dict(sorted(abilities.items())), f, ensure_ascii=False, indent=2)

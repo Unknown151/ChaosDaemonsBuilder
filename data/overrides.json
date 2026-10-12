@@ -1,129 +1,9 @@
 {
-  "bloodcrushers": {
-    "verified": true,
-    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "BLOODCRUSHERS"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "abilities": ["brass-stampede", "instrument-of-chaos", "daemonic-icon"],
-    "wargear": [],
-    "wargearOptions": [],
-    "statMods": [{ "field": "ld", "value": "6+", "source": "daemonic-icon" }],
-    "canBeLeadBy": ["skullmaster"]
-  },
-  "bloodletters": {
-    "verified": true,
-    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "KHORNE", "BLOODLETTERS"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "wargearOptions": [
-      "1 Bloodletter that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
-      "1 Bloodletter that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
-    ],
-    "canBeLeadBy": ["bloodmaster", "skulltaker"]
-  },
-  "bloodmaster": { "canLead": ["bloodletters"] },
-  "skulltaker": {
-    "verified": true,
-    "keywords": ["INFANTRY", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKULLTAKER"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "canLead": ["bloodletters"],
-    "leaderBonus": {
-      "text": "While this model is leading a unit, melee weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
-      "grantsAbilities": [{ "id": "devastating-wounds", "display": "Devastating Wounds", "abilityAppliesTo": "melee" }],
-      "appliesTo": "melee"
-    }
-  },
-  "karanak": {
-    "verified": true,
-    "keywords": ["BEAST", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "KARANAK"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "canLead": ["flesh-hounds"],
-    "leaderBonus": {
-      "text": "While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit.",
-      "short": "Led unit can re-roll Advance & Charge rolls"
-    }
-  },
-  "flesh-hounds": { "canBeLeadBy": ["karanak"] },
   "beasts-of-nurgle": {
     "verified": true,
     "keywords": ["BEAST", "CHAOS", "DAEMON", "NURGLE", "BEASTS OF NURGLE"],
     "factionKeywords": ["LEGIONES DAEMONICA"],
     "canBeLeadBy": ["horticulous-slimux"]
-  },
-  "horticulous-slimux": { "canLead": ["beasts-of-nurgle"] },
-  "skarbrand": {
-    "verified": true,
-    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKARBRAND"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "damagedProfile": "1-7",
-    "damagedText": "While this model has 1-7 wounds remaining, add 2 to the Attacks characteristic of this model's Slaughter and Carnage."
-  },
-  "daemon-prince-of-chaos-with-wings": {
-    "verified": true,
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "weaponSkills": { "Infernal cannon": { "bs": "2+" } },
-    "abilities": ["malefic-destruction", "harbinger-of-death"],
-    "allegiance": {
-      "label": "Daemonic Allegiance",
-      "options": [
-        { "id": "khorne", "label": "Khorne", "keyword": "KHORNE", "abilityId": "daemon-prince-of-khorne", "effect": "+2 S to hellforged weapons", "weaponMods": [{ "match": "hellforged weapons", "field": "s", "delta": 2 }] },
-        { "id": "tzeentch", "label": "Tzeentch", "keyword": "TZEENTCH", "abilityId": "daemon-prince-of-tzeentch", "effect": "+3 A to infernal cannon", "weaponMods": [{ "match": "infernal cannon", "field": "a", "delta": 3 }] },
-        { "id": "nurgle", "label": "Nurgle", "keyword": "NURGLE", "abilityId": "daemon-prince-of-nurgle", "effect": "+1 Toughness", "statMods": [{ "field": "t", "delta": 1 }] },
-        { "id": "slaanesh", "label": "Slaanesh", "keyword": "SLAANESH", "abilityId": "daemon-prince-of-slaanesh", "effect": "+2\" Move", "statMods": [{ "field": "m", "delta": 2 }] }
-      ]
-    },
-    "abilityGroups": [
-      {
-        "label": "Harbinger of Death",
-        "select": 1,
-        "buffWeapons": { "match": "hellforged weapons", "category": "melee" },
-        "options": [
-          { "id": "lethal-hits", "short": "Crit hits auto-wound" },
-          { "id": "precision", "short": "Hits can target Characters" },
-          { "id": "sustained-hits-1", "short": "Crit hits score +1 hit" }
-        ]
-      }
-    ]
-  },
-  "daemon-prince-of-chaos": {
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "abilities": ["daemonic-lord", "prince-of-darkness-aura", "unholy-vigour"],
-    "allegiance": {
-      "label": "Daemonic Allegiance",
-      "options": [
-        { "id": "khorne", "label": "Khorne", "keyword": "KHORNE", "abilityId": "daemon-prince-of-khorne", "effect": "+2 S to hellforged weapons", "weaponMods": [{ "match": "hellforged weapons", "field": "s", "delta": 2 }] },
-        { "id": "tzeentch", "label": "Tzeentch", "keyword": "TZEENTCH", "abilityId": "daemon-prince-of-tzeentch", "effect": "+3 A to infernal cannon", "weaponMods": [{ "match": "infernal cannon", "field": "a", "delta": 3 }] },
-        { "id": "nurgle", "label": "Nurgle", "keyword": "NURGLE", "abilityId": "daemon-prince-of-nurgle", "effect": "+1 Toughness", "statMods": [{ "field": "t", "delta": 1 }] },
-        { "id": "slaanesh", "label": "Slaanesh", "keyword": "SLAANESH", "abilityId": "daemon-prince-of-slaanesh", "effect": "+2\" Move", "statMods": [{ "field": "m", "delta": 2 }] }
-      ]
-    }
-  },
-  "rendmaster-on-blood-throne": {
-    "verified": true,
-    "keywords": ["MOUNTED", "CHARACTER", "CHAOS", "DAEMON", "KHORNE", "RENDMASTER ON BLOOD THRONE"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "weaponSkills": {
-      "Attendants' hellblades": { "ws": "3+" },
-      "Blade of blood": { "ws": "2+" }
-    }
-  },
-  "skull-cannon": {
-    "verified": true,
-    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "SKULL CANNON"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "weaponSkills": {
-      "Skull cannon": { "bs": "3+" },
-      "Attendants' hellblades": { "ws": "3+" },
-      "Biting maw": { "ws": "4+" }
-    }
-  },
-  "bloodthirster": {
-    "verified": true,
-    "keywords": ["MONSTER", "CHARACTER", "FLY", "CHAOS", "DAEMON", "KHORNE", "BLOODTHIRSTER"],
-    "factionKeywords": ["LEGIONES DAEMONICA"],
-    "damagedProfile": "1-6",
-    "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
-    "wargearOptions": [
-      "This model's great axe of Khorne can be replaced with 1 axe of Khorne and one of the following: 1 bloodflail; 1 lash of Khorne."
-    ]
   },
   "belakor": {
     "verified": true,
@@ -144,23 +24,596 @@
       }
     ]
   },
-  "changecaster": { "canLead": ["blue-horrors", "pink-horrors"] },
-  "blue-horrors": { "canBeLeadBy": ["changecaster", "fluxmaster"] },
-  "pink-horrors": { "canBeLeadBy": ["changecaster", "fluxmaster"] },
-  "fluxmaster": { "canLead": ["blue-horrors", "pink-horrors"] },
-  "epidemius": { "canLead": ["plaguebearers"] },
-  "poxbringer": { "canLead": ["plaguebearers"] },
-  "sloppity-bilepiper": { "canLead": ["plaguebearers"] },
-  "spoilpox-scrivener": { "canLead": ["plaguebearers"] },
-  "plaguebearers": { "canBeLeadBy": ["epidemius", "poxbringer", "sloppity-bilepiper", "spoilpox-scrivener"] },
-  "exalted-flamer": { "canLead": ["flamers"] },
-  "flamers": { "canBeLeadBy": ["exalted-flamer"] },
-  "fateskimmer": { "canLead": ["screamers"] },
-  "screamers": { "canBeLeadBy": ["fateskimmer"] },
-  "infernal-enrapturess": { "canLead": ["daemonettes"] },
-  "syllesske": { "canLead": ["daemonettes"] },
-  "tranceweaver": { "canLead": ["daemonettes"] },
-  "daemonettes": { "canBeLeadBy": ["infernal-enrapturess", "syllesske", "tranceweaver"] },
-  "skullmaster": { "canLead": ["bloodcrushers"] },
-  "tormentbringer": { "isLeader": true, "canLead": ["hellflayers"] }
+  "bloodcrushers": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "BLOODCRUSHERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "abilities": ["brass-stampede", "instrument-of-chaos", "daemonic-icon"],
+    "wargear": [],
+    "wargearOptions": [],
+    "statMods": [{ "field": "ld", "value": "6+", "source": "daemonic-icon" }],
+    "canBeLeadBy": ["skullmaster"]
+  },
+  "bloodletters": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "KHORNE", "BLOODLETTERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "wargearOptions": [
+      "1 Bloodletter that is not equipped with a daemonic icon can be equipped with 1 instrument of Chaos.",
+      "1 Bloodletter that is not equipped with an instrument of Chaos can be equipped with 1 daemonic icon."
+    ],
+    "canBeLeadBy": ["bloodmaster", "skulltaker"]
+  },
+  "bloodmaster": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "DAEMON", "KHORNE", "BLOODMASTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["bloodletters"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, add 1 to Wound rolls for attacks made by models in that unit.",
+      "short": "Led unit: +1 to Wound rolls"
+    }
+  },
+  "bloodthirster": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "FLY", "CHAOS", "DAEMON", "KHORNE", "BLOODTHIRSTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-6",
+    "damagedText": "While this model has 1-6 wounds remaining, each time this model makes an attack, subtract 1 from the Hit roll.",
+    "wargearOptions": [
+      "This model's great axe of Khorne can be replaced with 1 axe of Khorne and one of the following: 1 bloodflail; 1 lash of Khorne."
+    ]
+  },
+  "blue-horrors": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "TZEENTCH", "HORRORS", "BLUE", "BRIMSTONE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Coruscating Blue Flames": { "bs": "4+" } },
+    "canBeLeadBy": ["changecaster", "fluxmaster"]
+  },
+  "burning-chariot": {
+    "verified": true,
+    "keywords": ["MOUNTED", "FLY", "CHAOS", "DAEMON", "TZEENTCH", "BURNING CHARIOT"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Fire of Tzeentch - blue fire": { "bs": "3+" }, "Screamer bites": { "ws": "3+" } }
+  },
+  "changecaster": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "TZEENTCH", "CHANGECASTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["blue-horrors", "pink-horrors"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, ranged weapons in that unit have [SUSTAINED HITS 1].",
+      "grantsAbilities": [{ "id": "sustained-hits-1", "display": "Sustained Hits 1", "abilityAppliesTo": "ranged" }],
+      "appliesTo": "ranged"
+    }
+  },
+  "daemon-prince-of-chaos": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "CHAOS", "DAEMON", "DAEMON PRINCE OF CHAOS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Infernal cannon": { "bs": "2+" } },
+    "abilities": ["daemonic-lord", "prince-of-darkness-aura", "unholy-vigour"],
+    "allegiance": {
+      "label": "Daemonic Allegiance",
+      "options": [
+        {
+          "id": "khorne",
+          "label": "Khorne",
+          "keyword": "KHORNE",
+          "abilityId": "daemon-prince-of-khorne",
+          "effect": "+2 S to hellforged weapons",
+          "weaponMods": [{ "match": "hellforged weapons", "field": "s", "delta": 2 }]
+        },
+        {
+          "id": "tzeentch",
+          "label": "Tzeentch",
+          "keyword": "TZEENTCH",
+          "abilityId": "daemon-prince-of-tzeentch",
+          "effect": "+3 A to infernal cannon",
+          "weaponMods": [{ "match": "infernal cannon", "field": "a", "delta": 3 }]
+        },
+        {
+          "id": "nurgle",
+          "label": "Nurgle",
+          "keyword": "NURGLE",
+          "abilityId": "daemon-prince-of-nurgle",
+          "effect": "+1 Toughness",
+          "statMods": [{ "field": "t", "delta": 1 }]
+        },
+        {
+          "id": "slaanesh",
+          "label": "Slaanesh",
+          "keyword": "SLAANESH",
+          "abilityId": "daemon-prince-of-slaanesh",
+          "effect": "+2\" Move",
+          "statMods": [{ "field": "m", "delta": 2 }]
+        }
+      ]
+    }
+  },
+  "daemon-prince-of-chaos-with-wings": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "FLY", "CHAOS", "DAEMON", "DAEMON PRINCE OF CHAOS WITH WINGS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Infernal cannon": { "bs": "2+" } },
+    "abilities": ["malefic-destruction", "harbinger-of-death"],
+    "allegiance": {
+      "label": "Daemonic Allegiance",
+      "options": [
+        {
+          "id": "khorne",
+          "label": "Khorne",
+          "keyword": "KHORNE",
+          "abilityId": "daemon-prince-of-khorne",
+          "effect": "+2 S to hellforged weapons",
+          "weaponMods": [{ "match": "hellforged weapons", "field": "s", "delta": 2 }]
+        },
+        {
+          "id": "tzeentch",
+          "label": "Tzeentch",
+          "keyword": "TZEENTCH",
+          "abilityId": "daemon-prince-of-tzeentch",
+          "effect": "+3 A to infernal cannon",
+          "weaponMods": [{ "match": "infernal cannon", "field": "a", "delta": 3 }]
+        },
+        {
+          "id": "nurgle",
+          "label": "Nurgle",
+          "keyword": "NURGLE",
+          "abilityId": "daemon-prince-of-nurgle",
+          "effect": "+1 Toughness",
+          "statMods": [{ "field": "t", "delta": 1 }]
+        },
+        {
+          "id": "slaanesh",
+          "label": "Slaanesh",
+          "keyword": "SLAANESH",
+          "abilityId": "daemon-prince-of-slaanesh",
+          "effect": "+2\" Move",
+          "statMods": [{ "field": "m", "delta": 2 }]
+        }
+      ]
+    },
+    "abilityGroups": [
+      {
+        "label": "Harbinger of Death",
+        "select": 1,
+        "buffWeapons": { "match": "hellforged weapons", "category": "melee" },
+        "options": [
+          { "id": "lethal-hits", "short": "Crit hits auto-wound" },
+          { "id": "precision", "short": "Hits can target Characters" },
+          { "id": "sustained-hits-1", "short": "Crit hits score +1 hit" }
+        ]
+      }
+    ]
+  },
+  "daemonettes": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "SLAANESH", "DAEMONETTES"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "wargearOptions": [
+      "1 Daemonette can be equipped with 1 instrument of Chaos.",
+      "1 other Daemonette can be equipped with 1 daemonic icon."
+    ],
+    "canBeLeadBy": ["infernal-enrapturess", "syllesske", "tranceweaver"]
+  },
+  "epidemius": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "NURGLE", "EPIDEMIUS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Balesword and Nurgling attendants": { "ws": "3+" } },
+    "canLead": ["plaguebearers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, models in that unit have a 4+ invulnerable save.",
+      "short": "Led unit has a 4+ invulnerable save"
+    }
+  },
+  "exalted-flamer": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "FLY", "CHAOS", "DAEMON", "TZEENTCH", "EXALTED FLAMER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "noEnhancements": true,
+    "canLead": ["flamers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, ranged weapons in that unit have [ASSAULT].",
+      "grantsAbilities": [{ "id": "assault", "display": "Assault", "abilityAppliesTo": "ranged" }],
+      "appliesTo": "ranged"
+    }
+  },
+  "fateskimmer": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "FLY", "PSYKER", "CHAOS", "DAEMON", "TZEENTCH", "FATESKIMMER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Screamer bites": { "ws": "3+" } },
+    "canLead": ["screamers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, melee weapons in that unit have [LETHAL HITS].",
+      "grantsAbilities": [{ "id": "lethal-hits", "display": "Lethal Hits", "abilityAppliesTo": "melee" }],
+      "appliesTo": "melee"
+    }
+  },
+  "feculent-gnarlmaw": {
+    "verified": true,
+    "keywords": ["FORTIFICATION", "CHAOS", "DAEMON", "FRAME", "NURGLE", "FECULENT GNARLMAW"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "fiends": {
+    "verified": true,
+    "keywords": ["BEAST", "CHAOS", "DAEMON", "SLAANESH", "FIENDS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "flamers": {
+    "verified": true,
+    "keywords": ["INFANTRY", "FLY", "CHAOS", "DAEMON", "TZEENTCH", "FLAMERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canBeLeadBy": ["exalted-flamer"]
+  },
+  "flesh-hounds": {
+    "verified": true,
+    "keywords": ["BEAST", "CHAOS", "DAEMON", "KHORNE", "FLESH HOUNDS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canBeLeadBy": ["karanak"]
+  },
+  "fluxmaster": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "FLY", "PSYKER", "CHAOS", "DAEMON", "TZEENTCH", "FLUXMASTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["blue-horrors", "pink-horrors"],
+    "leaderBonus": {
+      "text": "This model's unit has Stealth, and melee attacks that target it have -1 to Hit rolls.",
+      "short": "Unit has Stealth; melee attacks against it are -1 to hit"
+    }
+  },
+  "great-unclean-one": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "NURGLE", "GREAT UNCLEAN ONE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Plague flail": { "bs": "3+" },
+      "Bileblade": { "ws": "2+" },
+      "Bilesword - strike": { "ws": "2+" },
+      "Bilesword - sweep": { "ws": "2+" },
+      "Doomsday bell": { "ws": "2+" }
+    },
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls.",
+    "abilities": ["greater-daemon-of-nurgle-aura", "daemon-lord-of-nurgle-aura", "nurgles-rot-psychic"],
+    "wargearOptions": [
+      "Plague flail can be replaced with 1 bileblade.",
+      "Bilesword can be replaced with 1 doomsday bell."
+    ]
+  },
+  "hellflayers": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "SLAANESH", "HELLFLAYERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "horticulous-slimux": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "NURGLE", "HORTICULOUS SLIMUX"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Acidic maw": { "ws": "4+" } },
+    "canLead": ["beasts-of-nurgle"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, you can re-roll its Charge rolls. Once per battle, Heroic Intervention can target this unit for 1CP less, regardless of other uses of that Stratagem this phase.",
+      "short": "Led unit re-rolls Charges; once per battle a cheaper Heroic Intervention"
+    }
+  },
+  "infernal-enrapturess": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "DAEMON", "SLAANESH", "INFERNAL ENRAPTURESS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Ravaging claws": { "ws": "2+" } },
+    "canLead": ["daemonettes"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, in your Command phase you can return D3 destroyed Bodyguard models to that unit.",
+      "short": "Command phase: return D3 destroyed Bodyguard models"
+    }
+  },
+  "kairos-fateweaver": {
+    "verified": true,
+    "keywords": [
+      "MONSTER",
+      "CHARACTER",
+      "EPIC HERO",
+      "FLY",
+      "PSYKER",
+      "CHAOS",
+      "DAEMON",
+      "TZEENTCH",
+      "KAIROS FATEWEAVER"
+    ],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Staff of Tomorrow": { "ws": "3+" } },
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls.",
+    "abilities": ["greater-daemon-of-tzeentch-aura", "one-head-looks-forward", "one-head-looks-back"]
+  },
+  "karanak": {
+    "verified": true,
+    "keywords": ["BEAST", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "KARANAK"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["flesh-hounds"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, you can re-roll Advance and Charge rolls made for that unit.",
+      "short": "Led unit can re-roll Advance & Charge rolls"
+    }
+  },
+  "keeper-of-secrets": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "SLAANESH", "KEEPER OF SECRETS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Living whip": { "bs": "2+" },
+      "Phantasmagoria - witchfire": { "bs": "2+" },
+      "Phantasmagoria - focused witchfire": { "bs": "2+" }
+    },
+    "damagedProfile": "1-6",
+    "damagedText": "While this model has 1-6 wounds remaining, its attacks have -1 to Hit rolls.",
+    "wargearOptions": ["Can additionally take one of: living whip, ritual knife or shining aegis."]
+  },
+  "lord-of-change": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "FLY", "PSYKER", "CHAOS", "DAEMON", "TZEENTCH", "LORD OF CHANGE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls.",
+    "wargearOptions": ["Can additionally take one of: rod of sorcery or baleful sword."]
+  },
+  "nurglings": {
+    "verified": true,
+    "keywords": ["SWARM", "BATTLELINE", "CHAOS", "DAEMON", "NURGLE", "NURGLINGS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "pink-horrors": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "TZEENTCH", "HORRORS", "PINK", "BLUE", "BRIMSTONE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Coruscating Pink Flames": { "bs": "3+" },
+      "Coruscating Yellow Flames": { "bs": "5+" },
+      "Blue claws": { "ws": "5+" },
+      "Yellow claws": { "ws": "5+" }
+    },
+    "abilities": ["split-2", "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two"],
+    "wargear": ["daemonic-icon", "instrument-of-chaos"],
+    "wargearOptions": [
+      "1 Pink Horror can be equipped with 1 instrument of Chaos.",
+      "1 other Pink Horror can be equipped with 1 daemonic icon."
+    ],
+    "canBeLeadBy": ["changecaster", "fluxmaster"]
+  },
+  "plague-drones": {
+    "verified": true,
+    "keywords": ["MOUNTED", "FLY", "CHAOS", "DAEMON", "NURGLE", "PLAGUE DRONES"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Plaguesword": { "ws": "3+" } },
+    "wargearOptions": [
+      "1 Plague Drone can be equipped with 1 instrument of Chaos.",
+      "1 other Plague Drone can be equipped with 1 daemonic icon."
+    ]
+  },
+  "plaguebearers": {
+    "verified": true,
+    "keywords": ["INFANTRY", "BATTLELINE", "CHAOS", "DAEMON", "NURGLE", "PLAGUEBEARERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Plaguesword": { "ws": "3+" } },
+    "wargearOptions": [
+      "1 Plaguebearer can be equipped with 1 instrument of Chaos.",
+      "1 other Plaguebearer can be equipped with 1 daemonic icon."
+    ],
+    "canBeLeadBy": ["epidemius", "poxbringer", "sloppity-bilepiper", "spoilpox-scrivener"]
+  },
+  "poxbringer": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "NURGLE", "POXBRINGER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Foul balesword": { "ws": "3+" } },
+    "canLead": ["plaguebearers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, unmodified Hit rolls of 5+ made for that unit are Critical Hits.",
+      "short": "Led unit scores Critical Hits on 5+"
+    }
+  },
+  "rendmaster-on-blood-throne": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "CHAOS", "DAEMON", "KHORNE", "RENDMASTER ON BLOOD THRONE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Attendants' hellblades": { "ws": "3+" }, "Blade of blood": { "ws": "2+" } }
+  },
+  "rotigus": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "NURGLE", "ROTIGUS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Gnarlrod - strike": { "ws": "2+" }, "Gnarlrod - sweep": { "ws": "2+" } },
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls."
+  },
+  "screamers": {
+    "verified": true,
+    "keywords": ["BEAST", "FLY", "CHAOS", "DAEMON", "TZEENTCH", "SCREAMERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Lamprey bite": { "ws": "3+" } },
+    "canBeLeadBy": ["fateskimmer"]
+  },
+  "seekers": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "SLAANESH", "SEEKERS"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "wargearOptions": [
+      "1 Seeker can be equipped with 1 instrument of Chaos.",
+      "1 other Seeker can be equipped with 1 daemonic icon."
+    ]
+  },
+  "shalaxi-helbane": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "SLAANESH", "SHALAXI HELBANE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls."
+  },
+  "skarbrand": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKARBRAND"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-7",
+    "damagedText": "While this model has 1-7 wounds remaining, add 2 to the Attacks characteristic of this model's Slaughter and Carnage."
+  },
+  "skull-altar": {
+    "verified": true,
+    "keywords": ["FORTIFICATION", "FRAME", "CHAOS", "DAEMON", "KHORNE", "SKULL ALTAR"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "skull-cannon": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHAOS", "DAEMON", "KHORNE", "SKULL CANNON"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": {
+      "Skull cannon": { "bs": "3+" },
+      "Attendants' hellblades": { "ws": "3+" },
+      "Biting maw": { "ws": "4+" }
+    }
+  },
+  "skullmaster": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "CHAOS", "DAEMON", "KHORNE", "SKULLMASTER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["bloodcrushers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, each time that unit ends a Charge move its Juggernaut's bladed horns have [DEVASTATING WOUNDS] until the end of the turn.",
+      "short": "After charging: bladed horns gain [Devastating Wounds]"
+    }
+  },
+  "skulltaker": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "EPIC HERO", "CHAOS", "DAEMON", "KHORNE", "SKULLTAKER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "canLead": ["bloodletters"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, melee weapons equipped by models in that unit have the [DEVASTATING WOUNDS] ability.",
+      "grantsAbilities": [
+        { "id": "devastating-wounds", "display": "Devastating Wounds", "abilityAppliesTo": "melee" }
+      ],
+      "appliesTo": "melee"
+    }
+  },
+  "sloppity-bilepiper": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "DAEMON", "NURGLE", "SLOPPITY BILEPIPER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Marotter": { "ws": "3+" } },
+    "canLead": ["plaguebearers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, add 1\" to that unit's Move and you can re-roll its Advance rolls.",
+      "short": "Led unit: +1\" Move, re-roll Advance rolls"
+    }
+  },
+  "soul-grinder": {
+    "verified": true,
+    "keywords": ["VEHICLE", "WALKER", "CHAOS", "DAEMON", "SOUL GRINDER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "damagedProfile": "1-5",
+    "damagedText": "While this model has 1-5 wounds remaining, its attacks have -1 to Hit rolls.",
+    "wargearOptions": [
+      "Warpsword can be replaced with 1 warpclaw.",
+      "Daemonic Allegiance: choose a god keyword — it adds that god's ranged weapon."
+    ],
+    "allegiance": {
+      "label": "Daemonic Allegiance",
+      "options": [
+        {
+          "id": "khorne",
+          "label": "Khorne",
+          "keyword": "KHORNE",
+          "effect": "Adds torrent of burning blood",
+          "grantsWeapon": "Torrent of burning blood"
+        },
+        {
+          "id": "tzeentch",
+          "label": "Tzeentch",
+          "keyword": "TZEENTCH",
+          "effect": "Adds warp gaze",
+          "grantsWeapon": "Warp gaze"
+        },
+        {
+          "id": "nurgle",
+          "label": "Nurgle",
+          "keyword": "NURGLE",
+          "effect": "Adds phlegm bombardment",
+          "grantsWeapon": "Phlegm bombardment"
+        },
+        {
+          "id": "slaanesh",
+          "label": "Slaanesh",
+          "keyword": "SLAANESH",
+          "effect": "Adds scream of despair",
+          "grantsWeapon": "Scream of despair"
+        }
+      ]
+    }
+  },
+  "spoilpox-scrivener": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "CHAOS", "DAEMON", "NURGLE", "SPOILPOX SCRIVENER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Plaguesword and distended maw": { "ws": "3+" } },
+    "canLead": ["plaguebearers"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, melee weapons in that unit have [SUSTAINED HITS 1] and its models have +1 Objective Control.",
+      "short": "+1 OC",
+      "grantsAbilities": [{ "id": "sustained-hits-1", "display": "Sustained Hits 1", "abilityAppliesTo": "melee" }],
+      "appliesTo": "melee"
+    }
+  },
+  "syllesske": {
+    "verified": true,
+    "keywords": ["MONSTER", "CHARACTER", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "SLAANESH", "SYLL'ESSKE"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Axe of Dominion": { "ws": "3+" } },
+    "canLead": ["daemonettes"],
+    "leaderBonus": {
+      "text": "While this model is leading a unit, unmodified Wound rolls of 5+ for melee attacks made by that unit are Critical Wounds.",
+      "short": "Led unit's melee scores Critical Wounds on 5+"
+    }
+  },
+  "the-blue-scribes": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "EPIC HERO", "FLY", "CHAOS", "DAEMON", "TZEENTCH", "THE BLUE SCRIBES"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Sharp quills": { "ws": "5+" } }
+  },
+  "the-changeling": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "EPIC HERO", "PSYKER", "CHAOS", "DAEMON", "TZEENTCH", "THE CHANGELING"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "the-masque-of-slaanesh": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "EPIC HERO", "FLY", "CHAOS", "DAEMON", "SLAANESH", "THE MASQUE OF SLAANESH"],
+    "factionKeywords": ["LEGIONES DAEMONICA"]
+  },
+  "tormentbringer": {
+    "verified": true,
+    "keywords": ["MOUNTED", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "SLAANESH", "TORMENTBRINGER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Lashes of torment": { "bs": "2+", "ws": "2+" } },
+    "isLeader": true,
+    "canLead": ["hellflayers"],
+    "leaderBonus": {
+      "text": "Models in this model's unit that are destroyed before they have fought can still fight before being removed (Hysterical Frenzy).",
+      "short": "Unit's slain models still fight before being removed"
+    }
+  },
+  "tranceweaver": {
+    "verified": true,
+    "keywords": ["INFANTRY", "CHARACTER", "PSYKER", "CHAOS", "DAEMON", "SLAANESH", "TRANCEWEAVER"],
+    "factionKeywords": ["LEGIONES DAEMONICA"],
+    "weaponSkills": { "Ravaging claws": { "ws": "2+" } },
+    "canLead": ["daemonettes"],
+    "leaderBonus": {
+      "text": "Attacks made by this model's unit re-roll Hit rolls of 1, or can re-roll the Hit roll entirely if the target is within range of an objective marker.",
+      "short": "Unit re-rolls Hit rolls of 1 (full re-roll vs targets on objectives)"
+    }
+  }
 }

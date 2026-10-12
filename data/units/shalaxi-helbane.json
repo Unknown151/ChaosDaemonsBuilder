@@ -122,5 +122,10 @@
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls."
 }

@@ -2,12 +2,12 @@
   "id": "plaguebearers",
   "name": "Plaguebearers",
   "keywords": [
+    "INFANTRY",
+    "BATTLELINE",
     "CHAOS",
     "DAEMON",
     "NURGLE",
-    "PLAGUEBEARERS",
-    "INFANTRY",
-    "BATTLELINE"
+    "PLAGUEBEARERS"
   ],
   "type": [
     "Infantry"
@@ -34,7 +34,7 @@
       {
         "name": "Plaguesword",
         "a": "2",
-        "ws": "4+",
+        "ws": "3+",
         "s": "4",
         "ap": "-1",
         "d": "1",
@@ -63,5 +63,12 @@
     "sloppity-bilepiper",
     "spoilpox-scrivener"
   ],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "wargearOptions": [
+    "1 Plaguebearer can be equipped with 1 instrument of Chaos.",
+    "1 other Plaguebearer can be equipped with 1 daemonic icon."
+  ]
 }

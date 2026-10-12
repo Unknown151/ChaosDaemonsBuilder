@@ -2,15 +2,15 @@
   "id": "kairos-fateweaver",
   "name": "Kairos Fateweaver",
   "keywords": [
+    "MONSTER",
+    "CHARACTER",
+    "EPIC HERO",
     "FLY",
     "PSYKER",
     "CHAOS",
-    "TZEENTCH",
     "DAEMON",
-    "KAIROS FATEWEAVER",
-    "CHARACTER",
-    "EPIC HERO",
-    "MONSTER"
+    "TZEENTCH",
+    "KAIROS FATEWEAVER"
   ],
   "type": [
     "Character",
@@ -72,7 +72,7 @@
       {
         "name": "Staff of Tomorrow",
         "a": "5",
-        "ws": "4+",
+        "ws": "3+",
         "s": "8",
         "ap": "-2",
         "d": "2D3",
@@ -91,10 +91,15 @@
   "abilities": [
     "greater-daemon-of-tzeentch-aura",
     "one-head-looks-forward",
-    "one-head-looks-back-aura"
+    "one-head-looks-back"
   ],
   "wargear": [],
   "canLead": [],
   "canBeLeadBy": [],
-  "skillEstimated": true
+  "verified": true,
+  "factionKeywords": [
+    "LEGIONES DAEMONICA"
+  ],
+  "damagedProfile": "1-7",
+  "damagedText": "While this model has 1-7 wounds remaining, its attacks have -1 to Hit rolls."
 }

@@ -1,0 +1,41 @@
+{
+  "beast-handler": {
+    "description": "While this model is leading a unit, you can re-roll Charge rolls made for that unit. In addition, once per battle, you can target this unit with the Heroic Intervention Stratagem regardless of any other uses of it this phase: that use costs 1CP less and does not stop you using the Stratagem on other units this phase.",
+    "short": "Led unit re-rolls Charges; once per battle a cheaper Heroic Intervention"
+  },
+  "fluxmaster": {
+    "description": "This model's unit has the Stealth ability, and melee attacks that target it have -1 to Hit rolls.",
+    "short": "Unit has Stealth; melee attacks against it are -1 to hit"
+  },
+  "one-head-looks-back-aura": null,
+  "one-head-looks-back": {
+    "name": "One Head Looks Back",
+    "type": "Ability",
+    "description": "Once per turn, when your opponent targets one of their units within 12\" of this model with a Stratagem, you can use this ability to increase the CP cost of that use by 1CP.",
+    "short": "Once per turn: an enemy Stratagem within 12\" costs +1CP"
+  },
+  "fortification": {
+    "description": "While an enemy unit is only within Engagement Range of one or more FORTIFICATIONS from your army: <ul><li>it can still be targeted by ranged attacks, but those attacks have -1 to Hit rolls unless made with a Pistol;</li><li>its models do not take Desperate Escape tests for Falling Back while Battle-shocked, unless they move over enemy models.</li></ul>",
+    "short": "Units engaged only with this can still be shot (-1 to hit)"
+  },
+  "the-eternal-dance": {
+    "description": "At the start of the Fight phase, select one enemy unit within 6\" of this model. Until the end of the phase: <ul><li>melee attacks made against that unit by friendly SLAANESH LEGIONES DAEMONICA models have +1 to Wound rolls;</li><li>melee attacks made by models in that unit have -1 to Wound rolls.</li></ul>",
+    "short": "Fight phase: mark an enemy within 6\" — +1 to wound it, it is -1 to wound"
+  },
+  "harbinger-of-death": {
+    "description": "Each time this model is selected to fight, select one of the following abilities. Until the end of the phase, this model's hellforged weapons have that ability: [LETHAL HITS], [PRECISION] or [SUSTAINED HITS 1]."
+  },
+  "horrors-are-pink-horrors-are-blue-whereonce-there-was-one-now-there-are-two": {
+    "name": "Horrors Are Pink, Horrors Are Blue",
+    "type": "Ability",
+    "description": "If this unit ever contains no PINK HORROR models, use the BLUE HORRORS datasheet for it. While it still contains one or more PINK HORROR models, the Sullen Malevolence and Exploding Horrors abilities from that datasheet do not apply.",
+    "short": "No Pink Horrors left → use the Blue Horrors datasheet"
+  },
+  "reverberating-summons-2": null,
+  "reverberating-summons": {
+    "name": "Reverberating Summons",
+    "type": "Weapon Ability",
+    "description": "Each time a model is destroyed by this weapon, you can select one friendly PLAGUEBEARERS unit within 12\" of the bearer and return 1 destroyed Plaguebearer model to it.",
+    "short": "Each kill returns 1 Plaguebearer to a unit within 12\""
+  }
+}
