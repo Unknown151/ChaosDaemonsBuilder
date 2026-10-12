@@ -116,16 +116,23 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 
 /* cards */
 .unit-card{background:var(--panel);border:1px solid var(--border);border-radius:8px;
-  margin-bottom:.8rem;overflow:hidden}
+  margin-bottom:.45rem;overflow:hidden}
 .unit-card.attached{border-color:var(--accent-2)}
 .unit-card{scroll-margin-top:64px}
 .unit-card.epic{border-color:var(--accent-2);background:linear-gradient(180deg,rgba(212,161,58,.10),var(--panel) 55%)}
 .unit-card.epic .card-head{background:linear-gradient(180deg,rgba(212,161,58,.22),var(--panel-2))}
 .unit-card.epic .role-eyebrow{color:var(--accent-2)}
 .unit-card.character{border-color:var(--core);border-left-width:4px}
-.card-head{display:flex;align-items:flex-start;gap:.6rem;padding:.8rem .9rem;cursor:pointer;
+/* card header is a single line: name · role tag · unit type · points.
+   The title wraps onto hidden rows, so a label that doesn't fit drops off whole
+   (unit type first, then the role tag) and only then does the name truncate. */
+.card-head{display:flex;align-items:center;gap:.5rem;padding:.45rem .8rem;cursor:pointer;
   background:var(--panel-2)}
-.card-head h3{margin:.1rem 0 0;font-size:1.5rem;font-weight:800;flex:1;letter-spacing:.01em;line-height:1.1}
+.card-title{flex:1;min-width:0;display:flex;flex-wrap:wrap;align-items:baseline;column-gap:.5rem;row-gap:2rem;
+  height:1.4rem;overflow:hidden;white-space:nowrap}
+.card-head h3{margin:0;font-size:1.05rem;font-weight:800;letter-spacing:.01em;line-height:1.3;
+  flex:0 1 auto;min-width:0;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+.card-head h3 .led-by-name{color:var(--muted);font-weight:600;font-size:.85em}
 .card-head .pts{color:var(--accent-2);font-weight:700;font-size:.85rem;white-space:nowrap}
 .card-body{padding:.7rem .9rem .9rem}
 .unit-card.collapsed .card-body{display:none}
@@ -144,8 +151,9 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 .stat-star{color:var(--inherited);font-size:.65rem;vertical-align:super;margin-left:1px}
 .card-head .collapse-ind{color:var(--muted);font-size:.8rem;transition:transform .15s}
 .unit-card.collapsed .collapse-ind{transform:rotate(-90deg)}
-.role-eyebrow{font-size:.66rem;color:var(--muted);text-transform:uppercase;letter-spacing:.12em;font-weight:600}
-.card-type{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:.15rem}
+.role-eyebrow{flex:none;font-size:.6rem;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;font-weight:700;
+  border:1px solid currentColor;border-radius:4px;padding:.05rem .3rem;position:relative;top:-.08rem}
+.card-type{flex:none;font-size:.68rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
 .model-line{font-size:.78rem;color:var(--muted);margin:.1rem 0 .5rem}
 .defence-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:.6rem}
 .invuln-row{display:inline-block;background:rgba(212,161,58,.15);border:1px solid var(--accent-2);
@@ -345,7 +353,7 @@ main{max-width:1100px;margin:0 auto;padding:1rem}
 </head>
 <body>
 <header>
-  <h1>Chaos Daemons <span class="version">v0.16</span></h1>
+  <h1>Chaos Daemons <span class="version">v0.16.1</span></h1>
   <div class="header-controls">
     <nav class="tabs">
       <button class="tab-btn active" data-tab="units">Units</button>
@@ -937,9 +945,9 @@ function renderLedUnitCard(inst){
   return `<div class="unit-card attached ${epic} ${collapsed}" id="uc-${inst.instanceId}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
       <span class="collapse-ind">▼</span>
-      <div style="flex:1">
-        <div class="role-eyebrow">— Led Unit</div>
-        <h3>${bg.name} <span style="color:var(--muted);font-weight:600;font-size:1rem">+ ${leader.name}</span></h3>
+      <div class="card-title">
+        <h3>${bg.name} <span class="led-by-name">+ ${leader.name}</span></h3>
+        <span class="role-eyebrow">Led Unit</span>
       </div>
       <span class="pts">${calculateInstancePoints(inst)} pts</span>
     </div>
@@ -1019,10 +1027,10 @@ function renderSoloUnitCard(inst){
   return `<div class="unit-card ${tier} ${collapsed}" id="uc-${inst.instanceId}">
     <div class="card-head" onclick="toggleCard('${inst.instanceId}')">
       <span class="collapse-ind">▼</span>
-      <div style="flex:1">
-        ${roleEyebrow(u)}
+      <div class="card-title">
         <h3>${u.name}</h3>
-        <div class="card-type">${(u.type||[]).join(' · ')}</div>
+        ${roleEyebrow(u)}
+        <span class="card-type">${(u.type||[]).join(' · ')}</span>
       </div>
       <span class="pts">${calculateInstancePoints(inst)} pts</span>
     </div>
@@ -1055,7 +1063,7 @@ function roleEyebrow(u){
   if(u.isEpicHero) role = 'Epic Hero';
   else if(u.isLeader) role = 'Leader';
   else if(u.isBattleline) role = 'Battleline';
-  return role ? `<div class="role-eyebrow">— ${role}</div>` : '';
+  return role ? `<span class="role-eyebrow">${role}</span>` : '';
 }
 
 function renderStatGrid(u){
