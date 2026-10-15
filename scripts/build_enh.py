@@ -67,6 +67,10 @@ for i in range(1, len(parts) - 1, 2):
     rm = re.search(r'((?:Legiones Daemonica )?Khorne[^.]*?(?:model|unit)s? only)\.', body, re.I)
     if rm:
         restr = rm.group(1).strip()
+        # the rules start at the restriction sentence — drop the flavor text before it
+        body = body[rm.start():]
+    if not body.endswith('.'):
+        body += '.'
     # rebuild description with aura tag if present
     aura = ''
     am = re.search(r'\((AURA|PSYCHIC)\)', raw_name, re.I)
